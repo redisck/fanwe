@@ -1,0 +1,165 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/location.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery-ui.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/kindeditor.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/timepicker/jquery-ui-timepicker-addon.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-ui.min.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/kindeditor.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/timepicker/jquery-ui-timepicker-addon.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/timepicker/jquery-ui-timepicker-zh-CN.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_set.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_set.js";
+?>
+
+{include file="inc/header.html"}
+
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class="publish_project_btn f_r"><a href="{url r="biz" b="dc#index"}"><button class="ui-button " rel="white" type="button">返回列表</button></a></div>
+			</div>
+			<div class="blank20"></div>
+			<div class="form_box">
+				<form name="dc_set_form" action="{url r="biz" b="dc#do_save_dcset"}" method="post">
+					<div class="publish_box ">
+					<table class="form_teble_box add_border">
+									<colgroup>
+										<col width="120">
+										<col width="570">
+									</colgroup>
+									<tbody>
+										<tr >
+											<td class="t_field_name">服务类型:</td>
+											<td class="t_field_value">
+												<label class="ui-checkbox" rel="common_cbo"><input 	type="checkbox" name="is_reserve" value="1" {if $vo.is_reserve eq 1}checked = "checked"{/if} />预约</label>
+												
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name">商家分类:</td>
+											<td class="t_field_value">
+											{if $dc_cate}	
+												{foreach from=$dc_cate item=row}
+													<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="cate_id[]" value="{$row.id}" {if $row.is_checked eq 1}checked="checked"{/if}/>{$row.name}</label>
+												{/foreach}
+											{else}
+											<span class="f_l t_tip" style="display:block;height: 23px;line-height: 23px;margin-top:7px;">暂无分类</span>
+											{/if}	
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name">营业时间:</td>
+											<td class="t_field_value">
+												<div class="open_time_box">
+													&nbsp;&nbsp;<a href="javascript:void(0);" onclick="add_open_time();" style="text-decoration:none;">[ + ]</a>
+													&nbsp;<span class="t_tip">[默认24小时营业]</span></p>	
+												{foreach from=$open_time_list item=row key=k}
+													<div class="open_time_tiem">
+														<span style="padding-left: 50px;">从&nbsp;<input class="time_txt " style="width:50px;" name="op_begin_time[]" value="{$row.begin_time}"/>&nbsp;至&nbsp;<input class="time_txt" style="width:50px;" name="op_end_time[]" value="{$row.end_time}"/>&nbsp;时 </span>
+														
+														&nbsp;&nbsp;<a href="javascript:void(0);" onclick="remove_open_time(this);" style="text-decoration:none;">[ - ]</a>
+														
+														<div class="blank5"></div>
+													</div>
+												{/foreach}
+												</div>
+											</td>
+										</tr>
+										
+										<tr class="is_dc_item">
+											<td class="t_field_name">配送信息:</td>
+											<td class="t_field_value">
+												<div class="delivery_info_box">
+															&nbsp;<a href="javascript:void(0);" onclick="add_delivery_row();" style="text-decoration:none;">[ + ]</a>
+															&nbsp;<span class="t_tip">[默认不收配送费]</span></p>
+												
+													{foreach from=$delivery_data item=row key=k}
+														<div class="delivery_item">
+															<span style="padding-left: 50px;"><input style="width:50px;" name="scale[]"  value="{$row.scale}"/>&nbsp;公里之内&nbsp;&nbsp;起送费&nbsp;<input  style="width:50px;" name="start_price[]"   value="{$row.start_price}"/>&nbsp;元&nbsp;&nbsp;配送费&nbsp;<input  style="width:50px;" name="delivery_price[]"  value="{$row.delivery_price}" />&nbsp;元</span>
+														
+															&nbsp;<a href="javascript:void(0);" onclick="remove_delivery_row(this);" style="text-decoration:none;">[ - ]</a>
+															
+															<div class="blank5"></div>
+														</div>
+													{/foreach}
+												
+												</div>
+											</td>
+										</tr>
+										<tr class="is_dc_item">
+											<td class="t_field_name">打包费信息:</td>
+											<td class="t_field_value">
+											<div>
+												<div>
+													<span>基础价：</span><input name="package_start_price" value="{$package_conf.package_start_price}"/>&nbsp;元
+													&nbsp;<span class="t_tip">[0:为不收打包费，-1:全收打包费，大于0:小于该值，收取打包费;大于该值，不收打包费]</span>
+												</div>
+												<div class="blank5"></div>
+												<div>
+													<span>打包费：</span><input name="package_price" value="{$package_conf.package_price}" />&nbsp;元
+													&nbsp;<span class="t_tip">[每样菜的打包费]</span>
+												</div>
+												
+												</div>
+
+												
+											</td>
+										</tr>
+											
+										<tr>
+											<td class="t_field_name">商家公告:</td>
+											<td class="t_field_value">
+												
+											<textarea class="textarea" name="dc_location_notice">{$vo.dc_location_notice}</textarea>	
+												
+											</td>
+										</tr>	
+										</tbody>
+								</table>
+								<div class="blank10"></div>
+					</div>
+					<div class="confirm_form_btn">
+						<input type="hidden" name="id" value="{$vo.id}"/>
+						
+						<div class="sub_form_btn">
+							<button class="ui-button " rel="orange" type="submit">确认提交</button>
+						</div>
+							
+					</div>
+				</form>
+				<div class="blank10"></div>
+			</div>
+			<div class="blank10"></div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

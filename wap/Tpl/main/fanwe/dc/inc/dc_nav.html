@@ -1,0 +1,12 @@
+<div class="nav-bar_02 w_b bor_3 bg_fff tc lh048 f027">
+{if $data.dclocation.is_dc}
+	<div class="w_b_f_1 pt026 pb024 {if $data.ctl eq dcbuy}current{/if}"><a href="{url r="index" p="dcbuy" g="lid=$data.dclocation.id" }" class="block bor_2">外卖</a></div>
+{/if}
+
+{if $data.dclocation.is_reserve}
+	<div class="w_b_f_1 pt026 pb024 {if $data.ctl eq dctable}current{/if}"><a href='{url r="index" p="dctable" g="lid=$data.dclocation.id" }' class="block bor_2">订座</a></div>
+{/if}	
+	
+	<div class="w_b_f_1 pt026 pb024 {if $data.ctl eq dcpoint}current{/if}"><a href="{url r="index" p="dcpoint" g="lid=$data.dclocation.id" }" class="block bor_2">点评</a></div>
+	<div class="w_b_f_1 pt026 pb024 {if $data.ctl eq dcdetail}current{/if}"><a href="{url r="index" p="dcdetail" g="lid=$data.dclocation.id" }" class="block">商家详情</a></div>
+</div>

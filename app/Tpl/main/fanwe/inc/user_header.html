@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" />
+{* 加载浏览器兼容 *}
+{function name="load_compatible"}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{if $page_title}{$page_title} - {/if}{$site_seo.title}</title>
+<meta name="keywords" content="{if $page_keyword}{$page_keyword}{else}{$site_seo.keyword}{/if}" />
+<meta name="description" content="{if $page_description}{$page_description}{else}{$site_seo.description}{/if}" />
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';
+var CART_URL = '{url x="index" r="cart"}';
+var CART_CHECK_URL = '{url x="index" r="cart#check"}';
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1}
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+var IS_RUN_CRON = 1;
+var DEAL_MSG_URL = '{url x="index" r="cron#deal_msg_list"}';
+{/if}
+var AJAX_LOGIN_URL	= '{url x="index" r="user#ajax_login"}';
+var AJAX_URL	= '{url x="index" r="ajax"}';
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+var CITY_COUNT	= {$city_count};
+
+//关于图片上传的定义
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+var UPLOAD_SWF = '{$TMPL}/js/utils/Moxie.swf';
+var UPLOAD_XAP = '{$TMPL}/js/utils/Moxie.xap';
+var MAX_IMAGE_SIZE = '{function name='app_conf' v='MAX_IMAGE_SIZE'}';
+var ALLOW_IMAGE_EXT = '{function name='app_conf' v='ALLOW_IMAGE_EXT'}';
+var UPLOAD_URL = '{url x="index" r="file#upload"}';
+</script>
+<?php
+//前台队列功能开启
+if(app_conf("APP_MSG_SENDER_OPEN")==1)
+{
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+}
+?>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/app/lang.js"></script>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$pagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$pagejs" c="$cpagejs"}"></script>
+
+</head>
+<body>
+<img src="{$TMPL}/images/loader_img.gif" style="display:none;" /><!--延时加载的替代图片生成-->
+<div class="top_nav">
+	<div class="{function name="load_wrap" t=$wrap_type}">
+		<span class="f_l">欢迎来到{function name="app_conf" v="SHOP_TITLE"}</span>	
+		<span class="f_r">
+			<ul class="head_tip">
+				<li class="cart_tip" id="cart_tip">{insert name="load_cart_count"}</li>
+				<li class="user_tip" id="head_user_tip">{insert name="load_user_tip"}</li>
+			</ul>
+		</span>
+	</div>
+</div><!--顶部横栏-->
+<div class="head_main user_head theme_morning">
+	<div class="{function name="load_wrap" t=$wrap_type} cm_hd">
+		<a href="{url r="index"}"  style="font-size: 24px;font-family: "Microsoft YaHei" ! important;"><i class="iconfont" style="font-size: 40px;color: #f80;">&#xe635;</i>个人主页</a>
+		<div class="btn_group" {$is_why}>
+				{if $is_why eq 1}
+				<a href="javascript:void(0);" onclick="$.fast_publish()"  class="publish_btn"><i>发布</i></a>	
+				{elseif $is_why eq 2}
+				<a href="{url b="index" r="uc_home#index"}" class="back_home"><i class="iconfont">&#xe61e;</i>&nbsp;返回我的主页</a>
+				{/if}
+		</div>
+	</div>
+	<div class="{function name="load_wrap" t=$wrap_type} ">
+		<div class="user_info_box">
+			<div class="u_img">
+				{function name="show_avatar" id="$home_user_info.id" type="middle" is_card=0}
+			</div>
+			<div class="u_info u_info_bg">
+				<div class="info">
+					<p class="line">
+						<strong class="name">{$home_user_info.user_name}</strong>{if $home_user_info.is_merchant eq 1 }<span class="is_merchant" title="认证商家"></span>{/if}{if $home_user_info.is_daren eq 1 }<span class="is_daren" title="分享达人"></span>{/if}
+					</p>
+					<p class="line">
+						{if $home_user_info.sex eq 1}<i class="iconfont sex_1">&#xe637;</i>男{elseif $home_user_info.sex eq -1}<i class="iconfont">&#xe639;</i>保密{else}<i class="iconfont sex_0">&#xe638;</i>女{/if} {if $home_user_info.is_daren eq 1}<i class="dot"></i> {$home_user_info.daren_title} {/if} {if $user_location} <i class="dot"></i>{$user_location}{/if}
+						
+					</p>
+					<p class="line medal">
+						{foreach from=$home_user_info.medal_list item=medal}
+							<a href="{url x="index" r="uc_medal"}" title="{$medal.name}"><img src="{function name="get_spec_image" v=$medal.icon w=20 h=20 g=1}" align="absmiddle" /></a>	
+						{/foreach}
+					</p>
+				</div>
+				<div class="sns">
+					{if $is_why eq 1}
+					<p class="line edit_btn"><button class="ui-button edit_link_btn" rel="white" act="{url x="index" r="uc_myinfo#index"}" type="button">账户中心</button></p>
+					
+					{elseif $is_why eq 2 or $is_why eq 3}
+					<a class="fav_btn {if $is_fav}fav_checked{/if}" href="javascript:void(0);" onclick="$.fav_btn({$home_user_info.id},this)">
+						<ul>
+							<li><i class="iconfont">&#xe626;</i>关注</li>
+							<li>关注 +1</li>
+							<li><i class="iconfont">&#xe62d;</i>已关注</li>
+							<li>取消关注</li>
+						</ul>
+					</a>
+					{/if}
+					<br/>
+					<ul class="ff_count">
+						<li class="atten_item fans">
+							<a href="{url b="index" r="uc_home#uc_fans_list" p="id=$home_user_info.id"}">
+							<p class="atten_link">
+								<strong>{$home_user_info.focused_count}</strong>
+								<span>粉丝</span>
+							</p>
+							</a>
+						</li> 
+						<li class="atten_item follow">
+							<a href="{url b="index" r="uc_home#uc_follow_list" p="id=$home_user_info.id"}">
+							<p class="atten_link">
+								<strong>{$home_user_info.focus_count}</strong>
+								<span>关注</span>
+							</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div><!--头部个人信息-->
+	<div class="user_nav_box">
+		<div class="user_nav_con {function name="load_wrap" t=$wrap_type}">
+			<ul>
+				{foreach from = $uc_nav item=nav key=key}
+					<li class="nav_item {if $ACTION_NAME eq $key}current{/if}"><a class="nav_link" href="{$nav.url}">{$nav.name}</a><i class="top_triangle"></i></li>
+				{/foreach}
+			</ul>
+			<div class="back_index_link"><a href="{url r="index"}"><i class="iconfont">&#xe61e;</i>返回首页</a></div>
+		</div>
+		
+	</div>
+</div>
+<div class="blank15"></div>
+
+

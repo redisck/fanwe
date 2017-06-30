@@ -1,0 +1,189 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/wxconf.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+?>
+
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box">
+				<h2>{$head_title}</h2>
+			</div>
+			
+			{if !$weixin_account}
+			<div class="syn_login">
+			<a href="{$sq_url}" target="_blank"><img src="{$TMPL}/images/icon_button3_1.png" /></a>
+			</div>
+			{else}
+			<div class="info_table">
+				
+				<table>
+					{if $weixin_account.nick_name}
+				 		<tr>
+				 			<td class="item_title">公众号名称</td>
+							<td class="item_input">
+								 {$weixin_account.nick_name}
+							</td>
+				 		</tr>
+					{/if}
+					{if $weixin_account.user_name}
+				 		<tr>
+				 			<td class="item_title">授权方公众号的原始ID</td>
+							<td class="item_input">
+								 {$weixin_account.user_name}
+							</td>
+				 		</tr>
+					{/if}
+					{if $weixin_account.head_img}
+				 		<tr>
+				 			<td class="item_title">授权方公众号的头像</td>
+							<td class="item_input">
+								<a href="{$weixin_account.head_img}" target="_blank"><img src="{$weixin_account.head_img}" width="50" height="50"></a>
+							</td>
+				 		</tr>
+					{/if}
+					
+					{if $verify_type}
+					<tr>		
+						<td class="item_title">授权方认证类型</th>
+						<td class="item_input">
+							 {$verify_type}
+			 			</td>
+					</tr>
+					{/if}
+					{if $service_type}
+			 		<tr>		
+						<td class="item_title">授权方公众号类型</th>
+						<td class="item_input">
+							{$service_type} 
+							<br />
+							<span style="color:#f60;">请尽量使用<span style="font-weight:bolder; color:#000;">&nbsp;有支付权限的服务号&nbsp;</span>类型的公众号，以避免<span style="font-weight:bolder; color:#000;">&nbsp;跨号支付&nbsp;</span>引起的二次扫码支付，影响支付体验。</span>
+							
+				 		</td>
+					</tr>
+					{/if}
+					<tr>
+					{if $weixin_account.authorizer_appid}
+			 		<tr>		
+						<td class="item_title">授权方appid</th>
+						<td class="item_input">
+							 {$weixin_account.authorizer_appid}
+			 			</td>
+					</tr>
+					{/if}
+					{if $weixin_account.authorizer_access_token}
+					<tr>		
+						<td class="item_title">授权方access_token</th>
+						<td class="item_input">
+							 {$weixin_account.authorizer_access_token}
+			 			</td>
+					</tr>
+					{/if}
+					{if $weixin_account.authorizer_refresh_token}
+					<tr>		
+						<td class="item_title">授权方refresh_token</th>
+						<td class="item_input">
+							 {$weixin_account.authorizer_refresh_token}
+			 			</td>
+					</tr>
+					{/if}
+					{if $weixin_account.user_name eq ''}
+				 		<tr>
+				 			<td  class="item_title"></td>
+							<td class="item_input">
+								<input type="button" onclick="window.location.reload();" value="获取公众号信息">
+							</td>
+				 		</tr>
+			 		{/if}
+					<tr>		
+						<td class="item_title">公众号解绑</th>
+						<td class="item_input">
+							<button class="ui-button " rel="orange" type="button" onclick="location.href='{$unbind_url}';">解绑绑定</button>
+			 			</td>
+					</tr>
+					
+					{if $industry_list}
+					<tr>		
+						<th colspan="2">行业设置</th>
+					</tr>		
+					{foreach from=$industry_list key=key item=industry}
+					<tr>		
+						<td class="item_title" style=" width:200px;">行业{$key}</th>
+						<td class="item_input">
+							 {$industry}
+			 			</td>
+					</tr>
+					{/foreach}
+					<tr>		
+						<td class="item_title" style=" width:200px;"></th>
+						<td class="item_input">
+							<button class="ui-button " rel="orange" type="button" onclick="location.href='{$syn_industry_url}';">同步行业设置</button>
+							<br />
+							<span class="tip_span">*同步公众账号服务所处的2个行业以便可以设置消息模板，同步一次后无需修改，如在其他平台同步过行业信息，则需一个月之后才可以同步</span>
+			 			</td>
+					</tr>
+					{/if}
+					
+					
+					{*tpl*}
+					
+					{if $template_list}
+					<tr>		
+						<th colspan="2">消息模板设置</th>
+					</tr>		
+					
+					{foreach from=$template_list key=key name=tpl item=template}
+					<tr>		
+						<td class="item_title" style=" width:200px;">消息模板{$smarty.foreach.tpl.iteration}</th>
+						<td class="item_input">
+							模板编号：{$key},&nbsp; 名称： {$template.name}
+							{if $template.data}
+								&nbsp;已安装，模板ID:{$template.data.template_id}
+							{/if}
+			 			</td>
+					</tr>
+					{/foreach}
+					<tr>		
+						<td class="item_title" style=" width:200px;"></th>
+						<td class="item_input">
+							<button class="ui-button " rel="orange" type="button" onclick="location.href='{$syn_template_url}';">同步消息模板</button>
+							<button class="ui-button " rel="orange" type="button" onclick="location.href='{$del_template_url}';">删除消息模板</button>
+							<br />
+							<span class="tip_span">*一键同步本平台在微信公众平台所必需的业务消费模板，同步模板前必需保证行业已同步成功</span>
+			 			</td>
+					</tr>
+					{/if}
+					{*tpl*}
+					
+				</table>
+				
+			</div>	
+			{/if}
+		
+
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

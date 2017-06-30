@@ -1,0 +1,134 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/dc.js' />
+<style>
+.cfg_content2 input{
+width:50px;
+}
+.cfg_content2 .cfg_title2{
+padding:0 5px;
+}
+</style>
+<script>
+function add_dc_promote()
+{
+	$.ajax({ 
+		url: ROOT+"?"+VAR_MODULE+"=DcPromote&"+VAR_ACTION+"=add_dc_promote", 
+		data: "ajax=1",
+		type: "POST",
+		success: function(obj){
+			$(".add_dc_promote").append(obj);
+		}
+	});
+}
+function remove_dc_promote(o)
+{
+	$(o).parent().remove();
+}
+
+</script>
+<div class="main">
+<div class="main_title">{$data.name} &nbsp;{%INSTALL} <a href="{:u("DcPromote/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%PROMOTE_NAME}:</td>
+		<td class="item_input">
+			{$data.name}
+			<input type="hidden" value="{$data.name}" name="name" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CLASS_NAME}:</td>
+		<td class="item_input">
+			{$data.class_name}
+			<input type="hidden" value="{$data.class_name}" name="class_name" />
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%SORT}:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="sort" value="{$data.sort}" />
+		</td>
+	</tr>
+	
+	<if condition="$data['config'] && $data['class_name'] eq PayOnlineDiscount">
+	<tr>
+		
+		<td class="item_title">{%PROMOTE_CONFIG}:</td>
+			<td class="item_input add_dc_promote">
+
+				<span><a onclick="add_dc_promote();" href="javascript:void(0);">[+]</a>:&nbsp;新增</span>
+
+				<div class="cfg_content2">
+				<span class="cfg_title2">{$data['lang']['discount_limit']}:</span><input type="text" class="textbox" name="config[discount_limit][]" value="" />元&nbsp;&nbsp;
+				<span class="cfg_title2">{$data['lang']['discount_amount']}:</span><input type="text" class="textbox" name="config[discount_amount][]" value="" />元&nbsp;&nbsp;
+				<a onclick="remove_dc_promote(this);" href="javascript:void(0);">[-]</a>
+				</div>
+
+			</td>
+	</tr>
+	<else />
+		<tr>
+		<td class="item_title">{%PROMOTE_CONFIG}:</td>
+		<td class="item_input">
+			<foreach name="data.config" item="config">
+				<php>$config_name = $key;</php>
+				<span class="cfg_title">{:strim($data['lang'][$key])}:</span>
+				<span class="cfg_content">
+				<if condition="$config['INPUT_TYPE'] eq 0">
+				<input type="text" class="textbox" name="config[{$key}]" value="" />
+				<elseif condition="$config['INPUT_TYPE'] eq 2" />
+				<input type="password" class="textbox" name="config[{$key}]" value="" />
+				<else />
+				<select name="config[{$key}]" >
+					<foreach name="config.VALUES" item="val">
+						<option value="{$val}">{:strim($data['lang'][$config_name."_".$val])}</option>
+					</foreach>
+				</select>
+				</if>
+				</span>
+				<div class="blank5"></div>
+			</foreach>
+		</td>
+	</tr>
+	</if>
+	
+	<if condition="$data['config'] && $data['class_name'] eq PayOnlineDiscount">
+	<tr>
+		<td class="item_title">每日限单:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="config[daily_limit]" value="{$vo['config']['daily_limit']}" />{$data['lang']['daily_limit']}
+		</td>
+	</tr>
+	</if>
+		<tr>
+		<td class="item_title">{%DESCRIPTION}:</td>
+		<td class="item_input">
+			<textarea class="textarea require" name="description"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="DcPromote" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,6 @@
+<select name="location_id">
+<option value="0">{%EMPTY_SELECT}</option>
+<foreach name="location_info" item="location">
+<option value="{$location.id}">{$location.name}</option>	
+</foreach>
+</select>

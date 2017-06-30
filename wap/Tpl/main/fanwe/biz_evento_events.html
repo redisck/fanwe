@@ -1,0 +1,99 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_youhuio_locations.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/evento_eventv.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/biz/evento_eventv.js";
+
+
+?>
+{include file="inc/biz_header.html"}
+<script>var ajax_url = "{$ajax_url}";</script>
+<div class="wrap">
+	<div class="content">
+	{if $data.status eq 0}
+		<div class="common_tip">
+              <span><i class="iconfont">&#xe644;</i>&nbsp;&nbsp;{$data.info}</span>
+       	</div>
+       	{/if}
+       		{if $data.event_info}
+       	<div class="head_info">
+       		<h3>{$data.event_info.name}</h3>
+       		<div class="sub_info table_box">
+       			<div class="l_table_item height_color">总共报名：{$data.event_info.submit_count}</div>
+       			<div class="l_table_item">有效期：{$data.event_info.f_event_end_time}</div>
+       		</div>
+       	</div>
+       	{/if}
+		<div class="list-view bor_none">
+			 <ul class="item_small_ul">
+			 <li class="item_li">
+			 	     <div class="list_item table_box table_head">
+							<div class="c_table_item" style="width:30%">会员</div>
+							<div class="c_table_item" style="width:50%">验证门店</div>
+							<div class="c_table_item" style="width:20%">审核状态</div>
+			 	     	</div>
+			 	</li>
+			 	{foreach from=$data.item item=row}
+			 	<li class="item_li" {$row.id}>
+			 	  
+			 	     	<div class="list_item table_box">
+							<div class="c_table_item"  style="width:30%">
+								{$row.user_name}
+								<div class="blank"></div>
+								{$row.f_create_time}
+							</div>
+							<div class="c_table_item"  style="width:50%">
+								{$row.location_name}
+							</div>
+							<div  class="c_table_item"  style="width:20%">
+						
+								{if $row.is_verify eq 1}
+								<i class="iconfont">&#xe648;</i>
+								{elseif $row.is_verify eq 2}
+								<i class="iconfont">&#xe608;</i>
+								{else}
+									<a href="javascript:void(0);" url="{url r="biz" b="evento#approval" p="data_id=$row.id"}" class="approval">通过审核</a>
+									<div class="blank"></div>
+									<a href="javascript:void(0);" url="{url r="biz" b="evento#refuse" p="data_id=$row.id"}" class="refuse">拒绝</a>
+								{/if}
+							</div>
+			 	     	</div>
+		
+			 	</li>
+				{/foreach}
+				
+			 </ul>
+			 
+		</div>
+	</div>
+	
+	{if $pages}
+	<div class="blank"></div>
+	<div class="fy">
+		{$pages}
+	</div>
+{/if}
+	<div class="blank50"></div>
+	</div>
+</div>
+<div class="blank50"></div>
+
+
+{include file="inc/biz_footer.html"}	

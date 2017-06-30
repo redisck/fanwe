@@ -1,0 +1,235 @@
+/*优惠券列表左边列表*/
+.yh_l .back{
+	 border:1px dashed #ccc;
+	 margin-bottom:10px;
+	 background:#fff;
+}
+.yh_l .ticket{
+	width:180px;
+	position:relative;
+	height:180px;
+	border-left:2px dashed #ccc;
+	background:@light_color;
+}
+.yh_l .ticket a{
+	cursor:pointer;
+}
+.yh_l .ticket .tags{
+	position:absolute;
+	top:-5px;
+	left:5px;
+}
+
+.yh_l .qrcode_title{ line-height:25px; text-align:center; padding-top:50px;}
+.yh_l .ticket_img{
+	text-align:center;
+}
+
+.yh_l .show{
+	padding:15px 10px 15px 210px;
+}
+.yh_l .show .show_img{
+
+	float:left;
+	margin-left:-200px;
+	_margin-left:-99px;
+	overflow:hidden;
+	border:#ddd solid 1px; 
+	padding:5px;
+	width:180px;
+	height:135px;
+}
+.yh_l .show_text{
+	margin-left:5px;
+}
+.yh_l .show_text h3{
+color: #666666;
+font-family: "Microsoft YaHei";
+font-size: 20px;
+font-weight: bold;
+line-height: 25px;
+width: 100%;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+.yh_l .show_text h3 a{
+	color:#333;
+	cursor:pointer;
+}
+.yh_l .show_text p{
+	color:#999999;
+	line-height:30px;
+	white-space:nowrap; 
+}
+.yh_l .show_text dl dd{
+	overflow:hidden;
+	position:relative;
+	padding:3px 0 3px 25px;
+}
+.yh_l .show_text dl dd em.iconfont{
+	font-size:14px;
+	color:#999999;
+	display:block;
+	position:absolute;
+	width:17px;
+	height:15px;
+	left:0px;
+	_left:-25px;
+}
+.yh_l .show_text dl dd font{
+	color:#e64d5e;
+	font-family: "Microsoft YaHei", Verdana;
+	padding:0 3px;
+	font-size:14px;
+}
+
+.go_see{
+	display:block;
+	margin-top:70px;
+	margin-left:40px;
+}
+.yh_l .scissor{
+	width:42px;
+	height:48px;
+	background:url(../images/youhui/ticket.png) no-repeat;
+	position:absolute;
+	top:132px;
+	left:-8px;
+	display:none;
+}
+.yh_l .current .scissor{
+	display:block;
+}
+.yh_l .current{
+	border-color:@main_color;
+}
+.yh_l .current .ticket
+{
+	border-color:@main_color;
+}
+.yh_l li{ display:block; margin:0px 0px 20px 0px;}
+/*优惠券列表右边*/
+/*领券动态*/
+.get_list{
+	border:1px solid #eee;
+	background:#fff;
+	padding:10px 15px 10px 10px;
+	
+}
+.l_h{
+	padding-right:30px;
+}
+.l_h h3{
+	color: #333;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 20px;
+	float:left;
+}
+.l_h a{
+	display:block;
+	float:right;
+	margin-right:-30px;
+	_margin-right:-15px;
+	cursor:pointer;
+}
+.l_h a:hover{
+	text-decoration:underline;
+}
+.get_list li{
+	border-bottom:1px dotted #eee;
+	cursor:pointer;
+}
+.get_list li .h{
+	padding:10px 15px 10px 20px;
+}
+.get_list .current .h{
+	padding:10px 0px 10px 20px;
+}
+.get_list .current .h i{
+	display:none;
+}
+.get_list .current .info{
+	display:block;
+}
+.get_list li .h span{
+	display:block;
+	width:15px;
+	height:15px;
+	text-align:center;
+	line-height:15px;
+	color:#fff;
+	font-size:9px;
+	font-weight:700;
+	float:left;
+	margin-left:-20px;
+	_margin-left:-10px;
+	background:red;
+	margin-top:2px;
+	border-radius:3px;
+}
+.get_list li .h h4{
+	float:left;
+	width:100%;
+	white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow: hidden;
+	height:18px;
+	line-height:18px;
+	font-size:14px;
+}
+.get_list li .h  i{
+	display:block;
+	float:right;
+	width:9px;
+	height:5px;
+	background:url(../images/youhui/pulldown.png) no-repeat;
+	margin-right:-15px;
+	_margin-right:-7px;
+	margin-top:6px;
+}
+.get_list li .info{
+	padding:0 0 10px 90px;
+	display:none;
+}
+.get_list li .info .show_img{
+	width:80px;
+	height:80px;
+	float:left;
+	margin-left:-90px;
+   _margin-left:-45px;
+	overflow:hidden;
+}
+.get_list li .info  .show_text{
+	width:100%;
+}
+.get_list li .info .show_img img{
+	width:100%;
+	height:100%;
+}
+.get_list li .info .show_text p{
+	line-height:25px;
+	font-family: arial, sans-serif, 'SimSun', "Microsoft YaHei";
+}
+.get_list li .info .show_text a{
+	display:inline-block;
+	line-height:20px;
+	height:20px;
+	padding:0 10px;
+	color:#fff;
+	background:#fc4243;
+	margin-top:9px;
+	border-radius:3px;
+}
+
+
+.width_700{
+	width:732px;
+	height:auto;
+}
+.width_260{
+	width:240px;
+	height:auto;
+}

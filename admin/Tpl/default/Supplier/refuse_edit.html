@@ -1,0 +1,32 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<div class="main">
+<div class="main_title">{$supplier_info.name} 提现金额:{$charge_info.money|format_price}，拒绝提现</div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">理由:</td>
+		<td class="item_input"><input type="text" class="textbox" name="reason" style="width:400px;" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">&nbsp;</td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="charge_id" value="{$charge_info.id}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Supplier" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="dorefuse" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="拒绝提现" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>

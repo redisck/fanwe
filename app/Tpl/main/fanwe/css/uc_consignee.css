@@ -1,0 +1,77 @@
+.info_table table td{*zoom:expression(this.innerHTML==""?(this.innerHTML="&nbsp;"):0);}
+.info_table td.region,.info_table td.mobile{border-left: 1px dotted #E5E5E5;border-right: 1px dotted #E5E5E5;}
+.info_table td.operate a,.info_table td.operate span{margin-right:5px;}
+.info_table td.operate span{color:@main_color;}
+.ui-button a{color: #fff;padding: 0px 20px 0px 20px;height: 38px;font-size: 15px;line-height: 38px;display:block;font-family:Microsoft YaHei;}
+.submit_dl dt{display: block;float: left;line-height: 40px;height: 40px;font-size: 14px;width: 80px;}
+
+
+
+dl.region_select{ width:85px; margin-right:10px; height:auto; display:inline-block; float:left; margin-top:7px; }
+dl.region_select dt{
+background: #fff;
+cursor: pointer;
+height: 20px;
+line-height: 20px;
+width: 56px;
+text-align: left;
+letter-spacing: 1px;
+font-size: 12px;
+border:1px solid @border_color;
+padding: 1px 17px 1px 10px;
+*padding: 2px 17px 0px 10px;
+position:relative;
+overflow:hidden;
+}
+dl.region_select dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px dotted transparent;
+	border-right: 4px dotted transparent;
+	border-top: 5px solid transparent;
+	border-top-color: #666;	
+}
+dl.region_select.dropdown dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px dotted transparent;
+	border-right: 4px dotted transparent;
+	border-bottom: 5px solid transparent;
+	border-bottom-color: #666;	
+	border-top:none;
+}
+dl.region_select dd {
+background:#fff;
+border:1px solid @border_color;
+border-top:none;
+line-height:24px;
+letter-spacing:1px; 
+font-size:12px;
+overflow-x:hidden;
+overflow-y:auto;
+height:auto;
+margin-top:7px;
+}
+dl.region_select dd a{ 
+height:24px; 
+cursor:pointer; 
+width:73px;
+text-align: left;
+padding-left: 10px;
+overflow:hidden;
+float:none;
+line-height:24px; 
+margin-right:0px;
+}
+dl.region_select dd a.current{ 
+color:@main_color;
+}
+dl.region_select dd a:hover{ background:#fbfbfb; color:@font_hover;}

@@ -1,0 +1,80 @@
+
+.comments_details table th {
+    background: #f7f7f7 ;
+	border-bottom: 1px dotted #e5e5e5;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 2px;
+    text-align: center;
+	 border:solid 1px @border_color;
+}
+
+.comments_details table td {
+	 padding: 6px 2px;
+	 text-align:center;
+	 border:solid 1px @border_color;
+}
+
+
+.div_total{
+	height: 40px;
+    line-height: 40px;
+	margin:0 20px;
+}
+
+.f_search .text_box{
+margin:10px;
+padding:5px;
+}
+
+.p_total{
+
+	height: 30px;
+    line-height: 30px;
+}
+.p_total td{
+
+	padding-right: 20px !important;
+    text-align: right !important;
+}
+
+.m_color{
+color:@main_color;
+margin-right:40px;
+}
+
+.f_search .f_r .f-button{
+ float: right;
+    margin-right: 10px;
+    margin-top: 13px;
+}
+.f_balance .f_r .f-button{
+   margin-top: 8px;
+}
+
+.s_type {
+   height: 30px;
+    line-height: 35px;
+    padding-top: 3px;
+	 margin-right: -23px;
+}
+
+.common_tip.f_search {
+    height: 50px;
+}
+
+.div_total .f_r .ui-button {
+    margin: 1px 25px;
+}
+.common_tip{
+margin:5px 20px;
+}
+.common_tip.div_total2 {
+    line-height: 25px;
+	margin:0 20px;
+}
+.right_box .content_hastab{
+margin: 0 15px;
+width:auto;
+padding:5px;
+}

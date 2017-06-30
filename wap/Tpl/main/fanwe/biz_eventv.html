@@ -1,0 +1,73 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/eventv.js";
+
+
+?>
+{include file="inc/biz_header.html"}
+<script>var ajax_url = "{$ajax_url}";</script>
+<div class="wrap">
+	<div class="content">
+	<div class="form_panel f_submit_panel">
+		{if $data.status eq 0}
+		<div class="common_tip">
+              <span><i class="iconfont">&#xe644;</i>&nbsp;&nbsp;{$data.info}</span>
+       	</div>
+       	{/if}
+		<form name="eventv_submit_form" action="{url x="biz" r="eventv#do_submit"}" method="post">
+
+			<dl>
+				<dt>选择门店：</dt>
+				<dd>
+
+				<span class="select_pt">
+					<select name="location_id" class="sb_select" height="90">
+						{if $data.location_list}
+						{foreach from=$data.location_list item=row}
+							<option value="{$row.id}" >{$row.name}</option>
+						{/foreach}	
+						{else}
+						<option value="0" >无</option>
+						{/if}
+						
+					</select>
+				</span>
+
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>输入验证码：</dt>
+				<dd>
+				<input type="text" size="30" name="event_sn" class="ui-textbox sb_input" placeholder="请输入验证码" value="" {if $data.is_auth eq 0}disabled="disabled" style=" background:#DBDBDB;"{/if}/>
+				</dd>
+			</dl>
+
+			<div class="blank"></div>
+			<div class="submit_btn_row">
+				<input type="submit" class="plank" value="验证" {if $data.is_auth eq 0}disabled="disabled" style=" background:#6C6C6C;"{/if} />
+			</div>
+		</form>
+	</div>
+
+	</div>
+</div>
+<div class="blank50"></div>
+{include file="inc/biz_footer.html"}	

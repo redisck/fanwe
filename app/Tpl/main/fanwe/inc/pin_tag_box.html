@@ -1,0 +1,14 @@
+<div class="discover_tags" id="discover_tags" style="position:absolute; left:0px; top:0px;">
+	<div class="discover_tags_top"></div>
+	<div class="discover_tags_center">
+		<ul>
+		{foreach from=$tag_list item=tag_item}
+		<li><a {if $tag_item.color neq '' and  $tag neq $tag_item.name}style="color:{$tag_item.color};"{/if} href="{url x="index" r="discover" p="cid=$cid&tag=$tag_item.name"}" {if $tag eq $tag_item.name}class="act"{/if}>
+			{$tag_item.name}
+			</a></li>
+		{/foreach}
+		</ul>
+		<div class="blank"></div>
+	</div>
+	<div class="discover_tags_bottom"></div>
+</div>

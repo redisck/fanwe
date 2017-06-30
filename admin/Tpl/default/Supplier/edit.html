@@ -1,0 +1,151 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/supplier_edit.js' />
+<div class="main">
+<div class="main_title">{%EDIT} <a href="{:u("Supplier/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%NAME}:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="name" value="{$vo.name}" /></td>
+	</tr>
+	<tr>
+		<td class="item_title">账户名:</td>
+		<td class="item_input">
+		<input type="text" class="textbox" name="account_name" value="{$account_info.account_name}" />
+
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">手机号:</td>
+		<td class="item_input">
+		<input type="text" class="textbox" name="mobile" value="{$account_info.mobile}" />
+
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">密码:</td>
+		<td class="item_input">
+		<input type="password" class="textbox" name="account_password" value="" />
+		<if condition="$account_info['id']">
+		<span class="tip_span">[密码为空则不做修改]</span>
+		</if>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">LOGO:</td>
+		<td class="item_input"><html:imgUpload name = 'preview' id='preview' value='$vo.preview' /></td>
+	</tr>	
+	<!--<tr>
+		<td class="item_title">{%SORT}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="sort" value="{$vo.sort}" /></td>
+	</tr>-->
+	<tr>
+		<td class="item_title">公司名称:</td>
+		<td class="item_input">
+		<input type="text" class="textbox" name="h_name" value="{$vo.h_name}" style="width:400px;"/>
+
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">法人:</td>
+		<td class="item_input">
+		<input type="text" class="textbox" name="h_faren" value="{$vo.h_faren}" />
+
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">法人联系电话:</td>
+		<td class="item_input">
+		<input type="text" class="textbox" name="h_tel" value="{$vo.h_tel}"  />
+
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">银行户名:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="bank_user" value="{$vo.bank_user}" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">开户行名称:</td>
+		<td class="item_input">
+		<input type="text" class="textbox" name="bank_name" value="{$vo.bank_name}" />
+
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">开户行帐号:</td>
+		<td class="item_input">
+		<input type="text" class="textbox" name="bank_info" value="{$vo.bank_info}" />
+
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">支持退款审核:</td>
+		<td class="item_input">
+			<select name="allow_refund">
+				<option value="0" <if condition="$vo['allow_refund'] eq 0">selected="selected"</if>>{%NO}</option>
+				<option value="1" <if condition="$vo['allow_refund'] eq 1">selected="selected"</if>>{%YES}</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">支持自动发布:</td>
+		<td class="item_input">
+			<select name="allow_publish_verify">
+				<option value="0" <if condition="$vo['allow_publish_verify'] eq 0">selected="selected"</if>>{%NO}</option>
+				<option value="1" <if condition="$vo['allow_publish_verify'] eq 1">selected="selected"</if>>{%YES}</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr class="apv_link_box" <if condition="$vo[allow_publish_verify] eq 0"> style="display:none;"</if>>
+		<td class="item_title">结算费率:</td>
+		<td class="item_input">
+		<input type="text" class="textbox" name="publish_verify_balance" value="{$vo.publish_verify_balance}" />&nbsp;%百分比
+		<span class="tip_span">[自动审核时的结算用的费率]</span>
+		</td>
+	</tr>
+	<PHP>
+		if(OPEN_WEIXIN&&isset($vo['platform_status']))
+		{
+	</PHP>
+	<tr>
+		<td class="item_title">公众平台接入:</td>
+		<td class="item_input">
+		<select name="platform_status">
+			<option value="0" <if condition="$vo['platform_status'] eq 0">selected="selected"</if>>不允许</option>
+			<option value="1" <if condition="$vo['platform_status'] eq 1">selected="selected"</if>>允许</option>
+		</select>
+		</td>
+	</tr>
+	<PHP>
+		}
+	</PHP>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="{$vo.id}" />
+			<input type="hidden" name="account_id" value="{$account_info.id}" />
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Supplier" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

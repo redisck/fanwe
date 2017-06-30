@@ -1,0 +1,21 @@
+
+			<div style="width:380px; padding:10px; text-align:center;" id="payment_tip">
+				
+				<p style="font-size:14px; font-weight:bold;">
+					对不起，您的付款超时。			
+				</p>
+
+				<p class="notice">
+					
+					<div class="blank"></div>						
+					订单已取消，欢迎选择其他其他店铺，感谢使用方维外卖。	
+				</p>
+				<div class="blank"></div>
+				<p class="tip_btn" >
+					<button class='ui-button' rel='orange' id='pay_done'  url='{url x="index" r="dc_payment#done" p="id=$order.id&rs=3"}'>关闭订单</button>
+					&nbsp;
+					<button class='ui-button' rel='blue' id='pay_retry' url='{url x="index" r="dcbuy" p="lid=$order.location_id"}'>重新下单</button>
+				</p>
+				
+			</div>		
+

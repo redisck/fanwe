@@ -1,0 +1,66 @@
+{if $filter_row_data}
+<div class="filter_row">
+	{if $filter_row_data.nav_list}
+	<dl class=" orientation_row {if count($filter_row_data.filter_list) eq 0}bottom{/if}">
+		<dd>
+			<!--begin select-->
+			<div class="orientation clearfix">
+				{foreach name="nav_loop" from=$filter_row_data.nav_list item=filter_row}
+					{if $filter_row.current.url}
+					<span class="tag">
+				   	<a class="name" href="{$filter_row.current.url}">{$filter_row.current.name}</a>
+				    </span>
+					{else}
+					<span class="tag choose_parent"><!--hover事件用active区别-->
+				   	<div class="deceit"></div><!--在ie下有一个缺角，这个用来补充-->
+				   	<span class="name">
+				   		{$filter_row.current.name}
+					   <i></i>	
+					</span>
+					<a href="{$filter_row.current.cancel}" class="hidden_but">
+						<i class="iconfont">&#xe619;</i>
+					</a>
+					{if $filter_row.list}
+					    <div class="hidden_nav">
+					    	
+							<ul class="clearfix">
+								{foreach from=$filter_row.list item=item}
+								<li>
+									<a href="{$item.url}" class="font_hover">{$item.name}</a>
+								</li>
+								{/foreach}
+							</ul>
+						</div>
+					{/if}
+					</span>
+					{/if}
+					{if !$smarty.foreach.nav_loop.last}
+					<span class="arrow"></span>
+					{/if}
+				{/foreach}				   
+			  </div>
+			<!--end select-->
+		</dd>
+	</dl>
+	{/if}
+	{foreach name="filter_loop" from=$filter_row_data.filter_list item=filter_item}
+	{if $filter_item.list}
+	<dl class="clearfix {if $smarty.foreach.filter_loop.last}bottom{/if}">
+		<dt>{$filter_item.name}：</dt>
+		<dd class="wrap_filter">
+			<ul>
+				{foreach from=$filter_item.list item=item}
+				<li {if $item.current eq 1}class="current"{/if}><a href="{$item.url}" >{$item.name}</a></li>
+				{/foreach}
+			</ul>
+		</dd>
+		<dd class="expend">
+			<a href="javascript:void(0);" class="open">更多</a>
+			<a href="javascript:void(0);" class="close">收起</a>
+		</dd>
+	</dl>
+	{/if}
+	{/foreach}
+	
+</div>
+{/if}

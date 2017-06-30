@@ -1,0 +1,44 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/dc.js' />
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="addmenucate({$supplier_location_id});" />
+	<input type="button" class="button" value="{%DEL}" onclick="del();" />
+</div>
+
+<php>
+
+	function get_cate_type($type){
+	
+			switch($type){
+			
+				case 0:
+					return l('DC_MENU_CATE_TYPE_0');
+					break;
+				case 1:
+					return l('DC_MENU_CATE_TYPE_1');
+					break;
+				
+			}
+	}
+
+</php>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="dcmenucate" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:{%TITLE_SHOW},type|get_cate_type:{%DC_MENU_CATE_TYPE},is_effect|get_is_effect=$dcmenucate['id']:{%IS_EFFECT},sort|get_sort=$dcmenucate['id']:{%SORT}" 
+	actionlist="edit:{%EDIT}, del:{%DEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,67 @@
+<div class="dc_add_menu_cate_page">
+<form action="{url r="biz" b="dc#do_save_menu"}" method="post" name="edit_menu_form"  bindsubmit="true">
+	<div class="common_tip">注意：正确填写菜单名称，避免重复添加</div>
+	<div class="blank10"></div>
+	<div class="con_box"  style="padding-left: 30px;">
+	
+		<div class="field_group ">
+			<label class="f_label">菜单名称：</label>
+			<div class="f_text"><input type="text" class="ui-textbox "  name="menu_name" value="{$vo.name}"/></div>
+		</div>
+		
+		<div class="field_group ">
+			<label class="f_label">菜单分类：</label>
+			{if $menu_cate}
+			<div class="f_select">
+				<select class="ui-select filter_select medium" name="cate_id">
+					<option>==请选择分类==</option>
+					{foreach from=$menu_cate item=row}
+						<option value="{$row.id}" {if $vo.cate_id eq $row.id}selected="selected"{/if} >{$row.name}</option>
+					{/foreach}
+				</select>
+			</div>
+			{else}
+				<a class="null_cate_btn" href="{url r="biz" b="dc#dc_menu_cate_index" p="id=$location_id"}" style="padding-top: 9px;display: block;">没有分类 [ 点击去添加 ]</a>
+			{/if}
+		</div>
+		<div class="field_group ">
+		<label class="f_label">是否有效：</label>
+			<div class="f_select">
+				<select class="ui-select filter_select medium" name="is_effect">
+					<option value="1" {if $vo.is_effect eq 1}selected="selected"{/if}>是</option>
+					<option value="0" {if $vo.is_effect eq 0}selected="selected"{/if}>否</option>
+				</select>
+			</div>
+		</div>
+		<div class="field_group " style="height: 50px;">
+			<label class="f_label">图片：</label>
+			<div class="img_image_upbtn upload_btn_box">
+				<button id="img_image" class="ui-button img_image_btn" rel="orange" type="button">图片上传</button>
+			</div>
+			<div class="img_image_upload_box pub_upload_img_box">
+				<span><a href="javascript:void(0);"></a><img src="{$vo.image}"><input type="hidden" name="image" value="{$vo.image}"></span>
+			</div>
+		</div>
+		
+		<div class="field_group ">
+			<label class="f_label">价格：</label>
+			<div class="f_text"><input type="text" class="ui-textbox "  name="price" value="{$vo.price}" style="width:50px;"/>&nbsp;元</div>
+		</div>
+		<div class="field_group " >
+			<label class="f_label">标签：</label>
+			<div class="tag_box">
+				{foreach from=$tags item=row}
+					<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="tags[]" value="{$row.id}" {if $row.is_checked eq 1}checked="checked"{/if} />{$row.name}</label>
+				{/foreach}
+			</div>
+		</div>
+		
+	</div>
+	<div class="blank10"></div>
+		<div style="text-align:right;padding-right: 20px;">
+			<input type="hidden" name="location_id" value="{$location_id}"/>
+			<input type="hidden" name="id" value="{$id}"/>
+			<button class="ui-button menu_cate_btn" rel="orange" type="submit">确认保存</button>
+		</div>
+</form>
+</div>

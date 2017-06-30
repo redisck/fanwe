@@ -1,0 +1,66 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<php>
+	function get_deal_edit($id,$deal)
+	{
+		if($deal['admin_check_status']==0){
+		
+			$not_btn = '&nbsp;&nbsp;<input type="button" value="拒绝" onclick="refused_apply('.$id.')" />';
+			$preview_url = url("index","preview#youhui",array("id"=>$deal['id'],"type"=>1));
+			$preview = '&nbsp;&nbsp;<a href="'.$preview_url.'"  target="_blank">预览</a>';
+			
+			if($deal['biz_apply_status'] == 1){
+				return "<a href='".u("Youhui/biz_apply_edit",array("id"=>$id))."'>发布</a>".$preview.$not_btn;
+			}elseif($deal['biz_apply_status'] == 2){
+				return "<a href='".u("Youhui/biz_apply_edit",array("id"=>$id))."'>修改</a>".$preview.$not_btn;
+			}elseif($deal['biz_apply_status'] == 3){
+				return "<a href='javascript:void(0);' onclick='downline(".$id.")'>下架</a>".$not_btn;
+			}
+
+		}else{
+			if($deal['admin_check_status']==1&&$deal['biz_apply_status']==1){
+				return "已通过新增申请";
+			}else if($deal['admin_check_status']==1&&$deal['biz_apply_status']==2){
+				return "已通过修改申请";
+			}else if($deal['admin_check_status']==1&&$deal['biz_apply_status']==3){
+				return "已通过下架申请";
+			}else if($deal['admin_check_status']==2){
+				return "已拒绝申请";
+			}
+		}
+
+	}
+</php>
+<load href='__TMPL__Common/js/deal_publish.js' />
+<div class="main">
+<div class="main_title">优惠券商家提交</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="biz_submit_del();" />
+	<a href="{$show_status_check_btn}"><input type="button" class="button" value="查看未审核" /></a>
+</div>
+<div class="blank5"></div>
+
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,name|msubstr:名称
+		,deal_cate_id|get_deal_cate_name:分类
+		,city_id|get_deal_city_name:城市
+		,supplier_id|get_supplier_name:商家
+		,create_time|to_date:操作时间
+		,account_id|get_submit_user:发布人
+		,id|get_deal_edit=$deal:申请类型" 
+		
+	actionlist="biz_submit_del:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,59 @@
+.user_head{height: 264px;width:100%;padding-top: 23px;background: url("../images/user/uc_home_bg.jpg") no-repeat 50% 0;}
+
+.user_head .user_info_box{position: relative;height: 125px;padding-bottom: 26px;margin: 0 auto;z-index: 9;margin-top: 38px;}
+.user_head .user_info_box .u_img{FLOAT: left; MARGIN-RIGHT: -5px}
+.user_head .user_info_box .line {margin-bottom: 12px;color: #666;}
+.user_head .user_info_box .line .dot{display: inline-block;border: 1px solid #99958f;vertical-align: middle;margin: 0 3px;_overflow: hidden;height:1px;width:1px;background-color:#000;}
+.user_head .user_info_box .medal{position: relative;width: 24px;padding-right: 18px;padding-left: 4px;cursor: pointer;display: inline-block;}
+.user_head .user_info_box .arrow{position: absolute;right: 5px;top: 8px;width: 0;height: 0;border-width: 4px 4px;border-style: solid;border-color: #666 transparent transparent;font-size: 0;line-height: 0;-moz-transition: -moz-transform .2s ease-in;-o-transition: -o-transform .2s ease-in;transition: transform .2s ease-in;_overflow: hidden;_border-color: #666 tomato tomato;_filter: chroma(color=tomato);}
+.user_head .user_info_box .u_img img{BACKGROUND: #fff; MARGIN-LEFT: 0px; WIDTH: 125px; HEIGHT: 125px; border-radius: 50%; max-width: none; box-shadow: 0 0 0 5px white}
+
+.user_head .user_info_box .u_info_bg{height: 125px;margin-left: 80px;background: rgba(255,255,255,0.7);*BACKGROUND: 0px 50%; FILTER: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b3FFFFFF,endColorstr=#b3FFFFFF); *margin-left: 123px;}
+
+.user_head .user_info_box .u_info .info{float: left;margin-left: 30px;padding-top: 22px;_width:500px;_overflow:hidden}
+.user_head .user_info_box .u_info .name{margin-right: 3px;font-weight: normal;font-size: 18px;font-family: "Microsoft Yahei","heiti";color: #000;}
+.user_head .user_info_box .u_info .sns{float: right;padding: 17px 22px 0;_height: 108px;_overflow: hidden;_overflow:hidden}
+.user_head .user_info_box .u_info .sns .edit_btn{display: inline-block;width: 80px;height: 28px;line-height: 28px;text-align: center;color: #666;background-position: -1px 0;}
+.user_head .user_info_box .u_info .sns .atten_item{float: left;display:inline-block;padding-right: 8px;margin-right: 18px;border-right: 1px solid #ada79a;text-align: right;}
+.user_head .user_info_box .u_info .sns .atten_link strong{display: block;text-align: right;font: normal 18px Arial;}
+.user_head .user_info_box .u_info .sns .atten_link span{display: block;text-align: right;}
+.user_head .user_info_box .u_info .sns .atten_item.follow{border: 0;margin: 0;}
+
+.user_head .user_nav_box{background: @main_color;}
+.user_head .user_nav_box .user_nav_con{height: 40px;margin: 0 auto;line-height: 40px;}
+.user_head .user_nav_box .user_nav_con ul{ float:left;}
+
+.user_head .user_nav_box .user_nav_con .nav_item{float: left;position: relative;height:40px;}
+.user_head .user_nav_box .user_nav_con .nav_item.current{background-color:@dark_color}
+.user_head .user_nav_box .user_nav_con .nav_item .nav_link{display: inline-block;height: 40px;padding: 0 20px;color: #fff;font: bold 14px/40px normal verdana,"Microsoft Yahei";overflow: hidden;}
+.user_head .user_nav_box .user_nav_con .nav_item .top_triangle{display:none;border-bottom: 6px  solid transparent;border-bottom-color: #FFF;border-top: 0;height: 0;width: 0;position: absolute;overflow: hidden;border-left: 6px  solid transparent;border-right: 6px  solid transparent;bottom: 0px;left: 43%;_border-left-color:tomato; /*For IE6-*/    	_border-right-color:tomato; /*For IE6-*/  _filter:chroma(color=tomato);/*For IE6-*/ }
+.user_head .user_nav_box .user_nav_con .nav_item.current .top_triangle{display:block;}
+
+.cm_hd {position:relative;}
+.cm_hd .btn_group{position:absolute;bottom:0;right:0;}
+.cm_hd .btn_group .publish_btn{float: left;margin-right: 0;}
+.cm_hd .btn_group .publish_btn{height: 31px;width: 71px;background: #fff;background: rgba(255,255,255,0.2);background: transparent\9;zoom: 1;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FFFFFF,endColorstr=#33FFFFFF);-webkit-transition: all .5s;-moz-transition: all .5s;-o-transition: all .5s;transition: all .5s;}
+.cm_hd .btn_group .publish_btn i{display: block;height: 20px;padding-left: 35px;margin-top: 7px;background-position: 12px -76px;font: normal bold 12px/18px "Microsoft Yahei","heti";color: #fff;background:url("../images/css_bg/publish_btn.gif") no-repeat 10px -23px;cursor: pointer;}
+.cm_hd .btn_group .publish_btn:hover i{background-position:10px 1px;color: #666;}
+.cm_hd .btn_group .publish_btn:hover{background: #fff;}
+.back_home{display:inline-block;height: 30px;line-height: 30px;background: #fff;background: rgba(255,255,255,0.2);background: transparent\9;zoom: 1;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#33FFFFFF,endColorstr=#33FFFFFF);-webkit-transition: all .5s;-moz-transition: all .5s;-o-transition: all .5s;transition: all .5s;padding: 0 10px;font-weight:bold;color:#fff;}
+.back_home:hover{color:#666;background:#fff;}
+.back_home:hover .iconfont{color:@main_color;}
+
+/*鍏虫敞鎸夐挳*/
+.sns{text-align:right;}
+.sns .fav_btn{display:inline-block;height: 30px;line-height: 30px;padding: 0 14px;font-size: 12px;overflow: hidden;border-radius: 3px;color: #fff;background-color: #11A61E;cursor: pointer;margin-bottom: 5px;font-weight: bold;text-align: center;}
+.sns .fav_btn .iconfont{font-size:12px;display:inline-block;width:12px;margin-right: 5px;}
+.sns .fav_btn ul{margin-top:0px;-webkit-transition: all .1s ease;transition: all .1s ease;}
+.sns .fav_btn:hover{color: #fff;background-color: #28AD34;}
+.sns .fav_btn:hover ul{margin-top:-30px;}
+.sns .fav_checked ul{margin-top:-60px;}
+.sns .fav_checked:hover ul{margin-top:-90px;}
+.sns .ff_count{display:block;}
+
+.back_index_link{float:right;}
+.back_index_link i{font-size:14px;}
+.back_index_link a {color:#fff;font-weight: bold;}
+
+.sex_1{color:#0A81F9;}
+.sex_0{color:#E94A61;}

@@ -1,0 +1,283 @@
+/*消费评价*/	
+.evaluation{
+	background:@box_color;
+	margin-bottom:20px;
+}
+.evaluation .to_rate{
+	font-size:12px;
+}	
+.evaluation .to_rate a{
+   color:@main_color;	
+}	
+.evaluation .rating{
+	padding:0px 0px 15px 0px;
+}
+.evaluation .rating table{ width:100%;}
+.evaluation .rate_box{
+	width:33%;
+	border-right:1px solid @border_color;
+	border-left:1px solid @border_color;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}	
+.evaluation .rate_box.noborder{
+	border:none;
+}	
+.evaluation .rate_box .total_group{
+	text-align:center;
+	margin-bottom:10px;	
+	
+}	
+.evaluation .rate_box .total_group .starsBar{
+	position:relative;
+	
+}
+.evaluation .rate_box .total_group .starsBar .frontBk_red{
+	position:absolute;
+	top:0px;
+} 
+.evaluation .rate_box .total_g{
+	text-align:center;
+	margin-bottom:20px;	
+	height:13px;
+}
+.evaluation .rate_box .total_g .this_num{
+	*line-height:14px;
+	
+}
+.evaluation .rate_box .total_g .starsBar{
+	position:relative;
+}
+.evaluation .rate_box .total_g .starsBar .frontBk_red{
+	 position:absolute; top:0px;
+}
+.evaluation .rate_box .total_num{
+	margin-bottom:0px;
+}
+.evaluation .rate_box .total_num b{
+	color:@main_color;
+	padding: 0 3px;
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 40px;
+}	
+.evaluation .rate_box .total_num span{
+	font:16px;
+	font-weight:700;
+}		
+.evaluation .rate_box .total_count strong{
+	color:@main_color;
+}	
+.evaluation .rate_box .total_count{
+	font-size:14px;
+}	
+.evaluation .rate_box .this_title{
+	float:left; 
+	margin-left:45px;
+	_margin-left:23px;
+	line-height:13px; 
+	padding:0 3px;
+}	
+.evaluation .rate_box .this_num{
+	float:left;line-height:13px;padding:0 3px;
+}
+.evaluation .rate_box .count-group{
+	padding:3px 0px 5px 0px;
+	height:14px;
+}	
+
+.percent_box{
+	width: 100px;
+	height: 12px;
+	margin: 0 7px;
+	color: #666;
+	background: @main_color;
+	text-align: left;
+	_font-size: 0;
+	display:inline-block;
+}	
+.percent_box span{
+	display:inline-block;
+	height: 12px;
+	background: @dark_color;
+	vertical-align: top;
+}
+	
+.evaluation .rate_box .score{
+	font-size:12px;
+	line-height:12px;
+	*line-height:14px;
+	_line-height:12px;
+	margin-left: 25px;
+}	
+.evaluation .rate_box .people{
+	font-size:12px;
+	line-height:12px;
+}		
+
+.evaluation .rate_box .count-group{
+	text-align:center;
+}	
+/*大家都在说*/
+.evaluation .attitude .title{
+	font-size: 12px;
+	line-height: 26px;
+	padding: 0 10px 0px 0;
+	height:26px;
+	width:65px;
+	
+}	
+.evaluation .attitude .labels{
+	width:620px;
+	overflow:hidden;
+}
+.evaluation .attitude .labels .lab{
+	display: inline-block;
+	zoom: 1;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	border: solid 2px @border_color;
+	padding: 0 5px;
+	font-size: 12px;
+	line-height: 22px;
+	text-align: center;
+	outline:none;
+}
+.evaluation .attitude .labels .good{
+	border-color: #FFF3E8;
+	color:@main_color;
+}
+.evaluation .attitude .labels .bad{
+	border-color: @border_color;
+	color:@font_color;
+}
+.evaluation .attitude .labels .good:hover	{
+	border-color:@main_color;
+}
+.evaluation .attitude .labels .bad:hover{
+	border-color: @font_color;
+	color:@font_color;
+}
+
+.evaluation .attitude .labels .bad.active{
+	background:@font_color;
+	color:#fff;
+	border-color:@font_color;
+}
+.evaluation .attitude .labels .good.active{
+	background:@main_color;
+	color:#fff;
+	border-color:@main_color;
+}
+/*好评-差评等筛选*/
+.praise{
+	background: #F4F4F4;
+    margin-top: 20px;
+	height:32px;
+}
+.praise ul li{
+	float:left;
+	margin-left: -1px;
+    line-height: 32px;
+	height:32px;
+}
+.praise ul li.active a {
+	border-color: #e8e8e8;
+    background: #e8e8e8;
+}
+.praise ul li a:hover {
+	border-color: #e8e8e8;
+    background: #e8e8e8;
+}
+.praise ul li a{
+	display: block;
+	border-right: solid 1px #e1e1e1;
+	width: 93px;
+	text-align: center;
+	color: #333;
+	height:32px;
+}
+.praise  .screen.f_r{
+	margin-left: -1px;
+	line-height: 32px;
+	height: 32px;
+}
+.praise  .screen .check_box{
+	float: left;
+	margin-left: -1px;
+	line-height: 32px;
+}
+.praise  .screen .check_box .select-checkbox{
+	float: left;
+    margin-top: 10px;
+	*margin-top: 5px;
+}
+/*点评的详细内容*/
+.comments_details .fy{
+	padding:20px 0;
+	height:20px;
+}
+.comments_details .details_li{
+	/*border-bottom: 1px dotted @border_color;*/
+	padding: 20px 10px 10px;
+	display:block;
+	border-bottom:@border_color dotted 1px;
+	
+}
+.comments_details .details_li .date{
+	padding-left:10px;
+}
+.comments_details .details_li .content{
+	padding:10px 0;
+}
+.comments_details .details_li .shopname{
+	margin: 10px 0;
+}
+
+
+
+/* 图库 */
+.review_pic .big_img{ display:none;
+	position:relative;
+	text-align:center;
+ }
+ .review_pic .big_img a{ position:absolute;	 display:block;	 top:0px; z-index:10;}
+ .review_pic .big_img a.bprev{ left:0px; cursor: url(../images/deal_index/pre.png),url(../images/deal_index/cursor-rate-pic-prev.cur),auto;}
+ .review_pic .big_img a.bnext{right:0px;cursor: url(../images/deal_index/last.png),url(../images/deal_index/cursor-rate-pic-next.cur),auto; }
+.review_pic .over{ position:relative; overflow:hidden; height:104px;  float:left; }
+.review_pic .over .hide_tag{	
+	position:absolute;
+	width:29px; height:51px; 
+ 	filter:alpha(opacity=70);  
+    -moz-opacity:0.7;  
+    -kHTML-opacity: 0.7;  
+    opacity: 0.7;  
+	top:26px;
+	}
+.review_pic .over .hide_tag:hover{
+	filter:alpha(opacity=60);  
+    -moz-opacity:0.6;  
+    -kHTML-opacity: 0.6;  
+    opacity: 0.6;  
+}
+.review_pic .over .pre{
+	left:-29px;
+	background:url(../images/css_bg/slide_arrow.png) no-repeat 0px -10px black;
+	}
+.review_pic .over .next{
+	right:-29px;
+	background:url(../images/css_bg/slide_arrow.png) no-repeat -35px -10px black;
+	}
+.review_pic .over .pic_box{ position:absolute;}
+.review_pic .over .pic_box ul li{ float:left;  display:inline-block;}
+.review_pic .over .pic_box ul li a{ display:block; width:100px; height:100px; border:#f2f2f2 solid 2px;}
+.review_pic .over .pic_box ul li a:hover,.review_pic .over .pic_box ul li a.active{ display:block; width:100px; height:100px; border:@main_color solid 2px;}
+.review_pic .over .pic_box ul li a img{ width:100px; height:100px;}
+
+
+span.user_name a{ font-weight:bolder; color:@main_color;}
+span.user_name a:hover{ font-weight:bolder; color:@dark_color;}
+
+.supplier_reply{ border:@border_color dotted 1px; padding:15px;}
+.reply_title{ color:@main_color; font-weight:bolder;}

@@ -1,0 +1,30 @@
+
+				<div class="info_table" id="user_consignee_list">
+					<table>
+						<tbody>
+							<tr>
+									<th width="80">收货人</th>
+									<th width="140">所在地区</th>
+									<th width="140">详细地址</th>
+									<th width="80">手机</th>
+									<th>操作</th>
+							</tr>
+							{foreach from=$consignee_list item=item key=key}
+							<tr class="alt">
+									<td>{$item.consignee}</td>
+									<td class="region">{$item.region_lv2}&nbsp&nbsp&nbsp{$item.region_lv3}&nbsp&nbsp&nbsp{$item.region_lv4}</td>
+									<td>{$item.address}</td>	
+									<td class="mobile" width="80">{$item.mobile}</td>
+									<td>
+										<a href="javascript:void(0);" rel="{$item.id}" class="select_consignee">选取</a>
+									</td>	
+	                         </tr>
+	                         {/foreach}
+	                          
+	
+						</tbody>
+					</table>
+					
+				</div>
+
+		

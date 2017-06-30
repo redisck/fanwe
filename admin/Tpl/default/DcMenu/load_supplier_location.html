@@ -1,0 +1,6 @@
+<select name="supplier_location_id">
+<option value="0">{%EMPTY_SELECT_SUPPLIER}</option>
+<foreach name="supplier_location_list" item="location">
+<option value="{$location.id}" <if condition="$sid eq $location['id']">selected="selected"</if>>{$location.name}</option>
+</foreach>
+</select>

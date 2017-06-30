@@ -1,0 +1,107 @@
+<div class="pin_box">
+	<div class="img_box">
+		
+		{if $message_item.id neq $message_item.origin_id and $message_item.origin}
+			{foreach from=$message_item.origin.images item=img key=key}
+			{if $key eq 0}
+			<a href="{$message_item.origin.url}" class="topic_img"><img src="{function name="get_spec_image" v=$img.o_path w="225"}" width="225" height="<?php echo intval(225/$this->_var['img']['width']*$this->_var['img']['height']); ?>" /></a>
+			{/if}
+			{/foreach}
+			{if $message_item.origin.images eq null}  <div class="blank20">&nbsp;</div>{/if}
+		{else}
+			{foreach from=$message_item.images item=img key=key}
+			{if $key eq 0}
+				<a href="{$message_item.url}" class="topic_img"><img src="{function name="get_spec_image" v=$img.o_path w="225"}" width="225" height="<?php echo intval(225/$this->_var['img']['width']*$this->_var['img']['height']); ?>" /></a>
+			{/if}
+			{/foreach}
+			{if $message_item.images eq null} <div class="blank20">&nbsp;</div>{/if}
+		{/if}
+	</div>
+	<div class="user_info_box">
+		<span class="avatar" >{function name="show_avatar" uid=$message_item.user_id  type="small" }</span>
+		<span class="user_name">
+			{if $message_item.fav_id gt 0}
+				<strong>
+					{function name="get_user_name" value=$message_item.user_id show_tag="0"} 
+				</strong>
+				<br />
+				<span style="font-size:12px; color:#999;">
+				<?php echo sprintf($GLOBALS['lang']['USER_FAV_THIS'],pass_date($this->_var['message_item']['create_time']));?>
+				</span>
+				{elseif $message_item.relay_id gt 0}	
+				<strong>
+					{function name="get_user_name" value=$message_item.user_id show_tag="0"} 
+				</strong>
+				<br />
+				<span style="font-size:12px; color:#999;">
+				<?php echo sprintf($GLOBALS['lang']['USER_RELAY_THIS'],pass_date($this->_var['message_item']['create_time']));?>
+				</span>
+				{else}							
+				<strong>
+					{function name="get_user_name" value=$message_item.user_id show_tag="0"} 
+				</strong>
+				<br />
+				<span style="font-size:12px; color:#999;">
+				<?php echo sprintf($GLOBALS['lang']['SUPPLIER_COMMENT_SAY'],pass_date($this->_var['message_item']['create_time']));?>
+				</span>
+			{/if}
+		</span>
+	</div>
+	<div class="brief_box">
+		{if $message_item.images eq null and $message_item.origin.images eq null}
+			<a href="{$message_item.url}" target="_blank">
+			{if $message_item.fav_id gt 0 or $message_item.relay_id gt 0}
+				{if $message_item.origin.short_content}
+					<i class="iconfont">&#xe628;</i>
+					{$message_item.origin.short_content}
+					<i class="iconfont">&#xe627;</i>
+				{/if}
+			{else}
+				{if $message_item.short_content}
+					<i class="iconfont">&#xe628;</i>
+					{$message_item.short_content}
+					<i class="iconfont">&#xe627;</i>
+				{/if}
+			{/if}
+			</a>
+		{else}
+			{if $message_item.fav_id gt 0 or $message_item.relay_id gt 0}
+				{if $message_item.origin.short_content}
+					<i class="iconfont">&#xe628;</i>
+					{$message_item.origin.short_content}
+					<i class="iconfont">&#xe627;</i>
+				{/if}
+			{else}
+				{if $message_item.short_content}
+					<i class="iconfont">&#xe628;</i>
+					{$message_item.short_content}
+					<i class="iconfont">&#xe627;</i>
+				{/if}
+			{/if}
+		{/if}
+		
+		
+	</div>
+	<div class="func_box">
+		<div class="fav_icon f_l">
+			{if $message_item.id neq $message_item.origin_id and $message_item.origin}
+			<span class="fav_title" onclick="fav_topic({$message_item.origin.id});"></span>
+			<span class="fav_count"><a href="javascript:void(0);" onclick="fav_topic({$message_item.origin.id});" class="topic_fav_{$message_item.origin.id}">{$message_item.origin.fav_count}</a><i></i></span>
+			{else}
+			<span class="fav_title" onclick="fav_topic({$message_item.id});"></span>
+			<span class="fav_count"><a href="javascript:void(0);" onclick="fav_topic({$message_item.id});" class="topic_fav_{$message_item.id}">{$message_item.fav_count}</a><i></i></span>
+			{/if}
+		</div>
+		
+		<div class="comment_box f_r">
+			{if $message_item.id neq $message_item.origin_id and $message_item.origin}
+			<a href="{$message_item.origin.url}">评论({$message_item.origin.reply_count})</a>			
+			<a href="javascript:void(0);" onclick="relay_topic({$message_item.origin.id});">转载(<span class="topic_relay_{$message_item.origin.id}">{$message_item.origin.relay_count}</span>)</a>
+			{else}
+			<a href="{$message_item.url}">评论({$message_item.reply_count})</a>			
+			<a href="javascript:void(0);" onclick="relay_topic({$message_item.id});">转载(<span class="topic_relay_{$message_item.id}">{$message_item.relay_count}</span>)</a>
+			{/if}
+		</div>
+	</div>
+	
+</div>

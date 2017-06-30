@@ -1,0 +1,161 @@
+
+#cart-section {
+  border: 1px solid @border_color;
+}
+#dc_cartsection{
+ position: fixed;
+ 	background: none repeat scroll 0 0 white;
+    bottom: 0;
+    width: 225px;
+	z-index:100;
+	_position:absolute;
+	_bottom:auto;
+    _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+}
+#cart-section  #cart-title{
+	background:@main_color;
+    color: white;
+    height: 30px;
+
+}
+
+#cart-section  #cart-content{
+background:#FAFAFA;
+font-size:12px;
+
+}
+#cart-section  #cart-content #cart-content-title{
+
+}
+
+#cart-section   > div{
+line-height:30px;
+
+}
+#dc_cart_info {
+    width: 100%;
+	background:white;
+	clear:both;
+}
+
+#dc_cart_info .dc_left{
+ 	width: 42%;
+    padding-left: 8px;
+}
+#dc_cart_info .dc_m{
+ width: 24%;
+ text-align: right;
+}
+#dc_cart_info .dc_right{
+ width: 23%;
+ text-align: right;
+ padding-right: 8px;
+}
+
+.cart_head  .f_l{
+text-align:left;width:45%;padding-left:3px;height:25px;line-height:28px;
+}
+.cart_head  .f_r{
+text-align:right;width:50%;display:block;
+}
+.f_r.dc_total{
+	padding-right:8px;
+	text-align:right;
+}
+
+.cart_head , #cart-title {
+
+padding:0 0 0 5px;
+}
+ #dc_cart_info tr{
+ display: block;
+ border-bottom:solid 1px @border_color;
+ background:white;
+ line-height:20px;
+ }
+ #dc_cart_info td {
+    display: inline-block;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+#dc_cart_info .dc_m .iconfont{
+    cursor: pointer;
+    font-size: 8px;
+
+}
+
+#dc_cart_info .dc_m #dc_num{
+	display: inline-block;
+    padding: 0 5px;
+    width: 15px;
+	text-align:center;
+
+}
+
+#cart-title .f_l .iconfont{
+cursor: pointer;
+height:30px;
+line-height:30px;
+}
+
+#cart-title .f_l .iconfont:hover{
+font-size:19px;
+font-weight:bold;
+}
+
+#num_show{
+position:absolute;
+width:30px;
+display:block;
+z-index:1000;
+}
+
+.dc_clear_icon{
+display: inline;
+    float: right;
+}
+
+.dc_clear_icon .text_t{
+font-size:14px;
+}
+#dc_clear {
+ float: right;
+    height: 30px;
+    line-height: 28px;
+    width: 50%;
+	cursor:pointer;
+	padding-right: 5px;
+		display:block;
+
+}
+
+
+#order_done{
+	cursor:pointer;
+	padding: 0 20px;
+	border-left:solid 1px @border_color;
+	height:30px;
+	line-height:30px;
+	float:right;
+}
+/*
+#order_done:hover{
+background:white;
+color:@font_color;
+}
+*/
+
+.cart_tip{
+	padding: 0 20px;
+	height:30px;
+	line-height:30px;
+	float:right;
+}
+.less_money{
+ padding: 0 20px;
+ background:#787878;
+ height:30px;
+line-height:30px;
+	float:right;
+}

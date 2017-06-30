@@ -1,0 +1,113 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/exif.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/lrz.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/mobileFix.mini.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dcreview.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+	var dc_review_save_url='{url i="index" r="dcreview#save"}';
+	var TOPIC_IMAGE_UPLOAD = '{$review_url}'; //分享点评的图片上传路径
+	//关于图片上传的定义
+	var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+	var LOADER_IMG_GIF = '{$TMPL}/images/css_bg/loading.gif';
+	var UPLOAD_SWF = '{$TMPL}/js/utils/Moxie.swf';
+	var UPLOAD_XAP = '{$TMPL}/js/utils/Moxie.xap';
+	var MAX_IMAGE_SIZE = '{function name='app_conf' v='MAX_IMAGE_SIZE'}';
+	var MAX_SP_IMAGE = '<?php echo MAX_SP_IMAGE; ?>';
+	var ALLOW_IMAGE_EXT = '{function name='app_conf' v='ALLOW_IMAGE_EXT'}';
+	var UPLOAD_URL = '{$review_biz_url}';
+</script>
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////////-->	
+<form action="{url i="index" r="dcreview#save"}" method="post" id="review_form"  enctype="multipart/form-data">
+<div class="bg_fff bor_3 bor_4">
+	<h5 class="no_bold f_fe4d3d f032 lh100 p_0_030">{$data.dclocation.name}</h5>
+	
+	{if $data.dp_data}
+	{foreach from=$data.dp_data item=dp_data}
+		<div class="bor_8 h100 pl215">
+			<span class="f_l lh100 f034 ml-185">{$dp_data.name}</span>
+			<!------------------------------------------------------------整体评分-->
+			<div class="pr  w240 h050 f_l mt024">
+				    	<div class="ps  f048 lh050 score_star">	
+				    		<i class="icon iconfont f048 f_a6a6a6" rel="1">&#xe678;</i>
+							<i class="icon iconfont f048 f_a6a6a6" rel="2">&#xe678;</i>
+							<i class="icon iconfont f048 f_a6a6a6" rel="3">&#xe678;</i>
+							<i class="icon iconfont f048 f_a6a6a6" rel="4">&#xe678;</i>
+							<i class="icon iconfont f048 f_a6a6a6" rel="5">&#xe678;</i>
+							<input type="hidden" dp-name="{$dp_data.name}" value="0" name="dp_points[{$dp_data.id}]" id="{$dp_data.id}"/>
+				    	</div>
+				</div>
+		<!-------------------------------------------------------------->
+		</div>
+	{/foreach}
+	{/if}
+
+	
+</div>
+<!-------------------------------------------------------------------------------------------------评分-->
+<div class="blank024"></div>
+<div class="bg_fff bor_3 bor_4 p050">
+	<textarea name="content" placeholder="您的意见很重要，来点评下吧！~"  class="textarea_class"></textarea>
+</div>
+<!-------------------------------------------------------------------------------------------------点评域-->
+<div class="blank024"></div>
+
+<div class="clearfix bg_fff bor_3 bor_4 p_30_10_30_30">
+	<div id="image-lib"></div>
+	
+	<!--图片加在这个父节点附近-->
+	
+	<div id="browse" class="f_l w110 h100  tc lh100 bg_e8e9ea mb020"><i class="icon iconfont f076 f_aeaeae">&#xe675;</i>
+	<input class="file-btn" id="file-btn" type="file" capture="camera" />
+	</div><!--事件绑这里-->
+	
+	 
+</div>
+<!------------------------------------------------------------------------------------------------增加图片-->
+<input name="location_id" type="hidden" value="{$data.dclocation.id}"/>
+<input name="order_id" type="hidden" value="{$data.order_info.id}"/>
+
+</form>
+<div class="p030">
+	<button id="start_upload" class="tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100">发表评论</button>
+</div>
+
+<!------------------------------------------------------------------------------------------------确认-->
+</body>
+</html>

@@ -1,0 +1,44 @@
+<div class="publish_edit_box">
+	
+	<div class="item_textarea_box">
+		<div class="pub_edit_tool">
+			<span class="form_ico form_album " title="最多传6张，按住ctl或shift可选择多张"><i class="iconfont">&#xe60f;</i>&nbsp;图片</span>
+			<span class="form_ico form_face form_face_publish_item_textarea "><i class="iconfont">&#xe60e;</i>&nbsp;表情</span>
+			<span class="form_ico form_topic " style="display:none;"><i class="iconfont">&#xe62a;</i>&nbsp;主题</span>
+		</div>
+		<textarea id="publish_item_textarea" class="publish_item_textarea ui-textarea" placeholder="说点什么吧，让分享更精彩！" name="content">{$content}</textarea>
+	</div>
+	<div class="item_operation_box clearfix">
+		<div class="f_l pub_upload_img_box" id="pub_upload_img_box">
+			
+		</div>
+		<div class="f_r other_box">
+			<div class="publish_weibo"><label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="syn_weibo" value="1" checked="checked"/>同步到微博</label>&nbsp;<a href="{url b="index" r="uc_account"}">[设置]</a></div>
+				<div class="publish_text_count"><em>0</em><span> / 2000</span></div>
+		</div>
+	</div>
+	
+
+</div>
+
+<div class="blank10"></div>
+
+<div id="face_box_tab_publish_item_textarea" style="display:none;">
+	<ul class="lb_tab">
+	{foreach from=$expression key=key item=item}
+	<li class="{if $key =='qq'}c{/if} rt3 " f="{$key}" title="{$key}"><a onclick="toogle_mo(this);" onfocus="$(this).blur();" href="javascript:void(0)">
+		<?php echo $GLOBALS['lang']['EXPRESSION_'.strtoupper($GLOBALS['tmpl']->_var['key'])];?>
+	</a></li>
+	{/foreach}
+	</ul>
+</div>
+<div id="face_box_hd_publish_item_textarea" style="display:none;">
+{foreach from=$expression key=key item=item}
+	<div class="emotion emotion_publish_item_textarea {$key}" f="{$key}" {if $key !='qq'}style="display:none;"{/if}>
+	<div class="blank5"></div>
+	{foreach from=$item item=exp}
+		<a href="javascript:void(0);" title="{$exp.title}" rel="{$exp.emotion}"><img src="{$exp.filename}" /></a>
+	{/foreach}
+	</div>
+{/foreach}
+</div>

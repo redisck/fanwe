@@ -1,0 +1,68 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/set_auth.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/account/set_auth.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/account/set_auth.js";
+?>
+{include file="inc/header.html"}
+<div class="wrap_full">
+		<div class="msg_tip">
+			<i class="status"></i>
+			<p class="msg_content"></p>
+			<span class="close"></span>
+		</div>
+</div>
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content ">
+			<div class="head_box">
+				<h2>管理员权限设置</h2>
+			</div>
+			<div class="form_box">
+				<form id="set_auth_form" name="set_auth_form" action="{url b="biz" r="account#do_auth"}" method="post"  bindsubmit="true">
+                		{foreach from=$auth_list item=auth_item key=auth_key}
+                		<div class="table_box">
+	                		<table cellspacing="0" cellpadding="0" border="0" class="standard-table">
+			                <tbody>
+	                        <tr>
+	                            <td width="20%" class="r_border">
+	                            	<label class="ui-checkbox" rel="common_cbo" module_name="{$auth_key}" is_main="1" ><input type="checkbox"  {if $auth_item.is_check eq 1}checked="true"{/if} />{$auth_item.name}</label>
+	                            </td>
+	                            <td width="80%">
+	                            	{foreach from=$auth_item.node item=node_item key=node_key}
+	                            		<span class="t_item"><label class="ui-checkbox" rel="common_cbo"  is_sub="1"  ><input type="checkbox" name="module[]" value="{$node_item.module}" module_name="{$auth_key}" {if $node_item.is_check eq 1}checked="true"{/if} />{$node_item.name}</label></span>
+	                            	{/foreach}
+	                            </td>
+	                        </tr>
+	                        </tbody>
+	                        </table>
+                        </div>
+                        {/foreach}            
+                    <input type="hidden" name="account_id" value="{$account_id}"/>    
+					<div class="blank20"></div>
+					<div class="field" style="margin-left: 30px;"><button class="ui-button " rel="orange" type="submit">提交</button></div>
+				</form>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

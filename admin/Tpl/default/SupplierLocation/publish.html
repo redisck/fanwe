@@ -1,0 +1,58 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<php>
+	function get_deal_edit($id,$deal)
+	{
+		if($deal['admin_check_status']==0){
+			$not_btn = '&nbsp;&nbsp;<input type="button" value="拒绝" onclick="refused_apply('.$id.')" />';
+			$preview_url = APP_ROOT."/index.php?ctl=preview&act=store&id=".$id."&type=1"; 
+			$preview_btn = '&nbsp;&nbsp;<a href="'.$preview_url.'" target="_blank">预览</a>';
+			$location_images_url = "&nbsp;&nbsp;<a href='".u("SupplierLocation/location_images_edit",array("id"=>$id))."'>查看图库</a>";
+			if($deal['biz_apply_status'] == 1){
+				return "<a href='".u("SupplierLocation/biz_apply_edit",array("id"=>$id))."'>发布</a>".$preview_btn.$location_images_url.$not_btn;
+			}elseif($deal['biz_apply_status'] == 2){
+				return "<a href='".u("SupplierLocation/biz_apply_edit",array("id"=>$id))."'>修改</a>".$preview_btn.$location_images_url.$not_btn;
+			}elseif($deal['biz_apply_status'] == 3){
+				return "<a href='javascript:void(0);' onclick='downline(".$id.")'>下架</a>".$not_btn;
+			}
+		}else{
+			if($deal['admin_check_status']==1){
+				return "通过申请";
+			}else if($deal['admin_check_status']==2){
+				return "拒绝申请";
+			}
+		}
+	}
+
+
+</php>
+<load href='__TMPL__Common/js/location_publish.js' />
+<div class="main">
+<div class="main_title">商家提交</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="biz_submit_del();" />
+	<a href="{$show_status_check_btn}"><input type="button" class="button" value="查看未审核" /></a>
+</div>
+<div class="blank5"></div>
+
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="location" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,name|msubstr:名称
+		,supplier_id|get_supplier_name:{%SUPPLIER_NAME}
+		,id|get_deal_edit=$location:申请类型" 
+	actionlist=" biz_submit_del:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+
+
+<include file="Public:footer" />

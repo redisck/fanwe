@@ -1,0 +1,166 @@
+@CHARSET "UTF-8";
+.deal_icon{ width:50px; border:#f2f2f2 solid 1px;}
+.check_delivery_pop,.view_submit_pop{ width:200px; border:#f2f2f2 solid 1px; background:#fff; padding:10px; 
+-moz-box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.2);/*firefox*/
+-webkit-box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.2);/*safari或chrome*/
+box-shadow:0 2px 8px 1px rgba(0, 0, 0, 0.2);/*opera或ie9*/
+}
+
+.delivery_info{ border:@main_color solid 1px; padding:5px; margin:5px 0px; background:@light_color;}
+
+.item_name{  border:@main_color solid 1px; padding:10px; margin:5px 0px; background:@light_color;}
+
+.delivery_table{ width:100%;}
+.delivery_table td{ padding:8px 5px;}
+.delivery_table td.title{ width:80px;}
+.delivery_table td.btn{ text-align:center;}
+.delivery_table td .ui-textbox{ padding:10px; font-size:12px; }
+
+.delivery_table td .memo{ width:390px; height:100px; resize:none; }
+
+/*下拉菜单样式重写---位置筛选*/
+.express_select{ width:85px; margin-right:10px; }
+.express_select dt{
+background: #fff;
+cursor: pointer;
+height: 20px;
+line-height: 20px;
+width: 56px;
+text-align: left;
+letter-spacing: 1px;
+font-size: 12px;
+border:1px solid @border_color;
+padding: 1px 17px 1px 10px;
+*padding: 2px 17px 0px 10px;
+position:relative;
+overflow:hidden;
+}
+.express_select dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 5px solid transparent;
+	border-top-color: #666;	
+	
+	_border-left-color:tomato; /*For IE6-*/    
+	_border-right-color:tomato; /*For IE6-*/  
+	_filter:chroma(color=tomato);/*For IE6-*/ 
+}
+.express_select.dropdown dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-bottom-color: #666;	
+	border-top:none;
+	
+	_border-left-color:tomato; /*For IE6-*/    
+	_border-right-color:tomato; /*For IE6-*/  
+	_filter:chroma(color=tomato);/*For IE6-*/ 
+}
+.express_select dd {
+background:#fff;
+border:1px solid @border_color;
+border-top:none;
+line-height:24px;
+letter-spacing:1px; 
+font-size:12px;
+overflow-x:hidden;
+overflow-y:auto;
+}
+.express_select dd a{ 
+height:24px; 
+cursor:pointer; 
+width:73px;
+text-align: left;
+padding-left: 10px;
+overflow:hidden;
+}
+.express_select dd a.current{ 
+color:@main_color;
+}
+.express_select dd a:hover{ background:#fbfbfb; color:@font_hover;}
+
+
+
+.location_select{ width:285px; margin-right:10px; }
+.location_select dt{
+background: #fff;
+cursor: pointer;
+height: 20px;
+line-height: 20px;
+width: 256px;
+text-align: left;
+letter-spacing: 1px;
+font-size: 12px;
+border:1px solid @border_color;
+padding: 1px 17px 1px 10px;
+*padding: 2px 17px 0px 10px;
+position:relative;
+overflow:hidden;
+}
+.location_select dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 5px solid transparent;
+	border-top-color: #666;	
+	
+	_border-left-color:tomato; /*For IE6-*/    
+	_border-right-color:tomato; /*For IE6-*/  
+	_filter:chroma(color=tomato);/*For IE6-*/ 
+}
+.location_select.dropdown dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-bottom-color: #666;	
+	border-top:none;
+	
+	_border-left-color:tomato; /*For IE6-*/    
+	_border-right-color:tomato; /*For IE6-*/  
+	_filter:chroma(color=tomato);/*For IE6-*/ 
+}
+.location_select dd {
+background:#fff;
+border:1px solid @border_color;
+border-top:none;
+line-height:24px;
+letter-spacing:1px; 
+font-size:12px;
+overflow-x:hidden;
+overflow-y:auto;
+}
+.location_select dd a{ 
+height:24px; 
+cursor:pointer; 
+width:273px;
+text-align: left;
+padding-left: 10px;
+overflow:hidden;
+}
+.location_select dd a.current{ 
+color:@main_color;
+}
+.location_select dd a:hover{ background:#fbfbfb; color:@font_hover;}

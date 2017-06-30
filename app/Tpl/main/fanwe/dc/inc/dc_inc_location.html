@@ -1,0 +1,28 @@
+<style type="text/css">
+		#l-map{height:300px;width:100%;}
+		#r-result{width:100%;}
+	</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={function name="app_conf" value="BAIDU_MAP_APPKEY"}"></script>
+<script type="text/javascript">
+var CITY_NAME = '{$city_name}';
+var DO_POSITION_URL = '{url r="index" p="position#do_posiotn"}';
+var MARKER_ICON = "{$TMPL}/images/css_bg/markers_icon.png";
+var BAIDU_APPKEY = '{function name="app_conf" value="BAIDU_MAP_APPKEY"}';
+</script>
+			
+			<div style="float:left; position:relative;z-index:150;" class="location_fl">
+			<div style="position:absolute; top:10px; left:5px; z-index:999;">
+			<span class="icon iconfont">&#xe615;</span>
+			</div>
+			<div style="float:left;">
+			<input id="q_text" type="text" name="q" class="ui-textbox q_text" holder="请输入送货地址" style="padding-left:30px;" />
+			</div>
+			</div>
+			<div style="float:left;">
+			<input id="dc_location_search" type="text" class="ui-textbox location_search" name="location_search" holder="搜索商品或商家" />
+			</div>
+		
+			<!--
+			<div class="dc-button position_btn" type="button">定位</div>
+			-->
+			<div id="map_show"></div>

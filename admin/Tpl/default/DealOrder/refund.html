@@ -1,0 +1,46 @@
+<form name="refund_form" method="post">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td colspan=2>
+			<table>
+				<tr>
+					<td style="border:none;">
+					<img src="{$data.deal_icon}" width=50 />
+					</td>
+					<td style="border:none;">
+					{$data.name}
+					</td>
+				</tr>
+			</table>
+			
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">退款金额：</td>
+		<td class="item_input">退还 <input type="text" name="price" value="{$data.price|floatval}" style="width:50px;" /> 元到 {$order_info.user_name} 的账户余额</td>
+	</tr>
+	<tr>
+		<td class="item_title">商户结算退款：</td>
+		<td class="item_input"><input type="text" name="balance_price" value="{$data.balance_price|floatval}" style="width:50px;" /> 元</td>
+	</tr>
+	<tr>
+		<td class="item_title">备注：</td>
+		<td class="item_input">
+			<textarea class="text" name="content"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 style="text-align:center;">
+			<input type="hidden" name="{$data.key}" value="{$data.id}" />
+			<input type="button" class="button" id="confirm" value="确认退款" action="{:u("DealOrder/do_refund")}" />
+			<input type="button" class="button" id="refuse" value="拒绝退款" action="{:u("DealOrder/do_refuse")}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+</form>

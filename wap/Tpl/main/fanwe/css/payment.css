@@ -1,0 +1,28 @@
+.pay_order_index .pay_info{
+		border-radius:5px;
+		margin-bottom:10px;
+		background:@box_color;
+        border-color:@border_main;
+	}
+	.pay_order_index{
+		padding:10px;
+	}
+	.pay_order_index .h{
+		font-size: 14px;
+        font-weight: bolder;
+		padding-left:10px;
+		line-height:45px;
+	}
+	.pay_order_index .detail{
+		padding: 10px;
+		border-top: 1px solid #ddd;
+	}
+	.pay_order_index .p{
+		line-height:20px;
+		padding:10px 0;
+		color:@font_style;
+	}
+	.img_block{
+		width:80%;
+		margin:10px auto;
+	}

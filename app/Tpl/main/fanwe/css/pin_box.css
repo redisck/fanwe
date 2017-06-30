@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+.pin_box{ width:225px; background:@box_color; border:@border_color solid 1px; 
+-moz-border-radius: 5px;/*firefox*/
+-webkit-border-radius:  5px;/*safari或chrome*/
+border-radius:5px;
+
+-moz-box-shadow: 2px 2px 2px #f0f0f0;/*firefox*/
+-webkit-box-shadow: 2px 2px 2px #f0f0f0;/*safari或chrome*/
+box-shadow:2px 2px 2px #f0f0f0;/*opera或ie9*/ 
+ }
+ 
+ .pin_box_active{ width:225px; background:@box_color; border:@main_color solid 1px; 
+-moz-border-radius: 5px;/*firefox*/
+-webkit-border-radius:  5px;/*safari或chrome*/
+border-radius:5px;
+
+-moz-box-shadow: 2px 2px 2px #f0f0f0;/*firefox*/
+-webkit-box-shadow: 2px 2px 2px #f0f0f0;/*safari或chrome*/
+box-shadow:2px 2px 2px #f0f0f0;/*opera或ie9*/ 
+ }
+
+.pin_box .topic_img img{ -moz-border-radius: 5px 5px 0px 0px;/*firefox*/
+-webkit-border-radius:  5px 5px 0px 0px;/*safari或chrome*/
+border-radius:5px 5px 0px 0px;}
+
+.pin_box .user_info_box{ position:relative; height:40px; }
+.pin_box .user_info_box .avatar{ position:absolute; display:block; width:48px; height:48px; padding:2px; left:10px; top:-12px; background:#fff; border:@border_color solid 1px; 
+-moz-border-radius: 5px;/*firefox*/
+-webkit-border-radius:  5px;/*safari或chrome*/
+border-radius:5px; }
+.pin_box .user_info_box .avatar img{ width:48px; height:48px;}
+
+.pin_box .user_info_box .user_name { position:absolute; left:70px; top:5px;  }
+.pin_box .user_info_box .user_name a{ color:@main_color; font-weight:bolder; }
+.pin_box .user_info_box .user_name a:hover{color:@dark_color; }
+
+
+.pin_box .brief_box{ padding:10px;}
+
+.func_box{ height:25px; padding:10px;}
+.func_box .fav_icon .fav_title{ background:url(../images/css_bg/pin_ico.png) no-repeat; width:58px; height:23px; display:inline-block; float:left; cursor:pointer;}
+.func_box .fav_count{ float:left; height:23px; display:inline-block; margin-left:5px; }
+.func_box .fav_count a{ display:block; height:23px; float:left; line-height:23px; background:url(../images/css_bg/pin_ico.png) no-repeat 0px -38px; padding:0px 0px 0px 5px; color:@main_color; } 
+.func_box .fav_count a:hover{ color:@dark_color;}
+.func_box .fav_count i{ display:block; height:23px; float:left; background:url(../images/css_bg/pin_ico.png) no-repeat right -38px; width:5px;}
+
+.comment_box{ height:23px; line-height:23px; }
+.comment_box a{ color:@main_color;}
+.comment_box a:hover{ color:@dark_color;}

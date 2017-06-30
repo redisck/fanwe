@@ -1,0 +1,119 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/evento/evento.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/evento/evento.js";
+?>
+
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box">
+				<h2>{$head_title}</h2>
+			</div>
+
+			<div class="info_table">
+				<div class="blank"></div>
+				<form name="search_form" action="{url x="biz" r="evento"}" method="post">
+				<table>
+					<tr>
+						<td width="165"><input class="ui-textbox search_box time_input" name="begin_time"  value="{$begin_time}" readonly="readonly" /></td>
+						<td width="5">-</td>
+						<td width="165"><input class="ui-textbox search_box time_input" name="end_time"  value="{$end_time}" readonly="readonly" /></td>
+						<td width="50">名称</td>
+						<td width="165"><input class="ui-textbox search_box" name="name" holder="活动名称" value="{$name}" /></td>
+						
+						<td width="100">
+							<input type="hidden" name="method" value="search" />
+							<button class="ui-button add_goods_type" rel="white" type="submit">搜索</button>
+						</td>
+					</tr>
+				</table>
+				</form>
+
+				<div class="blank"></div>
+			</div>
+			
+			{if $list}
+			<div class="info_table">
+				<table>
+					<tbody>
+						<tr>
+							<th>活动名称</th>
+							<th>会员</th>
+							<th>活动详情</th>
+							<th>报名详情</th>
+							<th>验证门店</th>
+							<th>状态</th>
+						</tr>
+						{foreach from=$list item=item key=key}
+						<tr class="alt">
+                               <td><a href="{$item.url}">{function name="msubstr" v=$item.event_name b=0 e=20}</a></td>
+                               <td class="detail">{$item.user_name}</td>
+                               <td>
+                               		   活动开始时间：{if $item.event_begin_time eq 0}已开始{else}{function name="to_date" v=$item.event_begin_time}{/if}<br>
+                               		   活动结束时间：{if $item.event_end_time eq 0}永久有效{else}{function name="to_date" v=$item.event_end_time}{/if}<br>
+                               </td>
+                               <td  class="detail">                              
+                               {foreach from=$item.fields item=fields}
+                               		  {$fields.field_show_name}：{$fields.result}<br>
+                                {/foreach}
+                                 报名时间：{function name="to_date" v=$item.create_time}<br>
+                               </td>
+                               <td style="border-right: 1px dotted #E5E5E5;">{$item.location_name}</td>
+                               <td class="sub_status">
+                               	{if $item.is_verify eq 1}
+								已审核
+								{elseif $item.is_verify eq 2}
+								已拒绝
+								{else}
+								<a href="javascript:void(0);" url="{$item.go_url}" class="approval">通过审核</a>
+								<br />
+								<a href="javascript:void(0);" url="{$item.refuse_url}" class="refuse">拒绝</a>
+								{/if}
+								</td>
+                         </tr>
+                         {/foreach}
+                          
+
+					</tbody>
+				</table>
+				
+			</div>	
+			
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>			
+			{else}
+			<div class="empty_tip">没有报名记录</div>
+			{/if}			
+		
+
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,39 @@
+
+<div class="download">
+	<div class="left_panel f_l">
+		<div class="qrcode_bg">
+			<div class="qrcode"><img src="{function name="gen_qrcode" v="$qrcode_url" s=$qrcode_size}" /></div>
+		</div>
+		
+	</div>
+
+	<div class="right_panel f_l">
+		<div class="app_view">
+			<p style="font-size: 14px">电脑直接下载</p>
+			<div class="down_btn">
+				{if $type eq 'android'}
+				<a href="{$app_url}" ><i class="iconfont">&#xe613;</i><span>&nbsp;Android下载</span></a>
+				{elseif $type eq 'ios'}
+				<a href="{$app_url}" ><i class="iconfont" >&#xe614;</i><span style="font-size: 22px;">&nbsp;IPhone下载</span></a>
+				{/if}
+				<div class="clear"></div>
+			</div>
+			
+		</div>
+		
+		<p style="font-size: 14px">手机扫描二维码下载</p>
+	</div>	
+	<div class="clear"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

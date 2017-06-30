@@ -1,0 +1,266 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/dcorder.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_order.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_order.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+var ajax_url = '{$ajax_url}';
+
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box">
+				<h2>{$head_title}</h2>
+			</div>
+			
+			<div class="sum_info">
+				<div class="blank"></div>
+				<form name="search_form" action="{url x="biz" r="dcorder"}" method="post">
+					<table>
+						<tr>
+							<td width="62%">
+								<input class="ui-textbox search_box time_input" name="begin_time" holder="下单起始日期" value="{$begin_time}" readonly="readonly" style="display:inline-block;" />
+								<div style="display:inline-block;">至</div>
+								<input class="ui-textbox search_box time_input" name="end_time" holder="下单截止日期" value="{$end_time}" readonly="readonly" style="display:inline-block;" />
+							</td>
+							<td width="8%">关键字</td>
+							<td width="20%"><input class="ui-textbox search_box" name="sn" holder="输入订单号或手机号" value="{$sn}" /></td>
+							<td width="10%">
+								<input type="hidden" name="method" value="search"/>
+								<button class="ui-button add_goods_type" rel="white" type="submit">搜索</button>
+							</td>
+						</tr>
+					</table>
+					<div class="blank20"></div>
+					<div class="pp_pay">
+						<label class="f_l" style="margin-right:10px">订单状态：</label>
+						<div class="f_l">
+							<label class="ui-radiobox" rel="common_rdo">
+								<input type="radio" value="0"  {if $order_status eq 0} checked="checked" {/if} name="order_status" />全部
+							</label>
+						
+							<label class="ui-radiobox" rel="common_rdo">
+								<input type="radio" value="1" name="order_status" {if $order_status eq 1} checked="checked" {/if} class="f_l" />未接单
+							</label>
+							<label class="ui-radiobox" rel="common_rdo">
+								<input type="radio" value="2" name="order_status"  {if $order_status eq 2} checked="checked" {/if} class="f_l" />已接单
+							</label>
+							
+							<label class="ui-radiobox" rel="common_rdo">
+								<input type="radio" value="3" name="order_status" {if $order_status eq 3} checked="checked" {/if} class="f_l" />已完成
+							</label>
+							<label class="ui-radiobox" rel="common_rdo">
+								<input type="radio" value="4" name="order_status" {if $order_status eq 4} checked="checked" {/if} class="f_l" />交易关闭
+							</label>
+						</div>
+					</div>
+					<div class="blank20"></div>
+					<div class="pp_pay">
+						<label class="f_l" style="margin-right:10px">支付方式：</label>
+						<div class="f_l">
+							<label class="ui-radiobox" rel="common_rdo">
+								<input type="radio" value="0" name="pay_type" {if $pay_type eq 0} checked="checked" {/if}class="f_l" /><span class="f_l">全部</span>
+							</label>
+							<label class="ui-radiobox" rel="common_rdo">
+								<input type="radio" value="1" name="pay_type" {if $pay_type eq 1} checked="checked" {/if} class="f_l" /><span class="f_l">在线支付</span>
+							</label>
+							<label class="ui-radiobox" rel="common_rdo">
+								<input type="radio" value="2" name="pay_type" {if $pay_type eq 2} checked="checked" {/if} class="f_l" /><span class="f_l">餐到付款</span>
+							</label>
+						</div>
+					</div>
+				</form>
+
+				<div class="blank"></div>
+			</div>
+			{if $list}
+			<div class="info_table">
+				
+						{foreach from=$list item=item key=key name=dc_item}
+					<div class="dc_info">	
+							<div class="dc_tittle">
+								<div class="num"><span>{$item.sort}号</span></div>
+								<div class="dc_num">
+							<span>	订单号：{$item.order_sn}，交易时间：{$item.create_time}</span>
+								</div>
+							</div>
+							
+							<div class="dc_tl">
+								<div class="contact_l">
+									
+										<span>会员id：{$item.user_name}</span>
+										<span>联系人：{$item.consignee}</span>
+										<span>电话：{$item.mobile}</span>
+										<span>地址：{$item.api_address}{$item.address}</span>
+										<span>送达时间：
+										{if $item.order_delivery_time eq 1}
+											立即送达
+										{else}
+											{function name=to_date v=$item.order_delivery_time}
+										{/if}
+										</span>
+										
+										<span>支付方式：
+										
+										{if $item.payment_id eq 0}
+											在线支付
+										{elseif $item.payment_id eq 1}
+											货到付款
+										{/if}
+										</span>
+										{if $item.invoice}
+										<span>发票信息：{$item.invoice} </span>
+										{/if}
+										{if $item.dc_comment}
+										<span>备注：{$item.dc_comment}</span>
+										{/if}
+									
+									
+								</div>	
+
+								<div class="contact_r">
+										{if $item.is_cancel eq 0}
+											{if $item.confirm_status eq 0}
+											<input type="button" value="接单"   onclick="dc_accept(this);" data-id="{$item.id}"  class="jd_btn" ><br />
+											{elseif $item.confirm_status eq 1}
+													{if $item.now gt $item.over_time}
+													<input type="button" value="已完成"   onclick="dc_over(this);" data-id="{$item.id}"  class="jd_btn" ><br />
+													{else}
+													<span style="padding-right:10px;">已接单</span><br />
+													{/if}
+											{/if}	
+											{if $item.confirm_status eq 2}
+											消费结束
+											{else}
+											<a href="javascript:void(0)" onclick="close_order(this);" data-id="{$item.id}" action="{url r="biz" t="dcorder#close_tip" p="id=$item.id"}" style="padding-right:10px;">关闭交易</a>
+											{/if}
+										{else}
+											<span>订单已关闭</span>
+											{if $item.refuse_memo}
+											<br/>{$item.refuse_memo}
+											{/if}
+										{/if}
+
+								</div>
+							
+	
+							</div>
+							
+						<div class="table dc_tl">
+							
+							
+							<div class="table_l">
+								<table>
+									<tbody>
+										<tr>
+											<th width="55%"><span>菜单</span></th>	
+											<th width="15%">单价</th>	
+											<th width="15%">数量</th>	
+											<th width="15%">金额</th>	
+										</tr>
+										{foreach from=$item.m_cart_list.cart_list item=m_item key=key}
+										<tr>
+											<td>{$m_item.name}</td>
+											<td>{function name=format_price v=$m_item.unit_price l=2}</td>
+											<td>{$m_item.num}</td>
+											<td>{function name=format_price v=$m_item.total_price l=2}</td>
+										</tr>
+										{/foreach}	
+										<tr>
+										<td colspan=3>小计</td>	
+										<td><span>{function name=format_price v=$item.m_cart_list.total_data.total_price l=2}</span></td>	
+										</tr>
+										 
+									</tbody>
+								</table>
+							</div>
+							
+							
+							<div class="table_r">
+								<table>
+									<tbody>
+										<tr>
+											<th width="70%"><span>其他费用</span></th>	
+											<th width="30%">金额</th>	
+										</tr>
+										<tr>
+											<td>打包费</td>
+											<td>{function name=format_price v=$item.package_price l=2}</td>
+										</tr>
+										<tr>
+											<td>配送费</td>
+											<td>{function name=format_price v=$item.delivery_price l=2}</td>
+										</tr>
+										{if $item.order_promote}
+										{foreach from=$item.order_promote item=promote}
+										<tr>
+											<td>{$promote.name}</td>
+											<td>-{function name=format_price v=$promote.discount_amount l=2}</td>
+										</tr>
+										{/foreach}
+										{/if}
+										{if $item.ecv_money neq 0}
+										<tr>
+											<td>代金券</td>
+											<td>-{function name=format_price v=$item.ecv_money l=2}</td>
+										</tr>
+										{/if}
+									</tbody>
+								</table>
+							</div>
+							<div class="blank10"></div>
+							<div class="tr total_box">总计：<span class="f_red">{function name=format_price v=$item.pay_price l=2}</span></div>
+							
+						</div>	
+							
+							
+					</div>
+                        {/foreach}
+			{else}
+			<div class="empty_tip">没有外卖订单记录</div>
+			{/if}
+			</div>
+			
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>			
+			
+		
+
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

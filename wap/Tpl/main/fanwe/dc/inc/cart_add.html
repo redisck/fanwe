@@ -1,0 +1,10 @@
+<div class="f_r" menu-id={$item.id} menu-count={$item.cart_count}>
+
+{if $item.cart_count gt 0}
+	<span class="f_l block w040 h040 tc bor_7 bdr3 lh034 {if $data.is_allow_add_cart eq 1}del_one{else}bg_ccc{/if}"><i class="icon iconfont {if $data.is_allow_add_cart eq 1}f_fe4d3d{else}f_dcdcdc{/if} f024">&#xe673;</i></span>
+	<span class="f_fe4d3d f_l block h044 w054 lh044 tc">{$item.cart_count}</span>
+{/if}	
+	<span class="f_l block w040 h040 tc bor_7 bdr3 lh034 {if $data.is_allow_add_cart eq 1}add_one{else}bg_ccc{/if}"><i class="icon iconfont {if $data.is_allow_add_cart eq 1}f_fe4d3d{else}f_dcdcdc{/if} f024">&#xe674;</i></span>
+
+</div>	
+	

@@ -1,0 +1,302 @@
+@CHARSET "UTF-8";
+
+
+.main {
+  width: 990px;
+  margin: 20px auto 0;
+  margin-top: 10px;
+  position: relative;
+}
+
+
+.banner-section {
+  margin: 0 auto 5px;
+  overflow: hidden;
+}
+
+.banner-container {
+  width: 990px;
+  height: 80px;
+}
+
+.slide-container {
+  height: 80px;
+  overflow: hidden;
+}
+
+.banner-container .slide-container {
+  margin-left: -125px;
+}
+
+.slide-container li {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-container li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+.slide-container li a img {
+  height: 100%!important;
+}
+
+
+.slide-indicators {
+  position: absolute;
+  right: 10px;
+  bottom: 2px;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  z-index: 15;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  background: white;
+}
+
+
+.filter-category {
+  position: relative;
+  margin-top: 10px;
+  height: 50px;
+  background: white;
+  border-bottom: 2px solid #ddd;
+}
+
+
+.filter-category .acrossLine {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: white;
+}
+
+.filter-category ul {
+  position: relative;
+}
+
+.filter-category ul li {
+  float: left;
+  padding: 16px 14px;
+  cursor: pointer;
+  font-size: 17px;
+  color: #555;
+  font-family: Microsoft YaHei;
+}
+
+.filter-category ul li:hover{
+background:@main_color;
+color:white;
+border-bottom: 2px solid #ff7387;
+
+}
+
+.filter-category ul .active {
+  color: red;
+  border-bottom: 2px solid #ff7387;
+}
+
+
+.dishlist {
+  width:1010px;
+  margin-top: 15px;
+}
+
+
+.dishlist .dish {
+  position: relative;
+  width: 445px;
+  height: 120px;
+  background: #fafafa;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  padding: 20px;
+}
+
+
+.dishlist .dish .dishImg {
+  left: 20px;
+  top: 20px;
+  height: 120px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+
+
+.dishlist .dish .dishImg .rank1 {
+  background: url(../images/dc/dcmenu/fire1.png) no-repeat;
+}
+
+.dishlist .dish .dishImg .rank2 {
+  background: url(../images/dc/dcmenu/fire2.png) no-repeat;
+}
+
+.dishlist .dish .dishImg .rank3 {
+  background: url(../images/dc/dcmenu/fire3.png) no-repeat;
+}
+
+.dishlist .dish .dishImg .rank4 {
+  background: url(../images/dc/dcmenu/fire3.png) no-repeat;
+}
+
+.dishlist .dish .dishImg .rank5 {
+  background: url(../images/dc/dcmenu/fire3.png) no-repeat;
+}
+
+
+ .dishlist .dish .dishImg .dishRankImg {
+  position: absolute;
+  top: -2px;
+  left: 6px;
+  width: 29px;
+  height: 37px;
+  background-size: 100% 100%;
+}
+
+
+.dishlist .dish .dishImg .dishRankNum {
+  position: absolute;
+  top: 13px;
+  left: 7px;
+  font-size: 14px;
+  color: #fff;
+  width: 29px;
+  text-align: center;
+}
+
+
+.dishlist .dish .dishImg img {
+  height: 120px;
+  width: 120px;
+}
+
+
+.dishlist .dish .dishInfo {
+  position: absolute;
+  left: 160px;
+  top: 20px;
+  width: 300px;
+  height: 120px;
+}
+
+
+.dishlist .dish .dishInfo .dishName {
+  width: 100%;
+  color: #404142;
+  font-size: 15px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: Microsoft YaHei;
+}
+
+
+.dishlist .dish .dishInfo .shopName {
+  margin-top: 10px;
+  width: 100%;
+  color: #999;
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+
+.dishlist .dish .dishInfo .dishSale {
+  margin-top: 10px;
+  font-size: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.dishlist .dish .dishInfo .dishSale .dishSaleRecommand {
+  margin-right: 10px;
+}
+
+.dishlist .dish .dishInfo .dishSale span {
+  font-size: 12px;
+  color: #999;
+}
+
+.dishlist .dish .dishInfo .dishPrice {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 24px;
+  color: #ff2d4b;
+}
+
+.dishlist .dish .dishInfo .dishOrder {
+  position: absolute;
+  border: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 14px;
+  color: #fff;
+  padding: 6px 18px;
+width:100px;
+  background: @main_color;
+}
+
+
+
+.dishlist .dish .dishInfo .nool {
+  position: absolute;
+  border: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 14px;
+  color: #fff;
+  padding: 6px 18px;
+  background: #E8E6E7;
+width:100px;
+}
+
+
+.dishlist .dish .desc-float {
+  width: 180px;
+  padding: 7px;
+  z-index: 3000!important;
+  background: #fefaef;
+  border: 1px solid #dfd3c3;
+  left: 100px!important;
+}
+
+
+
+
+@CHARSET "UTF-8";
+.filter_row{padding:0px 15px 15px 15px;background: #fafafa;}
+.filter_row dl{ display:block; padding:15px 0px 15px 0px;  border-bottom:@border_color dotted 1px; }
+.filter_row dl.orientation_row{ height:20px; _overflow:hidden;}
+
+.filter_row dl.bottom{ display:block; padding:15px 0px 0px 0px;  border-bottom:0px; }
+
+.filter_row dl dt,.filter_row dl dd{float:left; display:block;width:840px}
+.filter_row dl.orientation_row dd{ float:none;}
+.filter_row dl dt{ width:40px; padding:2px 5px; height:18px; line-height:18px; }
+.filter_row dl ul li{ float:left; display:block;  }
+.filter_row dl ul li a{ white-space:nowrap; display:inline-block; padding:2px 10px; height:18px; line-height:18px; margin:0px 5px 3px 0px; color:@dark_color;
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+border-radius:3px;
+}
+.filter_row dl ul li a:hover{ background:@main_color; color:#fff;}
+.filter_row dl ul li.current a{ background:@main_color; color:#fff; }
+
+
+.filter_row dl dd.expend{ width:60px; text-align:center; }

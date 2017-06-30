@@ -1,0 +1,314 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/youhui.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/business_address.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/side_deal_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/sort_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/review_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/publish.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/cart.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/cart.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/business_address.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/business_address.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/review_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/review_list.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/youhui.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/youhui.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/publish.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/publish.js";
+?>
+{include file="inc/header.html"}
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={function name="app_conf" v="BAIDU_MAP_APPKEY"}"></script> 
+<script type="text/javascript">
+	var YOUHUI_ID = {$youhui.id}; 
+</script>
+<div class="blank"></div>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+
+			<div class="wrap_m2 f_l">			
+			<div class="youhui_box">
+				<div class="title">{if $youhui.supplier_info}[{$youhui.supplier_info.name}]{/if}{$youhui.name}</div>
+				<p class="details">
+					{$youhui.list_brief}
+				</p>
+				<div class="youhui_info_box">
+					<div class="youhui_img f_l">
+						<div class="img">
+							<div class="tags">											
+							{foreach from=$youhui.tags item=tag}
+							<h2 class="tag{$tag}"></h2>
+							{/foreach}
+							</div>
+							<img src="{function name="get_spec_image" v=$youhui.icon w=320 h=240 g=1}" lazy="true" width=320 h=240 />
+						</div>
+					</div>
+					<div class="youhui_intro f_r youhui_ico">
+						{if $youhui.user_limit gt 0}
+						<dl>
+							<dt><i class="iconfont">&#xe60a;</i></dt>
+							<dd>每个会员每天只能下载 <i>{$youhui.user_limit}</i> 张</dd>
+						</dl>
+						{/if}
+						<dl>
+							<dt><i class="iconfont">&#xe609;</i></dt>
+							<dd>已有 <i id="s_user_count">{$youhui.user_count}</i> 人下载{if $youhui.score_limit}, 下载消耗  <i>{$youhui.score_limit}</i> 积分{/if}{if $youhui.point_limit}, 下载需要 <i>{$youhui.point_limit}</i> 经验{/if}</dd>
+						</dl>
+						{if $youhui.total_num gt 0}
+						<dl>
+							<dt><i class="iconfont">&#xe608;</i></dt>
+							<dd>还剩 <i id="s_less">{$youhui.less}</i> 张</dd>
+						</dl>
+						{/if}
+						
+						{if $youhui.begin_time ne 0 && $youhui.begin_time gt $NOW_TIME}							
+						<dl>
+							<dt><i class="iconfont">&#xe607;</i></dt>
+							<dd>
+												
+								<div 
+									class="countdown" 
+									id="countdown" 
+									nowtime="{$NOW_TIME}000" 					
+									{if $youhui.end_time ne 0}
+									endtime="{$youhui.begin_time}000" showtitle="距离开始：" 
+									{/if}
+								></div><!--倒计时-->
+						
+							</dd>
+						</dl>
+						{elseif $youhui.end_time ne 0 && $youhui.end_time gt $NOW_TIME}		
+						<dl>
+							<dt><i class="iconfont">&#xe607;</i></dt>
+							<dd>
+												
+								<div 
+									class="countdown" 
+									id="countdown" 
+									nowtime="{$NOW_TIME}000" 					
+									{if $youhui.end_time ne 0}
+									endtime="{$youhui.end_time}000" showtitle="剩余时间：" 
+									{/if}
+								></div><!--倒计时-->
+						
+							</dd>
+						</dl>
+						{if $youhui.expire_day gt 0}
+						<dl>
+							<dt><i class="iconfont">&#xe621;</i></dt>
+							<dd>请于 <i>{$youhui.expire_day}</i> 天内使用</dd>
+						</dl>
+						{/if}
+						{/if}
+						<div class="blank"></div>
+						{if !$preview}
+						<div class="btn_row">
+							{if $youhui.begin_time lt $NOW_TIME and ($youhui.end_time gt $NOW_TIME or $youhui.end_time eq 0)}
+							<button class="ui-button" rel="orange" id="download_btn" type="button">立即领取</button>
+							&nbsp;
+							{elseif $youhui.begin_time gt $NOW_TIME}
+							<button class="ui-button" rel="disabled" type="button">未开始</button>
+							&nbsp;
+							{elseif $youhui.end_time neq 0 and $youhui.end_time lt $NOW_TIME}
+							<button class="ui-button" rel="disabled" type="button">已过期</button>
+							&nbsp;
+							{/if}
+							<button class="ui-button" rel="blue" type="button" id="collect_btn">加入收藏</button>
+						</div>
+						<div class="blank"></div>
+						<!-- JiaThis Button BEGIN -->
+						<div class="jiathis_style">
+							<span class="jiathis_txt">分享到：</span>
+							<a class="jiathis_button_icons_1"></a>
+							<a class="jiathis_button_icons_2"></a>
+							<a class="jiathis_button_icons_3"></a>
+							<a class="jiathis_button_icons_4"></a>
+							<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+							<a class="jiathis_counter_style"></a>
+						</div>
+						<script type="text/javascript">
+							 var jiathis_config = {
+							 	title:"{$youhui.name}",
+							    url:"{$youhui.share_url}"
+							    
+							};
+						</script>
+						<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+						
+						<!-- JiaThis Button END -->
+						{/if}
+					</div>
+				</div>
+			</div>
+			<!--详情导航-->
+			<div class="show-nav" id="rel_nav">
+			<!--{start: 详情导航 -->
+			<ul>
+				{if $youhui.supplier_info and $youhui.supplier_location_count >0}
+				<li rel="n0">商家位置</li>
+				{/if}
+				{if $youhui.use_notice}
+				<li rel="n1">使用需知</li>
+				{/if}
+				{if $youhui.description}
+				<li rel="n2">优惠券详情</li>
+				{/if}
+				{if !$preview}
+				<li rel="n3">消费评价</li>
+				{/if}
+			</ul>
+			<!--}end: 详情导航 -->
+			</div>
+			<div style="display:none;" class="fix-nav wrap_m2">
+				<!--{start: 浮动导航 -->
+				<div class="show-nav">
+					<!--{start: 详情导航 -->
+					<ul class="f_l">
+						{if $youhui.supplier_info and $youhui.supplier_location_count >0}
+						<li rel="n0">商家位置</li>
+						{/if}
+						{if $youhui.use_notice}
+						<li rel="n1">使用需知</li>
+						{/if}
+						{if $youhui.description}
+						<li rel="n2">优惠券详情</li>
+						{/if}
+						{if !$preview}
+						<li rel="n3">消费评价</li>
+						{/if}
+					</ul>
+					{if !$preview}
+					<button class="ui-button flow_btn" id="flow_btn" rel="white">立即领取</button>
+					{/if}
+					<!--}end: 详情导航 -->
+				</div>
+				<!--}end: 浮动导航 -->
+			</div>
+			<!--end 详情导航-->
+			<div class="show-content">
+				{if $youhui.supplier_info and $youhui.supplier_location_count >0}
+				<div rel="n0" class="content_box">
+					<div class="box_title nomargin">商家位置</div>
+					<div class="box_content nopadding">
+						<div id="business_address" youhui_id="{$youhui.id}" supplier_id="{$youhui.supplier_id}">
+						
+						</div>
+					</div>
+				</div>
+				{/if}
+				{if $youhui.use_notice}
+				<div rel="n1" class="content_box">
+					<div class="box_title">使用需知</div>
+					<div class="box_content">
+						{$youhui.use_notice}
+					</div>
+				</div>
+				{/if}
+				{if $youhui.description}
+				<div rel="n2" class="content_box">
+					<div class="box_title">优惠券详情</div>
+					<div class="box_content">
+						{$youhui.description}
+					</div>
+				</div>
+				{/if}
+				{if !$preview}
+				<div rel="n3" class="content_box">
+					<div class="box_title">
+						<div class="box_title_text">消费评价</div>
+						<div class="box_title_more">我领取并使用过本券，<a href="{url r="index" r="review" p="youhui_id=$youhui.id"}" target="_blank">我要评价</a></div>
+					</div>
+					<div class="box_content">
+						<div id="review_list" youhui_id="{$youhui.id}">
+						</div>
+					</div>
+				</div>
+				{/if}
+				<div class="content_box"></div>
+			</div>
+		</div><!--end wrap_m2-->
+		<div class="wrap_s2 f_r">
+			{if $side_youhui_list}
+			<div class="side_deal_box">
+			<div class="title_row">热门下载</div>
+			<div class="content_row">
+				<ul class="side_deal_list">
+					
+					{foreach from=$side_youhui_list item=side_youhui}
+					<li>
+						<a href="{$side_youhui.url}" class="deal_img"><img src="{function name="get_spec_image" v=$side_youhui.icon w=198 h=134 g=1}" lazy="true" /></a>
+						<a href="{$side_youhui.url}"  class="deal_title">{$side_youhui.name}</a>
+						<div class="deal_info">
+							<span class="deal_price f_l">
+								{if $side_youhui.end_time>0}
+								<em class="iconfont youhui_ico">&#xe607;</em>&nbsp;有效期至{function name="to_date" v=$side_youhui.end_time f="Y.m.d"}						
+								{/if}
+							</span>
+							<span class="sale_count f_r">
+								下载<span>{$side_youhui.user_count}</span>
+							</span>
+						</div>
+					</li>
+					{/foreach}
+					
+				</ul>
+			</div>
+			</div>
+			<div class="blank"></div>
+			{/if}
+			
+			{if $history_deal_list}
+			<div class="side_deal_box">
+			<div class="title_row">
+				<span>浏览历史</span>
+				<a href="javascript:void(0);" class="clear_history" type="youhui">清空</a>
+			</div>
+			<div class="content_row">
+				<ul class="side_deal_list">
+					{foreach from=$history_deal_list item=side_youhui}
+					<li>
+						<a href="{$side_youhui.url}" class="deal_img"><img src="{function name="get_spec_image" v=$side_youhui.icon w=198 h=134 g=1}" lazy="true" /></a>
+						<a href="{$side_youhui.url}"  class="deal_title">{$side_youhui.name}</a>
+						<div class="deal_info">
+							<span class="deal_price f_l">
+								{if $side_youhui.end_time>0}
+								<em class="iconfont youhui_ico">&#xe607;</em>&nbsp;有效期至{function name="to_date" v=$side_youhui.end_time f="Y.m.d"}						
+								{/if}
+							</span>
+							<span class="sale_count f_r">
+								下载<span>{$side_youhui.user_count}</span>
+							</span>
+						</div>
+					</li>
+					{/foreach}
+					
+				</ul>
+			</div>
+			</div>
+			{/if}
+		</div>
+
+
+</div>
+<div class="blank20"></div>
+
+{include file="inc/footer.html"}

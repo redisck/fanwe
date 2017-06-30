@@ -1,0 +1,56 @@
+<div id="cart-section">
+		<div class="f_r h067 lh067 p_0_016 mr030 mt016 bdr5 bg_ffb955 f_fff f026">
+			{if $data.dclocation.is_close eq 0}
+				{if $location_dc_cart.total_data.total_count eq 0}
+					{if $data.is_allow_add_cart eq 1}
+						<div class="cart_tip">购物车是空的</div>
+					
+					{else}
+						<div class="less_money">休息中</div>
+					{/if}
+				{else}
+						{if $location_dc_table_cart.total_data.total_count eq 0 && $tid eq 0}
+							{if $data.dclocation.location_delivery_info.is_free_delivery lt 2}
+								{if $data.dclocation.location_delivery_info.start_price gt $location_dc_cart.total_data.total_price}
+								<div class="less_money">差{function name=format_price item=$data.less_money}起送</div>
+								{else}
+									{if $data.is_allow_add_cart eq 1}
+									
+									<form action="{url r="index" p="dcorder#cart" g="lid=$data.dclocation.id"}" method="post">
+									<input type="hidden" name="lid" value="{$data.dclocation.id}" />
+									<input type="hidden" name="not_check_delivery" value="1" />
+									<input type="hidden" name="payment_id" value="0" />
+									<input type="hidden" name="dc_type" value="{$data.dc_type}" />
+									<div id="order_done"><input type="submit" value="选好了" class="bg_0 f_fff block lh067"/></div>
+									</form>
+									{else}
+									<div class="less_money">休息中</div>
+									{/if}
+								{/if}
+							{else}
+								
+								<div class="cart_tip">亲，您离我太远了</div>
+
+							{/if}
+							
+						{else}	
+								{if $location_dc_table_cart.total_data.total_price gt $location_dc_cart.total_data.total_price}
+								<div class="less_money">差{function name=format_price item=$data.less_table_money}起订</div>
+								{else}
+									{if $data.is_allow_add_cart eq 1}
+									<div id="order_done">
+										<a class="f_fff" href="{url r="index" p="dctable" g="lid=$data.dclocation.id&tid=$tid&book_way=1"}">选好了</a>
+									</div>
+									
+									{else}
+									<div class="less_money">休息中</div>
+									{/if}
+								{/if}
+						{/if}
+															
+				{/if}
+			{else}
+			<div class="less_money">休息中</div>
+			{/if}
+			</div>
+</div>

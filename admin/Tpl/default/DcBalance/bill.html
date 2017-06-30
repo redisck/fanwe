@@ -1,0 +1,63 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<style>
+.dataTable td{text-align:center;}
+</style>
+<php>
+
+function get_balance_link($name,$id)
+{
+	return '<a href="'.u("SupplierBalance/index",array("id"=>$id)).'">'.$name.'</a>';
+}
+
+function getAction($supplier_id)
+{
+	$str = '<a href="'.u("DcBalance/supplier_order",array("id"=>$supplier_id)).'">对帐单</a>';
+	return $str;
+}
+</php>
+<script type="text/javascript">
+
+function charge_edit(id)
+{
+	$.weeboxs.open(ROOT+'?m=Supplier&a=charge_edit&supplier_id='+id, {contentType:'ajax',showButton:false,title:"打款确认",width:600,height:195});
+}
+</script>
+<div class="main">
+<div class="main_title"> {$balance_title}结算报表</div>
+
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		商户名称：<input type="text" class="textbox" name="name" value="{:strim($_REQUEST['name'])}" />		
+		{%SEARCH_REFERER_TIME}：
+		<select name="year">
+			<foreach name="year_list" item="year">
+				<option value="{$year.year}" <if condition="$year['current']">selected="selected"</if>>{$year.year}年</option>
+			</foreach>
+		</select>
+		<select name="month">
+			<foreach name="month_list" item="month">
+				<option value="{$month.month}" <if condition="$month['current']">selected="selected"</if>>{$month.month}月</option>
+			</foreach>
+		</select>
+		<input type="hidden" value="DcBalance" name="m" />
+		<input type="hidden" value="bill" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+</form>
+</div>
+<div class="blank5"></div>
+
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="sp" 
+	datasource="list" 
+	show="id:{%ID}|50px,name|get_balance_link=$sp['id']:商户名称,sale_money|format_price:本月营业额,confirm_money|format_price:本月已完成,unconfirm_money|format_price:本月未完成,refund_money|format_price:本月退款/取消订单,admin_charges|format_price:已结算佣金,online_pay_money|format_price:在线支付,promote_money|format_price:活动补贴,ecv_money|format_price:代金劵,balance_money|format_price:已结算,unbalance_money|format_price:待结算,id|getAction:查看"
+	actionlist = ""
+	 /> 
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

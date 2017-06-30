@@ -1,0 +1,137 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/kindeditor.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/kindeditor.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/weixin.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/weixin.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+var ajax_url = '{$ajax_url}';
+</script>
+<script type="text/javascript">
+    var ROOT_PATH = '';
+    var SITE_URL = "{$APP_ROOT}"+"/";
+    var SITE_PATH = "{$APP_ROOT}"+'/';
+</script>
+<link rel="stylesheet" href="{$APP_ROOT}/system/weixin/kindeditor/themes/default/default.css" />
+<script type="text/javascript" src="{$APP_ROOT}/system/weixin/kindeditor/plugins/wxemoticons/wxemoticons.js"></script>
+<script type="text/javascript" src="{$APP_ROOT}/system/weixin/kindeditor/plugins/wxlink/wxlink.js"></script>
+<script charset="utf-8" src="{$APP_ROOT}/system/weixin/kindeditor/lang/zh_CN.js"></script>
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class="publish_project_btn f_r"><a href="{url r="biz" b="wxtext"}"><button class="ui-button " rel="white" type="button">返回列表</button></a></div>
+			</div>
+			
+			<div class="form_box">
+				<form name="wxtext_publish_form" action="{url r="biz" b="wxtext#save_text"}" method="post">
+				<div class="publish_box ">
+						<ul class="publish_cons">
+						<!-- 基本信息 -->
+							<li class="con_item curr">
+								<table class="form_teble_box add_border">
+									<colgroup>
+										<col width="150">
+										<col width="540">
+									</colgroup>
+									<tbody>
+										<tr>
+											<td class="t_field_name "><i class="iconfont required">&#xe606;</i>关键词:</td>
+											<td class="t_field_value"><input class="ui-textbox long_input" name="keywords" value="{$reply.keywords}"/><br>
+											用于配匹回复的关键词，多个关键词用空格分隔</td>
+										</tr>
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>全字匹配:</td>
+											<td class="t_field_value">
+													<label class="ui-checkbox" rel="common_cbo"><input class="location_id_item" type="checkbox" name="match_type" {if $reply.match_type eq 1}checked="checked"{/if} value="1" />选中则需要微信输入全部关键字才会显示此回复</label>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name">回复内容:</td>
+											<td class="t_field_value">
+                                                <textarea id="reply_content" name="reply_content">{$reply.reply_content}</textarea>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</li>
+							
+						</ul>
+						<div class="blank10"></div>
+					</div>
+					<div class="confirm_form_btn">
+                        <input type="hidden" name="id" value="{$reply.id}" />
+						<div class="f_r">
+							<button class="ui-button " rel="orange" type="submit">保存</button>
+						</div>
+						
+							
+					</div>
+				</form>
+				<div class="blank10"></div>
+			</div>
+			<div class="blank10"></div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+
+<script type="text/javascript">
+    var seting = {
+        themeType: "simple",
+        resizeType: 1,
+        syncType:"",
+        allowPreviewEmoticons: true,
+        items: ['wxemoticons','wxlink','unlink'],
+        allowFileManager: false,
+        useContextmenu:false,
+        minWidth: 500,
+        width: 500,
+        minHeight:150,
+        newlineTag:"br",
+        height:150,
+        afterCreate: function () {
+            this.sync();
+        },
+        afterBlur: function () {
+            this.sync();
+        }
+    }
+    KindEditor.ready(function(K) {
+        K.create('#reply_content', seting);
+    });
+
+</script>
+{include file="inc/footer.html"}

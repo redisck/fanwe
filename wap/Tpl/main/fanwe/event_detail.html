@@ -1,0 +1,38 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/deal_detail.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+?>
+{include file="inc/header.html"}
+<div class="wrap">
+	<div class="content">
+		<div class="evaluate_title">
+                    <div class="grade">
+                       	活动详情
+                    </div>
+                </div>
+           <div class="assess_content description_txt">
+           
+           	{$event_info.content}
+           </div> 
+           <div class="back-box">
+           	<a class="back-link" href="{url r="index" p="event#index" p2="data_id=$data.id"}"><div class="back_buy">返回</div></a>
+           </div>				 	
+	</div>
+</div>
+{include file="inc/footer.html"}	

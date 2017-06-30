@@ -1,0 +1,128 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_buy.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/location_collect.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+	var location_id='{$data.dclocation.id}';
+	var supplier_id='{$data.dclocation.supplier_id}';
+	var dc_type='{$data.dc_type}';
+	var tid={$tid};
+	var distance={$data.dclocation.distance};
+</script>
+
+<!----------------------------------------------------------------------------------------------------详情列表-->
+{include file="dc/inc/dc_nav.html"}
+{if $data.promote_info}
+	{if $data.dclocation.is_firstorderdiscount || $data.dclocation.is_payonlinediscount}
+	<div class="bg-f9f9f9 p_0_030 w_b bor_3 dcbuy_ico_but_parents" style=" height:0.80rem; overflow:hidden;">
+		<ul class="w_b_f_1 p_010_0">
+			{if $data.promote_info.is_firstorderdiscount && $data.dclocation.is_firstorderdiscount}
+			<li class="clearfix  pl038  pt015 pb015">
+					<img class="ico_class f_l  ml-038" src="{$TMPL}/images/dc/xin_s.png" />
+					<p class="w_b_f_1 f_7f7f7f f023 lh030">{$data.promote_info.is_firstorderdiscount.description}</p>
+			</li>
+			{/if}
+			{if $data.promote_info.is_payonlinediscount && $data.dclocation.is_payonlinediscount}
+			<li class="clearfix  pl038  pt015 pb015">
+					<img class="ico_class f_l  ml-038" src="{$TMPL}/images/dc/jian_s.png" />
+					<p class="w_b_f_1 f_7f7f7f f023 lh030">{$data.promote_info.is_payonlinediscount.description}</p>
+			</li>
+			{/if}
+		</ul>
+		<i class="icon iconfont lh080 f022 f_7f7f7f dcbuy_ico_but_open">&#xe679;</i>
+		<i class="icon iconfont lh080 f022 f_7f7f7f hide_show dcbuy_ico_but_close">&#xe680;</i>
+	</div>
+	{/if}
+{/if}
+<div class="w_b bor_3  mb-1 height_1">
+	<div class="h_percentage_100 ovhide w188">
+	<div class="bg_f4f4f4 h_percentage_100   o-y w_o_s w200">
+		<div class="  h_percentage_100 bor_2">
+			<div class="class_nav" >
+				<ul class="main_cate">
+							<!--
+							<li class="current">热销菜品</li>
+							<li>寿司套餐</li>
+							-->
+					{foreach from=$data.dclocation.location_menu_cate item=item key=key}
+					    <li {if $key eq 0}class="current" {/if} rel="{$key}">{$item.main_cate.name}</li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	<div class="w_b_f_1 bg_fff h_percentage_100 o-y w_o_s">
+		{foreach from=$data.dclocation.location_menu_cate item=item key=key}
+		<ul class="sub_menu_{$key} {if !$key eq 0}hide_show{/if}">
+			       {foreach from=$item.sub_menu item=item}
+				      <li class="clearfix p020-155 bor_5">
+								<img src="{$item.image}" class="w124 h124 ml-134 f_l">
+								<h6 class="no_bold f029 lh030 h030 text-overflow"> {$item.name}</h6>
+								<p class="h024 lh024 f024 pt024"><span class="f_fe4d3d">{function name=format_price v=$item.price g=2}</span><span class="f_7f7f7f">/份</span></p>
+							    <div class="clearfix">
+							    	<span class="f_l f024 pt022 f_7f7f7f">已售<i class="f_fe4d3d">{$item.buy_count}</i>份</span>
+									<div class="menu_right" menu-id={$item.id}>
+									   {include file="dc/inc/cart_add.html"}
+									</div>
+								   
+							    </div>
+							</li>
+				 {/foreach}
+			
+		</ul>
+		{/foreach}
+	</div>
+</div>
+
+<!-------------------------------------------------------------------------------------------------预订方式-->	
+
+<div class="pf bor_4 h099 w_percentage_100  b_0 bg_fff">
+	<div class="f_l pl030 pt016 pb016 lh067" id="dc_total">
+		<i id="dc_cart_icon" class="icon iconfont f050  ">&#xe67d;</i>
+		<span class=" f_fe4d3d f028  total_price ">{function name=format_price v=$location_dc_cart.total_data.total_price g=2}</span>
+	</div>
+	 <div id="dc_cartsection">
+		{include file="dc/inc/dc_cart_total.html"}
+	</div>	
+</div>
+<!----------------------------------------------------------------------------------------------------底部浮动菜单-->
+
+ <div id="dc_cart">
+	{include file="dc/inc/dc_cart.html"}
+ </div>
+
+</body>
+</html>
+
+

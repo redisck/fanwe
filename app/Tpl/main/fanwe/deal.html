@@ -1,0 +1,457 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/deal.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/side_deal_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/business_address.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/sort_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/review_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/relate_goods.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/cart.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/cart.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/business_address.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/business_address.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/review_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/review_list.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/deal.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/deal.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/relate_goods.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/relate_goods.js";
+
+if(defined("FX_LEVEL"))
+{
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_fx_deal_fx.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_fx_deal_fx.js";
+}
+
+?>
+{include file="inc/header.html"}
+<?php if(defined("FX_LEVEL")){ ?>
+<script>
+    var ajax_url = '{url r="index" p="uc_fx"}';
+</script>
+<?php }?>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={function name="app_conf" v="BAIDU_MAP_APPKEY"}"></script> 
+<div class="blank"></div>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="deal_introduce clearfix border">
+	    	<h1 class="title">{$deal.sub_name}</h1>
+	    	<p class="details ">
+				{$deal.name}
+				
+			</p>
+			<div class="kf_qq_box">
+			{if $deal.location_qqs}
+				<div class="s_kf_qq">
+					<ul>
+						{foreach from=$deal.location_qqs item=row}
+						{if $row.location_qq}
+							<li><a href="http://wpa.qq.com/msgrd?v=3&uin={$row.location_qq}&site=qq&menu=yes" title="{$row.name}"><i class="iconfont">&#xe64a;</i>客服QQ</a></li>
+						{/if}
+						{/foreach}
+					</ul>
+				</div>
+				{/if}
+			</div>
+			<div class="component clearfix">
+				<div class="component_left f_l">
+					<div class="big_pic">
+						<div class="tags">					
+							{foreach from=$deal.deal_tags item=tag}				
+							<h2 class="tag{$tag}"></h2>
+							{/foreach}
+							{if $deal.buyin_app eq 1}
+							<h2 class="tag_buyinapp"></h2>
+							{/if}
+						</div>
+						<img id="big_pic" src="{function name="get_spec_image" v=$deal.icon w=460 h=280 g=1}" lazy="true" alt="{$deal.sub_name}" origin="{$deal.icon}" width="460" height="280">
+					</div>
+					{if $deal.image_list}
+					<div class="pic_hidden">
+						<div class="small_pic word" id="small_pic">
+							{foreach from=$deal.image_list item=img}
+							<a href="javascript:void(0);" {if $img.current eq 1}class="active"{/if}><img src="{function name="get_spec_image" v=$img.img w=78 h=45 g=1}" big_pic="{function name="get_spec_image" v=$img.img w=460 h=280 g=1}" origin="{$img.img}" lazy="true" width="78" height="45"></a>
+							{/foreach}
+							<!--当前用active标示-->
+					    </div>
+						{if count($deal.image_list) > 5}
+					    <a href="javascript:void(0);" class="pre hide_tag"></a> 
+						<a href="javascript:void(0);" class="next hide_tag"></a> 
+						{/if}
+					</div>
+					{/if}
+					
+				</div>
+				<div class="component_rigth f_r" id="main_package_choose">
+					<div class="component_price clearfix">
+						<div class="base_info f_l">
+							<h2>{if $deal.buy_type ne 1}¥{else}<span>所需积分</span>{/if}<strong id="deal_price">{if $deal.buy_type ne 1}{function name="round" v=$deal.current_price p=2}{else}{function name="abs" v=$deal.return_score}{/if}</strong></h2>
+							{if $deal.buy_type ne 1}
+							<div class="f_l">
+							<span class="discount">{$deal.discount}折</span>
+							<del class="item">¥ {function name="round" v=$deal.origin_price p=2}</del>
+							</div>
+							{/if}
+						</div>
+						{if ($deal.begin_time ne 0 and $deal.time_status eq 3) or ($deal.end_time ne 0 and $deal.time_status eq 1)}						
+						<div 
+							class="countdown f_r" 
+							id="countdown" 
+							nowtime="{$NOW_TIME}000" 
+							{if $deal.begin_time ne 0 and $deal.time_status eq 3}
+							endtime="{$deal.begin_time}000" showtitle="距离开始：" 
+							{/if}
+							{if $deal.end_time ne 0 and $deal.time_status eq 1}
+							endtime="{$deal.end_time}000" showtitle="距离结束：" 
+							{/if}
+						></div><!--倒计时-->
+						{/if}
+					</div>
+					<div class="component_rating clearfix" >
+					     <ul>
+					     	<li class="first f_l">
+					     		<span>已售</span>
+								<strong>{$deal.buy_count}</strong>
+					     	</li>
+							<li class="f_l">
+								<strong>{function name="round" v=$deal.avg_point p=1}</strong>
+					     		<span>分</span>
+							</li>
+							<li class="f_r last">
+					     		<strong>{$deal.dp_count}</strong>
+					     		<span>人评价</span>
+					     	</li>
+							</ul>
+					</div>
+					<div class="hangtag">
+						<ul>
+							{if $deal.supplier_info}
+							<li class="clearfix">
+								<span class="tag f_l">商家</span>
+								<div class="width f_l">
+									<a href="{$deal.supplier_info.url}">{$deal.supplier_info.name}</a>
+									{if $deal.supplier_location_count gt 0 and $deal.is_shop eq 0 }
+									<span class="cross">|</span>
+									<a href="javascript:void(0);" id="show_store">{$deal.supplier_location_count}店通用</a>
+									{/if}
+								</div>
+							</li>
+							{/if}
+							{if $deal.brand_info}
+							<li class="clearfix">
+								<span class="tag f_l">品牌</span>
+								<div class="width f_l">
+									<a href="{url x="index" r="cate" p="cid=$deal.shop_cate_id&bid=$deal.brand_info.id"}">{$deal.brand_info.name}</a>
+								</div>
+							</li>
+							{/if}
+							{if $deal.is_coupon eq 1}
+							<li class="clearfix">
+								<span class="tag f_l">团购券</span>
+								<div class="width f_l">
+								    <span>
+								    {if $deal.coupon_time_type eq 0}
+									
+									{if $deal.coupon_begin_time>0&&$NOW_TIME<$deal.coupon_begin_time&&$deal.coupon_end_time>0}
+									{$deal.coupon_begin_time_format}至{$deal.coupon_end_time_format}有效
+									{/if}
+									{if $deal.coupon_begin_time>0&&$NOW_TIME<$deal.coupon_begin_time&&$deal.coupon_end_time eq 0}
+									{$deal.coupon_begin_time_format}后有效
+									{/if}
+									{if $NOW_TIME>$deal.coupon_begin_time&&$deal.coupon_end_time>0}
+									{$deal.coupon_end_time_format}前有效
+									{/if}
+									{if $NOW_TIME>$deal.coupon_begin_time&&$deal.coupon_end_time==0}
+									永久有效
+									{/if}
+									
+									{else}
+									{$deal.coupon_day}天内有效
+									{/if}
+									
+									</span>
+								</div>
+							</li>
+							{/if}
+						</ul>
+					</div>
+					{if $deal.deal_attr}
+					{foreach from=$deal.deal_attr item=deal_attr_type}
+					{if $deal_attr_type.attr_list}
+					<div class="package_choose clearfix " rel="{$deal_attr_type.id}">
+						<span class="info_title f_l">{$deal_attr_type.name}</span>
+						<div class="choose f_r clearfix active_parent">
+							{foreach from=$deal_attr_type.attr_list item=attr_item}
+							<a href="javascript:void(0);" rel="{$attr_item.id}" price="{$attr_item.price}">
+								{$attr_item.name}
+								<i class="iconfont">&#xe620;</i>
+							</a>
+							{/foreach}							
+						</div>
+					</div>
+					{/if}
+					{/foreach}
+					{/if}
+					<script type="text/javascript">
+						var deal_price = {$deal.current_price};  //商品的基础价格
+						var deal_stock = {$deal.max_bought};   //原始库存
+						var deal_buy_count = {$deal.buy_count};  //销量						
+						var deal_user_min_bought = {$deal.user_min_bought};  //会员最小购买
+						var deal_user_max_bought = {$deal.user_max_bought};	 //会员最大购买						
+						var deal_attr_stock_json = {$deal.deal_attr_stock_json};						
+						var buy_type = {$deal.buy_type};  //购物类型
+						var deal_id = {$deal.id};
+					</script>
+					{if $deal.time_status eq 1}
+					<div class="num_choose clearfix">
+						      <span class="info_title f_l">数量</span>
+							  <div class="f_l">
+							  	  <a href="javascript:void(0);" class="less">−</a>
+								  <input type="text"  name="q" value="1" maxlength="9" class="change_box" id="deal_num" />
+								  <a href="javascript:void(0);" class="increase">+</a>
+							  </div>
+							  <span class="total f_l" id="stock_span">
+							  	<div>还剩<span class="inventory">0</span>份</div>
+							  </span>
+							  <span class="tips f_l none" id="stock_tips"></span><!--当数量超出库存时，此项显示-->
+                    </div>
+					{/if}
+					{if !$preview}
+					<div class="roduct_button clearfix">
+						{if $deal.time_status eq 3}
+						<button class="ui-button disabled f_l" rel="disabled" type="button">未开始</button><!--disabled-->
+						{/if}
+						{if $deal.time_status eq 1}							
+						<button {if $deal.buyin_app eq 1}style="display:none;"{/if} class="ui-button disabled f_l" rel="disabled" type="button" id="buy_btn">{if $deal.buy_type eq 1}立即兑换{else}立即购买{/if}</button><!--disabled-->
+						{/if}
+						{if $deal.time_status eq 2}
+						<button class="ui-button disabled f_l" rel="disabled" type="button">已过期</button><!--disabled-->
+						{/if}
+						
+						<?php if(defined("FX_LEVEL")){ ?>
+						{if $deal.is_fx eq 2}
+						<button class="ui-button blue f_l" rel="blue" type="button" onclick="add_user_deal_fx({$deal.id})">我要分销</button>
+						<a class="f_l collect_ico" id="add_collect" href="javascript:void(0);">
+							<i class="iconfont">&#xe649;</i>
+							<span>收藏</span>
+						</a>
+						{else}
+						<button class="ui-button blue f_l" rel="blue" type="button"  id="add_collect">收藏本单</button>
+						{/if}
+						<?php }else{ ?>
+						<button class="ui-button blue f_l" rel="blue" type="button"  id="add_collect">收藏本单</button>
+						<?php }?>
+							
+						<div class="f_r share_to">
+						<!-- JiaThis Button BEGIN -->
+						<div class="jiathis_style">
+							<span class="jiathis_txt">分享到：</span>
+							<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+							<a class="jiathis_counter_style"></a>
+						</div>
+						<script type="text/javascript">
+							 var jiathis_config = {
+							 	title:"{$deal.name}",
+							    url:"{$deal.share_url}"
+							    
+							};
+						</script>
+						<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+						
+						<!-- JiaThis Button END -->
+						
+						</div>	
+					</div>
+					{/if}
+
+					{if $promote}
+					<div class="blank"></div>
+					<div class="promote_list">
+					{foreach from=$promote item=promote_item}
+					<div class="item">{$promote_item.description}</div>
+					{/foreach}
+					</div>
+					{/if}
+					
+					{if $deal.buyin_app eq 1}
+					<div class="blank"></div>
+					<span class="app_tip">
+					本单仅限移动APP端下单购买  &nbsp;&nbsp;
+					<span class="ios"><a href="javascript:void(0);"  down_url="{url x="index" r="ajax#app_download" p="t=ios"}" ><i class="iconfont">&#xe614;</i>IOS应用下载</a></span>
+					&nbsp;
+					<span class="android"><a href="javascript:void(0);"  down_url="{url x="index" r="ajax#app_download" p="t=android"}" ><i class="iconfont">&#xe613;</i>安卓应用下载</a></span>
+					</span>
+					{/if}
+				</div>
+			</div>
+		</div><!--end deal_introduce-->
+		<div class="blank"></div>
+		
+		<div class="clearfix">
+        	
+            <!--合并购买-->
+			<div id="relate_goods" deal_id="{$deal.id}" supplier_id="{$deal.supplier_id}" supplier_name="{$deal.supplier_info.name}"></div>
+            
+			<div class="wrap_m2 f_l">
+            
+			{if $deal.is_shop eq 0 and !$preview}
+			<div id="supplier_deal" deal_id="{$deal.id}" supplier_id="{$deal.supplier_id}" supplier_name="{$deal.supplier_info.name}">
+			</div>
+			{/if}
+			
+			<!--详情导航-->
+			<div class="show-nav" id="rel_nav">
+			<!--{start: 详情导航 -->
+			<ul>
+				{if $deal.is_shop eq 0 and $deal.supplier_info and $deal.supplier_location_count >0}
+				<li rel="n0">商家位置</li>
+				{/if}
+				{if $deal.notes}
+				<li rel="n1">购买需知</li>
+				{/if}
+				{if $deal.description}
+				<li rel="n2">本单详细</li>
+				{/if}
+				{if !$preview}
+				<li rel="n3">消费评价</li>
+				{/if}
+			
+			</ul>
+			<!--}end: 详情导航 -->
+			</div>
+			<div style="display:none;" class="fix-nav wrap_m2">
+				<!--{start: 浮动导航 -->
+				<div class="show-nav">
+					<!--{start: 详情导航 -->
+					<ul class="f_l">
+						{if $deal.is_shop eq 0 and $deal.supplier_info and $deal.supplier_location_count >0}
+						<li rel="n0">商家位置</li>
+						{/if}
+						{if $deal.notes}
+						<li rel="n1">购买需知</li>
+						{/if}
+						{if $deal.description}
+						<li rel="n2">本单详细</li>
+						{/if}
+						{if !$preview}
+						<li rel="n3">消费评价</li>
+						{/if}
+					</ul>
+					{if !$preview}
+					<button class="ui-button flow_btn" id="flow_btn" rel="white">{if $deal.buy_type eq 1}立即兑换{else}立即购买{/if}</button>
+					{/if}
+					<!--}end: 详情导航 -->
+				</div>
+				<!--}end: 浮动导航 -->
+			</div>
+			<!--end 详情导航-->
+			<div class="show-content">
+				{if $deal.is_shop eq 0 and $deal.supplier_info and $deal.supplier_location_count >0}
+				<div rel="n0" class="content_box">
+					<div class="box_title nomargin">商家位置</div>
+					<div class="box_content nopadding">
+ 						<div id="business_address" deal_id="{$deal.id}" supplier_id="{$deal.supplier_id}">
+						
+						</div>
+					</div>
+				</div>
+				{/if}
+				{if $deal.notes}
+				<div rel="n1" class="content_box">
+					<div class="box_title">购买需知</div>
+					<div class="box_content">
+						{$deal.notes}
+					</div>
+				</div>
+				{/if}
+				{if $deal.description}
+				<div rel="n2" class="content_box">
+					<div class="box_title">本单详细</div>
+					<div class="box_content">
+						{$deal.description}
+					</div>
+				</div>
+				{/if}
+				{if !$preview}
+				<div rel="n3" class="content_box">
+					<div class="box_title">
+						<div class="box_title_text">消费评价</div>
+						<div class="box_title_more">我买过本单，<a href="{url r="index" r="review" p="deal_id=$deal.id"}" target="_blank">我要评价</a></div>
+					</div>
+					<div class="box_content">
+						<div id="review_list" deal_id="{$deal.id}">
+						</div>
+					</div>
+				</div>
+				{/if}
+				<div class="content_box"></div>
+			</div>
+		</div><!--end wrap_m2-->
+		<div class="wrap_s2 f_r">
+			{if $side_deal_list}
+			<div class="side_deal_box">
+			<div class="title_row">
+				<span>您可能喜欢的</span>
+				<a href="javascript:void(0);" class="change_favdeal" deal_id="{$deal.id}"><i class="iconfont">&#xe624;</i>换一批</a>
+			</div>
+			<div class="content_row" id="favdeal_list">
+				{include file="inc/side_favdeal_list.html"}
+			</div>
+			</div>
+			<div class="blank"></div>
+			{/if}
+			
+			{if $history_deal_list}
+			<div class="side_deal_box">
+			<div class="title_row">
+				<span>浏览历史</span>
+				<a href="javascript:void(0);" class="clear_history" {if $deal.is_shop eq 0}type="deal"{else}type="shop"{/if}>清空</a>
+			</div>
+			<div class="content_row">
+				<ul class="side_deal_list">
+					{foreach from=$history_deal_list item=side_deal}
+					<li>
+						<a href="{$side_deal.url}" class="deal_img"><img src="{function name="get_spec_image" v=$side_deal.icon w=198 h=134 g=1}" lazy="true" /></a>
+						<a href="{$side_deal.url}"  class="deal_title">{$side_deal.sub_name}</a>
+						<div class="deal_info">
+							<span class="deal_price f_l">
+								<span class="current_price"><i>&yen;</i>{function name="round" v=$side_deal.current_price l=2}</span>
+								<span class="origin_price">&yen;{function name="round" v=$side_deal.origin_price l=2}</span>
+							</span>
+							<span class="sale_count f_r">
+								已售<span>{$side_deal.buy_count}</span>
+							</span>
+						</div>
+					</li>
+					{/foreach}
+					
+				</ul>
+			</div>
+			</div>
+			{/if}
+		</div>
+		</div>
+
+</div>
+<div class="blank20"></div>
+
+{include file="inc/footer.html"}

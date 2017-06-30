@@ -1,0 +1,37 @@
+	<span class="head_history" id="head_history">
+		最近浏览<i class="iconfont"></i>
+	</span>
+	<div id="head_history_drop_box">
+
+		<dl>
+			{if $history_list}
+				{foreach from=$history_list item=row}
+					<dd id="{$row.id}" class="deal-item">
+						<a href="{$row.url}" title="{$row.name}" target="_blank"  class="deal-link" ><img class="deal-cover" src="{$row.icon}" width="80" height="50"></a>
+						<h5 class="deal-title" id="{$row.id}">
+							<a href="{$row.url}" title="{$row.name}" target="_blank" class="deal-link"  id="" >{$row.name}</a>
+						</h5>
+						<p class="deal-price-w">
+							
+							<em class="deal-price"><i>&yen;</i>{function name="round" v=$row.current_price l=2}</em>
+						</p>
+					</dd>
+					
+					{/foreach}
+				<dd>
+					<p class="clear-my-history">
+					<a href="javascript:void(0);" class="btn-small check_cart_btn clear_history_head">清空浏览记录</a></p>
+				</dd>
+			{else}
+			<div class="blank10"></div>
+				<p class="clear-my-history" id="{$row.id}">
+					
+					<span>你还没有浏览商品</span>
+				</p>
+			{/if}
+		</dl>
+	
+	</div>
+<script type="text/javascript">
+		init_drop_head_history();
+</script>

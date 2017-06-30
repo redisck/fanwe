@@ -1,0 +1,30 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/index.js";
+?>
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+<div class="wrap_full">
+	<div><h3>商户首页预留页面~</h3></div>
+	<div>
+		<p><a href="{url r="biz" b="user#login#index"}">用户登陆</a></p>
+		<p><a href="{url r="biz" b="dealv#index"}">团购券验证</a></p>
+		<p><a href="{url r="biz" b="demo"}">控件测试页面</a></p>
+	</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

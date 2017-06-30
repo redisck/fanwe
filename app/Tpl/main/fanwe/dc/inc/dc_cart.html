@@ -1,0 +1,85 @@
+<div id="cart-section">
+				{if $location_dc_cart.total_data.total_count gt 0}
+					<div id="cart-content">
+						<div id="cart-content-title">
+							<div class="cart_head">
+								<div class="f_l">
+								购物车
+								</div>
+								<div class="f_r">
+								<div id="dc_clear">
+								<i class="iconfont dc_clear_icon"><span class="text_t">清除</span>&#xe62f;</i>
+								</div>
+								</div>
+							</div>
+							<table id="dc_cart_info" cellpadding="0" cellspacing="0">
+								<tbody>
+								<tr><td class="dc_left">商品</td><td class="dc_m">份数</td><td class="dc_right">单价</td></tr>
+								{foreach from=$location_dc_cart.cart_list item=cart_row}
+
+								<tr><td class="dc_left">{$cart_row.name}</td>
+								<td class="dc_m"><i class="iconfont descrese">&#xe640;</i><span menu-id="{$cart_row.menu_id}" id="dc_num">{$cart_row.num}</span><i class="iconfont increase">&#xe63f;</i></td>
+								<td class="dc_right">{function name=format_price item=$cart_row.unit_price}</td></tr>
+
+								{/foreach}
+								
+								{* 打包费 *}
+								{if $package_fee gt 0}
+									{if $location_dc_table_cart.total_data.total_count eq 0}								
+								<tr><td class="dc_left">打包费</td><td colspan="2" class="f_r dc_total">{function name=format_price item=$package_fee}</td></tr>
+									{/if}
+								{/if}
+								{* 打包费 *}
+								
+								<tr><td class="dc_left">共{$location_dc_cart.total_data.total_count}份</td><td colspan="2" class="f_r dc_total">总计{function name=format_price item=$total_price}</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				{/if}	
+					<div id="cart-title">
+							<div class="f_l">
+							<i class="iconfont" id="dc_cart_icon">&#xe646;</i>
+							</div>
+							<div class="f_r">
+							{if $dclocation.is_close eq 0}
+								{if $location_dc_cart.total_data.total_count eq 0}
+								<div class="cart_tip">购物车是空的</div>
+								{else}
+										{if $location_dc_table_cart.total_data.total_count eq 0}
+											{if $dclocation.location_delivery_info.is_free_delivery lt 2}
+												{if $dclocation.location_delivery_info.start_price gt $location_dc_cart.total_data.total_price}
+												<div class="less_money">差{function name=format_price item=$less_money}起送</div>
+												{else}
+													{if $is_allow_add_cart eq 1}
+													<div id="order_done">选好了</div>
+													{else}
+													<div class="less_money">休息中</div>
+													{/if}
+												{/if}
+											{else}
+												
+												<div class="cart_tip">亲，您离我太远了</div>
+		
+											{/if}
+											
+										{else}	
+												{if $location_dc_table_cart.total_data.total_price gt $location_dc_cart.total_data.total_price}
+												<div class="less_money">差{function name=format_price item=$less_table_money}起订</div>
+												{else}
+													{if $is_allow_add_cart eq 1}
+													<div id="order_done">选好了</div>
+													{else}
+													<div class="less_money">休息中</div>
+													{/if}
+												{/if}
+										{/if}
+																			
+								{/if}
+							{else}
+							<div class="less_money">休息中</div>
+							{/if}
+							</div>
+							
+					</div>
+				</div>

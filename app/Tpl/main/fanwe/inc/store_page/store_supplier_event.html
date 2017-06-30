@@ -1,0 +1,31 @@
+{if $supplier_data_list}
+<div class="data_list">
+		<dl>
+        	<dt class="clearfix">
+        		<span class="dl_img"></span>
+				<span class="dl_name dl_youhui_name">名称</span>
+				<span class="dl_youhui_end_time">有效期</span>
+				<span class="dl_salecount">报名量</span>
+        	</dt>   
+			{foreach name="supplier_data_list" from=$supplier_data_list item=data}
+			<dd class="clearfix">
+				<span class="dl_img">
+					<a href="{$data.url}" title="{$data.name}" target="_blank"><img src="{function name="get_spec_image" v=$data.icon w=100 h=75 g=1}" /></a>
+				</span>
+				<span class="dl_name dl_youhui_name"><a href="{$data.url}" title="{$data.name}" target="_blank"><h1>{$data.name}</h1></a></span>
+				<span class="dl_youhui_end_time">
+					{if $data.event_end_time>0}			
+						<em class="iconfont">&#xe607;</em>&nbsp;有效期至{function name="to_date" v=$data.event_end_time f="Y.m.d"}	
+					{/if}
+				</span>
+				<span class="dl_salecount">{$data.submit_count}</span>
+			</dd>
+			{/foreach}
+        </dl>		
+</div>
+{if $total>$page_size}
+<div class="blank"></div>
+<div class="pages">{$pages}</div>
+{/if}
+<div class="blank"></div>
+{/if}

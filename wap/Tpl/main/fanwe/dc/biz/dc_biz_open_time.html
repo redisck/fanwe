@@ -1,0 +1,61 @@
+{if $open_time_arr}
+	{foreach from=$open_time_arr item=open_time}
+		<li class="tc bor_10 bdr5  lh064 f026 f_fe4d3d mb020">
+		<select class="begin_time_h" name="begin_time_h[]">
+		{foreach from=$hour item=item}
+		<option value="{$item}" {if $item eq $open_time.begin_time_h}selected="selected"{/if}>{$item}</option>
+		{/foreach}
+		</select>
+		:
+		<select class="begin_time_m" name="begin_time_m[]">
+		{foreach from=$min_sen item=item}
+		<option value="{$item}" {if $item eq $open_time.begin_time_m}selected="selected"{/if}>{$item}</option>
+		{/foreach}
+		</select>
+		&nbsp;&nbsp;-&nbsp;&nbsp;
+		<select class="end_time_h" name="end_time_h[]">
+		{foreach from=$hour item=item}
+		<option value="{$item}" {if $item eq $open_time.end_time_h}selected="selected"{/if}>{$item}</option>
+		{/foreach}
+		</select>
+		:
+		<select class="end_time_m" name="end_time_m[]">
+		{foreach from=$min_sen item=item}
+		<option value="{$item}" {if $item eq $open_time.end_time_m}selected="selected"{/if}>{$item}</option>
+		{/foreach}
+		</select>
+		
+		<span class="del_row">[ - ]</span>
+		</li>
+		
+
+	{/foreach}
+{else}
+	<li class="tc bor_10 bdr5  lh064 f026 f_fe4d3d mb020">
+	<select class="begin_time_h" name="begin_time_h[]">
+	{foreach from=$hour item=item}
+	<option value="{$item}">{$item}</option>
+	{/foreach}
+	</select>
+	:
+	<select class="begin_time_m" name="begin_time_m[]">
+	{foreach from=$min_sen item=item}
+	<option value="{$item}">{$item}</option>
+	{/foreach}
+	</select>
+	&nbsp;&nbsp;-&nbsp;&nbsp;
+	<select class="end_time_h" name="end_time_h[]">
+	{foreach from=$hour item=item}
+	<option value="{$item}">{$item}</option>
+	{/foreach}
+	</select>
+	:
+	<select class="end_time_m" name="end_time_m[]">
+	{foreach from=$min_sen item=item}
+	<option value="{$item}">{$item}</option>
+	{/foreach}
+	</select>
+	<span class="del_row">[ - ]</span>
+	</li>
+{/if}
+

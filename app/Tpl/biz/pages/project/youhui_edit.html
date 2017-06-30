@@ -1,0 +1,244 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/kindeditor.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project_youhui.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/kindeditor.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/youhui.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/youhui.js";
+?>
+
+{include file="inc/header.html"}
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={function name="app_conf" v="BAIDU_MAP_APPKEY"}"></script> 
+<script type="text/javascript" src="{$TMPL}/js/utils/biz.location.map.js"></script> 
+<script>
+var ajax_url = '{$ajax_url}';
+var blue_point = "{$APP_ROOT}/system/blue_point.png";
+var red_point = "{$APP_ROOT}/system/red_point.png";
+
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class="publish_project_btn f_r"><a href="{$go_list_url}"><button class="ui-button " rel="white" type="button">返回列表</button></a></div>
+			</div>
+			
+			<div class="form_box">
+			<div class="standard_tab cf">
+				<ul>
+					<li class="tab_item curr"><a href="javascript:void(0);">基本信息</a></li>
+				</ul>
+			</div>
+				<form name="deal_publish_form" action="{url r="biz" b="youhui#do_save_publish"}" method="post">
+				<div class="publish_box ">
+						<ul class="publish_cons">
+						<!-- 基本信息 -->
+							<li class="con_item curr">
+								<table class="form_teble_box add_border">
+									<colgroup>
+										<col width="120">
+										<col width="570">
+									</colgroup>
+									<tbody>
+										<tr>
+											<td class="t_field_name "><i class="iconfont required">&#xe606;</i>优惠券名称:</td>
+											<td class="t_field_value"><input class="ui-textbox long_input" name="name1" value="{$youhui_info.name}"/></td>
+										</tr>
+				
+											
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>列表图:</td>
+											<td class="t_field_value">
+												<div class="img_icon_upbtn upload_btn_box">
+													<button id="img_icon" class="ui-button img_icon_btn" rel="orange" type="button">图片上传</button>												
+												</div>
+												<div class="img_icon_upload_box pub_upload_img_box">
+													{if $youhui_info.icon}
+													<span>
+														<a href="javascript:void(0);"></a><img src="{function name="get_spec_image" v=$youhui_info.icon h=50 w=50 g=1}">
+														<input type="hidden" name="icon" value="{$youhui_info.icon}">
+													</span>
+													{/if}
+												</div>
+											</td>
+										</tr>
+										
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>打印图片:</td>
+											<td class="t_field_value">
+											<div class="print_imgs_upbtn upload_btn_box">
+												<button id="print_imgs" class="ui-button print_imgs_btn" rel="orange" type="button">图片上传</button>
+											</div>
+												<div class="print_imgs_upload_box pub_upload_img_box">
+													{if $youhui_info.icon}
+													<span>
+														<a href="javascript:void(0);"></a><img src="{function name="get_spec_image" v=$youhui_info.image h=50 w=50 g=1}">
+														<input type="hidden" name="image" value="{$youhui_info.image}">
+													</span>
+													{/if}
+												</div>
+											</td>
+										</tr>
+										
+										
+										<tr>
+											<td class="t_field_name">使用起始时间:</td>
+											<td class="t_field_value"><input class="ui-textbox" name="begin_time" value="{$youhui_info.begin_time}" readonly="readonly" /><a href="javascript:void(0);" class="clear_input_btn " title="清空时间">清空</a><span class="t_tip">[不设置表示永久使用]</span></td>
+										</tr>
+
+										<tr>
+											<td class="t_field_name">使用截止时间:</td>
+											<td class="t_field_value"><input class="ui-textbox" name="end_time" value="{$youhui_info.end_time}" readonly="readonly" /><a href="javascript:void(0);" class="clear_input_btn " title="清空时间">清空</a><span class="t_tip">[不设置表示永久使用]</span></td>
+										</tr>	
+
+										<tr>
+											<td class="t_field_name ">有效期:</td>
+											<td class="t_field_value"><input class="ui-textbox" name="expire_day" value="{$youhui_info.expire_day}" /><span class="t_tip">[单位：天；设置后上面的开始结束时间自动失效]</span></td>
+										</tr>
+
+
+										<tr>
+											<td class="t_field_name ">优惠券总条数:</td>
+											<td class="t_field_value"><input class="ui-textbox" name="total_num" value="{$youhui_info.total_num}" /></td>
+										</tr>
+										
+										<tr>
+											<td class="t_field_name ">会员下载限制:</td>
+											<td class="t_field_value"><input class="ui-textbox" name="user_limit" value="{$youhui_info.user_limit}" /><span class="t_tip">[设置每个会员的每天下载条数]</span></td>
+										</tr>
+
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>城市:</td>
+											<td class="t_field_value">
+												{insert name="city_id_select" city_id = $youhui_info.city_id}
+											</td>
+										</tr>
+										
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>分类:</td>
+											<td class="t_field_value">
+												{insert name="cate_id_select" cate_id=$youhui_info.deal_cate_id}
+											</td>
+										</tr>
+										
+										<tr id="sub_cate_box" class="hide">
+											<td class="t_field_name">子分类列表:</td>
+											<td class="t_field_value item_input">
+											</td>
+										</tr>
+										
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>支持门店:</td>
+											<td class="t_field_value">
+												{foreach from=$location_infos item=row}
+													<label class="ui-checkbox" rel="common_cbo"><input class="location_id_item" type="checkbox" name="location_id[]" value="{$row.id}"  x="{$row.xpoint}" y="{$row.ypoint}"  {if $row.checked eq 1}checked = "checked"{/if} />{$row.name}</label>
+												{/foreach}
+											</td>
+										</tr>
+
+
+										<tr class="biz_map">
+									            <td class="t_field_name">地图定位</td>
+									            <td class="t_field_value">            	
+									            	<span class="f_l map_search_label">地图关键词：</span><input type="text" class="ui-textbox map_keyword f_l" name="search_api_address" value="" /> 
+													<button type="button"  class="ui-button f_l"  rel="white" name="search_api" id="search_api" >查找</button>
+													<div style="height:10px; clear:both;"></div>
+									                <div id="container"></div>
+													<div style="height:10px; clear:both;"></div>
+									                
+									                <button type="button" class=" f_l"  rel="white" name="chang_api" id="chang_api">手动进行更精确定位</button>
+									                <div style="position:relative; top:-400px;">
+									                    <div  id="container_front">
+									                        <a href="javascript:void(0);" id="cancel_btn">关闭&nbsp</a>
+									                        <div id="container_m"></div>
+									                        <span class="prompt">鼠标拖动蓝色标识进行定位</span>
+									                    </div>
+									                </div>
+													<input type="hidden" name="xpoint"  value="{$youhui_info.xpoint}" />
+													<input type="hidden" name="ypoint"  value="{$youhui_info.ypoint}" />
+									            </td>
+									    </tr>	
+
+
+										<tr>
+											<td class="t_field_name">优惠券列表简介:</td>
+											<td class="t_field_value"><textarea class="textarea t_textarea" name="list_brief" >{$youhui_info.list_brief}</textarea></td>
+										</tr>
+
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>优惠券类型:</td>
+											<td class="t_field_value">
+												<select class="ui-select filter_select medium" name="youhui_type" >
+													<option value="0" {if $youhui_info.youhui_type eq 0}selected="selected"{/if}>减免券</option>
+													<option value="1" {if $youhui_info.youhui_type eq 1}selected="selected"{/if}>折扣券</option>
+												</select>
+											</td>
+										</tr>
+
+
+										<tr>
+											<td class="t_field_name">优惠券详情:</td>
+											<td class="t_field_value">
+												<textarea id="description" name="description">{$youhui_info.description}</textarea>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name">优惠券使用须知:</td>
+											<td class="t_field_value">
+												<textarea id="notes" name="use_notice">{$youhui_info.use_notice}</textarea>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</li>
+
+
+							<!-- 规格属性 -->
+
+						</ul>
+						<div class="blank10"></div>
+					</div>
+					<div class="confirm_form_btn">
+						
+						<input type="hidden" name="id" value="{$youhui_info.id}" />
+						<input type="hidden" name="edit_type" value="{$edit_type}" />
+						<div class="sub_from_btn">							
+							<button class="ui-button" rel="orange" type="submit">{if $allow_publish_verify eq 1}保存并发布{else}保存{/if}</button>							
+						</div>
+					</div>
+				</form>
+				<div class="blank10"></div>
+			</div>
+			<div class="blank10"></div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

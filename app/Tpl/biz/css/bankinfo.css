@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+
+
+.info_box{padding: 0 20px 0 20px;}
+.info_box h3{font-size:15px;}
+.info_box .bg_box{margin: 0 0 10px;padding: 8px 16px;font-size: 12px;border: 1px solid #F6E0AF;background: #ffffeb;overflow: hidden;zoom: 1;}
+.info_box .growth_content{font-size: 12px;color: #663309;}
+.info_items ul li{display:block;margin-bottom:5px;height: 25px;line-height: 25px;}
+.info_items ul li label,.info_items ul li span{float:left;}
+.info_items ul li .level_bg{margin-top:4px;}
+.main_color {color:@main_color;font-weight: bold;font-style: normal;}
+
+.field_group_long .f_label{font-size:14px;}
+
+.sms_verify_box input.ph_verify {width: 100px;display: inline-block;outline: 2px;font-size: 16px;padding: 9px;margin-right: 10px;}
+
+
+.ph_img_verify{display: none;}
+
+
+
+
+
+
+
+.withdraw{ width:180px; }
+.info_table table td.withcontent{ width:550px; border-left:1px dotted #e5e5e5; text-align:left; padding-left:50px;  }
+.info_table table td.withcontent .ui-textbox{ padding:10px; width:300px; }
+.info_table table td.withcontent .ph_verify{ width:170px; margin-right:10px;}
+.info_table table td.withcontent .img_verify{ width:170px; margin-right:10px;}
+.info_table table td.withcontent img.verify {padding: 7px 0px;margin-right: 5px;cursor: pointer;width: 50px;height: 22px;}
+.img_verify_box a.refresh_verify {display: inline-block;height: 36px;line-height: 36px;color: @main_color;cursor: pointer;}

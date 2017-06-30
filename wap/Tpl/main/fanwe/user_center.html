@@ -1,0 +1,247 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_center.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+?>
+{include file="inc/header.html"}
+
+
+<div class="wrap">
+	<div class="content">
+					
+					<div class="goods_abbr">
+						<a href="{url x="index" r="uc_account"}">
+						  <div class="person_account">						  	   
+							   <div class="account_info">
+							   	    <div class="pic">
+							   	    	<img src="{$data.user_avatar}" width="59" height="59">
+							   	    </div>
+									<div class="name">
+										  <b>{$data.user_name}</b>
+										  <p>账户余额:<font class="font-fc8">{$data.user_money_format}</font>元</p>
+									</div>
+							   </div>
+						  </div>
+						</a>
+					</div>	
+<div class="uc_home_link"><a href="{url r="index" p="uc_home#index"}"><i class="iconfont">&#xe66e;</i>我的朋友圈</a></div>
+ <div class="blank8"></div>
+	
+	          <div class="list-view">
+				       <ul class="person_details one">
+				       	    <li>
+				       	    	<a href="{url a="index" r="uc_order#index"  p="pay_status=0"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe614;</i>
+										<span>待付款订单</span>
+										
+				       	    	    </div>
+				       	        </a>
+							</li>
+							<li>
+				       	    	<a href="{url a="index" r="uc_order#index"  p="pay_status=2"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe613;</i>
+										<span>已付款订单</span>
+										<div class="right-msg">待评价<em class="h-num">{$data.wait_dp_count}</em></div>
+				       	    	    </div>
+				       	        </a>
+							</li>
+							
+							
+							<li>
+				       	    	<a href="{url a="index" r="dc_dcorder"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe681;</i>
+										<span>外卖订单</span>
+										
+				       	    	    </div>
+				       	        </a>
+							</li>
+							
+							<li>
+				       	    	<a href="{url a="index" r="dc_rsorder"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe676;</i>
+										<span>预订订单</span>
+										
+				       	    	    </div>
+				       	        </a>
+							</li>
+							
+				       </ul>		 
+				</div>       
+						
+   <div class="blank8"></div>
+   
+                <div class="list-view">
+				       <ul class="person_details one">
+							<li>
+				       	    	<a href="{url a="index" r="uc_coupon#index"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe605;</i>
+										<span>我的团购券</span>										
+				       	    	    </div>
+				       	        </a>
+							</li>
+
+							<li>
+				       	    	<a href="{url a="index" r="uc_youhui#index"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe603;</i>
+										<span>我的优惠券</span>										
+				       	    	    </div>
+				       	        </a>
+							</li>
+							
+							<li>
+				       	    	<a href="{url a="index" r="uc_event#index"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe606;</i>
+										<span>我的活动</span>										
+				       	    	    </div>
+				       	        </a>
+							</li>	
+							
+							<li>
+				       	    	<a href="{url a="index" r="uc_lottery#index"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe61a;</i>
+										<span>我的抽奖</span>										
+				       	    	    </div>
+				       	        </a>
+							</li>		
+							
+							<li>
+				       	    	<a href="{url a="index" r="uc_review#index"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe619;</i>
+										<span>我的点评</span>										
+				       	    	    </div>
+				       	        </a>
+							</li>
+							<li>
+				       	    	<a href="{url a="index" r="uc_ecv#index"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe68c;</i>
+										<span>我的红包</span>										
+				       	    	    </div>
+				       	        </a>
+							</li>								
+
+				       </ul>		 
+				</div>						
+   <div class="blank8"></div>
+   
+              <div class="list-view">
+				       <ul class="person_details one">
+							<!--<li>
+				       	    	<a href="{url a="index" r="uc_message#index"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe61b;</i>	
+										<span>我的消息</span>								
+				       	    	    </div>
+				       	        </a>
+							</li>-->
+				       	    <li>
+				       	    	<a href="{url a="index" r="uc_address#index"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe617;</i>
+										<span>配送地址</span>										
+				       	    	    </div>
+				       	        </a>
+							</li>
+
+							<li>
+		       	    	<a href="{url a="index" r="uc_collect#index"}">
+		       	    	    <div class="per_li">
+		       	    	    	<i class="iconfont">&#xe615;</i>
+								<span>收藏</span>								
+		       	    	    </div>
+		       	        </a>
+					</li>
+					<li>
+		       	    	<a href="{url a="index" r="uc_invite#index"}">
+		       	    	    <div class="per_li">
+		       	    	    	<i class="iconfont">&#xe616;</i>	
+								<span>邀请链接</span>								
+		       	    	    </div>
+		       	        </a>
+					</li>
+
+				       </ul>		 
+				</div>
+		
+		<?php if(defined("FX_LEVEL")){ ?>
+		<div class="blank8"></div>	
+	    <div class="list-view">
+				       <ul class="person_details one">
+
+				       	    <li>
+				       	    	<a href="{url a="index" r="uc_fx#index"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe64a;</i>
+										<span>分销管理</span>										
+				       	    	    </div>
+				       	        </a>
+							</li>
+
+				       </ul>		 
+				</div>	
+		<?php }?>	   				
+   <div class="blank8"></div>
+   
+                 <div class="list-view">
+				       <ul class="person_details one">
+				       	    <!--li>
+				       	    	<a href="">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="fa fa-bullhorn "></i>
+										<span>新浪微博绑定</span>
+										<i class="fa fa-chevron-right"></i>
+				       	    	    </div>
+				       	        </a>
+							</li>
+							<li>
+				       	    	<a href="">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="fa fa-bullhorn "></i>
+										<span>腾讯微博绑定</span>
+										<i class="fa fa-chevron-right"></i>
+				       	    	    </div>
+				       	        </a>
+							</li-->
+							<li>
+				       	    	<a href="{url a="index" r="user#getpassword"}">
+				       	    	    <div class="per_li">
+				       	    	    	<i class="iconfont">&#xe618;</i>
+										<span>修改密码</span>										
+				       	    	    </div>
+				       	        </a>
+							</li>
+				       </ul>		 
+				</div>
+				{if !$is_weixin}
+					<div class="buy ">
+						  <a href="{url a="index" r="user#loginout" }" class="plank" style="color:#fff;">退出当前账号</a>
+					</div>
+				{/if}
+				</div>
+
+</div>
+{include file="inc/footer.html"}	

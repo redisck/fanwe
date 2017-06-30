@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+.store_list{ }
+
+.store_row{ background:@box_color; padding:15px; border:@border_color solid 1px;  }
+.store_row i.iconfont{ font-size:20px; }
+.store_row em{ font-style:normal; color:@main_color; font-family:verdana; font-size:12px;}
+
+.store_image{ margin-right:15px;}
+.store_image a{ display:block; width:200px; height:150px; border:@border_color solid 1px; padding:5px; }
+.store_image a:hover{ display:block; width:200px; height:150px; border:@main_color solid 1px; }
+.store_image a img{ width:200px; height:150px; }
+
+.store_info{ width:270px; margin-right:15px; font-size:14px;}
+.store_info div{ line-height:25px; }
+.store_info .store_address a{ color:@main_color; font-size:12px;}
+.store_name{ font-size:16px; font-weight:bolder; color:@main_color; display:block; line-height:45px; height:45px; overflow:hidden;}
+.store_name i.iconfont{ font-weight:normal;}
+
+.store_dp{ font-size:14px;}
+.store_dp div{ line-height:30px; }
+.store_dp div.store_dp_avg{ height:30px; padding-top:15px; overflow:hidden;  line-height:0px;}
+
+.row_current i.iconfont{ color:@main_color;}
+.row_current .store_image a{ border:@main_color solid 1px;}
+.row_current{ border:@main_color solid 1px;} 
+
+.supplier_info{ border:@border_color solid 1px; padding:10px; background:@box_color;}
+.supplier_info .sp_image{ width:100px; height:75px; padding:5px; border:@border_color solid 1px; margin-right:15px; display:inline-block; *display:inline; *zoom:1;}
+.supplier_info .sp_info{ display:inline-block; *display:inline; *zoom:1; }
+.supplier_info .sp_info .sp_name{ font-size:16px; font-weight:bolder; color:@main_color; font-family:"微软雅黑"; line-height:35px; }
+.supplier_info .sp_info .sp_total{ line-height:35px; font-size:14px;}
+.supplier_info .sp_info .sp_total .sp_city{ color:@main_color; }
+.supplier_info .sp_info .sp_total .sp_city i.iconfont{ font-size:20px;}
+.supplier_info .sp_info .sp_total .sp_count{ color:@main_color;}

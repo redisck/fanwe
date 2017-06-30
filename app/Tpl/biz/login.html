@@ -1,0 +1,82 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+?>
+{include file="inc/header.html"}
+<div class="wrap_full">
+		<div class="msg_tip">
+			<i class="status"></i>
+			<p class="msg_content"></p>
+			<span class="close"></span>
+		</div>
+</div>
+<div class="blank20"></div>
+<div class="bdw">
+<div class=" wrap_full">
+	<div class="box_main clearfix">
+		<div class="box_head">
+			<h2>商户登录</h2>
+		</div>
+		<div class="box_form ">
+			<div class="lf_box f_l">
+				<form name="user_login" action="{url x="biz" r="user#do_login"}" method="post" bindsubmit="true">
+					<input type="hidden" name="form_prefix" value="ajax"/>
+					<div class="field_group ">
+						<label class="f_label">帐号</label> 
+						<div class="f_text">
+							<input type="text" name="account_name" id="account_name" value="" class="ui-textbox normal " holder="请输入账户" />
+						</div>
+					</div>
+					<div class="field_group ">
+						<label class="f_label">密码</label>
+						<div class="f_text"> 
+						<input type="password" name="account_password" id="account_password" value="" class="ui-textbox " holder="输入登录密码" />
+						</div>
+					</div>
+					<div class="field_group verify_box img_verify_box">
+						<label class="f_label">验证码</label> 
+						<div class="f_text">
+							<input type="text" name="verify_code" id="verify_code" class="ui-textbox img_verify" holder="" />
+						</div>
+						<img src="{$APP_ROOT}/verify.php" class="verify" rel="{$APP_ROOT}/verify.php" />
+						<a href="javascript:void(0);" class="refresh_verify">看不清？换一张！</a>
+					</div>
+					<div class="blank10"></div>
+					<div class="field_group"><label class="f_label">&nbsp;</label><button class="ui-button " rel="orange" type="submit">提交</button></div>
+
+				</form>
+				<div class="blank"></div>
+			</div>
+			<div class="lf_tip f_l">
+				<div class="lf_tip_head">
+					<p>还没有商户账户？</p>
+				</div>
+				<div class="blank20"></div>
+				<div class="lf_tip_qrcode">
+					<a href="{url r="biz" p="user#register" }">
+						<button  class="ui-button  light" rel="light" type="button">立即申请</button>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+			<div class="blank"></div>
+	</div>
+</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

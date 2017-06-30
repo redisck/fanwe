@@ -1,0 +1,64 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";		
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/user_login.js";
+
+
+?>
+{include file="inc/biz_header.html"}
+
+<div class="wrap">
+	
+	<div class="content">
+	<div class="comment_list_txt1">
+		<div id="Tab1">
+		 <div class="Contentbox">  
+		 	
+		   <div>		   
+		   	<form action="{url x="biz" r="user#dologin"}" name="user_login_form" method="post">
+				<div class="inputtxt">
+				<div class="inputpc"><i class="iconfont">&#xe61d;</i></div>	
+				
+				<div class="input_sr"><input type="text"placeholder="请输入帐号" name="account_name"></div>
+
+				</div>
+				<div class="inputtxt"> 
+				<div class="inputpc"><i class="iconfont">&#xe61c;</i></div>
+				<div class="input_sr"><input type="password"  placeholder="请输入密码" name="account_password"></div>	 
+				</div>
+				
+				<div class="btn_login">
+				<input type="submit" value="登录" style="background: none;">
+				</div>
+			</form>
+		   </div>
+
+		 </div>
+		 
+		</div>  
+		           
+		
+	 </div>
+
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

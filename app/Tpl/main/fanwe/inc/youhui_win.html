@@ -1,0 +1,9 @@
+<div class="download_title">您成功领取了一张 [{$youhui_info.name}] 
+	<br />
+	{if app_conf("SMS_ON") eq 1 and $result.log.mobile and $youhui_info.is_sms eq 1}序列号已发送到你的手机 <i>{$result.log.mobile}</i>，请注意查收短信{/if}
+</div>
+<div class="youhui_win_btns">
+	<a href="{url x="index" r="youhui#print" p="id=$result.log.id"}" target="_blank"><button class="ui-button" rel="blue" id="print_youhui" type="button">打印优惠券</button></a>
+
+	<a href="javascript:void(0);" onclick="youhui_shere({$youhui_info.id})"><button class="ui-button" rel="orange" type="button" ><i class="iconfont">&#xe63d;</i>分享</button></a>
+</div>

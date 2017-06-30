@@ -1,0 +1,162 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/topic.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/topic.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/topic.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/topic.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/topic.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/op.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/op.js";
+?>
+{include file="inc/header.html"}
+<script>
+	var MANAGE_AJAX_URL = '{url b="index" r="op#index"}';
+	var TOPIC_ID = '{$topic.id}';
+	var IS_FAV = '{$is_fav}';
+</script>
+<div class="{function name="load_wrap" t=$wrap_type}  clearfix">
+	<div class="topic_head {function name="load_wrap" t=$wrap_type} clearfix">
+		<div class="blank20"></div>
+	</div>
+	<div class="topic_main_layout {function name="load_wrap" t=$wrap_type} clearfix">
+		<div class="topic_content f_l">
+			<div class="topic_main_inner clearfix">
+				<div class="album_info clearfix">
+					<div class="user_avatar">
+						<a href="{url b="index" r="uc_home#index" p="id=$topic.user_id"}">
+	                        {function name="show_avatar" uid=$topic.user_id  type="small" }
+	                        
+	                    </a>
+	                </div>
+					<div class="user_meta">
+						<div class="clearfix"><a class="user_name" href="{url b="index" r="uc_home#index" p="id=$topic.user_id"}">{$topic.user_name}</a></div>
+						<a class="uc_home_link" href="{url b="index" r="uc_home#index" p="id=$topic.user_id"}">Ta的个人主页</a>
+					</div>
+					{if $title}
+						<p class="album_desc">
+							<i class="icon iconfont">&#xe605;</i>
+								<span>{$title}</span>
+							<i class="icon iconfont">&#xe606;</i>
+						</p>
+					{/if}
+					<div class="topic_pub_time yahei"><span>{function name="to_date" p="$topic.create_time" f="Y-m-d"}</span></div>
+				</div>
+				<div class="blank20"></div>
+				<div class="item_info clearfix">
+					
+					<div class="item_action clearfix">
+						<a class="i_like_btn {if $is_fav}i_like_btn_liked{/if}" href="javascript:void(0);" >
+							<ul>
+								<li class="like_group"><i class="iconfont icon">&#xe60c;</i>喜欢<em class="topic_fav_{$topic.id}">{$topic.fav_count}</em></li>
+								<li class="like_group"><i class="iconfont icon">&#xe60d;</i>喜欢+1</li>
+								<li class="liked_group"><i class="iconfont icon">&#xe60d;</i>已喜欢</li>
+								<li class="liked_group"><i class="iconfont icon">&#xe60c;</i>取消</li>
+							</ul>
+						</a>
+						<a class="i_relay_topic_btn" href="javascript:void(0);" onclick="relay_topic('{$topic.id}');"><i class="iconfont icon">&#xe60b;</i><span>转发</span></a>
+						<a class="i_comments_btn" href="#comment_list_box"><i class="iconfont icon">&#xe602;</i><span>评论</span></a>
+					</div>
+					<div class="item_desc">
+						<span>
+							{$content}
+						</span>
+					</div>
+					<div class="blank20"></div>
+					{if $topic.images}
+					<div class="item_pic_list">
+						{foreach from=$topic.images item=row_img}
+							<div class="pic_item"><a href="{$row_img.o_path}" target="_Blank"><img src="{function name="get_spec_image" v=$row_img.o_path w=875 h=0}" lazy="true" /></a> </div>
+							<div class="blank20"></div>
+						{/foreach}
+					</div>
+					{/if}
+				</div>
+				<div class="admin_manager">
+					{if $topic['group_id'] gt 0}
+						
+							{if $user_auth['group']['setbest'][0] or $user_auth['group']['setbest'][$topic['group_id']]}
+								<a href="javascript:void(0);" onclick="op_group_setbest({$topic.id});"><i class="iconfont">&#xe62b;</i>推荐</a>
+							{/if}
+							{if $user_auth['group']['settop'][0] or $user_auth['group']['settop'][$topic['group_id']]}
+								<a href="javascript:void(0);" onclick="op_group_settop({$topic.id});"><i class="iconfont">&#xe62e;</i>置顶</a>
+							{/if}
+							
+							{if $user_auth['topic']['del']}			
+								<a href="javascript:void(0);" onclick="op_topic_del({$topic.id});"><i class="iconfont">&#xe62f;</i>删除</a>
+							{elseif $user_auth['group']['del'][0] or $user_auth['group']['del'][$topic['group_id']]}
+								<a href="javascript:void(0);" onclick="op_group_del({$topic.id});"><i class="iconfont">&#xe62f;</i>删除</a>										
+							{/if}							
+					{else}
+						{if $user_auth['topic']['del']}
+							<a href="javascript:void(0);" onclick="op_group_del({$topic.id});"><i class="iconfont">&#xe62f;</i>删除</a>
+						{/if}
+					{/if}
+				</div>
+				<div class="item_comment">
+					<div class="comment_box">
+						<div class="c_title">
+							<h5>大家都在讨论</h5>
+						</div>
+						<div class="c_content" id="comment_list_box">
+							
+						</div>
+						
+						<div class="blank20"></div>
+						<form name="message_form" action="{url b="index" r="topic#reply"}"" method="post">
+							<div class="comment_add">
+								<div class="c_textarea">
+									<textarea name="content" class="comment_txt" resize="none" placeholder="我也插句话..." maxlength="140"></textarea>
+								</div>
+								<input type="hidden" name="topic_id" value="{$topic.id}">
+								<input type="hidden" name="reply_id" value="">
+								<div class="c_btn"><a class="m_submit_btn" href="javascript:void(0);" >评论</a></div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="blank20"></div>
+			</div>
+		</div>
+		<div class="topic_side f_r">
+			
+			<div class="side_corner_box">
+				{if $topic_group}
+				<div class="side_item group_from clearfix">
+					<h5 class="title">来自小组</h5>
+					<a class="from_meta group_from_meta clearfix" href="{url b="index" r="group#forum" p="id=$topic_group.id"}">
+						<div class="group_item">
+							<span class="gp_item_img" href=""><img src="{$topic_group.icon}"/></span>
+							<div class="gp_info">
+								<p class="gp_title">{$topic_group.name}</p>
+								<p class="gp_createtime">创建于：{function name="to_date" p="$topic_group.create_time" p2="Y-m-d"}</p>
+								<p class="go_follow_group"><span>去关注该小组</span></p>
+							</div>
+						</div>
+					</a>
+				</div>
+				{/if}
+			</div>
+		</div>
+	</div>
+	
+</div>
+<!--end 推荐团购分类-->
+
+
+{include file="inc/footer.html"}

@@ -1,0 +1,68 @@
+.main-good-box{
+
+}
+
+.main-good-box .main-good{
+	display: inline-block;
+	width:30%;
+	float:left;
+	overflow: hidden;
+	text-align: center;
+	margin:10px 0px 10px 10px;
+	BORDER-RIGHT: #ff0000 2px dashed;
+	BORDER-TOP: #ff0000 2px dashed;
+	BORDER-LEFT: #ff0000 2px dashed;
+	BORDER-BOTTOM: #ff0000 2px dashed;
+}
+
+/**滑动**/
+.relate-swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+
+}
+.relate-swipe-wrap {
+  overflow: hidden;
+  position: relative;
+    
+}
+.relate-swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+  
+}
+.relate-price-box{
+	padding: 8px 10px;
+	text-align:center;
+}
+
+.checkdiv{
+	position:absolute;
+	width:32px;
+	height:32px;
+	background:url(../images/fanwe_ui/checked.png) no-repeat;
+	z-index:99;
+	display:none;
+}
+
+.pop-div{
+	padding:5px;
+}
+
+.pop-div select{
+	padding:10px;
+}
+
+.pop-error{
+	background:url(../images/fanwe_ui/pop-error.png) no-repeat;
+}
+
+
+
+
+
+
+
+

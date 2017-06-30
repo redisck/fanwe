@@ -1,0 +1,139 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/kindeditor.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/kindeditor.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/weixin.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/weixin.js";
+
+?>
+
+{include file="inc/header.html"}
+<script>
+var ajax_url = '{$ajax_url}';
+</script>
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class="publish_project_btn f_r"><a href="{$go_list_url}"><button class="ui-button " rel="white" type="button">返回列表</button></a></div>
+			</div>
+			
+			<div class="form_box">
+				<form name="goods_publish_form" action="{url r="biz" b="deal#do_save_publish"}" method="post">
+				<div class="publish_box ">
+						<ul class="publish_cons">
+						<!-- 基本信息 -->
+							<li class="con_item curr">
+								<table class="form_teble_box add_border">
+									<colgroup>
+										<col width="150">
+										<col width="540">
+									</colgroup>
+									<tbody>
+										<tr>
+											<td class="t_field_name "><i class="iconfont required">&#xe606;</i>标题:</td>
+											<td class="t_field_value"><input class="ui-textbox long_input" name="name" value="{$deal_info.name}"/></td>
+										</tr>
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>图文封面图:</td>
+											<td class="t_field_value">
+												<div class="img_icon_upbtn upload_btn_box">
+													<button id="img_icon" class="ui-button img_icon_btn" rel="orange" type="button">图片上传</button>
+												
+												</div>
+												<div class="img_icon_upload_box pub_upload_img_box">
+													{if $deal_info.icon}
+													<span>
+														<a href="javascript:void(0);"></a><img src="{function name="get_spec_image" v=$deal_info.icon h=50 w=50 g=1}">
+														<input type="hidden" name="img_icon" value="{$deal_info.icon}">
+													</span>
+													{/if}
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name">回复内容:</td>
+											<td class="t_field_value"><textarea class="textarea t_textarea" name="brief" >{$deal_info.brief}</textarea></td>
+										</tr>
+										<tr>
+											<td class="t_field_name">多图文回复:</td>
+											<td class="t_field_value">
+												<div class="f_l" style="margin-top:7px;">
+												<span class="f_l" style="display:block;height: 23px;line-height: 23px;">最多9条</span>
+												<div class="f_l"><button class="ui-button add_goods_type" rel="white" type="button">新增</button></div>
+												</div>
+											</td>
+										</tr>
+										<tr class="buy_type_0">
+											<td class="t_field_name">回复跳转链接:</td>
+											<td class="t_field_value">
+												<select class="ui-select filter_select medium" name="brand_id" >
+													<option value="0">==请选择品牌==</option>
+														<option value="1">11111</option>
+														<option value="2">22222</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>是否关闭默认回复:</td>
+											<td class="t_field_value">
+													<label class="ui-checkbox" rel="common_cbo"><input class="location_id_item" type="checkbox" name="location_id[]" value="{$row.id}" /></label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</li>
+							
+						</ul>
+						<div class="blank10"></div>
+					</div>
+					<div class="confirm_form_btn">
+						<input type="hidden" name="id" value="{$deal_info.id}"/>
+						<input type="hidden" name="edit_type" value="{$edit_type}"/>
+						<div class="sub_form_btn f_r">
+							<button class="ui-button next_form_btn" rel="blue"  onclick="location.href='{url r="biz" b="wxreply#index"}'" type="button">切换到文本模式</button>
+						</div>
+						<div class="f_r">
+							<button class="ui-button " rel="orange" type="submit">保存</button>
+						</div>
+						
+							
+					</div>
+				</form>
+				<div class="blank10"></div>
+			</div>
+			<div class="blank10"></div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

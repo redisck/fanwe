@@ -1,0 +1,36 @@
+.evaluate_title{ line-height:22px; padding:10px 5px; color:#666; border-bottom:solid 1px @border_main;}
+.back-box{
+	height: 44px;
+line-height: 44px;
+font-size: 16px;
+	boder-top:1px solid @border_main;
+}
+.back-link{
+	display: block;
+padding: 2px;
+height: 100%;
+}
+.back_buy{
+	text-align: left;
+	position: relative;
+	padding-left: 38px;
+	width: 100%;
+	box-sizing: border-box;
+	color:  @main_color;
+}
+.back_buy:after{
+position: absolute;
+left: 12px;
+top: 50%;
+display: block;
+content: '';
+width: 16px;
+height: 16px;
+border-right: 2px solid @main_color;
+border-top: 2px solid @main_color;
+-webkit-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+-moz-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+-ms-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+}
+.description_txt{padding:10px;}
+.description_txt img{max-width:300px;}

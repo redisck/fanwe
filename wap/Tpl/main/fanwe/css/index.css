@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+.show_more{
+	position:absolute;right:10px;color: #868686;top:8px;font-size:12px;line-height:23px;
+}
+
+
+.list_title{ position:relative;}
+
+.index_footer_logo{
+	 float: left; margin-right:10px;
+	 background:url(../images/logo.png);
+	 width:57px;height:57px;
+}
+
+
+
+.show_more .iconfont{ font-size:13px; }

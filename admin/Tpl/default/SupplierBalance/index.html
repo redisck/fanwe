@@ -1,0 +1,93 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<script type="text/javascript">
+
+function charge_edit(id)
+{
+	$.weeboxs.open(ROOT+'?m=Supplier&a=charge_edit&supplier_id='+id, {contentType:'ajax',showButton:false,title:"打款确认",width:600,height:195});
+}
+</script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<div class="main">
+<div class="main_title">{$supplier_info.name} {$balance_title}报表</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		{%SEARCH_REFERER_TIME}：
+		<input type="text" class="textbox" name="begin_time" id="begin_time" value="{:strim($_REQUEST['begin_time'])}" onfocus="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />
+		<input type="button" class="button" id="btn_begin_time" value="{%SELECT_TIME}" onclick="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');" />	
+		-
+		<input type="text" class="textbox" name="end_time" id="end_time" value="{:strim($_REQUEST['end_time'])}" onfocus="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />
+		<input type="button" class="button" id="btn_end_time" value="{%SELECT_TIME}" onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');" />	
+				
+		<select name="type">					
+			<option value="1" <if condition="$type eq 1">selected="selected"</if>>销售明细</option>
+			<option value="3" <if condition="$type eq 3">selected="selected"</if>>消费明细</option>
+			<option value="4" <if condition="$type eq 4">selected="selected"</if>>退款明细</option>
+			<option value="5" <if condition="$type eq 5">selected="selected"</if>>打款明细</option>		
+		</select>
+		<input type="hidden" name="id" value="{$supplier_info.id}" />
+		<input type="hidden" value="SupplierBalance" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=5 class="topTd"></td>
+	</tr>
+	<tr>
+		<th colspan=5>账户信息</th>
+	</tr>
+	<tr>
+		<th width=20%>总销售额</th>
+		<th width=20%>退款总额</th>
+		<th width=20%>未消费</th>
+		<th width=20%>未打款</th>
+		<th width=20%>已打款</th>
+	</tr>
+	
+	<tr>
+		<td>{$supplier_info.sale_money|format_price}</td>
+		<td>{$supplier_info.refund_money|format_price}</td>
+		<td>{$supplier_info.lock_money|format_price}</td>
+		<td>{$supplier_info.money|format_price} <input type="button" class="button" value="立即打款"  onclick="javascript:charge_edit({$supplier_info.id})" /></td>
+		<td>{$supplier_info.wd_money|format_price}</td>
+		
+	</tr>
+	<tr>
+		<td colspan=5 class="bottomTd"></td>
+	</tr>
+</table>
+
+<div class="blank5"></div>
+<div class="search_row" style="text-align:right;">
+	【{$balance_title}总计：{$sum_money|format_price}】 【{$balance_title}本页总计：{$page_sum_money|format_price}】
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="log" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,log_info:日志,money|format_price:金额|100px,create_time|to_date:发生日期|200px" 
+	actionlist="foreverdel:{%FOREVERDEL}" /> 
+<div class="blank5"></div>
+<div class="search_row" style="text-align:right;">
+	【{$balance_title}总计：{$sum_money|format_price}】 【{$balance_title}本页总计：{$page_sum_money|format_price}】
+</div>
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

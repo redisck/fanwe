@@ -1,0 +1,114 @@
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">公众号信息</div>
+<div class="blank5"></div>
+	<table cellpadding="4" cellspacing="0" border="0" class="form">
+		<tr>
+			<td colspan="2" class="topTd"></td>
+		</tr>
+		<if condition="$config">
+		<if condition="$config.nick_name">
+	 		<tr>
+	 			<td  class="item_title">公众号名称</td>
+				<td class="item_input">
+					 {$config.nick_name}
+				</td>
+	 		</tr>
+		</if>
+		<if condition="$config.user_name">
+	 		<tr>
+	 			<td  class="item_title">授权方公众号的原始ID</td>
+				<td class="item_input">
+					 {$config.user_name}
+				</td>
+	 		</tr>
+		</if>
+		<if condition="$config.head_img">
+	 		<tr>
+	 			<td  class="item_title">授权方公众号的头像</td>
+				<td class="item_input">
+					<a href="{$config.head_img}" target="_blank"><img src="{$config.head_img}" width="50" height="50"></a>
+				</td>
+	 		</tr>
+		</if>
+		<!--
+		<if condition="$config.qrcode_url">
+	 		<tr>
+	 			<td  class="item_title">授权方公众号的二维码</td>
+				<td class="item_input">
+					<a href="{$config.qrcode_url}" target="_blank"><img src="{$config.qrcode_url}" width="50" height="50"></a>
+				</td>
+	 		</tr>
+		</if>
+		-->
+		<if condition="$verify_type">
+		<tr>		
+			<td class="item_title" style=" width:200px;">授权方认证类型</th>
+			<td class="item_input">
+				 {$verify_type}
+ 			</td>
+		</tr>
+		</if>
+		<if condition="$service_type">
+ 		<tr>		
+			<td class="item_title" style=" width:200px;">授权方公众号类型</th>
+			<td class="item_input">
+				{$service_type}
+	 		</td>
+		</tr>
+		<tr>
+		</if>
+		<if condition="$config.authorizer_appid">
+ 		<tr>		
+			<td class="item_title" style=" width:200px;">授权方appid</th>
+			<td class="item_input">
+				 {$config.authorizer_appid}
+ 			</td>
+		</tr>
+		</if>
+		<if condition="$config.authorizer_access_token">
+		<tr>		
+			<td class="item_title" style=" width:200px;">授权方access_token</th>
+			<td class="item_input">
+				 {$config.authorizer_access_token}
+ 			</td>
+		</tr>
+		</if>
+		<if condition="$config.authorizer_refresh_token">
+		<tr>		
+			<td class="item_title" style=" width:200px;">授权方refresh_token</th>
+			<td class="item_input">
+				 {$config.authorizer_refresh_token}
+ 			</td>
+		</tr>
+		</if>
+		<if condition="$config.user_name eq ''">
+	 		<tr>
+	 			<td  class="item_title"></td>
+				<td class="item_input">
+					<input type="button" onclick="window.location.reload();" value="获取公众号信息">
+				</td>
+	 		</tr>
+ 		</if>
+		<tr>		
+			<td class="item_title" style=" width:200px;">公众号解绑</th>
+			<td class="item_input">
+				 <input type="button" value="解绑绑定" onclick="location.href='{$unbind_url}';" class="button" />
+ 			</td>
+		</tr>
+		<else />
+		<tr>		
+			<td class="item_title" style=" width:200px;"></th>
+			<td class="item_input">
+			未接入
+ 			</td>
+		</tr>
+		</if>
+		<tr>
+			<td colspan="2" class="bottomTd"></td>
+		</tr>
+	</table>
+	
+</div>
+<include file="Public:footer" />

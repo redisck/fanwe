@@ -1,0 +1,184 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dcbuy.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dccart.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_inc_location.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location_notice.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fancybox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.fancybox-thumbs.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/sort_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/review_list.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.fancybox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.fancybox-thumbs.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_position.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/review_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/review_list.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_buy.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_buy.js";
+
+
+?>
+{include file="inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<div class="blank"></div>
+<script type="text/javascript">
+	var STORE_IMAGES = {$store_images_json};
+	var location_id={$dclocation.id};
+	var supplier_id={$dclocation.supplier_id};
+	var user_id={$user_id};
+	var order_url='{url i="index" r="dcorder" p="lid=$dclocation.id"}';
+	var distance={$dclocation.distance};
+	var dc_title='{$s_info.dc_title}';	
+	var is_login_reload={$is_login_reload};
+
+</script>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix page-position">
+<div class="f_r inc_location">
+{include file="dc/inc/dc_inc_location.html"}	
+</div>	
+	<div class="deal_introduce border">
+			<div class="component clearfix">
+				<div class="component_left f_l">
+					<div class="big_pic f_l">
+					<a href="javascript:void(0);" id="store_image">
+						<img id="big_pic" src="{function name="get_spec_image" v=$dclocation.preview w=142 h=95 g=1}" lazy="true" alt="{$dclocation.name}" origin="{$dclocation.preview}" width="142" height="95">
+						<div class="morepic">					
+						<span>所有图片({$store_images_count})</span>
+						</div>
+					</a>
+					</div>
+					<div class="title_fr f_l">
+						<div class="head_title">{$dclocation.name}</div>
+						<div class="sale_review">							
+				        	<span>
+								<input class="ui-starbar" value="{$dclocation.avg_point}" disabled="true"  />
+								&nbsp;{function name=round v=$dclocation.avg_point g=1}分
+							</span>					
+						</div>
+						<p class="details">
+							营业时间：{$dclocation.open_time_cfg_str}
+						</p>
+				    	<p class="details">
+							商家地址：<span class="add_hover" title="{$dclocation.address}">{function name="msubstr" v=$dclocation.address b=0 e=20}
+							</span>
+						</p>
+						
+					</div>
+				</div>
+				<div class="component_rigth f_r">
+					{if $dclocation.is_dc eq 1}
+						{if $dclocation.location_delivery_info.is_free_delivery lt 2}
+						<div class="component_delivery">
+						{function name=format_price v=$dclocation.location_delivery_info.start_price}
+						<div class="title_tip">起送价</div>
+						</div>
+						<div class="component_delivery middle" >
+						{function name=format_price v=$dclocation.location_delivery_info.delivery_price}
+						<div class="title_tip">配送费</div>
+						</div>
+						{else}
+						<div class="component_nodelivery">
+						<img class="no_delivery" src="{$TMPL}/images/dc/dc_takeaway/no_delivery.png" />
+						</div>
+						{/if}
+					{/if}
+					
+					<div class=component_delivery>
+						<i class="iconfont location_collect {if $dclocation.is_collected eq 1}collected{/if}" id="add_location_collect" data-i="{$dclocation.id}"> {if $dclocation.is_collected eq 1}&#xe60d;{else}&#xe60c;{/if}</i>
+						<div class="title_tip">收藏<span id="location_count">({$dclocation.location_collect_count})</span></div>
+					</div>
+
+				</div>
+			</div>
+		</div><!--end deal_introduce-->
+		<div class="blank"></div>
+		
+		<div class="main_p">
+			<div class="wrap_m2 f_l">
+			
+			<!--详情导航-->
+			<div class="show-nav" id="rel_nav">
+			<!--{start: 详情导航 -->
+			<ul>
+				
+				<li class="active_now" rel="n0">菜单</li>
+				<li rel="n1">评价</li>
+				
+			
+			</ul>
+			<!--}end: 详情导航 -->
+			</div>
+		
+			<div class="filter_row">
+			<dl>
+				{if $dclocation.location_menu_cate}
+				
+				<ul>
+					{foreach from=$dclocation.location_menu_cate item=menu_cate}
+					<li rel="{$menu_cate.main_cate.id}">
+					
+					<a href="javascript:void(0)" class="dc_menu_cate">{$menu_cate.main_cate.name}</a>
+					</li>
+					{/foreach}
+				
+				</ul>
+				{else}
+				
+				<div class="no_tip">暂无提供菜单</div>
+				{/if}
+				</dl>
+			</div>
+			
+			<!--end 详情导航-->
+
+			<div class="show-content">
+			{include file="dc/inc/dc_menu.html"}
+			
+				{if !$preview}
+				<div rel="n1" class="content_box">
+					<div class="box_title">
+						<div class="box_title_text">消费评价</div>
+						<!--<div class="box_title_more">我买过本单，<a href="{url r="index" r="review" p="location_id=$dclocation.id"}" target="_blank">我要评价</a></div>-->
+					</div>
+					<div class="box_content">
+						<div id="review_list" location_id="{$dclocation.id}">
+						</div>
+					</div>
+				</div>
+				{/if}
+				
+			</div>
+		</div><!--end wrap_m2-->
+		<div class="warp_r f_r">
+
+		{include file="dc/inc/dc_location_notice.html"}
+		<div id="dc_cartsection">
+		{include file="dc/inc/dc_cart.html"}	
+		</div>
+
+		</div>
+		</div>
+
+</div>
+<div class="blank20"></div>
+
+{include file="inc/footer.html"}

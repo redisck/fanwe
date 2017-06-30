@@ -1,0 +1,14 @@
+<form id="super_use_form" name="super_use_form" method="post" action="{url r="biz" b="dealv#super_use_coupon"}">
+	<div class="use_count_box">
+		<div class="order_info"><span class="deal_name">{$result.sub_msg}</span><span class="coupon_count">一共:<em>{$result.count}</em> 张有效</span></div>
+		<div class="blank10"></div>
+		<div class="content_count_box">
+			<label>输入要使用的数量</label>
+			<input  type="text" name="coupon_use_count" value="" class="ui-textbox "></input>
+			<div class="blank10"></div>
+			<input type="hidden" name="location_id" value="{$result.location_id}"/>
+			<input type="hidden" name="coupon_pwd" value="{$result.coupon_pwd}"/>
+			<div class="count_confirm_btn"><button class="ui-button" rel="orange" type="submit">确认</button></div>
+		</div>
+	</div>
+</form>

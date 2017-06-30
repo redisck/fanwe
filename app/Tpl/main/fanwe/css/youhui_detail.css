@@ -1,0 +1,116 @@
+/*.youhui_d_info*/
+.youhui_d_info{
+	background:#fff;
+	border:1px solid #eee;
+	padding:15px 15px 15px 250px;
+}
+.youhui_d_info .show_img{
+	padding:3px;
+	width:210px;
+	border:1px solid #eee;
+	margin-left:-235px;
+	_margin-left:-117px;
+}
+.youhui_d_info .show_img img{
+	width:100%;
+}
+.youhui_d_info .show_text .h{
+color: #333333;
+font-family: "Microsoft YaHei";
+font-size: 20px;
+line-height: 23px;
+font-weight:bolder;
+margin: 0 0 10px;
+}
+.youhui_d_info .show_text p{
+	width: 100%;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+	color:#ccc;
+}
+.youhui_d_info .show_text .info{
+	line-height:20px;
+}
+/*down_d*/
+.down_d{
+	background: #FFFFFF;
+border: 1px solid #eee;
+padding: 23px 30px 30px;
+width: 679px;
+margin-bottom: 20px;
+}
+.down_d h4{
+	padding-left: 0px;
+font-size: 22px;
+color: #333;
+font-weight: bolder;
+font-family: "Microsoft YaHei";
+}
+.down_d p{
+	font-size: 16px;
+height: 30px;
+line-height: 30px;
+color: #666;
+font-weight: normal;
+margin-top: 10px !important;
+}
+.down_d .quan {
+	padding:0 0 0 320px;
+}
+.down_d .quan .show_img{
+	width:290px;
+	height:250px;
+	padding:3px;
+	border:1px dotted #eee;
+	margin-left:-320px;
+	_margin-left:-160px;
+}
+.down_d .quan .show_img img{
+	width:100%;
+	height:100%;
+}
+.down_d .quan dl{
+	margin-top:30px;
+}
+.down_d dl dd {
+    overflow: hidden;
+    position: relative;
+    padding: 3px 0px 3px 25px;
+}
+.down_d .show_text{
+	width:100%;
+}
+.down_d .show_text .download i {
+    background-position: 0px 0px;
+}
+.down_d .show_text .remain i {
+    background-position: 0px -24px;
+}
+.down_d .show_text .validity i {
+    background-position: 0px -49px;
+}
+.down_d  .show_text dl dd i {
+    display: block;
+    position: absolute;
+    background: url("../images/youhui/show_text.png") no-repeat scroll 0% 0% transparent;
+    width: 17px;
+    height: 15px;
+    left: 0px;
+}
+.down_d .show_text dl dd font {
+    color: #E64D5E;
+    font-family: "Microsoft YaHei",Verdana;
+    padding: 0px 3px;
+}
+
+.down_d .share_but{
+	margin-top:20px;
+}
+.down_d .d_but{
+	margin-top:30px;
+}
+.down_d .d_but .ui-button{
+	margin-right:10px;
+	float:left;
+}

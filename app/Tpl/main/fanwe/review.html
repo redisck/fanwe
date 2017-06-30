@@ -1,0 +1,195 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/login_page.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/review.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/side_deal_list.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/pin.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/pin.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/review.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/review.js";
+?>
+{include file="inc/header.html"}
+<script type="text/javascript">
+	var TOPIC_IMAGE_UPLOAD = '{url x="index" r="file#upload_topic"}'; //分享点评的图片上传路径
+</script>
+<div class="blank"></div>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="wrap_m2 f_l">
+		<div class="layout_box dp_item_info">
+			<div class="content clearfix">
+				<div class="item_title">
+					<a href="{$item_info.url}" target="_blank" title="{$item_info.name}">{$item_info.name}</a>
+				</div>
+				{if $item_info.detail}
+				<div class="item_detail">
+					{$item_info.detail}
+				</div>
+				{/if}
+				<div class="blank"></div>
+				<div class="item_info_img f_l">
+					<a href="{$item_info.url}" target="_blank">
+						<img src="{function name="get_spec_image" v=$item_info.image w=295 h=180 g=1}" />
+					</a>
+				</div>
+				<div class="item_info_dp f_r">
+					
+					<div class="point_row">
+						<span class="point_title">总评：</span>
+						<input class="ui-starbar" value="{$dp_data.avg_point}" disabled="true"  /> 
+						<span class="point">{$dp_data.avg_point}</span>&nbsp;分
+						共
+						<strong class="point">{$dp_data.dp_count}</strong>
+						人评价
+					</div>
+					
+					{if $dp_data.point_group}
+						{foreach from=$dp_data.point_group item=point_group}
+						<div class="point_row">
+							<span class="point_title">{$point_group.name}：</span>
+							<input class="ui-starbar" value="{$point_group.avg_point}" disabled="true"  />
+							<span class="point">{$point_group.avg_point}</span>&nbsp;分
+						</div>
+	
+						{/foreach}
+					{/if}
+					
+						
+					{foreach from=$dp_data.tag_group item=tag_group}
+					
+					<div class="tag_row clearfix">
+						<span class="tag_title">{$tag_group.name}：</span>
+						<span class="tag_content">
+							{foreach from=$tag_group.tags item=tag }
+							<label>{$tag}({$tag_group.tags_count[$tag]})</label>
+							{/foreach}							
+						</span>
+						
+					</div>
+
+					{/foreach}
+					
+
+				</div>
+			</div><!--end content-->
+		</div><!--end left layout_box-->
+		<div class="blank"></div>
+		<!--点评表单-->
+		<div class="layout_box dp_form">
+			<div class="content">
+				<div class="form_panel review_form">
+				<div class="panel">
+					<form name="review_form" method="post" action="{url x="index" r="review#save"}">
+						
+						<dl>
+							<dt>总评</dt>
+							<dd>
+								<span class="star"><input class="ui-starbar point_star" rel="总评" value="0" name="dp_point" /> </span>
+								<span class="star_tip"></span>
+							</dd>
+						</dl>
+						<div class="blank5"></div>
+						{if $dp_cfg.point_group}
+						{foreach from=$dp_cfg.point_group item=point_group}
+						<dl>
+							<dt>{$point_group.name}</dt>
+							<dd>
+								<span class="star"><input class="ui-starbar point_star" rel="{$point_group.name}" value="0" name="dp_point_group[{$point_group.id}]"  /> </span>
+								<span class="star_tip"></span>
+							</dd>
+						</dl>	
+						<div class="blank5"></div>
+						{/foreach}
+						{/if}
+						
+						{if $dp_cfg.tag_group}
+						{foreach from=$dp_cfg.tag_group item=tag_group}
+						<div class="blank5"></div>	
+						<dl class="tag_dl clearfix">
+							<dt>{$tag_group.name}</dt>
+							<dd class="clearfix">
+								{foreach from=$tag_group.preset_list item=tag}
+								<label class="ui-checkbox" rel="tag_cbo"><input type="checkbox" name="dp_tags[{$tag_group.id}][]" value="{$tag}" />{$tag}</label>
+								{/foreach}
+								{if $tag_group.preset_list}
+								<span class='write_more'>展开</span>
+								{/if} 								
+								<input type="text" name="dp_tags[{$tag_group.id}][]" class="ui-textbox tag_textbox" {if $tag_group.preset_list}style="display:none;"{/if}/> 
+							</dd>
+						</dl>
+						
+						{/foreach}
+						<div class="blank5"></div>	
+						{/if}
+						
+						<div class="blank"></div>	
+						<div class="review_content">
+							<div class="review_content_title" id="uploader">
+								<button class="ui-button f_l" type="button" rel="white">晒图</button>
+								<span class="upload_tip f_l">最多传9张，按住ctl或shift可选择多张</span>
+							</div>
+							<div class="review_content_box">
+								<textarea name="content" class="ui-textbox" holder="请输入点评的内容，感谢您的支持"></textarea>
+							</div>
+						</div>	
+						<div class="blank"></div>						
+						<div class="review_images"  id="review_images">
+							
+						</div>
+						<div class="blank"></div>
+						<div class="review_btn">
+							<input type="hidden" name="{$item_info.key}" value="{$item_info.id}" />
+							<input type="hidden" name="{$item_info.ex_key}" value="{$item_info.ex_id}" />
+							<button class="ui-button" rel="blue" type="submit">提交点评</button>
+						</div>
+					</form>
+				</div>
+				</div>
+			</div><!--end content-->
+		</div>
+		<!--点评表单-->
+	</div><!--end wrap_m2-->
+	<div class="wrap_s2 f_r">
+			{if $side_deal_list}
+			<div class="side_deal_box">
+			<div class="title_row">您可能喜欢的</div>
+			<div class="content_row">
+				<ul class="side_deal_list">
+					{foreach from=$side_deal_list item=side_deal}
+					<li>
+						<a href="{$side_deal.url}" class="deal_img"><img src="{function name="get_spec_image" v=$side_deal.icon w=198 h=134 g=1}" lazy="true" /></a>
+						<a href="{$side_deal.url}"  class="deal_title">{$side_deal.sub_name}</a>
+						<div class="deal_info">
+							<span class="deal_price f_l">
+								<span class="current_price"><i>&yen;</i>{function name="round" v=$side_deal.current_price l=2}</span>
+								<span class="origin_price">&yen;{function name="round" v=$side_deal.origin_price l=2}</span>
+							</span>
+							<span class="sale_count f_r">
+								已售<span>{$side_deal.buy_count}</span>
+							</span>
+						</div>
+					</li>
+					{/foreach}
+					
+				</ul>
+			</div>
+			</div>
+			{/if}
+	</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

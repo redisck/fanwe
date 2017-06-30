@@ -1,0 +1,248 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dcorder.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_inc_position.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_order.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_order.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_inc_position.js";
+?>
+{include file="inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script>
+$(document).ready(function(){
+
+		location_id={$location_info.id};
+		dcbuy_url='{url r="index" t="dcbuy" p="lid=$location_info.id"}';
+		pay_button='<div id="pay_confirm">支付定金</div>';
+		go_menu_button='<a class="go_other" id="go_menu_div" href="'+dcbuy_url+'">马上点菜</a>';
+		coutinue_menu_button='<a class="go_menu" href="'+dcbuy_url+'">继续点菜</a>';
+		CITY_NAME = '{$city_name}';
+		order_id = {function name="intval" value=$order_id};
+		user_id={$user_id};
+		if(user_id==0){
+			ajax_login(function(){
+				update_dcorder_data();
+				});
+			
+		}
+		init_payment_method();
+		dc_count_buy_total(1);
+})
+</script>
+<div class="blank"></div>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix order_page">
+<form id="dc_cart_form" method="post" action="{if $order_id gt 0}{url r="index" t="dcorder#order_done" }{else}{url r="index" t="dcorder#done" }{/if}" name="dc_cart_form">
+	<div class="f_l dc_order_info">
+	<div class="header_title">{$location_info.name}</div>
+
+		<div id="dc_total_box">
+			
+		</div>
+	</div>
+
+	<div class="f_r dc_order_pay">
+		<div class="consignee_info">
+		<div class="header_title">
+		{if $location_dc_table_cart.total_data.total_count lt 1}送餐信息{else}预订信息{/if}</div>
+		
+		<div class="dc_cart_consignee">
+			<table cellpadding="0" cellspacing="0">
+			<tbody>
+			{if $location_dc_table_cart.total_data.total_count gt 0}
+			{foreach from=$location_dc_table_cart.cart_list item=cart_row2 name=cart_row}
+			<tr {if $smarty.foreach.cart_row.last}class="s_bot"{/if}><td class="f_l name">{$cart_row2.name}</td><td class="dc_m t_time"><div class="f_l">{$cart_row2.table_time_format}</div></td></tr>
+			{/foreach}
+			{/if}
+			{if $location_dc_table_cart.total_data.total_count eq 0}
+				{if $consignee_info.list}
+				<tr><td></td><td id="add_new_td">
+				<div id="add_new_div">
+				<i class="iconfont add_new_con">&#xe645;</i>&nbsp;新增送餐地址
+				</div>
+				</td></tr>
+				<tr>
+				<td class="tdx" colspan="2">
+					{foreach from=$consignee_info.list item=consignee_item name=consignee_item}
+					<div class="dc_con_td {if $smarty.foreach.consignee_item.index gt 1}dc_con_td_hide{/if}"><div class="dc_con {if $consignee_item.is_main eq 1}is_selected_td{/if}" data-parmas="{$consignee_item.id}">
+						<div class="dc_con_name"><div class="f_l">{$consignee_item.consignee}</div><div class="f_r"><span class="dc_con_edit" data-parmas="{$consignee_item.id}">编辑</span><span class="dc_con_del" data-parmas="{$consignee_item.id}">删除</span></div></div>
+						<div class="dc_con_info">{$consignee_item.mobile}</div>
+						<div class="dc_con_info">{$consignee_item.api_address}</div>
+						<div class="dc_con_info">{$consignee_item.address}</div>
+						{if $consignee_item.is_main eq 1}
+						<i class="iconfont is_selected">&#xe620;</i>
+						{/if}
+					</div></div>
+					{/foreach}
+				</td>	
+				</tr>
+					{if $consignee_list_count gt 2}
+					<tr class="add_new_tr"><td colspan="2" id="add_new_td">
+					<div id="switch_show_all">
+					<i class="iconfont">&#xe647;</i>&nbsp;显示所有地址
+					</div>
+					</td></tr>
+					{/if}
+				{else}
+					<tr><td class="f_l name">姓&nbsp;名</td><td class="dc_m"><input class="ce_xxx ui-textbox" type="text" name="consignee" holder="您的姓名" /></td><td class="require">*</td></tr>
+					<tr><td class="f_l name">电&nbsp;话</td><td class="dc_m"><input class="ce_xxx ui-textbox" type="text" name="mobile" holder="11位手机号"/></td><td class="require">*</td></tr>
+					<tr><td class="f_l name">位&nbsp;置</td><td class="dc_m">{include file="dc/inc/dc_inc_position.html"}</td><td class="require">*</td></tr>
+					<tr><td class="f_l name">详细地址</td><td class="dc_m"><input class="ce_xxx ui-textbox" type="text" name="address" holder="请输入门牌号等详细信息"/></td><td class="require">*</td></tr>
+	
+				{/if}
+			
+			{else}
+					<tr><td class="f_l name">姓&nbsp;名</td><td class="dc_m"><input class="ce_xxx ui-textbox" type="text" name="consignee" value="{$consignee_info.is_main.consignee}" holder="您的姓名" /></td><td class="require">*</td></tr>
+					<tr><td class="f_l name">电&nbsp;话</td><td class="dc_m"><input class="ce_xxx ui-textbox" type="text" name="mobile" value="{$consignee_info.is_main.mobile}" holder="11位手机号"/></td><td class="require">*</td></tr>
+				
+			{/if}
+			</tbody>
+			</table>
+			
+		</div>
+		<div class="pay_method">
+			<table cellpadding="0" cellspacing="0">
+			<tbody>
+			
+			<tr><td class="f_l name">给商户留言</td><td class="dc_m dc_comment"><input type="text" name="dc_comment" holder="不要辣，多放盐等口味要求" class="ce_xxx ui-textbox"/>
+			<div class="comment_tip">
+			<span class="comment_tip_item">请提供餐具</span>
+			<span class="comment_tip_item">米饭多点</span>
+			<span class="comment_tip_item">别放香菜</span>
+			<span class="comment_tip_item">不吃辣</span>
+			<span class="comment_tip_item">辣一点</span>
+			<span class="comment_tip_item">没零钱</span>
+			<span class="comment_tip_item">快点送</span>
+			</div>
+			</td></tr>
+			{if $location_info.dc_allow_invoice eq 1}
+			<tr><td class="f_l name">发票信息</td><td class="dc_m invoice"><input type="text" name="invoice" holder="请输入单位名称" class="ce_xxx ui-textbox"/>
+			</td></tr>
+			{/if}
+			{if $location_dc_table_cart.total_data.total_count lt 1}
+			<tr class="delivery_tr"><td class="f_l name">送达时间</td>
+			<td class="dc_m">
+				<select class="ui-select filter_select medium" name="order_delivery_time">
+					<option value="1" selected="selected">尽快送达</option>
+					{foreach from=$delivery_time item=delivery_time_row}
+					<option value="{$delivery_time_row}">{$delivery_time_row}</option>
+					{/foreach}
+				</select>
+				<span class="require">*</span>
+			</td>
+			</tr>
+			{/if}
+			
+			<tr class="s_sinfo s_method {if $location_dc_table_cart.total_data.total_count eq 0}s_nofo{/if}">
+			{if $location_dc_table_cart.total_data.total_count eq 0}
+				<td class="f_l name">支付方式</td><td class="dc_m">
+				<div class="f_l">
+				{if $location_info.dc_allow_cod eq 1}
+					{if $order_id eq 0}
+						<label class="ui-radiobox" rel="common_rdo"><input id="dc_cod" name="payment_id" type="radio" value="1"/>货到付款</label>
+					{else}
+						{if $order_info.pay_amount eq 0 && $order_info.promote_amount eq 0}
+						<label class="ui-radiobox" rel="common_rdo"><input id="dc_cod" name="payment_id" type="radio" value="1"/>货到付款</label>
+						{/if}
+					{/if}
+				{/if}
+					{if $location_info.dc_online_pay eq 1}
+					<label class="ui-radiobox" rel="common_rdo"><input name="payment_id" type="radio" value="0" checked="checked" />在线支付</label>
+					{/if}
+				</div>
+				</td>
+			{else}
+				<td class="f_l name">预订方式</td>
+				<td class="dc_m">
+				<div class="f_l p_method">
+	
+				{if $order_id eq 0 || $location_dc_cart.total_data.total_price eq 0}	
+				<label class="ui-radiobox" rel="common_rdo"><input name="dc_type" type="radio" value="0" {if $location_dc_cart.total_data.total_price eq 0} checked="checked" {/if} />只订座，不提前点菜</label>
+				{/if}
+					
+				{if $cart_menu_info.total_data.total_price eq 0}
+					{if $order_id eq 0}	
+					<label class="ui-radiobox" rel="common_rdo"><input name="dc_type" type="radio" value="1" />提前点菜，去了等着吃</label>
+					{/if}
+				{else}
+					{if $order_id eq 0 || $location_dc_cart.total_data.total_price gt 0}
+					<label class="ui-radiobox" rel="common_rdo"><input name="dc_type" type="radio" value="2" {if $cart_menu_info.total_data.total_price gt 0} checked="checked" {/if} />点菜定金 &nbsp;&nbsp;{function name=format_price v=$cart_menu_info.total_data.total_price}</label>
+					{/if}
+				{/if}
+				</div>
+				</td>
+			{/if}
+			</tr>
+			{* 支付方式  *}
+			<tr id="online_pay" class="s_sinfo"><td colspan="2">
+			<div id="cart_payment">
+			<div class="cart_row layout_box">
+
+				<div class="content">
+					{if $bank_paylist}
+					{foreach from=$bank_paylist item=payment_item}	
+						{$payment_item.display_code}											
+					{/foreach}	
+					{/if}
+					
+					<div class="blank1"></div>
+					{if $icon_paylist}
+					{foreach from=$icon_paylist item=payment_item}	
+						{$payment_item.display_code}											
+					{/foreach}	
+					<div class="blank1"></div>
+					{/if}
+					{foreach from=$disp_paylist item=payment_item}	
+						{$payment_item.display_code}	
+						<div class="blank1"></div>										
+					{/foreach}	
+				</div>
+			</div>
+			</div>
+			
+			
+			</td></tr>
+			{* 支付方式 *}
+			
+			</tbody>
+			</table>
+			<input type="hidden" value="{$order_id}" name="id" />
+			<div class="p_box">
+			{if $location_dc_table_cart.total_data.total_count lt 1}
+			{if $order_id eq 0 && $location_info.is_reserve eq 1 }	
+				<a class="go_other" href="{url r="index" t="dctable" p="lid=$location_info.id"}">去订座</a>
+			{/if}
+				<div id="pay_confirm">确认订单</div>
+			{else}
+				{if $order_id eq 0}	
+				<a id="table_delete" class="go_other" data-parmas="{foreach from=$location_dc_table_cart.cart_list item=cart_row}{$cart_row.id}{/foreach}">不订了，再看看</a>
+				{/if}
+				<div id="p_pay"><div id="pay_confirm">支付定金</div></div>
+			{/if}
+			</div>
+		</div>
+	
+
+	</div>
+	
+	</div>
+	</form>
+</div>
+<div class="blank10"></div>
+
+{include file="inc/footer.html"}

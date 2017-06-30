@@ -1,0 +1,53 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_lottery.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+?>
+{include file="inc/header.html"}
+{if $data.item}
+{foreach from=$data.item item=row key=k1}
+<div class="data_list_box">
+    <ul class="list" >
+    	<li class="item">
+    		<div class="imgbox">
+    			<img src="{$row.icon}" style="height: 100%;">
+    		</div>
+    		<div class="right-box">
+
+                        <div class="single-line">
+                            {$row.name}
+                        </div>
+                        <small>抽奖时间：{$row.create_time}</small>
+						<weak><b class="dark">抽奖号：{$row.lottery_sn}</b></weak>
+            </div>
+          </li>
+    	</ul>	
+</div>
+{/foreach}
+{else}
+<div class="null_data">
+<p class="icon"><i class="iconfont">&#xe61e;</i></p>
+<p class="message">暂无数据</p>
+</div>
+{/if}
+{if $pages}
+	<div class="fy">
+		{$pages}
+	</div>
+{/if}
+{include file="inc/footer.html"}	

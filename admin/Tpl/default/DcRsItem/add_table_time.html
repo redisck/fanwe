@@ -1,0 +1,24 @@
+<style>
+	.package{
+		width:50px;	
+	}
+</style>
+<div style="padding-left:117px;">预定时间
+	<input type="text" class="Wdate" name="rs_time[]" value="{$data['rs_time']}" onclick="WdatePicker({dateFmt:'HH:mm'});" />&nbsp;&nbsp;&nbsp;数量
+
+	<input class="package" type="text" name="total_count[]" value="<if condition="$data">{$data['total_count']}<else />1</if>" />
+
+	&nbsp;&nbsp;&nbsp;状态
+	<select class="ui-select  filter_select medium" name="is_teffect[]">
+	<if condition="$data">
+	<option value="1" <if condition="$data['is_effect'] eq 1"> selected="selected"</if> >有效</option>
+	<option value="0" <if condition="$data['is_effect'] eq 0"> selected="selected"</if> >无效</option>
+	<else />
+	<option value="1" selected="selected">有效</option>
+	<option value="0">无效</option>
+	
+	</if>
+	</select>
+	<input class="package" type="hidden" name="time_id[]" value="{$data['id']}" />
+	<a href="javascript:void(0);" onclick="remove_takeaway_package_charge(this);">[-]</a>
+</div>

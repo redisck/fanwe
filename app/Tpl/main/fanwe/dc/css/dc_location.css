@@ -1,0 +1,287 @@
+.dc_banner img{
+width:100%;
+
+}
+.filter-category ul .active {
+    border-bottom: 2px solid #ff7387;
+    color: red;
+}
+.filter-category ul li {
+    color: #555;
+    cursor: pointer;
+    float: left;
+    font-size: 17px;
+	font-family: "Microsoft Yahei UI","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    padding: 0px 14px;
+	 height: 50px;
+    line-height: 50px;
+}
+
+.filter-category {
+	background:white;
+	margin-top:10px;
+	border-bottom: 2px solid @border_color;
+	height: 50px;
+}
+.dc_deliver{
+height:20px;
+padding:5px 10px;
+}
+.dc_right{
+float:right;
+}
+
+.dc_promote_icon {
+    height: 20px;
+}
+.deal_list_box{ border:1px solid @border_color; background:@box_color; }
+
+.deal_list{ display:block; padding:16px 0px 10px 16px;}
+.deal_list li{ float:left;  margin:0px 16px 20px 0px;position:relative;width:217px;background:white;}
+.deal_list li .deal_item{ width:217px;   -moz-box-shadow: 2px 2px 2px #f0f0f0;/*firefox*/
+-webkit-box-shadow: 2px 2px 2px #f0f0f0;/*safari��chrome*/
+box-shadow:2px 2px 2px #f0f0f0;/*opera��ie9*/ 
+
+ }
+.deal_list li .deal_item_border{ border:solid 1px @border_color; border-bottom:solid 3px @border_color;}
+.deal_list li .deal_item_border_hover{ border:solid 1px @border_color; border-bottom:solid 3px @main_color;}
+
+.deal_list li .deal_item .deal_img{ width:217px; height:156px; }
+.deal_list li .deal_item .deal_img a.img{ width:217px; height:170px; display:block; }
+.deal_list li .deal_item .deal_img a.quan{ width:276px; padding:10px; display:block; position:absolute; left:0px; bottom:0px; z-index:6;
+	background:#000;
+	color:#fff;
+	filter:alpha(opacity=70);
+	-moz-opacity:0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
+	display:none;
+}
+
+.deal_list li .deal_item .deal_img img{ width:217px; height:146px; }
+.deal_list li .deal_item .deal_img .tags{ position:absolute; left:10px; top:-4px; z-index:10; width:270px;}
+
+.deal_list li .deal_name{ font-size:14px; font-weight:bolder; line-height:40px; height:40px;  padding:0px 10px;}
+.deal_list li .deal_name a{ color:#000;}
+.deal_list li .deal_name a:hover{ color:@font_hover;}
+.deal_list li .deal_brief{ line-height:20px; padding:0px 10px; height:20px; overflow:hidden;}
+
+.deal_list li .deal_price{ padding:10px;}
+.deal_list li .deal_price .current_price{ font-weight:bolder; font-size:20px; color:@main_color;}
+.deal_list li .deal_price .current_price i{ font-size:12px; font-style:normal; padding:0px 3px;}
+.deal_list li .deal_price .origin_price{ text-decoration:line-through; color:#999; padding-left:5px;}
+
+.deal_list li .deal_extra{ background:#fcfcfc; height:40px; border-top:@border_color solid 1px;}
+.deal_list li .deal_extra .sale_count{ float:left; height:40px; line-height:40px; padding:0 0 0 3px; }
+.deal_list li .deal_extra .sale_count span{ color:@main_color;}
+.deal_list li .deal_extra .sale_review{ float:right; height:12px; line-height:12px; padding:12px 10px 12px 0; }
+.deal_list li .deal_extra .sale_review i{ font-style:normal; color:@main_color;}
+
+
+
+.wrap_full .wrap_s2{ display:none;}
+.wrap_full .wrap_full2{ width:990px; }
+
+.wrap_full .deal_list{ display:block; padding:16px 0px 10px 23px;}
+.wrap_full .deal_list li{ float:left; display:inline; margin:0px 22px 20px 0px;}
+
+.geo_row{ background:@box_color; border:solid 1px @border_color; padding:10px;height:20px;}
+.geo_row i.iconfont{ font-size:14px; color:@main_color;}
+.geo_row a{ color:@main_color;}
+.geo_row a:hover{ color:@dark_color;}
+.deal_price .position{ color:#666; }
+.deal_price .position i.iconfont{font-size:14px; color:@main_color; }
+
+.geo_row .inc_geo{
+width:40%;
+padding-left:9px;
+}
+
+.filter-category ul li:hover{
+background:@main_color;
+border-bottom: 2px solid #ff7387;
+color:white;
+}
+.filter-category ul li:hover a{
+color:white;
+}
+
+.dc_colloect_box{
+ background:@box_color; border:solid 1px @border_color; padding:16px 0 10px 16px;
+overflow:hidden;
+}
+
+.dc_colloect_box .collect_box{
+	float: left;
+    height: 180px;
+	margin-bottom:20px;
+    width: 185px;
+	
+	border: 1px solid @border_color;
+
+}
+
+.dc_colloect_box .outer_box{
+	float: left;
+	position:relative;
+	z-index:10;
+	background:white;
+}
+.wrap_full_w .dc_colloect_box .outer_box{
+	padding-right: 8px;
+
+}
+.wrap_full .dc_colloect_box .outer_box{
+	padding-right: 6px;
+}
+.collect_box .box_title_text{
+	padding: 5px;
+	height: 16px;
+	overflow: hidden;
+}
+
+.collect_box .deal_extra .sale_count{
+   float: left;
+    padding: 0;
+
+}
+.collect_box .deal_extra .sale_review{
+	float: right;
+    padding-top: 1px;
+}
+
+
+ .dc_colloect_box .dc_title{
+    color: #555;
+    font-size: 17px;
+	padding:5px 0 10px;
+ }
+ 
+#location_collect_icon{
+cursor:pointer;
+}
+ 
+ #delete_location_collect_icon{
+ background: none repeat scroll 0 0 white;
+    position: absolute;
+    right: 9px;
+	cursor: pointer;
+	border:solid 1px @border_color;
+	top:1px;
+ }
+ .tangram-suggestion-main{
+ z-index:100;
+ }
+ 
+
+
+.dc-button.all_location {
+    margin-right: 0;
+}
+
+.dc_close {
+    left: 0;
+    opacity: 0.7;
+    filter:alpha(opacity=70); 
+    position: absolute;
+   
+}
+.collect_box .deal_extra {
+    padding: 0 5px;
+}
+
+#location_collect_icon.collected{
+	color:red;
+}
+
+.deal_list .overlay{
+	display:none;
+	background:white;
+	border: 1px solid @border_color;
+    min-height: 294px;
+    _height:308px;
+    left: 219px;
+
+	/*
+    overflow-x:hidden;
+*/
+    position: absolute;
+	padding:0;
+	width:237px;
+_overflow-x:hidden;
+    z-index: 500;
+	top:0;
+	box-shadow:0 10px 17px 0 rgba(110, 110, 110, 0.2);
+	float:left;
+
+
+}
+
+.over_div{
+	 padding: 10px;
+}
+.deal_list .overlay .o-arrow .arrow{
+   color: white;
+    left: -13px;
+    position: absolute;
+    top: 20px;
+
+}
+.shop-notice{
+	display:block;
+}
+.deal_list .overlay > div{
+	   clear: both;
+
+}
+
+.deal_list .overlay h2 {
+    font-size: 15px;
+    font-weight: 500;
+	padding: 10px 0;
+}
+.deal_list .overlay .shop-title{
+
+display:block;
+}
+
+
+
+.deal_list .overlay .shop-feature li img {
+    display: inline-block;
+    margin-right: 5px;
+	float:left;
+}
+.deal_list .overlay  .shop-feature li {
+    clear: both;
+    height: 20px;
+   overflow:hidden;
+}
+
+.deal_list .overlay .shop-feature {
+    border-bottom: 1px solid @border_color;
+    border-top: 1px solid @border_color;
+    overflow: hidden;
+    padding: 10px 0;
+clear:both;
+display:block;
+_display:inline;
+}
+
+.filter-category a{
+	
+	display:inline-block;
+}
+.diyfont.dc_cate{
+display:inline !important;
+
+}
+.dc_close_a{
+	top:0;
+	left: 0;
+    z-index:60;
+    position: absolute;
+}
+.shop-feature .o_info{
+display:inline-block;
+}

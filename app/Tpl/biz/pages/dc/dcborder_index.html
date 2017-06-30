@@ -1,0 +1,152 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/dc_order.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_dcborder_index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_dcborder_index.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+var DC_AJAX_URL = "{url r="index" p="dcajax"}";
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+
+			</div>
+			
+			<div class="common_tip div_total2">
+	
+             <div class="total_r">
+		               销售金额：<span class="m_color">{function name=format_price v=$total_info.sale_money g=2}</span>   
+		              未确认：<span class="m_color">{function name=format_price v=$total_info.unconfirm_money g=2}</span>  
+                                     已完成：<span class="m_color">{function name=format_price v=$total_info.confirm_money g=2}</span>
+           	 退款/取消订单：<span class="m_color">{function name=format_price v=$total_info.refund_money g=2}</span>
+   			</div>     
+		 	( 注：以上数据统计的是所有订单销售金额，商户最终结算费用以每个订单的结算价为准，货到付款不产生结算价。)      
+
+		              
+	        </div>
+			
+			<div class="common_tip div_total">
+						<div class="f_l">    
+		            	<div class="total_r"> 
+		            	 已结算：<span class="m_color">{function name=format_price v=$total_info.balance_money g=2}</span>
+		            	 待结算：<span class="m_color">{function name=format_price v=$total_info.unbalance_money g=2}</span>
+		            	 已结算佣金：<span class="m_color">{function name=format_price v=$total_info.admin_charges g=2}</span>
+		            	 </div>
+		             
+		          	  </div>
+		               <div class="f_r"><button class="ui-button balance_button" rel="blue" type="button" data-i="{$supplier_id}">结算</button></div>
+	        </div>
+	        <form name="search_form" action="{$form_url}" method="post">
+	        <div class="common_tip f_search f_balance">
+	        
+		               <div class="f_l"><input tpye="text" name="begin_time" class="text_box time_input ui-textbox" placeholder="查询起始日期" value="{$begin_time}" readonly="readonly"/>-
+		               <input tpye="text" name="end_time" class="text_box time_input ui-textbox" placeholder="查询截止日期" value="{$end_time}" readonly="readonly" />
+
+		               </div><div class="f_r">
+		               	<div class="s_type">
+						<div class="f_l"> 类型：</div>
+							<select name="type" class="ui-select filter_select medium">	
+									<option value="1" {if $type eq 1}selected="selected"{/if}>销售明细</option>
+									<option value="2" {if $type eq 2}selected="selected"{/if}>已完成明细</option>
+									<option value="3" {if $type eq 3}selected="selected"{/if}>退款/取消订单</option>
+									<option value="4" {if $type eq 4}selected="selected"{/if}>已结算明细</option>
+							</select>
+						      
+
+		              	 <input type="hidden" name="method" value="search" />
+		                <button class="ui-button f-button" rel="white" type="submit" name="submitnn" >搜索</button>
+		               </div></div> 
+	        </div>
+	        </form>
+			<div class="blank50"></div>
+			<div class="form_box  content_hastab">
+			
+				
+					<div class="comments_details">
+					
+					<table>
+					<tr><th width="50">序号</th><th width="70">门店ID</th><th width="170">订单号</th><th width="100">订单金额</th><th width="100">在线支付</th><th width="100">活动补贴</th><th width="70">代金券</th><th width="70">佣金</th><th width="100">结算价</th><th width="170">发生时间</th></tr>
+					<tr class="p_total common_tip"><td colspan="10">本页合计：<span class="m_color">{function name=format_price v=$p_totol g=2}</span>&nbsp;&nbsp;&nbsp;合计 ：<span class="m_color">{function name=format_price v=$p_totol_price g=2}</span></td></tr>
+					{if $list}
+						{foreach from=$list item=list_unit name="list_loop"}
+						<tr><td>{$smarty.foreach.list_loop.iteration}</td><td>{$list_unit.location_id}</td><td>{$list_unit.order_sn}</td><td>{function name=format_price v=$list_unit.total_price g=2}</td>
+						<td>{function name=format_price v=$list_unit.online_pay g=2}</td><td>{function name=format_price v=$list_unit.promote_amount g=2}</td>
+						<td>{function name=format_price v=$list_unit.ecv_money g=2}</td>
+						<td>
+						{if $list_unit.admin_charges eq 0}
+						{function name=format_price v=$list_unit.admin_charges g=2}
+						{else}
+						-{function name=format_price v=$list_unit.admin_charges g=2}
+						{/if}
+						</td>
+						<td>
+						{function name=format_price v=$list_unit.balance_price g=2}
+
+						</td>
+						<td>
+		
+						{if $type eq 1}				
+							{function name=to_date v=$list_unit.create_time}
+						{elseif $type eq 2}
+							{function name=to_date v=$list_unit.confirm_time}
+						{elseif $type eq 3}
+							{function name=to_date v=$list_unit.refund_time}
+						{elseif $type eq 4}
+							{function name=to_date v=$list_unit.balance_time}
+						{/if}
+						
+						</td>
+						</tr>
+						{/foreach}
+					{else}
+						<tr><td colspan="11">无内容</td></tr>
+					{/if}
+					</table>
+
+
+
+					<div class="blank"></div>
+					<div class="pages">
+						{$pages}
+					</div>
+
+					</div>
+				
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

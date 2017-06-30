@@ -1,0 +1,59 @@
+<div class="deal_add_goods_type_page">
+<form action="{url r="biz" b="deal#do_save_goods_type"}" method="post" name="add_goods_type_form"  bindsubmit="true">
+	<table class="table_box " id="news_table">
+		<colgroup>
+			<col width="90">
+			<col width="170">
+			<col width="200">
+		</colgroup>
+		<thead>
+			<tr>
+				<th><input type="checkbox" id="check_all" value="1" class="check_all"></th>
+				<th>关键词/地址</th>
+				<th>回答</th>
+			</tr>
+		</thead>
+		<tbody>
+		{if $list}
+		{foreach from=$list item=row}
+			<tr data-id="{$row.id}">
+				<td class="rate">
+					<input type="checkbox" name="checkit" rel="relate_reply_id" value="{$row.id}">
+				</td>
+				<td>
+					{if $row.i_msg_type eq 'location'}{$row.address}{else}{$row.keywords}{/if}
+				</td>
+				<td class="reply_content">
+					{$row.reply_news_description}
+				</td>
+			</tr>
+		{/foreach}
+		{else}
+			<tr data-id="{$row.id}">
+				<td colspan="3">
+					<div class="empty_tip">
+						没有相关数据
+					</div>
+				</td>
+			</tr>
+		{/if}		
+		</tbody>
+	</table>
+    <div class="blank"></div>
+    <div class="pages">
+        {$pages}
+    </div>
+</form>
+<script type="text/javascript">	
+	$('#check_all').click(function() {
+		$('#news_table input[name^=checkit]').attr('checked', $(this).is(":checked")); //.prop('checked')
+	});
+	$(".remove_relate").live("click",function(){
+        $(this).parent().parent().remove();
+        if($("input[name='relate_reply_id[]']").length==0)
+        {
+            $("#relate_table").remove();
+            $("#relate_table_div").hide();
+        }
+    });
+</script>

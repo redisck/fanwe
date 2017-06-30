@@ -1,0 +1,184 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_order.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+?>
+{include file="inc/header.html"}
+{if $data.item}
+{*订单列表*}
+
+<div>
+	{foreach from=$data.item item=order_item key=key}			
+	
+			<div class="collection-list back-white">
+		
+					<div class="bianma">
+						<ul>
+							<li class="first font-fc8">订单编号：{$order_item.order_sn}</li>
+							<li><span>订单总价：{$order_item.total_price} 元 {if $order_item.pay_amount gt 0},已经支付：{$order_item.pay_amount} 元{/if}</span><span class="third">共{$order_item.c}件商品</span></li>
+							
+						</ul>
+					</div>
+					{foreach from=$order_item.deal_order_item item=deal_item key=key}
+				        <div class="collection">
+				            <a href="{url x="index" r="deal" p="data_id=$deal_item.deal_id"}" class="dl">
+				                <img src="{$deal_item.deal_icon}"  width="122" height="74" />
+				                <ul style="text-align: left;">
+				                    <li class="dl-brand break-word"  style="margin-top:0px;font-size: 14px; line-height:20px;">{function name="msubstr" v=$deal_item.name b=0 e=28}</li>
+				                    <li class="dl-title break-word">数量：{$deal_item.number}</li>
+				                    <li class="dl-price">
+				                      		   单价：<span class="font-fc8">{$deal_item.unit_price} 元</span>				                             
+				                    </li>
+									<li class="dl-price">
+				                      		小计：<span class="font-fc8">{$deal_item.total_price} 元</span>
+				                    </li>
+				                </ul>
+				            </a>
+				        </div>
+						
+						{if $order_item.order_status eq 1}
+						{if $deal_item.consume_count gt 0}
+						<div class="dingdan">
+							<ul>
+								{if $deal_item.dp_id eq 0}
+								<a href="{url a="index" r="add_dp" p="type=deal&data_id=$deal_item.deal_id"}"><li>立即点评</li></a>
+								{else}
+								<li>已点评</li>
+								{/if}
+							</ul>
+						</div>
+						{/if}
+						{/if}
+						
+						{if $order_item.order_status eq 0}
+						{if $deal_item.delivery_status neq 5 and $deal_item.is_arrival eq 1}
+						<div class="dingdan">
+							<ul>
+								{if $deal_item.dp_id eq 0}
+								<a href="{url a="index" r="add_dp" p="type=deal&data_id=$deal_item.deal_id"}"><li>立即点评</li></a>
+								{else}
+								<li>已点评</li>
+								{/if}
+							</ul>
+						</div>
+						{/if}
+						{/if}
+						
+						{if $order_item.pay_status eq 2}
+						{if $deal_item.delivery_status eq 0 and $deal_item.is_refund eq 1}
+						<div class="dingdan">
+							<ul>
+								{if $deal_item.refund_status eq 0}
+								<a href="{url a="index" r="uc_order#refund" p="item_id=$deal_item.id"}"><li>我要退款</li></a>
+								{elseif $deal_item.refund_status eq 1}
+								<li>退款审核中</li>
+								{elseif $deal_item.refund_status eq 2}
+								<li>已退款</li>
+								{elseif $deal_item.refund_status eq 3}
+								<li>不允许退款</li>
+								{/if}
+							</ul>
+						</div>
+						{/if}
+						{/if}
+						
+						
+						{if $order_item.pay_status eq 2}
+						{if $deal_item.delivery_status eq 5 and $deal_item.is_refund eq 1}
+						{if $order_item.order_status eq 0}
+						<div class="dingdan">
+							<ul>
+							<a href="{url a="index" r="uc_order#refund_coupon" p="item_id=$deal_item.id"}"><li>我要退款</li></a>
+							</ul>
+						</div>
+						{else}
+						<div class="dingdan">
+							<ul>
+								{if $deal_item.refund_status eq 1}
+								<li>退款审核中</li>
+								{elseif $deal_item.refund_status eq 2}
+								<li>已退款</li>
+								{elseif $deal_item.refund_status eq 3}
+								<li>不允许退款</li>
+								{/if}
+							</ul>
+						</div>
+						{/if}
+						{/if}
+						{/if}
+						
+						
+						{if $order_item.order_status eq 0}
+						{if $deal_item.delivery_status neq 5}
+						<div class="dingdan">
+							<ul>
+								{if $deal_item.delivery_status eq 0}
+								<li>未发货</li>
+								{else}
+									{if $deal_item.is_arrival eq 0}
+									<a href="{url a="index" r="uc_order#check_delivery" p="item_id=$deal_item.id"}" target="_blank"><li>查看物流</li></a>	
+									<a href="{url a="index" r="uc_order#verify_delivery" p="item_id=$deal_item.id"}" class="confirm"><li>确认收货</li></a>	
+									<a href="{url a="index" r="uc_order#refuse_delivery" p="item_id=$deal_item.id"}"><li>没收到货</li></a>										
+									{elseif $deal_item.is_arrival eq 1}
+									<li>已收货</li>
+									{elseif $deal_item.is_arrival eq 2}
+									<li>维权中</li>
+									{/if}							
+								{/if}
+							</ul>
+						</div>
+						{/if}
+						{/if}
+						
+					{/foreach}
+					<div class="dingdan">
+						<ul>
+							<li>订单状态：{$order_item.status}</li>
+							<li>下单时间：{$order_item.create_time}</li>
+							
+							{if $data.pay_status eq 0}
+							<a href="{url a="index" r="cart#order" p="id=$order_item.id"}"><li>继续付款</li></a>
+							{/if}
+							
+							
+							{if $order_item.order_status eq 1}
+							<a href="{url a="index" r="uc_order#cancel" p="id=$order_item.id"}" class="confirm"><li>删除订单</li></a>
+							{elseif $order_item.pay_status eq 0}
+							<a href="{url a="index" r="uc_order#cancel" p="id=$order_item.id"}" class="confirm"><li>取消订单</li></a>
+							{/if}	
+						</ul>
+					</div>
+			</div>
+			
+	{/foreach}
+</div>
+
+{*end 订单列表*}
+{else}
+<div class="null_data">
+<p class="icon"><i class="iconfont">&#xe61e;</i></p>
+<p class="message">暂无数据</p>
+</div>
+{/if}
+{if $pages}
+	<div class="fy">
+		{$pages}
+	</div>
+{/if}
+{include file="inc/footer.html"}	

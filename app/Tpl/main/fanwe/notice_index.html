@@ -1,0 +1,61 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/article.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/article.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/article.js";
+?>
+{include file="inc/header.html"} 
+<div class="{function name="load_wrap" t=$wrap_type}">
+	<div class="blank20"></div>
+	<div class="line"></div>
+	<div class="blank20"></div>
+	<div class="cate_box f_l">
+		{foreach from=$acate_tree item=cate}
+		<div class="cate_item">			
+			<div class="cate_title"><a href="{$cate.url}" {if $cate.id eq $cur_id}class="act"{/if}>{$cate.title}</a></div>
+			{foreach from=$cate.child_cate item=item}
+			<div class="cate_name">
+				<a href="{$item.url}" {if $item.id eq $cur_id}class="act"{/if}><span class="cate_icon"></span>{$item.title}</a>
+			</div>
+			{/foreach}
+		</div>
+		{/foreach}
+	</div>
+
+	<div class="article_box f_r">
+		<div class="article_top"><h3><span>{$cur_title}</span></h3></div>
+		
+		<div class="blank20"></div>
+		<div class="article_content">
+			<h2>{$article.title}</h2>
+			<div class="update_time">{function name="to_date" v=$article.update_time}</div>
+			<div class="editor">
+					{$article.content}
+			</div>
+		</div>
+		<div class="blank20"></div>
+		<div class="pages">{$pages}</div>
+		<div class="blank20"></div>
+	</div>
+
+
+</div>
+<div class="blank"></div>
+
+{include file="inc/footer.html"}

@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+.table_box{margin-bottom: 20px;padding: 20px 10px;border: 1px solid #efefef;color: #666;}
+.table_box table{width: 100%;text-align: left;table-layout: fixed;border-collapse: collapse;border-spacing: 0;font-size: 12px;color: #666;background-color: #fff;}
+.table_box table tr td{padding: 15px 20px;line-height: 22px;color: #666;word-break: break-all;word-wrap: break-word;border-bottom:0px}
+.table_box table tr .l_border{border-left: 1px dotted #d4d4d4;} 
+.table_box table tr .r_border{border-right: 1px dotted #d4d4d4;} 
+.table_box table tr .t_item{display:inline-block;margin-right:10px;}

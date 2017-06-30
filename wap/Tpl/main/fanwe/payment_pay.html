@@ -1,0 +1,41 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/payment.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+
+?>
+{include file="inc/header.html"}
+<div class="wrap">
+	<div class="pay_order_index">
+	<div class="pay_info">
+	 	<p class="h">
+			{$data.pay_info}
+		</p>	
+	</div>	
+ 	<form id="form" method="post" action="{$data.pay_action}" target="_blank">
+	    <div class="btn_login">
+	    	<input type="submit" value="{$data.payment_name}（{$data.pay_money}元）" style="background: none;">
+		</div>
+    </form>
+	</div>
+			
+</div>				
+
+{include file="inc/footer.html"}	

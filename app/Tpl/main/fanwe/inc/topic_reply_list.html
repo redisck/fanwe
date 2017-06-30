@@ -1,0 +1,27 @@
+<ul class="comment_list">
+{foreach from=$reply_list item=row}
+<li class="clearfix" id="reply_item_{$row.id}">
+	<span class="avatar">{function name="show_avatar" uid=$row.user_id  type="small" }</span>
+	<div class="detail">    
+		<p class="words">    
+			<a class="name" href="{url b="index" r="uc_home#index" p="id=$row.user_id"}" target="_blank">{$row.user_name}</a>
+			<span class="content">{function name="nl2br" v=$row.content}</span>
+		</p>    
+		<p class="other">
+			<span class="time">{$row.format_create_time}</span>    								
+			<span class="opt"   {$user_auth.topic.replydel.0}>
+				<a class="reply_btn" href="javascript:void(0);" onclick="set_reply('{$row.id}','{$row.user_name}')">回复</a>
+				{if $row.user_id eq $user_info.id}										
+					<a class="del_btn yahei" href="javascript:void(0);" onclick="delete_topic_reply('{$row.id}',$('#reply_item_{$row.id}'))">删除</a>  
+				{elseif $user_auth.topic.replydel}
+					<a class="del_btn yahei" href="javascript:void(0);" onclick="op_topic_replydel({$row.id});">删除</a>
+				{/if}
+			</span>
+		</p>    
+	</div>
+</li>
+{/foreach}
+</ul>
+{if $pages}
+<div class="page_box pages">{$pages}</div>
+{/if}

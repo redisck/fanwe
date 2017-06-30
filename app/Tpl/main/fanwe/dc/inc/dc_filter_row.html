@@ -1,0 +1,55 @@
+{if $filter_row_data}
+<div class="filter_row">
+
+	
+	<!--开始分类和区域筛选 -->
+
+	{foreach name="filter_loop" from=$filter_row_data.filter_list item=filter_item}
+	{if $filter_item.list}
+	<dl class="clearfix {if $smarty.foreach.filter_loop.last}bottom{/if}">
+
+		<dd>
+			<ul>
+				{foreach from=$filter_item.list item=item key=key}
+				<li {if $item.current eq 1}class="current"{/if} {if $key eq 0} id="first"{/if}>
+				{if $key eq 0}
+				<i class="iconfont dc_cate">&#xe641;</i>
+				{else}
+				<i class="diyfont dc_cate">{$item.iconfont}</i>
+				{/if}
+				<a href="{$item.url}" >{$item.name}</a></li>
+				{/foreach}
+			</ul>
+		</dd>
+		<dd class="expend">
+			<a href="javascript:void(0);" class="open">更多</a>
+			<a href="javascript:void(0);" class="close">收起</a>
+		</dd>
+	</dl>
+	{/if}
+	{/foreach}
+	
+	<!--结束分类和区域筛选 -->
+	
+
+	
+	{if $filter_row_data.promote}
+	<dl class="clearfix dc_promote">
+		<dd>
+			<ul>
+				{foreach from=$filter_row_data.promote item=item key=key}
+				<li>
+					<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="ptag" value="{$item.url}" {if $item.checked eq 1}checked="checked"{/if}/>{$item.name}</label>
+				</li>
+				{/foreach}
+			</ul>
+		</dd>
+		<dd class="expend">
+			<a href="javascript:void(0);" class="open">更多</a>
+			<a href="javascript:void(0);" class="close">收起</a>
+		</dd>
+	</dl>
+	{/if}
+	
+</div>
+{/if}

@@ -1,0 +1,67 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_search.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_search.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+
+	var dc_title='{$s_info.dc_title}';
+
+</script>
+
+<div class="wrap">
+				<div class="content back-white">
+	
+				<form name="search_form" action="{url r="index" p="dc_search#do_search"}" method="post" id="search_form">
+				<div class="search_box">
+					
+					  <div class="search_text">
+					  	    <div class="ico"> <i class="iconfont">&#xe612;</i></div>
+							<div class="box"><input type="text" name = "keyword" id = "keyword" placeholder="请输入商家或商品"></div>
+					  </div>
+					  <div class="search_bottom">
+					  	  <input type="button" value="搜索">
+					  </div>
+				
+				</div>	 
+				</form>
+
+				</div>
+			
+			 <div id="search_content"></div>
+</div>
+
+
+<!----------------------------------------------------------------------------------------------------详情列表-->
+{include file="dc/inc/foot_nav.html"}
+<!----------------------------------------------------------------------------------------------------底部浮动菜单-->
+

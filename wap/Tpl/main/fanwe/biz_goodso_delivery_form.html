@@ -1,0 +1,124 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_goodso_delivery_form.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_goodso_delivery_form.js";
+
+
+?>
+{include file="inc/biz_header.html"}
+<script>var ajax_url = "{$ajax_url}";</script>
+<div class="wrap">
+	<div class="content">
+	<div class="common_tip">以下是同一订单下的商品，可以选择一起发货</div>
+	<form name="do_delivery_form" action="{url r="biz" p="goodso#do_delivery" }" method="post">
+		<div class="o_deal_list">
+			<ul class="o_dl_box">
+
+			{foreach from=$data.doi_list item=row}
+				<li class="d_item">
+					<div class="deal_box">
+						<div class="d_check_box">
+						{if $row.deal_id eq $data.rel_deal_id}
+						<i class="iconfont">&#xe652;</i>
+						{else}
+						<i class="iconfont">&#xe651;</i>
+						{/if}
+							
+							<input class="doi_ids_v" type="checkbox" name="doi_ids[]" value="{$row.id}" {if $row.deal_id eq $data.rel_deal_id}checked="checked"{/if}/>
+						</div>
+						<div class="d_info">
+							<div class="d_icon"><img src="{$row.deal_icon}"/></div>
+							<div class="d_sub_info">
+							    <div class="i_deal_name"><h3>{$row.name}</h3></div>
+								<div class="blank"></div>
+								<div class="i_deal_order"><span>{$row.number}</span>件，共<span>{$row.total_price}</span>元</div>
+							</div>
+						</div>
+						
+					</div>
+				</li>
+				{/foreach}
+			</ul>
+		</div>
+		<div class="address_box">
+			收货地址：{$data.address_data.consignee},<a href="tel:{$data.address_data.mobile}">{$data.address_data.mobile}</a>,{$data.address_data.address}
+		</div>
+		
+		<div class="form_box">
+		<div class="blank"></div>
+			
+				<div class="item_group">
+					<div class="g_title">发货的门店：</div>
+					<div class="g_item_box">
+						<select name="location_id" class="sb_select" height="90">
+							{if $data.location_list}
+							{foreach from=$data.location_list item=row}
+								<option value="{$row.id}" >{$row.name}</option>
+							{/foreach}	
+							{else}
+							<option value="0" >无</option>
+							{/if}
+							
+						</select>
+					</div>
+				</div>
+				<div class="blank"></div>
+				<div class="item_group">
+					<div class="g_title">快递：<span class="u_express_name">{$data.express_name}</span></div>
+					<div class="g_item_box">
+						<select name="express_id" class="sb_select" height="90">
+							<option value="0" >其它</option>
+							{if $data.express_list}
+							{foreach from=$data.express_list item=row}
+								<option value="{$row.id}" {if $row.id eq $data.delivery_id}selected="selected"{/if}>{$row.name}</option>
+							{/foreach}
+							{/if}
+							
+						</select>
+					</div>
+				</div>
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<div class="item_group">
+					<div class="g_title">同一批发货的商品可填写相同的单号</div>
+					<div class="g_item_box"><input class="delivery_sn_txt sb_input" type="text" name="delivery_sn" placeholder="请填写运单号"/></div>
+				</div>
+				<div class="item_group">
+					<div class="g_item_box">
+					<textarea name="memo" class="memo sb_textarea" holder="没有备注请留空" placeholder="没有备注请留空"></textarea>
+					</div>
+				</div>
+				<div class="blank"></div>
+				<div class="sub_btn_box">
+					<input type="hidden" name="rel_deal_id" value="{$data.rel_deal_id}"/>
+					<button class="sub_btn" type="submit">提 交</button>
+				</div>
+				<div class="blank20"></div>
+			
+		</div>
+		</form>
+	</div>
+	
+
+	<div class="blank50"></div>
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

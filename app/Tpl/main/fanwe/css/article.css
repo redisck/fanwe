@@ -1,0 +1,47 @@
+.line{height:2px;background:@main_color;}
+.cate_box{width:190px;min-height:500px;background:@box_color;margin-right:4px;border: 1px solid #ccc;border-radius: 6px 0 0 6px;}
+.cate_title{font-family:"微软雅黑"; line-height:40px; color:@font_color; font-weight:bolder; font-size:16px; background:#f0f0f0;height: 40px;padding-left: 24px;border: 1px solid @body_color;border-radius: 4px 0 0 0;border-bottom:1px solid @border_color;}
+.cate_title i.diyfont{ color:#a6a6a6; font-weight:normal; font-size:20px;}
+.cate_name{width: 150px;margin: -1px 0 0 18px;border-top: 1px solid @border_color;}
+.cate_name a{width: 150px;height: 29px;padding: 11px 0 1px 5px;color: #7b7b7b;font-size: 14px;display: block;}
+.cate_name a.act,.cate_name a:hover{color:@main_color}
+.cate_title a.act,.cate_title a:hover{color:@main_color}
+.cate_icon{display: inline-block;background: url(../images/css_bg/com_bg.gif) no-repeat left -165px;width: 9px;height: 9px;overflow: hidden;margin-right: 6px;*vertical-align: middle;}
+
+
+.article_box{width:750px;padding:8px 15px;min-height:484px;background:@box_color;border: 1px solid @border_color;font-family: 'Microsoft YaHei',Tahoma,Verdana,'Simsun';}
+.article_top{border-bottom:4px solid @border_color;}
+.article_top h3{height: 36px;line-height: 36px;color: @main_color;}
+.article_top h3 span{font-size:18px;float:left;max-width:250px;white-space:nowrap;overflow:hidden;border-bottom:@main_color solid 4px;font-weight: bold;}
+.article_content h2{border-bottom:1px dotted @border_color;text-align: center;padding-bottom:15px;margin:10px 0px;color: #333;font-size: 20px;padding-top: 5px;}
+.update_time{text-align: center;font-size: 12px;line-height: 30px;height: 30px;color: #aaa;}
+.editor{line-height: 2;font-size:14px;padding:10px;overflow:hidden;}
+
+
+
+.article_list ul{padding: 10px 0 0 14px;}
+.article_list ul li{padding: 8px 0; border-bottom: 1px solid #ccc;display:block;height:24px;}
+.article_list ul li.current{background:#f9f9f9;}
+.article_list ul li a{line-height: 24px;display: inline-block;padding-left: 10px;width: 600px;color:@main_color;}
+.list_icon{background:url(../images/css_bg/com_bg.gif) no-repeat left -165px;display: inline-block;height: 16px;margin: 0 10px -6px 0;width: 16px;}
+.article_list ul li span{line-height:24px;padding-right:10px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+﻿<div id="lid_search_result">
+{if $data.location || $data.menu}
+	{if $data.lid_count gt 0}
+	<div class="hear_result">商家</div>
+	<table cellpadding="0" cellspacing="0">
+		<tbody>
+		{foreach from=$data.location item=location}
+			
+				<tr data-i="{$location.url}">
+				<td class="lid_l"><img style="width:36px;" src="{function name=get_spec_image v=$location.preview w=30 h=20 g=1}" /></td>
+				<td class="lid_mid">{$location.name}</td>
+				<td class="lid_r">{$location.dc_buy_count}份</td>
+				</tr>
+			
+			
+		{/foreach}
+		</tbody>
+	</table>
+	{/if}
+	
+	{if $data.menu_count gt 0}
+	<div class="hear_result">商品</div>
+	<table cellpadding="0" cellspacing="0">
+		<tbody>
+		{foreach from=$data.menu item=menu}
+			
+				<tr data-i="{$menu.url}">
+				<td class="lid_lmid">{function name="msubstr" v=$menu.name b=0 e=19}
+				<div class="f12">{$menu.lid_name}</div>
+				</td>
+				<td class="lid_r lid_cr">{function name=format_price v=$menu.price}</td>
+				</tr>
+			
+			
+		{/foreach}
+		</tbody>
+	</table>
+	{/if}
+{else}
+<div class="null_data">
+<p class="icon"><i class="iconfont">&#xe61e;</i></p>
+<p class="message">暂无数据</p>
+</div>
+{/if}
+</div>

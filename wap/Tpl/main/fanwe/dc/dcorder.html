@@ -1,0 +1,139 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_order_pay.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+
+	var dc_title='{$s_info.dc_title}';
+
+
+</script>
+
+<!-------------------------------------------------------------------------------------------------title-->	
+<form id="cart_form" action="{url r="index" p="dcorder#order" g="id=$data.id"}" method="post">
+<div class="bg_fff bor_3 bor_4">
+	<div class="bor_3 p_025_030 f029 lh050">{$data.location_info.name}</div>
+	<div class="clearfix bor_5 lh100 p_0_030 mb-1">
+		<span class="f_l f_858585 f029">原价</span>
+		<span class="f_r f_fe4d3d f029">{function name=format_price v=$data.total_price g=2}</span>
+	</div>
+	
+	
+	{if $data.pay_amount gt 0}
+	<div class="clearfix bor_5 lh100 p_0_030 mb-1">
+		<span class="f_l f_858585 f029">已付</span>
+		<span class="f_r f_fe4d3d f029">-{function name=format_price v=$data.pay_amount g=2}</span>
+	</div>
+	{/if}
+
+	
+	{if $data.account_money gt 0}
+	<div class="clearfix bor_5 lh100 p_0_030 mb-1">
+		<span class="f_l f_858585 f029">余额支付</span>
+		<span class="f_r f_fe4d3d f029">-{function name=format_price v=$data.account_money g=2}</span>
+	</div>
+	{/if}
+	
+		
+	{if $data.payment_fee gt 0}
+	<div class="clearfix bor_5 lh100 p_0_030 mb-1">
+		<span class="f_l f_858585 f029">手续费</span>
+		<span class="f_r f_fe4d3d f029">{function name=format_price v=$data.payment_fee g=2}</span>
+	</div>
+	{/if}
+	
+	<div class="clearfix bor_5 lh100 p_0_030 mb-1">
+		<span class="f_l f_858585 f029">应付金额</span>
+		<span class="f_r f_fe4d3d f029">{function name=format_price v=$data.pay_price g=2}</span>
+	</div>
+</div>
+<!-------------------------------------------------------------------------------------------------应付金额-->
+<div class="blank024"></div>
+
+<div class="bg_fff bor_3 bor_4">
+{if $data.payment_list}
+   <ul>
+   {foreach from=$data.payment_list item=payment}
+   	    <li class="clearfix pl130 pr074 bor_5 mb-1">
+   	    	<div class="w090 h070 ml-099 f_l ovhide pr mt015 mb015"><img src="{$payment.logo}" width="35" height="35" class="img"></div>
+   	    	{if $data.payment eq $payment.id}
+				<i class="icon iconfont f044 lh100 f_fe4d3d  f_r mr-044 pay_ico default_but y" rel="{$payment.id}">&#xe67a;</i>
+			{else}
+				<i class="icon iconfont f044 lh100 f_c9cacf  f_r mr-044 pay_ico default_but" rel="{$payment.id}">&#xe684;</i>
+			{/if}
+			<p class="lh100 f029">{$payment.name}</p>
+		</li>
+	{/foreach}	
+   </ul>
+ {/if}
+
+</div>
+<!-------------------------------------------------------------------------------------------------支付方式-->
+<div class="blank024"></div>
+{if $data.account_pay}
+	<div class="bg_fff bor_3 bor_4 ">
+		<div class="clearfix pl030 pr074">
+				{if $data.all_account_money eq 1}
+	   	    	<i class="icon iconfont f044 lh100 f_fe4d3d f_r mr-044 pay_account default_but y" rel="{$data.account_pay.id}">&#xe67a;</i>
+	   	    	{else}
+	   	    	<i class="icon iconfont f044 lh100 f_c9cacf f_r mr-044 pay_account default_but" rel="{$data.account_pay.id}">&#xe684;</i>
+	   	    	{/if}
+				<p class="lh100 f029">{$data.account_pay.name}<span class="f_fe4d3d  pl030">{function name=format_price v=$data.account_pay.money g=2}</span></p>
+			</div>
+	</div>
+	
+{/if}
+	 <input type="hidden" name="id" value="{$data.id}" />
+	 <input type="hidden" name="account_money" value="{$data.account_money}" />
+	 <input type="hidden" name="payment_fee" value="{$data.payment_fee}" />
+	 <input type="hidden" name="pay_price" value="{$data.pay_price}" />
+	 <input type="hidden" name="payment" value="{$data.payment}" />
+	 <input type="hidden" name="all_account_money" value="{$data.all_account_money}" />
+<!-------------------------------------------------------------------------------------------------余额付款-->
+</form>
+<div class="pl030 pr030 pt064 pb030">
+	<button class="tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100" id="pay_button">
+	{if $data.payment_id eq 1}
+	订单提交
+	{else}
+	确认支付
+	{/if}
+	</button>
+</div>
+<!----------------------------------------------------------------------------------------------------详情列表-->
+{include file="dc/inc/foot_nav.html"}
+<!----------------------------------------------------------------------------------------------------底部浮动菜单-->
+
+<!-------------------------------------------------------------------------------------------------付款buttom-->
+</body>
+</html>

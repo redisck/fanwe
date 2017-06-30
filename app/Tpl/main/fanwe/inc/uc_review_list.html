@@ -1,0 +1,66 @@
+{if $dp_list}
+<div class="comments_details">
+	<ul>
+		{foreach from=$dp_list item=dp_item}
+		<li class="details_li">
+			<div class="clearfix">
+				<div class="f_l">
+					<span class="user_name">{function name="get_user_name" value=$dp_item.user_id show_tag="0"} </span>
+					<span class="date">{$dp_item.create_time_format}</span>
+					{if $dp_item.data_info}
+					对 <a href="{$dp_item.data_info.url}" target="_blank" class="dp_data" title="{$dp_item.data_info.name}">{function name="msubstr" v=$dp_item.data_info.name b=0 e=30}</a> 点评：
+					{/if}
+				</div>
+				<div class="f_r">
+					<input class="ui-starbar" value="{$dp_item.point}" disabled="true"  />
+				</div>
+			</div>
+			<p class="content">
+				{$dp_item.content}
+			</p>
+			
+			{if $dp_item.images}
+			<div class="review_pic clearfix">
+				<div class="over">
+					<div  class="pic_box">
+					     <ul>
+					     	{foreach from=$dp_item.images item=img}
+					     	<li>
+					     		<a href="javascript:void(0);" rel="{function name="get_spec_image" v=$img w=670 h=0}"><img src="{function name="get_spec_image" v=$img  w=100 h=100 g=1}" lazy="true" /></a>
+					     	</li>
+							{/foreach}									
+							
+						 </ul>
+					</div>
+					
+					{if count($dp_item.images) gt 6}
+					<a href="javascript:void(0);" class="pre hide_tag"></a>
+					<a href="javascript:void(0);" class="next hide_tag"></a>
+					{/if}
+				</div>
+				<div class="blank"></div>
+				<div class="big_img">
+					<a href="javascript:void(0);" class="bprev"></a>
+					<a href="javascript:void(0);" class="bnext"></a>
+					<img src="" />
+				</div>
+			</div>
+			{/if}
+			{if $dp_item.reply_content}
+			<div class="supplier_reply"><span class="reply_title">掌柜回复：</span>{$dp_item.reply_content}</div>
+			{/if}
+		</li>
+		{/foreach}				
+	</ul>
+	<div class="blank"></div>
+	<div class="pages">
+		{$pages}
+	</div>
+</div>
+{else}
+<div class="empty_tip">
+	没有相关点评数据
+</div>
+{/if}	
+		
+				

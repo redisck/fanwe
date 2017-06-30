@@ -1,0 +1,232 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_index.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/cart_check.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_check.js";
+
+
+?>
+{include file="inc/header.html"}
+<script type="text/javascript">
+	var ajaxing = false; //ajax计算中，true是不允许提交订单
+	var order_id = '{$data.order_id}';  //订单号
+</script>
+<div class="wrap">
+	<!--begin cart_list-->
+	<div class="body bg-common">
+		{foreach from=$data.cart_list_group  key=key item=cart_item_group}
+			{if $cart_item_group.supplier}
+			<table class="cart_supplier">
+			<tr class="cart_supplier_title">
+				<td  class="tl">{$cart_item_group.supplier}</td>
+				<td  class="tr"><span id="delivery_fee_{$key}"></span></td>
+			</tr>
+			</table>
+			{/if}
+			{foreach from=$cart_item_group.goods_list key=key item=cart_item}
+			
+            <div class="back-white cart_row" rel="{$cart_item.id}">
+
+				<div class="list-view bor_none">
+					 <ul class="tuan_ul">
+					 	<li class="tuan_li">
+					 	     <a href="{url a="index" r="deal#index" p="data_id=$cart_item.deal_id"}">
+					 	     	<div class="list_item">
+					 	     		 <div class="pic">
+					 	     		 	<img src="{$cart_item.icon}" lazy="true" width="140" height="85" />
+					 	     		 </div>
+									 <div class="info">
+									 	<h2>{$cart_item.sub_name}</h2>	
+									 	<h3>{$cart_item.name}</h3>									
+										<div class="tuan_price">
+					                         <p class="price">
+					                         	 {if $data.is_score}
+												 <em>{$cart_item.return_score}<i>积分</i></em>
+												 {else}
+					                         	 <em>{$cart_item.unit_price}<i>元</i></em>
+												 {/if}
+											 </p>
+											 <span class="item-label">数量：</span>
+						                    <span class="item-content amount">
+						                    	{$cart_item.number}
+											</span>
+					                     </div>
+									 </div>
+					 	     	</div>
+					 	     </a>
+					 	</li>					
+					 </ul>					 
+				</div>
+
+                <div class="item-common over" style="border:none;">
+				<div class="total_money f_l">
+					
+                    <span class="item-label">总价：</span>
+                    <span class="item-content amount">
+                    	{if $data.is_score}
+                    	<span class="cart_row_total" >{$cart_item.return_total_score}</span>积分<span class="J_campaign-value"></span>
+						{else}
+						<span class="cart_row_total" >{$cart_item.total_price}</span>元<span class="J_campaign-value"></span>
+					    {/if}
+					</span>
+                 </div>
+			
+				</div>
+            </div>	
+			{/foreach}		
+			{/foreach}
+	</div><!--end cart_list-->	
+	
+	{if $data.order_id}
+	<form  action="{url a="index" r="cart#order_done"}" method="POST"  id="pay-form" class="pay-form">
+	<input name="order_id" type="hidden" value="{$data.order_id}" />
+	{else}
+	<form  action="{url a="index" r="cart#done"}" method="POST"  id="pay-form" class="pay-form">
+	{/if}
+	<div class="back-white">
+		
+	<!--配送方式-->	
+	{if $data.is_delivery eq 1}
+	<div id="normal-fieldset" class="normal-fieldset">
+        <h4 class="mj-title m-t10">收货信息</h4> 
+       
+        {if $data.consignee_count gt 0} 
+	        <section class="items-common">                     
+            <a href="{url a="index" r="uc_address" p="cart=1&order_id=$data.order_id"}" class="item-common" style="display: block;position:relative;">
+             	 <span class="item-label" style=" width:80px;">收货信息：</span>  
+				 <div class="item-content">
+					 <div style="margin-left:10px;">{$data.consignee_info.consignee}</div>
+					 <div style="margin-left:10px;">{$data.consignee_info.mobile}</div>
+					 <div style="margin-left:10px;">{$data.consignee_info.region_lv2_name} {$data.consignee_info.region_lv3_name} {$data.consignee_info.region_lv4_name}</div>
+					 <div style="margin-left:10px;">{$data.consignee_info.address}</div>					 
+					 <div style="margin-left:10px; color:#ccc;">点击修改收货信息</div>
+				 </div>				 
+			</a>
+			</section>			
+		{else}
+			<section class="items-common"> 
+			 <a href="{url a="index" r="uc_address#add"  p="cart=1&order_id=$data.order_id"}" class="item-common" style="display: block;position:relative;">
+			 	 <span class="item-label1" style=" width:80px;">收货信息：</span> 
+				 点击添加收货地址
+			  </a>
+			</section>
+		{/if}
+		
+	</div>
+	
+	
+    <div id="normal-fieldset" class="normal-fieldset">
+       <h4 class="mj-title m-t10">选择配送方式</h4>
+	   {if $data.delivery_list }
+        <section class="items-common common-radio-box">
+            {foreach from=$data.delivery_list item=delivery name=delivery} 
+            <div class="item-common" {if $smarty.foreach.delivery.last }style="border-bottom:none;"{/if}>
+                <label>
+                    {$delivery.name}<input type="radio" value="{$delivery.id}" name="delivery" />
+                </label>
+            </div>{/foreach}
+        </section>
+		{else}
+		<section class="items-common common-radio-box">
+		<div class="item-common">不支持配送到该地区 	</div>
+		</section>
+		{/if}
+    </div>
+	
+	
+	
+	{/if}
+	<!--end 配送方式-->
+	
+	<!--留言-->
+	<div id="normal-fieldset" class="normal-fieldset">
+		<h4 class="mj-title m-t10">留言信息</h4>
+		<textarea name="content" class="item-common items-common" style=" width:100%;">{$data.order_memo}</textarea>
+    </div>
+	<!--end 留言-->
+	
+		
+	<!--支付方式-->	
+	{if $data.show_payment}
+    <div id="normal-fieldset" class="normal-fieldset">
+		<h4 class="mj-title m-t10">选择支付方式</h4>
+        <section class="items-common common-radio-box">
+            {foreach from=$data.payment_list item=payment name=payment} 
+            <div class="item-common" {if $smarty.foreach.payment.last }style="border-bottom:none;"{/if}>               
+                <label>
+                   {if $payment.logo}<img src="{$payment.logo}" class="payment_logo" />{/if} {$payment.name} <input type="radio" {if $payment.logo}class="payment_rdo"{/if} value="{$payment.id}" name="payment" />
+                </label>
+            </div>
+			{/foreach}
+        </section>
+    </div>
+	{/if}
+	<!--end 支付方式-->	
+	
+	
+	<!--代金券-->
+	{if $data.has_ecv eq 1 and $data.voucher_list}
+	<div id="normal-fieldset" class="normal-fieldset">
+		<h4 class="mj-title m-t10">请先择红包</h4>
+            <div class="item-common">
+               <select name="ecvsn">
+               		<option value="">=不使用红包=</option>
+					{foreach from=$data.voucher_list item=voucher}
+					<option value="{$voucher.sn}">{$voucher.name}</option>
+					{/foreach}
+               </select>
+            </div>
+            
+			                     
+	</div>				
+	{/if}
+	<!--end代金券-->
+	
+	<!--余额-->
+	{if $data.has_account }
+    <div id="normal-fieldset" class="normal-fieldset">
+       <h4 class="mj-title m-t10">余额支付</h4>
+        <section class="items-common common-radio-box">           
+            <div class="item-common" style="border-bottom:none;">
+                <label>
+                  	当前账户余额：{$account_amount}元， 使用余额支付 <input type="checkbox" value="1" name="all_account_money" />
+                </label>
+            </div>
+        </section>
+    </div>
+	{/if}
+	<!--end 余额-->
+	
+	<!--总计-->
+	<div id="cart_total"></div>
+	<!--end总计-->
+	
+	
+	<div class="btn_login ">
+			<input type="submit" value="去结算" style="background: none;">
+	  </div>
+	</div>		
+	</form>
+			
+
+		
+</div>				
+
+{include file="inc/footer.html"}	

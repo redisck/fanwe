@@ -1,0 +1,11 @@
+﻿<table id="dc_consignee_info" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td class="dc_name"><input type="text" name="consignee" class="ui-textbox" holder="您的姓名" value="{$dc_consignee_info.consignee}" /></td>
+	<td class="dc_mobile"><input type="text" name="mobile"  class="ui-textbox" holder="11位手机号" value="{$dc_consignee_info.mobile}" /></td>
+	<td class="dc_position">{include file="dc/inc/dc_inc_position.html"}</td>
+	<td class="dc_address"><input type="text" name="address"  class="ui-textbox" holder="请输入门牌号等详细信息" value="{$dc_consignee_info.address}" /></td>
+	<td class="dc_action"><span class="dc_save_con" data-parmas="{$dc_consignee_info.id}">保存</span><span class="dc_save_can" data-parmas="{$dc_consignee_info.id}">取消</span></td>
+	</tr>
+</tbody>
+</table>

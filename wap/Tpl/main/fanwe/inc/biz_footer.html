@@ -1,0 +1,26 @@
+{if $no_gotop eq 1}{else}
+			<div class="gotop" data-com="gotop">
+				<a href="#">
+					<i class="iconfont">&#xe609;</i>
+				</a>
+			</div>
+			{/if}
+			<div class="footer">
+				<div class="footer-t">
+				{if $biz_is_login eq 1 }
+					<div class="f_menu">
+							<ul class="menu_box">
+								<li class="menu_item"><a href="{url r="biz" b="dealv#index"}"><p><i class="iconfont">&#xe641;</i></p><p class="item_txt">验证</p></a></li>
+								<li class="menu_item"><a href="{url r="biz" b="dealr#index"}"><p><i class="iconfont">&#xe642;</i></p><p class="item_txt">评价</p></a></li>
+								<li class="menu_item"><a href="{url r="biz" b="manage#index"}"><p><i class="iconfont">&#xe645;</i></p><p class="item_txt">经营</p></a></li>
+								<li class="menu_item"><a href="{url r="biz" b="withdrawal#index"}"><p><i class="iconfont">&#xe60e;</i></p><p class="item_txt">我的</p></a></li>
+								<li class="menu_item"><a href="{url r="biz" b="more"}"><p><i class="iconfont">&#xe640;</i></p><p class="item_txt">更多</p></li>
+							</ul>
+						
+					</div>
+				{/if}
+				</div>
+			</div>
+		
+	</body>
+<html>

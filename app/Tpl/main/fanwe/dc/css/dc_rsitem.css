@@ -1,0 +1,148 @@
+@CHARSET "UTF-8";
+
+
+.main1 {
+  width: 980px;
+
+  position: relative;
+}
+
+.banner-section {
+  margin: 0 auto 5px;
+  overflow: hidden;
+}
+
+.banner-container {
+  width: 980px;
+  height: 80px;
+  margin-bottom:5px;
+}
+
+.slide-container {
+  width: 1230px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.banner-container .slide-container {
+  margin-left: -125px;
+}
+
+.slide-container li {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-container li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+.slide-container li a img {
+  height: 100%!important;
+}
+
+
+.slide-indicators {
+  position: absolute;
+  right: 10px;
+  bottom: 2px;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  z-index: 15;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.3);
+}
+
+.blank20 {
+  height: 15px;
+  line-height: 20px;
+  clear: both;
+  visibility: hidden;
+}
+
+.tables {
+  margin-bottom: 15px;
+  width: 940px;
+	
+}
+
+.t-head{
+ border-left: 3px solid red;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 14px;
+}
+.small_box{
+	color:#ff5500;
+	padding-bottom:10px;
+	border-bottom:1px solid #e5e5e5;
+}
+.dish-list{
+	background:#fff;
+	overflow:hidden;
+	padding:15px;
+	width:940px;
+	margin-top:15px;
+}
+.tables .text{
+	padding:10px 0;
+}
+.tables li{
+	width:106px;
+	height:50px;
+	line-height:50px;
+	border:1px solid #e5e5e5;
+	color:#999;
+	text-align:center;
+	float:left;
+	margin:0 10px 10px 0;
+	border-radius:3px;
+	font-size:14px;
+}
+.tables li.last{
+	border:1px solid #ff5500;
+	color:#ff5500;
+	cursor:pointer;
+}
+
+.dishOrder {
+  border: 0;		
+  float: right;
+  bottom: 0;
+  right: 0;
+  font-size: 14px;
+  color: #fff;
+  padding: 6px 18px;
+  background: orangered;
+}
+
+
+.gray{
+    overflow: hidden;
+	border: 0;
+	height:50px;
+	width: 980px;	
+	background: #f7f7f7;
+	margin-bottom:5px;
+}
+
+.location_title{
+  display: block;	
+  line-height: 50px;
+  text-indent: 20px;
+  font-size: 16px;
+  font-family:'Microsoft YaHei';
+  font-weight:bold;
+
+}

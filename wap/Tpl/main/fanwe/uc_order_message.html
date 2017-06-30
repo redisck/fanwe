@@ -1,0 +1,57 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/add_uc_message.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_order.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_order_message.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_order_message.js";
+
+?>
+{include file="inc/header.html"}
+<div class="wrap">
+{if $data.item}
+<div class="collection-list back-white">
+<div class="collection">
+    <a class="dl">
+        <img src="{$data.item.deal_icon}"  width="122" height="74" />
+        <ul style="text-align: left;">
+            <li class="dl-brand break-word"  style="margin-top:0px;font-size: 14px; line-height:20px;">{function name="msubstr" v=$data.item.name b=0 e=28}</li>
+            <li class="dl-title break-word">数量：{$data.item.number}</li>
+            <li class="dl-price">
+              		   单价：<span class="font-fc8">{$data.item.unit_price} 元</span>				                             
+            </li>
+			<li class="dl-price">
+              		小计：<span class="font-fc8">{$data.item.total_price} 元</span>
+            </li>
+        </ul>
+    </a>
+</div>
+</div>
+{/if}
+<div class="content">		
+	<form name="submit_message" action="{$data.action}" method="post">
+	<div class="comment_list_txt">
+		<input type="hidden" name="item_id" value="{$data.item_id}" />
+		<textarea name="content" id="content" maxlength = 140 placeholder="{$data.placeholder}"></textarea>
+	</div>   
+	      
+	<button class="comment_commentary dpsub_btn" >提交</button>	
+	</form>					 	
+</div>
+</div>
+{include file="inc/footer.html"}	

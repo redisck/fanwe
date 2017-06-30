@@ -1,0 +1,36 @@
+.verify_content{padding-top: 20px;}
+.verify_box .field_select dl{width:225px;}
+.verify_box .field_select dl dt{width: 180px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+.verify_box .field_select dl dd{width: 225px;overflow-y: auto;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+.verify_box .form_field{margin-right:5px;}
+.verify_box .form_field .f_text .ui-textbox{width:280px;font-size:16px;font-weight:bold;}
+
+
+.verify_btn{float:left;}
+.form_field{}
+.form_field .f_text{float:left;position: relative;display: inline-block;width:300px;margin-right:5px;}
+.form_field .field_buttom_tip{float:left;margin-left:5px;color: #717171;height: 36px;line-height: 36px;}
+.form_field .field_buttom_tip{color:#717171;}
+.form_field .field_buttom_tip .iconfont{margin-right: 3px;}
+.iconfont_err{color:#f80;font-size: 20px;}
+.iconfont_succ{color:#53CF01;font-size:20px;}
+.input_clear{display:none;position: absolute;top:0;left: 260px;height: 38px;line-height: 38px;padding: 0 5px;}
+.check_list_box{padding: 20px;}
+.check_list_box .check_header{margin-bottom: 10px;color: #828282;}
+.check_list_box .check_content{height:50px;}
+.check_list_box .check_content .check_item{margin:5px;background-color:@main_color;color:#fff;display:block;padding:8px;float:left;font-size: 20px;-webkit-border-radius: 4px;border-radius: 4px;font-weight: bold;}
+.check_list_box .submit_btn_box{text-align:right;margin-top: 20px;margin-right: 10px;}
+.check_list_box .check_content .invalid_item{background-color:#ccc;color:#000;}
+.common-tip {background-color: #fffbf2;border: 1px solid #fbf0d5;margin-top: 10px;padding: 10px;}
+
+.use_count_box{padding:20px;}
+.use_count_box .order_info{font-size: 16px;}
+.use_count_box .deal_name{display: inline-block;margin-right: 10px;}
+.use_count_box .coupon_count em{font-style: normal;color: red;font-weight: bold;}
+.content_count_box label{display: inline-block;height: 40px;line-height: 40px;font-size: 16px;}
+.content_count_box .ui-textbox{padding: 9px;display: inline-block;width: 50px;}
+.count_confirm_btn{float:right;}
+
+.succ_send_coupon{display:none;}
+.succ_send_coupon .succ_coupon_box{padding: 10px;border: 1px solid @border_color;}
+.succ_coupon_box .c_item{float: left;padding: 5px;margin-right: 10px;background-color: @main_color;color:#fff;font-size: 16px;font-weight: bold;border-radius: 4px;-webkit-border-radius: 4px;}

@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")}</title>
+<script type="text/javascript" src="__ROOT__/public/runtime/admin/lang.js"></script>
+<script type="text/javascript">
+	var version = '{:app_conf("DB_VERSION")}';
+	var app_type = '{$apptype}';
+	var ofc_swf = '__TMPL__Common/js/open-flash-chart.swf';
+	var sale_line_data_url = '{:urlencode(u("Ofc/sale_line"))}';
+	var sale_refund_data_url = '{:urlencode(u("Ofc/sale_refund"))}';
+</script>
+<load href='__TMPL__Common/style/style.css' />
+<load href='__TMPL__Common/style/main.css' />
+<load href='__TMPL__Common/js/jquery.js' />
+<load href='__TMPL__Common/js/swfobject.js' />
+<load href='__TMPL__Common/js/script.js' />
+<load href='__TMPL__Common/js/main.js' />
+</head>
+
+<body>
+	<div class="main">
+	<div class="main_title">{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")} {%HOME}	</div>
+	<div class="notify_box">
+		<table>
+			<tr>
+			<td class="version_box">
+				<table>
+					<tr><td>
+						当前版本：V3.07.4946<php></PHP><br />
+						正版授权</div>
+						<!--<div>授权号：S201511251588</div>-->
+					</td></tr>
+				</table>
+			</td>
+			<td class="order_box">
+				<table>
+					<tr><td>
+						订单累计成交额 {$income_order|format_price}<br />
+						订单累计退款额 {$refund_money|format_price}<br />
+						<if condition="$dealing_order gt 0">
+						待处理订单共计 {$dealing_order} <a href="{:u("DealOrder/deal_index",array("order_status"=>0))}">【去处理】</a> <br />
+						</if>
+						<if condition="$refund_order gt 0">
+						退款申请数 {$refund_order} <a href="{:u("DealOrder/deal_index",array("refund_status"=>1))}">【去处理】</a> <br />
+						</if>
+						<if condition="$no_arrival_order gt 0">
+						维权订单数 {$no_arrival_order} <a href="{:u("DealOrder/deal_index",array("is_refuse_delivery"=>1))}">【去处理】</a> 
+						</if>
+					</td></tr>
+				</table>
+			</td><!--order_box 订单提醒-->
+			<td class="user_box">
+				<table>
+					<tr><td>
+						平台会员总数 {$user_count}<br />
+						<if condition="$income_incharge gt 0">
+						预付款总金额 {$income_incharge|format_price}<br />
+						</if>
+						<if condition="$withdraw gt 0">
+						共有 {$withdraw} 笔提现申请 <a href="{:u("User/withdrawal_index",array("is_paid"=>0))}">【去处理】</a> 
+						</if>
+					</td></tr>
+				</table>
+			</td><!--user_box 会员提醒-->
+			<td class="tuan_box">
+				<table>
+					<tr><td>
+						上线的团购数 {$tuan_count}<br />			
+						<if condition="$tuan_dp_count gt 0">
+						共有 {$tuan_dp_count} 则购物点评<br />
+						</if>			
+						<if condition="$tuan_dp_wait_count gt 0">
+						{$tuan_dp_wait_count} 则购物点评未回复 <a href="{:u("SupplierLocationDp/index",array("type"=>"dealdp","wait_reply"=>1))}">【去处理】</a> <br />
+						</if>
+						<if condition="$tuan_submit_count gt 0">
+						{$tuan_submit_count}条商户提交团购未审核  <a href="{:u("Deal/tuan_publish",array("admin_check_status"=>0))}">【去处理】</a> <br />
+						</if>
+					</td></tr>
+				</table>
+			</td><!--tuan_box 团购提醒-->
+			</tr>
+			
+			<tr>
+			<td class="shop_box">
+				<table>
+					<tr><td>
+						上线的商品数 {$shop_count}<br />
+						<if condition="$shop_dp_count gt 0">
+						共有 {$shop_dp_count} 则购物点评<br />
+						</if>			
+						<if condition="$shop_dp_wait_count gt 0">
+						{$shop_dp_wait_count} 则购物点评未回复 <a href="{:u("SupplierLocationDp/index",array("type"=>"dealdp","wait_reply"=>1))}">【去处理】</a> <br />
+						</if>
+						<if condition="$shop_submit_count gt 0">
+						{$shop_submit_count}条商户提交商品未审核  <a href="{:u("Deal/shop_publish",array("admin_check_status"=>0))}">【去处理】</a> <br />
+						</if>
+					</td></tr>
+				</table>
+			</td><!--shop_box 商城提醒-->
+			<td class="youhui_box">
+				<table>
+					<tr><td>
+						上线的优惠券数 {$youhui_count}<br />
+						<if condition="$youhui_dp_count gt 0">
+						共有 {$youhui_dp_count} 则点评<br />
+						</if>			
+						<if condition="$youhui_dp_wait_count gt 0">
+						{$youhui_dp_wait_count} 则点评未回复 <a href="{:u("SupplierLocationDp/index",array("type"=>"youhuidp","wait_reply"=>1))}">【去处理】</a> <br />
+						</if>
+						<if condition="$youhui_submit_count gt 0">
+						{$youhui_submit_count}条商户提交优惠券未审核  <a href="{:u("Youhui/publish",array("admin_check_status"=>0))}">【去处理】</a> <br />
+						</if>
+					</td></tr>
+				</table>
+			</td><!--youhui_box 优惠券提醒-->
+			<td class="event_box">
+				<table>
+					<tr><td>
+						上线的活动数 {$event_count}<br />
+						<if condition="$event_dp_count gt 0">
+						共有 {$event_dp_count} 则点评<br />
+						</if>			
+						<if condition="$event_dp_wait_count gt 0">
+						{$event_dp_wait_count} 则点评未回复 <a href="{:u("SupplierLocationDp/index",array("type"=>"eventdp","wait_reply"=>1))}">【去处理】</a> <br />
+						</if>
+						<if condition="$event_submit_count gt 0">
+						{$event_submit_count}条商户提交活动未审核  <a href="{:u("Event/publish",array("admin_check_status"=>0))}">【去处理】</a> <br />
+						</if>
+					</td></tr>
+				</table>
+			</td><!--event_box 活动提醒-->
+			<td class="store_box">
+				<table>
+					<tr><td>
+						平台共入驻 {$supplier_count} 家商户<br />
+						共计 {$store_count} 家门店 <br />
+						<if condition="$supplier_submit_count gt 0">
+						{$supplier_submit_count} 条商户入驻申请 <a href="{:u("SupplierSubmit/index",array("is_publish"=>0))}">【去处理】</a> <br />
+						</if>
+						<if condition="$store_dp_count gt 0">
+						共有 {$store_dp_count} 则点评<br />
+						</if>			
+						<if condition="$store_dp_wait_count gt 0">
+						{$store_dp_wait_count} 则点评未回复 <a href="{:u("SupplierLocationDp/index",array("wait_reply"=>1))}">【去处理】</a> <br />
+						</if>
+						<if condition="$location_submit_count gt 0">
+						{$location_submit_count}条商户提交门店未审核  <a href="{:u("SupplierLocation/publish",array("admin_check_status"=>0))}">【去处理】</a> <br />
+						</if>						
+						<if condition="$sp_withdraw_count gt 0">
+						{$sp_withdraw_count}条商户提现未审核  <a href="{:u("Supplier/charge_index",array("status"=>0))}">【去处理】</a> <br />
+						</if>
+					</td></tr>
+				</table>
+			</td><!--store_box 门店提醒-->
+			</tr>
+		</table>
+	</div>	
+	<div class="blank5"></div>
+	<div class="blank5"></div>
+	<div class="blank5"></div>
+	<div class="blank5"></div>
+	<div class="main_title">最近30天运营数据</div>
+	<table width=100%>
+		
+		<tr>
+			<td width=10>&nbsp;</td>
+			<td width=50%>
+				<div id="sale_line_data_chart"></div>
+			</td>
+			<td width=10>&nbsp;</td>
+			<td width=50%>
+				<div id="sale_refund_data_chart"></div>
+			</td>
+			<td width=10>&nbsp;</td>
+		</tr>
+	</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+.info_box{padding: 0 20px 0 20px;}
+.info_box table{ width:100%; }
+.info_box h3{font-size:15px;}
+.info_box .bg_box{margin: 0 0 10px;padding: 8px 16px;font-size: 12px;border: 1px solid #F6E0AF;background: #ffffeb;overflow: hidden;zoom: 1;}
+.info_box .growth_content{font-size: 12px;color: #663309;}
+.info_items ul li{display:block;margin-bottom:5px;height: 25px;line-height: 25px;}
+.info_items ul li label,.info_items ul li span{float:left;}
+.info_items ul li .level_bg{margin-top:4px;}
+.main_color {color:@main_color;font-weight: bold;font-style: normal;}
+
+
+
+
+.icon_span,.icon_tip{ float:left; display:inline-block;}
+.icon_span{ width:16px; height:16px; margin-top:5px; }
+.icon_tip{ width:100px; height:24px;  margin:0px 5px; line-height:24px; }
+
+.info_table table td.select_row{ padding:5px 0px 12px 0px; }
+
+.log_info{ text-align:left;}
+
+.info_table table tr.sum td{ background:#ffffeb; border:#f6e0af solid 1px;}

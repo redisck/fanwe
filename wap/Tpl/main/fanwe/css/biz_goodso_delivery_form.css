@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+.o_deal_list{background-color:#fff;}
+.o_dl_box .d_item{  border-bottom: 1px solid #ccc;}
+.d_item .deal_box{  position: relative;}
+.deal_box .d_check_box{  
+	position: absolute;
+  left: 10px;
+  top: 32px;
+}
+.deal_box .d_info{  min-height: 94px;}
+.deal_box .d_info .d_icon{
+width: 84px;
+  height: 70px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: absolute;
+  left: 40px;
+  top: 10px;
+}
+.deal_box .d_info .d_icon img{  width: 100%;}
+.deal_box .d_info .d_sub_info{
+float: left;
+  margin-top: 10px;
+  margin-left: 135px;
+  margin-right: 10px;
+}
+.d_sub_info{color:#444}
+.d_sub_info .i_deal_name h3{font-weight:bold;color:#575757}
+.i_deal_order span{color:@main_color;}
+.address_box{  padding: 20px;}
+.form_box{  padding: 0 20px;background-color:#fff}
+.item_group .g_title{
+  height:25px;
+  line-height:25px;
+  font-size: 16px;
+  color: #252525;
+  font-family: "Microsoft YaHei";
+}
+.item_group .g_title .u_express_name{
+	display: inline-block;
+background-color: #F9F9F9;
+  padding: 0 10px;
+  border: 1px solid #EAEAEA;
+	color:#333;
+}
+.item_group .g_item_box{
+	  margin-top: 10px;
+}
+.sub_btn_box{text-align: center;}
+.sub_btn_box .sub_btn{
+	padding: 10px 20px;
+width: 80%;
+text-align: center;
+font-size: 18px;
+font-weight: bold;
+background-color: @main_color;;
+border: 1px solid #DBDBDB;
+border-radius: 10px;
+color: #FFF;
+}
+.address_box a{color:@main_color;}
+.doi_ids_v{display:none;}
+.u_express_name{font-size:12px;color:#f5f5f5;}

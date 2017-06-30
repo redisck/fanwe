@@ -1,0 +1,58 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<php>
+function get_money_btn($money,$id)
+{
+	$str = format_price($money);
+	return '<div style="float:left; width:100px;">'.$str.'</div> <input  style="float:left;" type="button" class="button" value="立即打款"  onclick="javascript:charge_edit('.$id.')" />';
+}
+function get_balance_link($name,$id)
+{
+	return '<a href="'.u("SupplierBalance/index",array("id"=>$id)).'">'.$name.'</a>';
+}
+</php>
+<script type="text/javascript">
+
+function charge_edit(id)
+{
+	$.weeboxs.open(ROOT+'?m=Supplier&a=charge_edit&supplier_id='+id, {contentType:'ajax',showButton:false,title:"打款确认",width:600,height:195});
+}
+</script>
+<div class="main">
+<div class="main_title"> {$balance_title}结算报表</div>
+
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		商户名称：<input type="text" class="textbox" name="name" value="{:strim($_REQUEST['name'])}" />		
+		{%SEARCH_REFERER_TIME}：
+		<select name="year">
+			<foreach name="year_list" item="year">
+				<option value="{$year.year}" <if condition="$year['current']">selected="selected"</if>>{$year.year}年</option>
+			</foreach>
+		</select>
+		<select name="month">
+			<foreach name="month_list" item="month">
+				<option value="{$month.month}" <if condition="$month['current']">selected="selected"</if>>{$month.month}月</option>
+			</foreach>
+		</select>
+		<input type="hidden" value="Balance" name="m" />
+		<input type="hidden" value="bill" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+</form>
+</div>
+<div class="blank5"></div>
+
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="sp" 
+	datasource="list" 
+	show="id:{%ID}|50px,name|get_balance_link=$sp['id']:商户名称,month_sale_money|format_price:本月营业额,month_refund_money|format_price:本月退款,month_money|format_price:本月消费,sale_money|format_price:总收入,refund_money|format_price:退款,lock_money|format_price:未消费,wd_money|format_price:已付金额,money|get_money_btn=$sp['id']:应付余额" 
+	actionlist = ""
+	 /> 
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,63 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/dc.js' />
+<php>
+	function get_cate_name($id)
+	{
+		
+		   return M("DcSupplierMenuCate")->where("id=".$id)->getField("name");
+
+	}
+	
+	function getAction($id,$location_id)
+	{
+		$str = "<a href=\"javascript:edit('".$id."');\">编辑</a>&nbsp;";
+		$str .= "<a href=\"javascript:del('".$id."');\">删除</a>&nbsp;";
+		return $str;
+	}
+	function get_menu_price($price){
+		
+		return format_price($price);
+	}
+	function get_supplier_location_name($id){
+		return M('SupplierLocation')->where('id='.$id)->getField('name');
+	
+	}
+
+	
+</php>
+<div class="main">
+<div class="main_title">{$supplier_location.name}&nbsp;{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="location.href='__APP__?m=DcMenu&a=add&supplier_location_id={$supplier_location.id}'" />
+	<input type="button" class="button" value="{%DEL}" onclick="del();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		名称：<input type="text" class="textbox" name="name" value="{:trim($_REQUEST['name'])}" />		
+		<input type="hidden" value="DcMenu" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<if condition="$supplier_location['id'] gt 0"><input type="hidden" value="{$supplier_location.id}" name="supplier_location_id" /></if>
+		
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="dcmenu" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:菜单名,price|get_menu_price:价格,cate_id|get_cate_name:所属分类,location_id|get_supplier_location_name:餐厅名称,is_effect|get_toogle_status=$dcmenu['id']#is_effect:状态" 
+	actionlist="id|getAction=$supplier_location['id']" 
+	actionwidth="100px" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

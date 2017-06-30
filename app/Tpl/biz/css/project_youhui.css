@@ -1,0 +1,13 @@
+.biz_map{height:300px;}
+.biz_map .white,.biz_map .white_hover{margin:3px 0 0 5px;}
+.map_search_label{line-height:30px;}
+#container{width: 500px; height: 300px; border: 1px solid gray;float:left;}
+#container_front{width: 600px; height:500px; border: 1px solid #000; position: absolute; top: 10px; background-color: #fff; overflow: hidden;}
+#container_front .prompt{display:block;text-align:center;}
+#container_m{ width: 550px; height: 450px; margin: 0 auto;}
+#cancel_btn{display: block; width: 600px; height: 18px; line-height: 18px; text-align: right;}
+.t_field_value input.map_keyword{padding: 5px 2px;}
+
+
+
+

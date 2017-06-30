@@ -1,0 +1,38 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/add_dp.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_reply_dp.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_reply_dp.js";
+?>
+{include file="inc/biz_header.html"}
+<div class="wrap">
+<div class="content">
+
+			<form name="submit_reply_dp" action="{url r="biz" p="eventr#do_reply_dp"}" method="post">
+			<div class="comment_list_txt">
+				<input type="hidden" name="data_id" value="{$data.data_id}" id="data_id">
+				<textarea name="reply_content" id="reply_content" maxlength="320" placeholder="点击输入您的要回复的内容">{$data.reply_content}</textarea>
+			</div>   
+			      
+			<div class="comment_commentary dpsub_btn" >确认回复</div>	
+			</form>					 	
+</div>
+</div>
+{include file="inc/biz_footer.html"}

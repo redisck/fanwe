@@ -1,0 +1,91 @@
+.map_con .bd{padding: 0 15px 15px;background: #fff;border: 1px solid #eee;background:#fff;}
+.bd .left_box{width: 328px;margin-right: 15px;}
+.position_title{
+	height: 30px;
+	display: block;
+	line-height: 30px;
+	font-size: 14px;
+}
+.bd .right_box{width: 615px;}
+#map_show{width: 615px;height:500px;}
+.q_text{padding: 11px 9px;width: 221px;margin-right: 3px;}
+
+.result-panel {
+	width: 328px;
+	height: 470px;
+	overflow: auto;
+	background-color:#fff;
+	display:none;
+}
+.result-panel .search-number{
+	padding-left: 4px;
+	font-size: 12px;
+	line-height: 30px;
+	background: #eee;
+}
+.result-panel .result-item {
+	padding: 4px;
+	cursor: pointer;
+}
+.result-panel .selected {
+	background: #eee;
+}
+.result-panel .icon {
+	float: left;
+	width: 24px;
+	height: 29px;
+	background: url(../images/css_bg/markers.png) no-repeat;
+}
+.result-panel .icon-1 {background-position: -24px 0;}
+.result-panel .icon-2 {background-position: -48px 0;}
+.result-panel .icon-3 {background-position: -72px 0;}
+.result-panel .icon-4 {background-position: -96px 0;}
+.result-panel .icon-5 {background-position: -120px 0;}
+
+.result-panel .selected .icon-0 {background-position: 0 -32px;}
+.result-panel .selected .icon-1 {background-position: -24px -32px;}
+.result-panel .selected .icon-2 {background-position: -48px -32px;}
+.result-panel .selected .icon-3 {background-position: -72px -32px;}
+.result-panel .selected .icon-4 {background-position: -96px -32px;}
+.result-panel .selected .icon-5 {background-position: -120px -32px;}
+
+
+.result-panel .result-item a{text-decoration: none;color:@main_color;}
+.result-panel .result-item h3{font-size: 12px;}
+.result-panel .result-item p {font-size: 12px;}
+.result-panel .icon-1 {background-position: -24px 0;}
+.result-panel .desc {
+	clear: right;
+	margin-left: 24px;
+	max-height: 35px;
+	overflow: hidden;
+}
+.page-wrapper a {
+	display: inline-block;
+	padding: 0px 5px;
+	height: 22px;
+	line-height: 22px;
+	background: #fff;
+	color: @main_color;
+	border: 1px solid #f80;
+	text-decoration: none;
+}
+.page-wrapper a:hover {
+	display: inline-block;
+	padding: 0px 5px;
+	height: 22px;
+	line-height: 22px;
+	color: #fff;
+	background: @main_color;
+	border: 1px solid @main_color;
+	text-decoration: none;
+}
+.page-wrapper .current {
+	display: inline-block;
+	padding: 0px 5px;
+	height: 22px;
+	line-height: 22px;
+	color: #fff;
+	background: #f80;
+	border: 1px solid @main_color;
+}

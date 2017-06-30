@@ -1,0 +1,75 @@
+{if $cart_list}
+<script type="text/javascript">
+	var jsondata = {$jsondata};
+</script>
+<form name="cart_form" action="{url x="index" r="ajax#check_cart"}">
+<div class="cart_table">
+		
+		<table>
+			<tr>
+				<th class="w_name">项目</th>
+				<th class="w_unit">单价</th>
+				<th class="w_num">数量</th>
+				<th class="w_total">总价</th>
+				<th class="w_op">操作</th>
+			</tr>
+			{foreach from=$cart_list item=cart_item}
+			<tr rel="{$cart_item.id}">
+				<td class="w_name">
+					<div class="cart_img">
+						<a href="{$cart_item.url}" target="_blank" title="{$cart_item.name}"><img src="{function name="get_spec_image" v=$cart_item.icon w=50 h=50 g=1}" alt="{$cart_item.name}" style="width:50px;height:50px;" /></a>
+					</div>
+					<div class="cart_name">
+						<a href="{$cart_item.url}" target="_blank" title="{$cart_item.name}">{function name="msubstr" v=$cart_item.name b=0 e=70}</a>
+					</div>
+				</td>
+				<td class="w_unit">
+					{if $cart_item.buy_type neq 1}
+					&yen;{function name="round" v=$cart_item.unit_price l=2}
+					{else}
+					{function name="abs" v=$cart_item.return_score}积分
+					{/if}
+				</td>
+				<td class="w_num">
+					<input type="hidden" name="id[]" value="{$cart_item.id}" />
+					<i class="minus" rel="{$cart_item.id}">-</i>
+					<input type="text" maxlength="4" class="num_ipt ui-textbox" name="number[]" value="{$cart_item.number}" rel="{$cart_item.id}" />
+					<i class="add" rel="{$cart_item.id}">+</i>
+				</td>
+				<td class="w_total">
+					{if $cart_item.buy_type neq 1}
+					&yen;<span>{function name="round" v=$cart_item.total_price l=2}</span>
+					{else}
+					<span>{function name="abs" v=$cart_item.return_total_score}</span>积分					
+					{/if}
+				</td>
+				<td class="w_op">
+					<a href="javascript:void(0);" rel="{$cart_item.id}">删除</a>
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+		
+</div>
+<div class="cart_total">
+	<table>
+		<tr>
+			<td class="cart_back"><a href="{url r="index"}">继续购物</a></td>
+			<td class="cart_sum">总计（不包含运费）：{if $cart_item.buy_type neq 1}<span>&yen;</span>{/if}<span id="sum">{function name="round" v=$total_price l=2}</span>{if $cart_item.buy_type eq 1}<span>积分</span>{/if}</td>
+			<td class="cart_btn">
+				<button class="ui-button f_l remove" rel="blue" type="button">清空购物车</button>
+				<button class="ui-button f_l check" rel="orange" type="submit">去结算</button>
+			</td>
+		</tr>
+	</table>	
+</div>
+</form>
+{else}
+<div class="cart_empty">
+	<span>
+		购物车内暂时没有商品<br />
+		马上去 [ <a href="{url r="index"}">首页</a> ] 挑选商品<br />
+		或者{if !$user_info} [<a href="{url r="index" x="user#login"}">登录</a>] 后{/if}去 [ <a href="{url r="index" x="uc_collect"}">我的收藏夹</a> ] 看看。
+	</span>
+</div>
+{/if}

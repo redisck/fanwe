@@ -1,0 +1,82 @@
+.warp_r .notice {
+ background: none repeat scroll 0 0 white;
+
+    clear: left;
+    float: left;
+    margin-bottom: 10px;
+    width: 225px;
+
+}
+
+
+.notice .box-title {
+	background:@main_color;
+    font-size: 16px;
+    padding: 10px;
+	color:white;
+}
+
+
+.notice .dc_notice {
+border-bottom: 1px dashed #eee;
+    clear: both;
+    display: block;
+    float: left;
+    line-height: 20px;
+    min-height: 20px;
+    overflow: hidden;
+    padding: 10px;
+    width: 203px;
+
+}
+
+
+.notice .dc_reserve{
+	margin-bottom:20px;
+	border:solid 1px @border_color;
+	background:url(../images/dc/dc_takeaway/hot_67136f4.png) no-repeat scroll 0 0;
+	color:#333;
+	font-size: 14px;
+	text-align:center;
+}
+
+
+#reserve_icon{
+display:block;
+height:50px;
+background:-moz-linear-gradient(center top , #fff, #f5f5f5) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.main_p  > .warp_r.f_r{
+	padding-top:10px;
+	position:relative;
+	display:block;
+}
+
+.content-notice .dc_notice img{
+float:left;
+ display: inline-block;
+  margin-right: 10px;
+}
+.notice .shop-notice{
+	padding:10px;
+	color:#FE4D3D;
+	height:auto !important;
+}
+
+.notice .content-notice{
+
+	 display: block;
+    line-height: 25px;
+    overflow: hidden;
+    width: 223px;
+}
+
+.dc_r_info{
+	display: block;
+    float: right;
+    width: 84%;
+}
+.dc_r_info.dc_pay {
+    width: 76%;
+}

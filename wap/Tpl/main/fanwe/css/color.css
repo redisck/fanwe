@@ -1,0 +1,41 @@
+
+/*背景色带back前缀；字体色带font前缀；边框色带bor前缀*/
+/*背景色设置*/
+.back-main{background:@main_color;}/*背景主色调*/
+.back-white{ background:@box_color;}
+.back-red{ background:@box_red;}
+/*字体颜色设置*/
+.font-main{color:@font_white;}/*字体主色调*/
+.font-fc8{ color:@font_style;}
+/*边框颜色设置*/
+.bor-main{ border-color:@border_main;} 
+.bor-fc8{ border-color:@border_style;} /*用在头部右边的隐藏菜单*/
+
+html body{background:@body_color;} 
+a,a:hover,a:visited{color:#6E7D8B;text-decoration:none;}
+
+/*这个文件还是留着，因为有些节点刚好用到这些类，不多不少*/ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

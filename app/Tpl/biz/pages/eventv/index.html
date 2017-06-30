@@ -1,0 +1,63 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/youhuiv.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/event.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/event.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+	var ajax_url = '{url r="biz" b="eventv"}';
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box">
+				<h2>活动报名验证</h2>
+			</div>
+			<div class="form_box">
+				<form id="event_form" name="event_form" method="post" action="{url r="biz" b="eventv#check_event"}">
+					<div class="event_box group_box">
+						<h3>选择门店</h3>
+						<div class="field_select">
+							<select name="location_id" class="ui-select ">
+								{foreach from=$location_list item=row}
+									<option value="{$row.id}">{$row.name}</option>
+								{/foreach}
+							</select>
+						</div>
+						<div class="blank10"></div>
+						<h3>请输入活动序列号进行验证</h3>
+						<div class="form_field">
+							<div class="f_text"><input type="text" name="event_sn" id="event_sn" value="" class="ui-textbox " holder="请输入活动序列号" /></div>							
+						</div>
+						<div class="event_btn">
+							<button class="ui-button" rel="orange" type="submit">验证活动报名</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

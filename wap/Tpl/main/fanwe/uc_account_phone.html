@@ -1,0 +1,75 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user_login.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user_login.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+
+?>
+{include file="inc/header.html"}
+
+<div class="wrap">
+	
+	<div class="content">
+	<div class="comment_list_txt1">
+		<div id="Tab1">
+		<div class="Menubox">
+		<ul>
+		   <li id="one2" class="hover">绑定手机</li>
+		</ul>
+		</div>
+		 <div class="Contentbox">  
+			<div id="con_one_2">
+		   	<form action="{url x="index" r="user#dophbind"}" id="ph_login_box">
+				<div class="inputtxt2">
+					<div class="first">
+						<input type="tel" class="phone" id="mobile" name="mobile" placeholder="请输入手机号" value="{$user_info.mobile}"  style=" width:100%; background:none;box-shadow:none; border:none; float:none;">
+					</div>
+				<div class="second">
+				    <input class="btn_phone" type="Button"  id="sms_btn" unique="1" value="发送验证码" lesstime="{$sms_lesstime}" />
+				</div>
+				
+				<div class="blank"></div>
+				</div>
+				<div class="inputtxt"> 
+				<div class="input_sr">
+					<input class="testing third" type="tel" id = "sms_verify" name="sms_verify"  placeholder="请输入手机短信中的验证码">
+					</div>	 
+				</div>
+				
+				
+				<div class="btn_login">
+				<input type="submit" value="立即绑定" style="background: none;">
+				</div>
+			</form>
+		   </div>
+			
+		 </div>
+		 
+		</div>  
+		           
+		
+	 </div>
+	 <div class="tr" style="padding:10px;">
+		 <a href="{url x="index" r="user#getpassword"}">取回密码</a>
+	 </div>
+	</div>
+</div>
+
+{include file="inc/footer.html"}	

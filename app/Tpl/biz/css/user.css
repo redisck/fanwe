@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+/*商户登录 和 部分通用CSS*/
+.bdw{min-height: 500px;_height:500px;background:#fff;padding-bottom:45px;z-index: 1}
+.box_main{border:1px solid @border_color;}
+.box_main .box_head{margin:15px 60px 0;padding:20px 0 ;border-bottom:1px solid @border_color;position:relative;}
+.box_head h2{display: inline;padding-left:12px;font-size:24px;}
+.box_form{padding:0 20px;}
+.box_form .lf_box{width:475px;margin:25px 0;padding:35px 0 30px 44px;_padding:35px 0 30px 35px;border-right:1px solid @border_color;font-size:14px;color: #333;zoom:1;}
+.box_form .con_box{margin:25px 0;padding:35px 0 30px 44px;font-size:14px;color: #333;}
+
+
+.field_group{}
+.field_group .f_text{display: inline-block;zoom:1;}
+.field_group .f_text input.img_verify{width:66px;margin-right:10px;}
+
+.field_group.verify_box img{height: 30px;padding-top: 4px;vertical-align: top;cursor: pointer;}
+.field_group .refresh_verify{color:@main_color;}
+
+
+.field_img_box{height:100px;}
+.field_img_box .f_label{top: 28px;}
+.field_img_box .upimg_btn{float:left;margin-right:10px;}
+.field_img_box .show_img_box{float:left;width: 98px;height: 75px;border: 3px dashed @border_color;text-align: center;padding: 5px;overflow: hidden;cursor:pointer}
+.field_img_box .show_img_box img{width: 88px;height: 75px;}
+.field_img_box .show_img_box:hover{border: 3px dashed @main_color;}
+.big_img_item{max-width:900px;text-align: center;}
+.field_img_box .field_tip{display:block;float:left;}
+
+.lf_tip{float: right;width: 360px;padding: 20px;}
+.lf_tip .lf_tip_head h2{color:@main_color;font-size: 30px;height: 40px;line-height: 40px;text-align: center;}
+.box_form .lf_box .forget_password{display:inline-block;}
+.box_form .lf_box .forget_password:hover{color:@dark_color;}
+.box_form .lf_box .refresh_verify:hover{color:@dark_color;}
+
+
+/*商户入驻*/
+.agree_title {font-size: 14px;font-weight: bold;margin: 28px 0 15px;text-align: center;}
+.agree_content{border: 1px solid #7F9DB9;margin: 0 auto;overflow-x: hidden;overflow-y: scroll;padding: 0;width: 870px;}
+
+.box_head .step_tip{position:absolute;top:10px;right:45px;}
+.step_tip .step_list .step_item{float:left;width:110px;text-align:center;height:32px;line-height:32px;border-bottom:2px solid @border_color;margin: 0 2px;}
+.step_tip .step_list .step_item.passed{border-bottom:2px solid @dark_color;color:@dark_color;font-weight:bold;}
+.step_tip .step_list .step_item.curr{border-bottom:2px solid @dark_color;color:@dark_color;font-weight:bold;}
+.step_tip .step_list .step_item.tobe{border-bottom:2px solid @border_color;color:@border_color}
+
+.msg_tip_box{z-index: 2}
+
+.con_item{margin-bottom: 20px;}
+.con_item .t_title{height: 29px;overflow: hidden;background: #f2f2f2;border-top: 1px solid #e2e2e2;padding: 0 5px 0 10px;line-height: 29px;width: 800px;float: left;}
+.t_title span{vertical-align: middle;font-weight: 700;font-size: 14px;color: #666;}
+
+.sms_verify_box{float:left;}
+.sms_verify_box .ph_verify{width:100px;display: inline-block;outline: 2px;font-size: 16px;padding: 9px;margin-right:10px;}
+
+.ph_img_verify{display: none;}
+.img_verify_box{float:left;width:350px;}
+.img_verify_box input.img_verify{width:100px;display: inline-block;outline: 2px;font-size: 16px;padding: 9px;margin-right:10px;}
+.img_verify_box img.verify {padding: 7px 0px;margin-right: 5px;cursor: pointer;width: 50px;height: 22px;}
+.img_verify_box a.refresh_verify{display:inline-block;height: 36px;line-height: 36px;color:@main_color;cursor:pointer;}
+

@@ -1,0 +1,85 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_consignee.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+
+
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+	var from='{$from}';
+</script>
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////////-->	
+<div class="blank024"></div>
+<div class="bg_fff bor_3 bor_4 p_025_030 lh050">
+	<a href="{url r="index" p="dc_consignee#add" g="from=$from&lid=$lid"}">
+		<i class="icon iconfont f040 f_c0c0c0 ">&#xe683;</i>
+		<span class="f029 pl030">新增收货地址</span>
+	</a>
+</div>
+<!-------------------------------------------------------------------------------------------------新增收货地址-->
+<div class="blank024"></div>
+
+<div class="bg_fff  bor_4">
+
+	{foreach from=$data.consignee_list item=item}
+		<div class="clearfix bor_3 p_25_200_25_103">
+			{if $item.is_main eq 1}
+			<i class="choose_consignee icon iconfont f044 lh092 f_fe4d3d  f_l ml-073" consignee_id="{$item.id}">&#xe67a;</i>
+			{else}
+			<i class="choose_consignee icon iconfont f044 lh092 f_c9cacf  f_l ml-073" consignee_id="{$item.id}">&#xe684;</i>
+			{/if}
+			<i class="del_consignee icon iconfont  f_858585  lh092 f_r mr-030 f045" consignee_id="{$item.id}">&#xe608;</i>
+			<a href="{url r="index" p="dc_consignee#add" g="id=$item.id&from=$from&lid=$lid"}" class="f_r mr-170 lh092"><i class="edit_consignee icon iconfont f060 f_858585  " consignee_id="{$item.id}">&#xe67c;</i></a>
+			<p class="lh046">{$item.consignee}<span class="f_858585 pl030">{$item.mobile}</span></p>
+			<p class="lh046 f_858585">{$item.api_address}{$item.address}</p>
+		</div>
+	{/foreach}
+	
+	{if $from eq cart}
+	
+		<form id="cart_form" action="{url r="index" p="dcorder#cart" g="lid=$lid"}" method="post">
+				<input type="hidden" name="not_check_delivery" value="0" />
+				<input type="hidden" name="consignee_id" value="{$data.main_id}" />
+		</form>
+	
+	{/if}
+
+</div>
+<!-------------------------------------------------------------------------------------------------返回购物车-->
+{if $from eq cart}
+<div class="blank124"></div>
+<div class="pf b_0 l_0 w_percentage_100" id="return_cart">
+	<div class="pl030 pr030 pt064 pb030 ">
+	      <button class="dc_consignee_save tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100">返回购物车</button>
+    </div>
+</div>
+{/if}
+<!-------------------------------------------------------------------------------------------------返回购物车-->
+</body>
+</html>

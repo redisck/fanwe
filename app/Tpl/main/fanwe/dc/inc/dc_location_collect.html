@@ -1,0 +1,33 @@
+{if $collect_location.list}
+<div class="blank10"></div>
+<div class="dc_colloect_box">
+<div class="dc_title">我的收藏</div>
+<div class="collect_one">
+	{foreach from=$collect_location.list item=collect_location_item}
+		<div class="outer_box">
+		<div class="collect_box">
+		<i class="iconfont del_location_collect" id="delete_location_collect_icon" data-i="{$collect_location_item.link_id}" lid="{$collect_location_item.id}">&#xe619;</i>
+		<a href="{$collect_location_item.url}">
+		<img id="big_pic" src="{function name="get_spec_image" v=$collect_location_item.preview w=185 h=124 g=1}" alt="{$collect_location_item.name}" origin="{$collect_location_item.preview}" width="185" height="124">
+		</a>
+		<div class="box_title_text">{$collect_location_item.name}</div>
+		
+		<div class="deal_extra">
+			<div class="sale_count">
+				已售<span>{$collect_location_item.buy_count}</span>份
+			</div>
+			<div class="sale_review">							
+				<span>
+					<input class="ui-starbar" value="{$collect_location_item.avg_point}" disabled="true"  />
+				</span>
+				</span>
+				<span class="review_count"><i>{$collect_location_item.dp_count}</i>个点评</span>						
+			</div>
+		</div>
+		</div>
+		</div>
+	{/foreach}
+	
+</div>
+</div>
+{/if}

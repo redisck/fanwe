@@ -1,0 +1,73 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/city.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+?>
+{include file="inc/header.html"}
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".letter_index").find("a").bind("click",function(){
+		var cate_id = $(this).attr("data");
+		var cate_box = $(".city_table").find("li[data='"+cate_id+"']");
+		var top = $(cate_box).offset().top - 10;	
+		$("html,body").animate({scrollTop:top},"fast","swing");
+	});	
+});
+</script>
+<div class="wrap">
+	
+	<div class="content">
+		<div id="location-city" class="box">		
+		        当前城市：<span class="city-name" >{$data.city_name}</span>
+		</div>
+		{if $data.hot_city}
+		<h2 class="all_city_title">热门城市</h2>
+		<div class="letter">
+			<div class="blank"></div>
+			<ul class="city_table">
+				{foreach from=$data.hot_city key=keys item=items}
+				<li><a href="{$items.url}">{$items.name}</a></li>
+				{/foreach}
+			</ul>
+		</div>
+		{/if}
+		<h2 class="all_city_title">全部城市</h2>
+		<div class="letter">
+			<ul class="letter_index">
+				{foreach from=$data.city_list key=key item=item}
+				<li><a href="javascript:;" data="{$key}">{$key}</a></li>
+				{/foreach}
+			</ul>
+			<div class="blank"></div>
+			{foreach from=$data.city_list key=key item=item}
+			<ul class="city_table">
+				<li data="{$key}"><a href="javascript:;">{$key}</a></li>
+				{foreach from=$item key=keys item=items}
+				<li><a href="{$items.url}">{$items.name}</a></li>
+				{/foreach}
+			</ul>
+			{/foreach}
+		</div>
+	</div>
+	
+</div>
+
+
+
+{include file="inc/footer.html"}	

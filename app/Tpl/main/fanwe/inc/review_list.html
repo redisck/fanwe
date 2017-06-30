@@ -1,0 +1,182 @@
+<div class="evaluation">
+<div class="rating clearfix">
+	<table>
+		<tr>
+			<td class="rate_box noborder">
+				<div class="total_group total_num">
+					<b>{$dp_data.avg_point}</b><span>分</span>
+				</div>
+				<div class="total_group">
+					<input class="ui-starbar" value="{$dp_data.avg_point}" disabled="true"  />
+				</div>
+				<div class="total_group total_count">
+					共
+					<strong>{$dp_data.dp_count}</strong>
+					人评价
+				</div>
+			</td>
+			{if $dp_data.point_group}
+			<td class="rate_box">
+				{foreach from=$dp_data.point_group item=point_group}
+				<div class="total_g clearfix">
+					<div class="this_title">{$point_group.name}</div>
+						<div class="f_l" >							
+							<input class="ui-starbar" value="{$point_group.avg_point}" disabled="true"  />
+						</div>
+					<div class="this_num">{$point_group.avg_point}分</div>	
+				</div>
+				{/foreach}
+			</td>
+			{/if}
+			<td class="rate_box noborder">
+				<div class="count-group">
+					<span class="score f_l">5分</span>
+					<span class="percent_box f_l">
+						<span style=" width:{$dp_data.avg_point_5_percent}%;"></span>
+					</span>
+					<span class="people f_l">{$dp_data.dp_count_5}人</span>
+				</div>
+				<div class="count-group">
+					<span class="score f_l">4分</span>
+					<span class="percent_box f_l">
+						<span style=" width:{$dp_data.avg_point_4_percent}%;"></span>
+					</span>
+					<span class="people f_l">{$dp_data.dp_count_4}人</span>
+				</div>
+				<div class="count-group">
+					<span class="score f_l">3分</span>
+					<span class="percent_box f_l">
+						<span style=" width:{$dp_data.avg_point_3_percent}%;"></span>
+					</span>
+					<span class="people f_l">{$dp_data.dp_count_3}人</span>
+				</div>
+				<div class="count-group">
+					<span class="score f_l">2分</span>
+					<span class="percent_box f_l">
+						<span style=" width:{$dp_data.avg_point_2_percent}%;"></span>
+					</span>
+					<span class="people f_l">{$dp_data.dp_count_2}人</span>
+				</div>
+				<div class="count-group">
+					<span class="score f_l">1分</span>
+					<span class="percent_box f_l">
+						<span style=" width:{$dp_data.avg_point_1_percent}%;"></span>
+					</span>
+					<span class="people f_l">{$dp_data.dp_count_1}人</span>
+				</div>
+			</td>
+		</tr>
+	</table>
+						
+		</div>
+		{foreach from=$dp_data.tag_group item=tag_group}
+		<div class="attitude over clearfix">
+			<span class="title f_l">{$tag_group.name}:</span>
+			<div class="labels f_l active_parent">
+				{foreach from=$tag_group.tags item=tag }
+				<a href="javascript:void(0);" gid="{$tag_group.id}" class="lab good {if $tag eq $filter_tag and $gid eq $tag_group.id}active{/if}" {if $tag neq $filter_tag or $gid neq $tag_group.id}rel="{$tag}"{/if}>{$tag}({$tag_group.tags_count[$tag]})</a>
+				{/foreach}
+			</div>			
+		</div>
+		{/foreach}
+		<div class="blank"></div>
+		
+		
+		<div class="clearfix">
+			<div class="sort_row">
+				<ul>
+					<li class="anode {if $sort_data.sort_field eq 0}current{/if}"><a href="javascript:void(0);" v="0">默认排序</a></li>
+					<li class="anode {if $sort_data.sort_field eq 1}current{/if} {if $sort_data.sort_type eq 'asc' && $sort_data.sort_field eq 1}asc{else}desc{/if}"><a href="javascript:void(0);" v="1" t="{if $sort_data.sort_type eq 'desc' && $sort_data.sort_field eq 1}asc{else}desc{/if}">好评<i class="iconfont">{if $sort_data.sort_type eq 'asc' && $sort_data.sort_field eq 1}&#xe61c;{else}&#xe61d;{/if}</i></a></li>
+					<li class="anode {if $sort_data.sort_field eq 2}current{/if} {if $sort_data.sort_type eq 'asc' && $sort_data.sort_field eq 2}asc{else}desc{/if}"><a href="javascript:void(0);" v="2" t="{if $sort_data.sort_type eq 'desc' && $sort_data.sort_field eq 2}asc{else}desc{/if}">差评<i class="iconfont">{if $sort_data.sort_type eq 'asc' && $sort_data.sort_field eq 2}&#xe61c;{else}&#xe61d;{/if}</i></a></li>
+					
+		
+					
+		
+					<li class="dnode">
+					<select class="ui-drop" name="review_filter">
+						
+						<option value="0" {if $sort_data.filter eq 0}selected="selected"{/if}>全部点评</option>
+						<option value="1" {if $sort_data.filter eq 1}selected="selected"{/if}>好评</option>
+						<option value="2" {if $sort_data.filter eq 2}selected="selected"{/if}>中评</option>
+						<option value="3" {if $sort_data.filter eq 3}selected="selected"{/if}>差评</option>
+			
+					</select>
+					</li>
+		
+					
+			
+					<li class="cnode">
+					<label class="ui-checkbox dtag" rel="common_cbo"><input type="checkbox" value="1" name="is_img" {if $sort_data.is_img eq 1}checked="checked"{/if} />有图</label>
+					</li>
+					<li class="cnode">									
+					<label class="ui-checkbox dtag" rel="common_cbo"><input type="checkbox" value="1"  name="is_content" {if $sort_data.is_content eq 1}checked="checked"{/if}  />有内容的评价</label>
+					</li>
+				
+				</ul>
+			</div>
+		</div>
+		
+		
+		{if $dp_list}
+		<div class="comments_details">
+			<ul>
+				{foreach from=$dp_list item=dp_item}
+				<li class="details_li">
+					<div class="clearfix">
+						<div class="f_l">
+							<span class="user_name">{function name="get_user_name" value=$dp_item.user_id show_tag="0"} </span>
+							<span class="date">{$dp_item.create_time_format}</span>
+						</div>
+						<div class="f_r">
+							<input class="ui-starbar" value="{$dp_item.point}" disabled="true"  />
+						</div>
+					</div>
+					<p class="content">
+						{$dp_item.content}
+					</p>
+					
+					{if $dp_item.images}
+					<div class="review_pic clearfix">
+						<div class="over">
+							<div  class="pic_box">
+							     <ul>
+							     	{foreach from=$dp_item.images item=img}
+							     	<li>
+							     		<a href="javascript:void(0);" rel="{function name="get_spec_image" v=$img w=670 h=0}"><img src="{function name="get_spec_image" v=$img  w=100 h=100 g=1}" lazy="true" /></a>
+							     	</li>
+									{/foreach}									
+									
+								 </ul>
+							</div>
+							
+							{if count($dp_item.images) gt 6}
+							<a href="javascript:void(0);" class="pre hide_tag"></a>
+							<a href="javascript:void(0);" class="next hide_tag"></a>
+							{/if}
+						</div>
+						<div class="blank"></div>
+						<div class="big_img">
+							<a href="javascript:void(0);" class="bprev"></a>
+							<a href="javascript:void(0);" class="bnext"></a>
+							<img src="" />							
+							<div class="blank"></div>
+						</div>
+					</div>
+					{/if}
+					{if $dp_item.reply_content}
+					<div class="supplier_reply"><span class="reply_title">掌柜回复：</span>{$dp_item.reply_content}</div>
+					{/if}
+				</li>
+				{/foreach}				
+			</ul>
+			<div class="blank"></div>
+			<div class="pages">
+				{$pages}
+			</div>
+		</div>
+		{else}
+		<div class="empty_tip">
+			没有相关点评数据
+		</div>
+		{/if}			
+</div>

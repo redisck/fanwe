@@ -1,0 +1,235 @@
+<?php
+//本页不引用header.html， 直接在页面内编写单独header
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_payment.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_payment_pay.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_payment_pay.js";
+?>
+{* 开始头部 *}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" />
+{* 加载浏览器兼容 *}
+{function name="load_compatible"}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{if $page_title}{$page_title} - {/if}{$site_seo.title}</title>
+<meta name="keywords" content="{if $page_keyword}{$page_keyword}{else}{$site_seo.keyword}{/if}" />
+<meta name="description" content="{if $page_description}{$page_description}{else}{$site_seo.description}{/if}" />
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';
+
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1}
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+var IS_RUN_CRON = 1;
+var DEAL_MSG_URL = '{url x="index" r="cron#deal_msg_list"}';
+{/if}
+var AJAX_LOGIN_URL	= '{url x="index" r="user#ajax_login"}';
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+var order_id = {function name="intval" value=$order_info.id};
+</script>
+<?php
+//前台队列功能开启
+if(app_conf("APP_MSG_SENDER_OPEN")==1)
+{
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+}
+?>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/app/lang.js"></script>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$pagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$pagejs" c="$cpagejs"}"></script>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/region.js"></script>	
+</head>
+<body>
+<img src="{$TMPL}/images/loader_img.gif" style="display:none;" /><!--延时加载的替代图片生成-->
+<div class="top_nav">
+	<div class="{function name="load_wrap" t=$wrap_type}">
+		<span class="f_l">欢迎来到{function name="app_conf" v="SHOP_TITLE"}</span>	
+		<span class="f_r">
+			<ul class="head_tip">
+				<li class="cart_tip" id="cart_tip">{insert name="load_cart_count"}</li>
+				<li class="user_tip" id="head_user_tip">{insert name="load_user_tip"}</li>
+			</ul>
+		</span>
+	</div>
+</div><!--顶部横栏-->
+<div class="blank15"></div>
+<div class="{function name="load_wrap" t=$wrap_type} head_main">
+	<div class="logo f_l">
+	<a class="link" href="{$APP_ROOT}/">
+		<?php
+			$this->_var['logo_image'] = app_conf("SHOP_LOGO");
+		?>
+		{function name="load_page_png" v=$logo_image}
+	</a>
+	</div>
+	<div class="cart_step f_r">
+		<ul>
+			<li>1. 提交订单</li>
+			<li>2. 选择支付方式</li>
+			<li class="current">3. 购买成功</li>
+		</ul>
+	</div>
+</div><!--logo与头部搜索-->
+{* 头部结束 *}
+<div class="blank20"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+
+	<div class="layout_box payment">
+	{if $rs eq 1}
+		{if $order_info.is_rs eq 0}
+			{if $is_in_open_time eq 1}
+			{* 外卖订单成功   *}
+					<div class="title">{$LANG.PAY_SUCCESS_CONGRATUATION}</div>
+					<div class="content payment_done">	
+						<div class="order_content">
+						你已成功支付<span class="done_money">{function name=round v=$order_info.pay_amount g=2}</span>元 ,&nbsp;&nbsp;订单号: {$order_info.order_sn} , 点击查看<a class="go_list" href="{if $order_info.is_rs eq 0}{url r="index" t="dc_dcorder#view" p="id=$order_info.id"}{else}{url r="index" t="dc_rsorder#view" p="id=$order_info.id"}{/if}">订单详情</a>
+						<br/>
+						订单正在等待接单中, 请耐心等待
+						<br/>
+						<div class="other_info">
+						你还可以
+						<a class="go_shop" href="{url r="index" t="dc"}"><button class="ui-button" rel="blue">继续购物</button></a>
+						<a class="go_list"  href="{if $order_info.is_rs eq 0}{url r="index" t="dc_dcorder"}{else}{url r="index" t="dc_rsorder"}{/if}">返回订单查询</a>
+						</div>
+						</div>
+					</div>
+			{else}		{* 付款超时，商家暂不营业   *}
+						<div class="title">{$LANG.ERROR_TITLE}</div>
+						<div class="content payment_done">	
+						<div class="order_content">
+						<div class="error_content">
+						
+						对不起，您的付款超时。<br/>
+						您支付的{function name=round v=$order_info.return_money g=2} 元已经转到账户余额中，您的代金劵也已退回。
+						{if $order_info.online_pay gt 0 && $order_info.payment_fee gt 0}
+						在线支付的手续费{function name=round v=$order_info.payment_fee g=2} 元不退回。
+						{/if}
+						</div>
+						<a class="go_list" href="{url r="index" t="uc_order"}">查看我的资产</a>
+						
+						</div>
+						</div>	
+			{/if}	
+			
+		{else}
+				{* 预定订单成功*}
+			{if $is_out_stock_rs eq 0}
+			
+					<div class="title">{$LANG.PAY_SUCCESS_CONGRATUATION}</div>
+					<div class="content payment_done">	
+						<div class="order_content">
+						你已成功支付<span class="done_money">{function name=round v=$order_info.pay_amount g=2}</span>元 ,&nbsp;&nbsp;订单号: {$order_info.order_sn} , 点击查看<a class="go_list" href="{if $order_info.is_rs eq 0}{url r="index" t="dc_dcorder#view" p="id=$order_info.id"}{else}{url r="index" t="dc_rsorder#view" p="id=$order_info.id"}{/if}">订单详情</a>
+						<br/>
+						订单正在等待接单中, 请耐心等待
+						<br/>
+						<div class="other_info">
+						你还可以
+						<a class="go_shop" href="{url r="index" t="dc"}"><button class="ui-button" rel="blue">继续购物</button></a>
+						<a class="go_list"  href="{if $order_info.is_rs eq 0}{url r="index" t="dc_dcorder"}{else}{url r="index" t="dc_rsorder"}{/if}">返回订单查询</a>
+						</div>
+						</div>
+					</div>
+			{else}		{* 预定库存不足*}
+						<div class="title">{$LANG.ERROR_TITLE}</div>
+						<div class="content payment_done">	
+						<div class="order_content">
+						<div class="error_content">
+						
+						对不起，您的预订已无座位。<br/>
+						您支付的{function name=round v=$order_info.return_money g=2} 元已经转到账户余额中，您的代金劵也已退回。
+						{if $order_info.online_pay gt 0 && $order_info.payment_fee gt 0}
+						在线支付的手续费{function name=round v=$order_info.payment_fee g=2} 元不退回。
+						{/if}
+						</div>
+						<a class="go_list" href="{url r="index" t="uc_order"}">查看我的资产</a>
+						
+						</div>
+						</div>	
+			{/if}	
+		{/if}		
+	{elseif $rs eq 0}  {* 付款单成功，但有还部分余额未付 *}
+				<div class="title">{$LANG.PAY_SUCCESS_CONGRATUATION}</div>
+				<div class="content payment_done">	
+					<div class="order_content">
+					你已成功支付<span class="done_money">{function name=round v=$payment_notice_info.money g=2}</span>元 ,&nbsp;&nbsp;付款单号: {$payment_notice_info.notice_sn} 
+					<br/>
+					尚余<span class="done_money">{function name=round v=$order_info.pay_price g=2}</span>元未支付,请前往支付,<a class="go_list"  href="{url r="index" t="dcorder#order" p="id=$order_info.id"}">返回继续支付</a>
+					<br/>
+					<div class="other_info">
+					你还可以
+					<a class="go_shop" href="{url r="index" t="dc"}"><button class="ui-button" rel="blue">继续购物</button></a>
+					
+					</div>
+					</div>
+				</div>
+	
+	{elseif $rs eq 2}  {* 付款单重复支付*}
+					<div class="title">{$LANG.ERROR_TITLE}</div>
+					<div class="content payment_done">	
+					<div class="order_content">
+					<div class="error_content">
+					您的订单号{$payment_notice_info.notice_sn} 已支付。<br/>
+					
+					重复支付金额{function name=round v=$payment_notice_info.money g=2} 元已经转到账户余额中。
+					</div>
+					<a class="go_list" href="{url r="index" t="uc_order"}">查看我的资产</a>
+					
+					</div>
+					</div>
+	{elseif $rs eq 3}	{* 订单关闭   *}
+					<div class="title">{$LANG.ERROR_TITLE}</div>
+					<div class="content payment_done">	
+					<div class="order_content">
+					<div class="error_content">
+					您的订单号{$order_info.order_sn} 已关闭。<br/>
+
+					您支付的{function name=round v=$order_info.return_money g=2} 元已经转到账户余额中,您的代金劵也已退回。<br/>
+					{if $order_info.online_pay gt 0 && $order_info.payment_fee gt 0}
+					在线支付的手续费{function name=round v=$order_info.payment_fee g=2} 元不退回。
+					{/if}
+					</div>
+					<a class="go_list" href="{url r="index" t="uc_order"}">查看我的资产</a>
+					
+					</div>
+					</div>
+	{elseif $rs eq 5}  {* 货到付款  *}
+
+					<div class="title">{$LANG.PAY_SUCCESS_CONGRATUATION}</div>
+					<div class="content payment_done">	
+						<div class="order_content">
+						你已成功提交订单 ,&nbsp;&nbsp;订单号: {$order_info.order_sn} , 点击查看<a class="go_list" href="{if $order_info.is_rs eq 0}{url r="index" t="dc_dcorder#view" p="id=$order_info.id"}{else}{url r="index" t="dc_rsorder#view" p="id=$order_info.id"}{/if}">订单详情</a>
+						<br/>
+						订单正在等待接单中, 请耐心等待
+						<br/>
+						<div class="other_info">
+						你还可以
+						<a class="go_shop" href="{url r="index" t="dc"}"><button class="ui-button" rel="blue">继续购物</button></a>
+						<a class="go_list"  href="{if $order_info.is_rs eq 0}{url r="index" t="dc_dcorder"}{else}{url r="index" t="dc_rsorder"}{/if}">返回订单查询</a>
+						</div>
+						</div>
+					</div>
+	
+				
+	{/if}		
+	</div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

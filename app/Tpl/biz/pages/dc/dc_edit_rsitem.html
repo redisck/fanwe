@@ -1,0 +1,159 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/add_rsitem.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery-ui.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/timepicker/jquery-ui-timepicker-addon.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-ui.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/timepicker/jquery-ui-timepicker-addon.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/timepicker/jquery-ui-timepicker-zh-CN.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_add_rsitem.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_add_rsitem.js";
+?>
+
+{include file="inc/header.html"}
+
+<script>
+var ajax_url = '{$ajax_url}';
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class="publish_project_btn f_r"><a href="{url r="biz" b="dc#dc_rsitem_index" p="id=$location_id"}"><button class="ui-button " rel="white" type="button">返回列表</button></a></div>
+			</div>
+			<div class="blank20"></div>
+			<div class="form_box">
+				<form name="add_rsitem_form" action="{url r="biz" b="dc#do_save_rsitem"}" method="post">
+					<div class="publish_box ">
+					<table class="form_teble_box add_border">
+									<colgroup>
+										<col width="120">
+										<col width="570">
+									</colgroup>
+									<tbody>
+										<tr class="buy_type_0">
+											<td class="t_field_name">餐桌名称:</td>
+											<td class="t_field_value">
+												<input class="ui-textbox" name="name" value="{$vo.name}" />
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name">排序:</td>
+											<td class="t_field_value">
+												<input class="ui-textbox" name="sort" value="{$vo.sort}" />
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name">定金:</td>
+											<td class="t_field_value">
+												<input class="ui-textbox" name="price" value="{$vo.price}" />&nbsp;元
+											</td>
+										</tr>
+										
+										<tr >
+											<td class="t_field_name">状态:</td>
+											<td class="t_field_value">
+												<select class="ui-select  filter_select medium" name="is_effect">
+													<option value="1" {if $vo.is_effect eq 1} selected="selected"{/if} >有效</option>
+													<option value="0" {if $vo.is_effect eq 0} selected="selected"{/if} >无效</option>
+												</select>
+											</td>
+										</tr>
+										<tr >
+											<td class="t_field_name">时间设置:</td>
+											<td class="t_field_value">
+												<div class="add_time_box">添加时间配置 &nbsp; &nbsp;<button class="ui-button add_time_btn" type="button" rel="white">添加</button></div>
+												<div class="rs_item_time_box">
+													<table>
+														<thead>
+															<tr>
+																<th>时间</th>
+																<th>人数</th>
+																<th>状态</th>
+																<th>操作</th>
+															</tr>
+														</thead>
+														<tbody class="rsitem_time_box">
+															{if $rs_time_data}
+														   {foreach from=$rs_time_data item=row}
+															<tr class="time_item">
+																<td>
+																	<input  type="hidden" class="ui-textbox" name="rs_time_id[]" value="{$row.id}" />
+																	<input  type="text" class="rs_time ui-textbox time_txt" name="rs_time[]" value="{$row.rs_time}" />
+																</td>
+																<td><input class="total_count ui-textbox"  name="total_count[]" value="{$row.total_count}"  /></td>
+																<td>
+																	<select class="ui-select  filter_select small" name="t_is_effect[]">
+																		<option value="1" {if $row.is_effect eq 1}selected="selected"{/if}>有效</option>
+																		<option value="0" {if $row.is_effect eq 0}selected="selected"{/if}>无效</option>
+																	</select>
+																</td>
+																<td><a href="javascript:void(0);" onclick="del_time_item(this)" data-id="{$row.id}" class="iconfont">&#xe613;</a></td>
+															</tr>
+															{/foreach}
+															{else}
+															<tr class="time_item">
+																<td>
+																	<input  type="hidden" class="ui-textbox" name="rs_time_id[]" value="" />
+																	<input  type="text" class="rs_time ui-textbox time_txt" name="rs_time[]" value="" />
+																</td>
+																<td><input class="total_count ui-textbox"  name="total_count[]" value="1"  /></td>
+																<td>
+																	<select class="ui-select  filter_select small" name="t_is_effect[]">
+																		<option value="1">有效</option>
+																		<option value="0">无效</option>
+																	</select>
+																</td>
+																<td>-</td>
+															</tr>
+															{/if}
+														</tbody>
+													</table>
+												</div>
+											</td>
+										</tr>
+										
+										</tbody>
+								</table>
+								<div class="blank10"></div>
+					</div>
+					<div class="confirm_form_btn">
+						<input type="hidden" name="id" value="{$id}"/>
+						<input type="hidden" name="location_id" value="{$location_id}"/>
+						
+						<div class="sub_form_btn">
+							<button class="ui-button " rel="orange" type="submit">确认提交</button>
+						</div>
+							
+					</div>
+				</form>
+				<div class="blank10"></div>
+			</div>
+			<div class="blank10"></div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,23 @@
+
+			<div style="width:380px; padding:10px; text-align:center;" id="payment_tip">
+				
+				<p style="font-size:14px; font-weight:bold;">
+					{lang v="PAYMENT_INFO_TIP"}				
+				</p>
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<p class="notice">
+					<span class="red">{lang v="PAYMENT_NOTICE_TIP_1"}</span>
+					<div class="blank"></div>						
+					{lang v="PAYMENT_NOTICE_TIP_2"}		
+				</p>
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<p class="tip_btn" >
+					<button class='ui-button' rel='orange' id='pay_done'  url='{url x="index" r="payment#pay" p="id=$payment_notice.id&check=1"}'>{lang v="PAYMENT_HAS_DONE"}</button>
+					&nbsp;
+					<button class='ui-button' rel='blue' id='pay_retry' url='{url x="index" r="cart#order" p="id=$payment_notice.order_id"}'>{lang v="PAYMENT_ERROR"}</button>
+				</p>
+				
+			</div>		
+

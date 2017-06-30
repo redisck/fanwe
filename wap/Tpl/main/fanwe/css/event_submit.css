@@ -1,0 +1,32 @@
+.evaluate_title{ line-height:22px; padding:10px 5px; color:#666; border-bottom:solid 1px @border_main;}
+.event_submit_panel{padding:10px;}
+.event_submit_panel dl{padding-bottom: 10px;}
+.event_submit_panel dl dt{font-size:14px;}
+.event_submit_panel dl dt {
+line-height: 38px;
+clear: both;
+text-align: left;
+}
+.event_submit_panel dl dd {
+overflow: hidden;
+line-height: 38px;
+margin-bottom: 8px;
+}
+.event_submit_panel dd input {
+width: 90%;
+padding: 0 10px;
+height: 44px;
+font-size: 16px;
+border-radius: 5px;
+border: 1px #ccc solid;
+background: #fff;
+}
+.event_submit_panel select {
+width: 90%;
+padding: 0 10px;
+height: 40px;
+font-size: 12px;
+border-radius: 5px;
+border: 1px #ccc solid;
+background: #fff;
+}

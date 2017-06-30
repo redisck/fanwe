@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" />
+{* 加载浏览器兼容 *}
+{function name="load_compatible"}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{if $page_title}{$page_title} - {/if}{$site_seo.title}商家中心</title>
+<meta name="keywords" content="{if $page_keyword}{$page_keyword}{else}{$site_seo.keyword}{/if}商家中心" />
+<meta name="description" content="{if $page_description}{$page_description}{else}{$site_seo.description}{/if}商家中心" />
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1}
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+var IS_RUN_CRON = 1;
+var DEAL_MSG_URL = '{url x="index" r="cron#deal_msg_list"}';
+{/if}
+var AJAX_URL	= '{url x="biz" r="ajax"}';
+
+//关于图片上传的定义
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+var LOADER_IMG_GIF = '{$TMPL}/images/css_bg/loading.gif';
+var UPLOAD_SWF = '{$TMPL}/js/utils/Moxie.swf';
+var UPLOAD_XAP = '{$TMPL}/js/utils/Moxie.xap';
+var MAX_IMAGE_SIZE = '{function name='app_conf' v='MAX_IMAGE_SIZE'}';
+var MAX_SP_IMAGE = '<?php echo MAX_SP_IMAGE; ?>';
+var ALLOW_IMAGE_EXT = '{function name='app_conf' v='ALLOW_IMAGE_EXT'}';
+var UPLOAD_URL = '{url x="biz" r="file#upload"}';
+
+//关于编辑器上传的定义
+var K_UPLOAD_URL = "{url r="biz" b="file#upload"}";
+var K_BASE_PATH = '{$TMPL}/js/utils/kindeditor/';
+var K_THEMES_PATH = '{$TMPL}/css/utils/kindeditor/';
+
+var OFC_SWF = '{$TMPL}/js/open-flash-chart.swf';
+</script>
+<?php
+//前台队列功能开启
+if(app_conf("APP_MSG_SENDER_OPEN")==1)
+{
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+}
+?>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/app/lang.js"></script>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$pagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$pagejs" c="$cpagejs"}"></script>
+
+</head>
+<body>
+<!-- 顶部横栏 -->
+<div class="biz_header">
+	<div class="head_box wrap_full">
+		<a class="logo f_l" href="{url r="index"}"><h1>{function name="app_conf" v="SHOP_TITLE"}商户管理平台</h1></a>
+		<ul class="head_nav">
+			{insert name="load_biz_user_tip"}
+		</ul>
+
+	</div>
+</div>

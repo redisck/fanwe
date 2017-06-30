@@ -1,0 +1,139 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_order.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/event.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_event.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_event.js";
+?>
+{include file="inc/header.html"}
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav left_box">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		
+		<div class="main_box setting_user_info">
+			<div class="content">
+				<div class="title"><span>我的活动报名</span></div>
+				<div class="blank20"></div>
+				
+			</div>
+			{if $list}
+			<div class="info_box">
+				<div class="info_table order_table">
+					<table>
+						<tbody>							
+							<tr>
+								<th width="100">序列号</th>
+								<th width="auto">详情</th>
+								<th width="150">有效期</th>
+								<th width="120">状态</th>
+								<th width="60">操作</th>
+							</tr>
+				
+							{foreach from=$list item=event}
+							<tr>
+								<td>
+									{if $event.is_verify eq 1}
+									{$event.sn}
+									<br />
+									<a href="javascript:void(0);" event_id="{$event.event_id}" class="view_submit" action="{url x="index" r="uc_event#view_submit" p="id=$event.id"}">查看报名资料</a>
+									{elseif $event.is_verify eq 0}
+									<h1>未审核</h1>
+									<br />
+									<a  href="javascript:void(0);" event_id="{$event.event_id}" class="modify_submit">修改报名资料</a>
+									{else}
+									<h1>审核不通过</h1>
+									{/if}	
+								</td>
+								<td>
+									<a href="{$event.event.url}" target="_blank">{$event.event.name}</a>		
+									{if $event.return_money gt 0 or $event.return_score gt 0 or $event.return_point gt 0}
+									<br />
+									使用后返还
+									{if $event.return_money gt 0}<h1>{function name="format_price" v=$event.return_money}</h1>&nbsp;&nbsp;{/if}
+									{if $event.return_score gt 0}<h1>+ {function name="format_score" v=$event.return_score}</h1>&nbsp;&nbsp;{/if}
+									{if $event.return_point gt 0}<h1>+ {$event.return_point}经验值</h1>{/if}
+									{/if}							
+								</td>
+								<td>
+									{if $event.event_end_time}{function name="to_date" v=$event.event_end_time f="Y-m-d"}{/if}
+									{if $event.event_end_time eq 0}无限期{/if}
+								</td>
+								<td>
+									{if $event.confirm_time eq 0}
+										{if $event.event_end_time > 0 and $event.event_end_time < $NOW_TIME}
+										<h1>已过期</h1>
+										{else}
+											{if $event.is_verify eq 1}
+											有效
+											{else}
+											--
+											{/if}
+										{/if}
+									{else}
+										<h1>{function name="to_date" v=$event.confirm_time f="Y-m-d"}</h1> 使用
+									{/if}
+									
+								</td>
+								<td>
+									
+									{if $event.is_verify eq 0 or $event.is_verify eq 2}
+									--
+									{elseif  $event.confirm_time eq 0 and ($event.event_end_time > $NOW_TIME or $event.event_end_time eq 0)} {*未退款未生效或已拒绝退款，未使用未过期*}						
+										{if app_conf("SMS_ON") eq 1 and $event.sms_count < app_conf("SMS_COUPON_LIMIT")}
+										<a href="javascript:void(0);" class="send_event" action="{url x="index" r="uc_event#send" p="t=sms&id=$event.id"}">短信发送</a>
+										{/if}		
+										{if app_conf("SMS_ON") eq 1 and $event.mail_count < app_conf("MAIL_COUPON_LIMIT")}
+										{if app_conf("SMS_ON") eq 1 and $event.sms_count < app_conf("SMS_COUPON_LIMIT")}
+										<br />
+										{/if}
+										<a href="javascript:void(0);" class="send_event" action="{url x="index" r="uc_event#send" p="t=mail&id=$event.id"}">邮件发送</a>
+										{/if}								
+									{else}
+										{if $event.dp_id eq 0}
+										<a href="{url x="index" r="review" p="event_submit_id=$event.id"}" target="_blank">我要点评</a>
+										{else}
+										<h1>已点评</h1>
+										{/if}
+									{/if}
+	
+								</td>
+							</tr>
+							{/foreach}
+                   
+   
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+
+			<div class="blank20"></div>
+			<div class="pages">{$pages}</div>
+			{else}
+			<div class="empty_tip">没有报名记录</div>
+			{/if}
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

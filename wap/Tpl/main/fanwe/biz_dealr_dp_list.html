@@ -1,0 +1,124 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/dp_list.css";			
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_dealr.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+
+?>
+{include file="inc/biz_header.html"}
+<script>var ajax_url = "{$ajax_url}";</script>
+<div class="wrap">
+	<div class="content">
+	{if $data.status eq 0}
+		<div class="common_tip">
+              <span><i class="iconfont">&#xe644;</i>&nbsp;&nbsp;{$data.info}</span>
+       	</div>
+       	{/if}
+	<div >
+	
+	<div class="statistics_panel">
+	<div class="score">
+		<ul class="point_item">
+			<li class="avg_poing">{$data.buy_dp_avg}</li>
+			<li class="dp_count">{$data.buy_dp_sum}</li>
+			<li class="star_v"><input class="ui-starbar" value="{$data.buy_dp_avg}" disabled="true"  /></li>
+		</ul>
+	</div>
+	<div class="column">
+                    <ul>
+                            <li>
+                                <span class="rate">5星</span>
+                                    <span class="progress">
+                                        <span class="bar" style="width:{$data.star_dp_width_5}%"></span>
+                                    </span>
+                                <span class="count">{$data.star_5}</span>
+                            </li>
+                            <li>
+                                <span class="rate">4星</span>
+                                    <span class="progress">
+                                        <span class="bar" style="width:{$data.star_dp_width_4}%"></span>
+                                    </span>
+                                <span class="count">{$data.star_4}</span>
+                            </li>
+                            <li>
+                                <span class="rate">3星</span>
+                                    <span class="progress">
+                                        <span class="bar" style="width:{$data.star_dp_width_3}%"></span>
+                                    </span>
+                                <span class="count">{$data.star_3}</span>
+                            </li>
+                            <li>
+                                <span class="rate">2星</span>
+                                    <span class="progress">
+                                        <span class="bar" style="width:{$data.star_dp_width_2}%"></span>
+                                    </span>
+                                <span class="count">{$data.star_2}</span>
+                            </li>
+                            <li>
+                                <span class="rate">1星</span>
+                                    <span class="progress">
+                                        <span class="bar" style="width:{$data.star_dp_width_1}%"></span>
+                                    </span>
+                                <span class="count">{$data.star_1}</span>
+                            </li>
+                    </ul>
+                </div>
+</div>
+<div class="filter_box">
+	<div class="f-item"><a {if $data.is_bad eq 0} class="cur" {/if} href="{url r="biz" b="dealr#dealr_dp_list" p="&data_id=$data.data_id"}">全部</a></div>
+	<div class="f-item"><a {if $data.is_bad eq 1} class="cur" {/if} href="{url r="biz" b="dealr#dealr_dp_list" p="data_id=$data.data_id&is_bad=1"}">差评</a></div>
+</div>
+		{if $data.item}
+			<div class="rw-list">
+			{foreach from=$data.item item=row key=k1}
+			<div class="rw-item">
+			        <ul>
+			        	<li class="i-title"><span class="user_name">{$row.user_name}</span><small class="datetime">{$row.create_time}</small><span class="star_box"><input class="ui-starbar" value="{$row.point}" disabled="true"  /></span></li>
+			            <li class="i-content">{$row.content}</li>
+			            <li class="i-images">
+			            	{foreach from=$row.images item=image}
+			            		<div class=" img"><img src="{$image}" /></div>
+			            	{/foreach}
+			            </li>
+			            {if $row.reply_content}
+			            	<li class="i-reply"><span>[掌柜回复]{$row.reply_content}</span>&nbsp;&nbsp;<a href="{url r="biz" b="dealr#dealr_reply_dp" p="data_id=$row.id"}"><i class="iconfont">&#xe646;</i>&nbsp;修改</a></li>
+			            {else}
+			            	<li class="i-null-reply"><a href="{url r="biz" b="dealr#dealr_reply_dp" p="data_id=$row.id"}"><i class="iconfont">&#xe643;</i>&nbsp;回复</a></li>
+			            {/if}
+			        </ul>
+			</div>
+			{/foreach}
+			</div>
+			{else}
+			<div class="null_data">
+			<p class="icon"><i class="iconfont">&#xe61e;</i></p>
+			<p class="message">还没有人点评</p>
+			</div>
+			{/if}
+
+{if $pages}
+	<div class="fy">
+		{$pages}
+	</div>
+{/if}
+<div class="blank50"></div>
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

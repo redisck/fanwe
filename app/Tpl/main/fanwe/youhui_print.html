@@ -1,0 +1,31 @@
+<?php
+//本页不引用header.html， 直接在页面内编写单独header
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/youhui_print.css";
+?>
+{* 开始头部 *}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" />
+{* 加载浏览器兼容 *}
+{function name="load_compatible"}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{if $page_title}{$page_title} - {/if}{$site_seo.title}</title>
+<meta name="keywords" content="{if $page_keyword}{$page_keyword}{else}{$site_seo.keyword}{/if}" />
+<meta name="description" content="{if $page_description}{$page_description}{else}{$site_seo.description}{/if}" />
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$pagecss"}" />
+</head>
+<body onload="javascript:window.print();">
+	<div class="youhui_print_box">
+		<div class="youhui_print_t"></div>
+		<div class="youhui_print_c">
+			<div class="youhui_title">{$youhui_info.name}</div>
+			<div class="youhui_sn">序列号: <span>{$log.youhui_sn}</span></div>
+			<div class="blank"></div>
+			<div class="youhui_print_img"><img src="{$youhui_info.image}" /></div>
+			<div class="blank"></div>
+		</div>
+		<div class="youhui_print_b"></div>
+	</div>
+</body>
+</html>

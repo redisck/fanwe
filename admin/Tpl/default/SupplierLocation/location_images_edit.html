@@ -1,0 +1,47 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/conf.js' />
+<div class="main">
+	<div class="main_title">
+		【{$location_sub_info.name}】图库{%EDIT} <a href="{:u("SupplierLocation/publish")}" class="back_list">{%BACK_LIST}</a>
+	</div>
+	<div class="blank5"></div>
+	<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+
+		<div class="blank5"></div>
+		<table class="form conf_tab" cellpadding=0 cellspacing=0 rel="1">
+			
+				<tr >
+					<td class="item_title">商户提交图集</td>
+					<td class="item_input">
+					<foreach name="imglist" item="vo" key="k">
+							<div class="{$k}" style="float:left;margin:5px">
+								<p><img src="{$vo}" style="height:150px;"/></p>
+								<p style="text-align:right;"><a href="javascript:void();" onclick="del_img({$k})">删除</a></p>
+								<input type="hidden" name="location_images[]" value="{$vo}"/>
+							</div>
+							</foreach>
+						</td>
+				</tr>
+			
+			<tr>
+					<td class="item_title"></td>
+					<td class="item_input">
+					
+					<input type="hidden" name="id" value="{$location_sub_info.id}"/>
+					
+					<input type="hidden" name="{:conf("VAR_MODULE")}" value="SupplierLocation" />
+					<input type="hidden" name="{:conf("VAR_ACTION")}" value="update_biz_submit_images" />
+					<input type="submit" class="button" value="{%EDIT}" />
+					
+					</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+function del_img(k){
+	$("."+k).remove();
+}
+</script>

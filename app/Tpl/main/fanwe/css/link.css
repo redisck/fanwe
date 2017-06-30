@@ -1,0 +1,16 @@
+.inc {border:@border_color solid 1px;	padding:10px 20px 20px;font-family: 'Microsoft YaHei',Tahoma,Verdana,'Simsun';background:@box_color;}
+.article_top{border-bottom:4px solid @border_color;}
+.article_top h3{height: 36px;line-height: 36px;color: @main_color;}
+.article_top h3 span{font-size:18px;float:left;max-width:250px;white-space:nowrap;overflow:hidden;border-bottom:@main_color solid 4px;font-weight: bold;}
+
+.flink {background: #fff;padding: 0 0 10px 0;}
+.flink h2, .flink h3 {font-size: 14px;border-bottom: #cecece dotted 1px;line-height:30px;}
+.flink a {display: inline-block;float: left;margin: 8px 10px 5px 0px;height:36px;line-height:36px;border-radius:5px;overflow:hidden;}
+.flink a img{width:100px;height:36px;}
+
+
+
+
+
+
+

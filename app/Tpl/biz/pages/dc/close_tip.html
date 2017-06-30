@@ -1,0 +1,12 @@
+<form action="{$form_url}" method="post" name="close_tip" id="close_formx">
+
+	<label class="ui-radiobox" rel="common_rdo"><input type="radio" name="close_reason" value="假订单" / >假订单</label>
+	<label class="ui-radiobox" rel="common_rdo"><input type="radio" name="close_reason" value="重复订单" / >重复订单</label>
+	<label class="ui-radiobox" rel="common_rdo"><input type="radio" name="close_reason" value="联系不上用户" / >联系不上用户</label>
+	<label class="ui-radiobox" rel="common_rdo"><input type="radio" name="close_reason" value="美食已售完" / >美食已售完</label>
+	{if $is_rs eq 0}
+	<label class="ui-radiobox" rel="common_rdo"><input type="radio" name="close_reason" value="不在配送范围" / >不在配送范围</label>
+	{/if}
+	<input type="text" class="ui-textbox search_box" name="close_reason_text" />
+
+</form>

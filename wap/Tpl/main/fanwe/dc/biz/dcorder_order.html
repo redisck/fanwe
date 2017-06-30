@@ -1,0 +1,170 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_biz.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_more.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_more.js";
+
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+</script>
+<!-------------------------------------------------------------------------------------------------选项卡-->
+{include file="dc/inc/dc_biz_order_nav.html"}
+<!-------------------------------------------------------------------------------------------------选项卡-->
+
+<div class="blank024"></div>
+
+<div class="clearfix bg_fff bor_3 bor_4 p_0_030 lh100 f029">
+	<span class="f_l">时间</span>
+	<select class="f_l lh100 ml010" id="dcorder_order_time_select">
+		{foreach from=$data.data_arr item=item}
+		<option href="{url r="index" p="dc_biz_order#order" g="lid=$data.lid&date=$item" }" {if $data.date eq $item}selected="selected"{/if}>{$item}</option>
+		{/foreach}
+	</select>
+	<span class="f_r">共计{$data.total}个订单</span>
+</div>
+{if $data.dc_order}
+<ul>
+		{foreach from=$data.dc_order item=item}
+	<li class="pb024">
+		<div class="bg_fff bor_4 mt-1 ">
+			  <div class="w_b pt025 pb016 bor_3">
+			  	<div class="tc w125 h106 bdr5 bor_9 ovhide m_0_032">
+				   <p class="lh053 f029 f_fff bg_fe4d3d">#{$item.id}</p>
+				   <p class="lh053 f029 f_fe4d3d bg_fff">{$item.order_state.state_format}</p>
+				</div>
+				<div class="w_b_f_1 f_858585 f029">
+                         <p class=" lh030 lh030p">{$item.consignee}&nbsp; {function name=to_date v=$item.create_time}</p>      
+						 <p class="lh057 p_009_0">{$item.mobile}</p>
+						 <p class="lh048">{$item.api_address}{$item.address}</p>					
+				</div>
+			  </div>
+			  
+			  <div class="bor_3 p_012_030 f029 lh054">
+				  	<div class="w_b">
+				  		  <div class="w160 ">支付方式</div>
+						  <div class="w_b_f_1 f_fe4d3d">{if $item.payment_id eq 0}在线支付{else}餐到付款{/if}</div>
+				  	</div>
+					<div class="w_b">
+				  		  <div class="w160 ">配送时间</div>
+						  <div class="w_b_f_1 f_858585 sd">{if $item.order_delivery_time eq 1}立即配送{else}{function name=to_date v=$item.order_delivery_time}{/if}</div>
+				  	</div>
+				  	{if $item.dc_comment}
+					<div class="w_b">
+				  		  <div class="w160 ">备注</div>
+						  <div class="w_b_f_1 f_858585 sd">{$item.dc_comment}</div>
+				  	</div>
+				  	{/if}
+				  	{if $item.invoice}
+					<div class="w_b">
+				  		  <div class="w160 ">发票信息</div>
+						  <div class="w_b_f_1 f_858585">{$item.invoice}</div>
+				  	</div>
+				  	{/if}
+					<div class="w_b">
+				  		  <div class="w160 ">订单号</div>
+						  <div class="w_b_f_1 f_858585">{$item.order_sn}</div>
+				  	</div>
+			  </div>
+			  
+			  <div class=" bor_3 p_012_030 lh054">
+			  	    {foreach from=$item.order_menu.cart_list  item=itemx}
+			  	          <div class=" w_b ">
+							<div class="w_percentage_30">{$itemx.name}</div>
+							<div class="w_b_f_1 tc">X{$itemx.num}</div>
+							<div class="w_percentage_30 tr">{function name=format_price v=$itemx.total_price g=2}</div>
+					      </div>
+					{/foreach}
+			  	          {if $item.promote_amount gt 0}
+                          <div class=" w_b ">
+							<div class="w_b_f_1 tl">立减优惠</div>
+							<div class="w_b_f_1 tr f_fe4d3d">-{function name=format_price v=$item.promote_amount g=2}</div>
+						  </div>
+						  {/if}
+						  {if $item.ecv_money gt 0}
+						  <div class=" w_b ">
+							<div class="w_b_f_1 tl">红包</div>
+							<div class="w_b_f_1 tr f_fe4d3d">-{function name=format_price v=$item.ecv_money g=2}</div>
+						  </div>
+						  {/if}
+						 {if $item.package_price gt 0}
+						  <div class=" w_b ">
+							<div class="w_b_f_1 tl">打包费</div>
+							<div class="w_b_f_1 tr f_858585">{function name=format_price v=$item.package_price g=2}</div>
+						  </div>
+						  {/if}
+						  {if $item.delivery_price gt 0}
+						  <div class=" w_b">
+							<div class="w_b_f_1 tl">配送费</div>
+							<div class="w_b_f_1 tr f_858585">{function name=format_price v=$item.delivery_price g=2}</div>
+						  </div>
+						  {/if}
+						  <div class=" w_b ">
+							<div class="w_b_f_1 tl">合计</div>
+							<div class="w_b_f_1 tr f_fe4d3d">{function name=format_price v=$item.pay_price g=2}</div>
+						  </div>
+				</div>
+
+					{if $item.biz_order_state.act}
+					<div class="p_017_030 w_b_s  w_b b_0 bg_fff w_percentage_100 bor_3">
+						{foreach from=$item.biz_order_state.act item=act}
+						<div class="w_b_f_1 p_0_030">
+							 <button action-url="{$act.url}" class="{if $act.has_reason eq 1}dc_close_order_all bg_DAD8D6{else}dc_accept_order_all bg_ffb955{/if} tc f_fff  bdr5 h066 lh066 f026 w_percentage_100">{$act.name}</button>
+						</div>	
+						{/foreach}	
+						</div>
+					{/if}
+					
+				
+				
+		</div>
+	</li>
+	{/foreach}
+	
+	{if $pages}
+	<div class="fy">
+		{$pages}
+	</div>
+	{/if}
+</ul>
+{else}
+<div class="blank024"></div>
+<div class="bg_fff lh100 tc f029 bor_3 bor_4">
+	暂无记录
+</div>
+{/if}
+<!-------------------------------------------------------------------------------------------------新订单列表-->
+{include file="dc/biz/dc_close_order_all.html"}
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{if $location_dc_cart.total_data.total_count gt 0}
+<div class="clearfix lh060 bor_4 w_percentage_100 pf b_100  w_b_s bg_fff pl030 pr070 bor_2 bor_11">
+		<div class="f_l">购物车</div>
+		<div class="f_r" id="dc_cart_clear">清除<i class="icon iconfont f042 f_7f7f7f ">&#xe68d;</i></div>
+</div>
+
+<div class="w_percentage_100  max-height_percentage_50 pf  o-y  bg_fff  w_o_s bor_4 bor_2 bor_11 w_b_f_1 w_b_s p_0_030 b_164">
+	<!--
+	<div class="clearfix lh060 bor_3">
+		<div class="f_l">购物车</div>
+		<div class="f_r" id="dc_cart_clear">清除<i class="icon iconfont f042 f_7f7f7f ">&#xe68d;</i></div>
+	</div>
+	-->
+	<div class="clearfix lh060 bor_3">
+		<div class="f_r" id="dc_cart_close"><span class="pr010">关闭</span><i class="icon iconfont f036 f_7f7f7f ">&#xe671;</i></div>
+	</div>
+	<ul>
+	{foreach from=$location_dc_cart.cart_list item=cart_unit}
+		<li class="clearfix  bor_5 w_b p_010_0 mb-1">
+			    <div class="w_b_f_1 lh044">
+						<div class="f_l w_percentage_50">{$cart_unit.name}</div>
+					    <div class="f_l w_percentage_50">{function name=format_price v=$cart_unit.unit_price g=2}/份</div>
+				</div>
+			     <div class="menu_right w150" menu-id={$cart_unit.menu_id}>
+
+					<div class="f_r" menu-id={$cart_unit.menu_id} menu-count={$cart_unit.num}>
+
+						<span class="f_l block w040 h040 tc bor_7 bdr3 lh034 {if $data.is_allow_add_cart eq 1}del_one{else}bg_ccc{/if}"><i class="icon iconfont {if $data.is_allow_add_cart eq 1}f_fe4d3d{else}f_dcdcdc{/if} f024">&#xe673;</i></span>
+						<span class="f_fe4d3d f_l block h044 w054 lh044 tc">{$cart_unit.num}</span>	
+						<span class="f_l block w040 h040 tc bor_7 bdr3 lh034 {if $data.is_allow_add_cart eq 1}add_one{else}bg_ccc{/if}"><i class="icon iconfont {if $data.is_allow_add_cart eq 1}f_fe4d3d{else}f_dcdcdc{/if} f024">&#xe674;</i></span>
+					</div>	
+						
+				 </div>
+		</li>
+	{/foreach}
+	</ul>
+</div>
+{else}
+<div class="clearfix lh080 bor_4 w_percentage_100 pf b_100  w_b_s bg_fff pl030 pr070">
+	    <i class="icon iconfont f042 f_fe4d3d ">&#xe633;</i>
+		<span class="f_ccc">您的购物车是空的，赶紧去shopping吧！~</span>		
+</div>
+{/if}

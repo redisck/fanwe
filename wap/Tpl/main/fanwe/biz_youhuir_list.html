@@ -1,0 +1,68 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+?>
+{include file="inc/biz_header.html"}
+<script>var ajax_url = "{$ajax_url}";</script>
+<div class="wrap">
+	<div class="content">
+	{if $data.status eq 0}
+		<div class="common_tip">
+              <span><i class="iconfont">&#xe644;</i>&nbsp;&nbsp;{$data.info}</span>
+       	</div>
+       	{/if}
+	<div class="dp-list-panel">
+	
+		{if $data.item}
+			<div class="dp-list-box">
+			{foreach from=$data.item item=row key=k1}
+			<a class="dp-item-box-link" href="{url r="biz" b="youhuir#youhuir_dp_list" p="data_id=$row.id"}">
+				<div class="dp-item-box">
+				       <div class="point-box"><span>{$row.avg_point}</span><small>分</small></div>
+				       <div class="info-box">
+				       	<p class="i-title">{$row.name}</p>
+				       	<p class="i-price">还剩余：<small>{$row.total_num}</small> 张</p>
+				       	<p class="i-dp-count">已有：<span>{$row.user_count}</span> 人下载</p>
+				       </div>
+				       <div class="more-icon"><i class="iconfont">&#xe607;</i></div>
+				</div>
+			</a>
+			{/foreach}
+
+			</div>
+			{else}
+			<div class="null_data">
+			<p class="icon"><i class="iconfont">&#xe61e;</i></p>
+			<p class="message">还没发布项目</p>
+			</div>
+			{/if}
+	</div>
+	
+	{if $pages}
+	<div class="blank"></div>
+	<div class="fy">
+		{$pages}
+	</div>
+{/if}
+	<div class="blank50"></div>
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

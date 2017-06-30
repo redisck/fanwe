@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+.layout_box{border: #ddd solid 1px;}
+.msg_box .title{height: 40px;line-height: 40px;font-size: 20px;font-family: "å¾®è½¯é›…é»‘";text-indent: 20px;letter-spacing: 2px;color: #000;text-align: center;border-bottom: #e64d5e 2px solid;background-color: #F0F0F0;}
+.msg_box .content {padding: 30px;font-size: 14px;text-align: center;line-height: 35px;background-color:#fff;}
+.msg_box .content .jump_tip{font-size:12px;}
+.msg_box .content .jump_tip span{color: #e64d5e;padding: 0px 5px;font-weight: bolder;font-family: verdana;font-size: 18px;}
+.msg_box .content .jump_tip a {color: #e64d5e;font-size: 14px;padding: 0px 5px;}
+
+
+

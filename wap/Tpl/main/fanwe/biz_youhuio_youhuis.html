@@ -1,0 +1,75 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_youhuio_locations.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+?>
+{include file="inc/biz_header.html"}
+<script>var ajax_url = "{$ajax_url}";</script>
+<div class="wrap">
+	<div class="content">
+	{if $data.status eq 0}
+		<div class="common_tip">
+              <span><i class="iconfont">&#xe644;</i>&nbsp;&nbsp;{$data.info}</span>
+       	</div>
+       	{/if}
+       		{if $data.youhui}
+       	<div class="head_info">
+       		<h3>{$data.youhui.name}</h3>
+       		<div class="sub_info table_box">
+       			<div class="l_table_item height_color">本店消费：{$data.youhui.use_count}</div>
+       			<div class="l_table_item">有效期：{$data.youhui.f_end_time}</div>
+       		</div>
+       	</div>
+       	{/if}
+		<div class="list-view bor_none">
+			 <ul class="item_small_ul">
+			 <li class="item_li">
+			 	     <div class="list_item table_box table_head">
+							<div class="c_table_item" style="width:35%">优惠券</div>
+							<div class="c_table_item" style="width:35%">消费时间</div>
+							<div class="c_table_item" style="width:30%">会员</div>
+			 	     	</div>
+			 	</li>
+			 	{foreach from=$data.youhuis item=row}
+			 	<li class="item_li">
+			 	     <div class="list_item table_box">
+							<div class="c_table_item"  style="width:35%">{$row.youhui_sn}</div>
+							<div class="c_table_item"  style="width:35%">{$row.f_confirm_time}</div>
+							<div class="c_table_item"  style="width:30%">{$row.user_name}</div>
+					 </div>
+			 	</li>
+				{/foreach}
+				
+			 </ul>
+			 
+		</div>
+	</div>
+	
+	{if $pages}
+		<div class="blank"></div>
+		<div class="fy">
+			{$pages}
+		</div>
+	{/if}
+	<div class="blank50"></div>
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

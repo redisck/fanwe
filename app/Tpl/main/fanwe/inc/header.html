@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" />
+{* 加载浏览器兼容 *}
+{function name="load_compatible"}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{if $page_title}{$page_title} - {/if}{$site_seo.title}</title>
+<meta name="keywords" content="{if $page_keyword}{$page_keyword}{/if} {$site_seo.keyword}" />
+<meta name="description" content="{if $page_description}{$page_description}{/if} {$site_seo.description}" />
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';
+var CART_URL = '{url x="index" r="cart"}';
+var CART_CHECK_URL = '{url x="index" r="cart#check"}';
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1}
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+var IS_RUN_CRON = 1;
+var DEAL_MSG_URL = '{url x="index" r="cron#deal_msg_list"}';
+{/if}
+var AJAX_LOGIN_URL	= '{url x="index" r="user#ajax_login"}';
+var AJAX_URL	= '{url x="index" r="ajax"}';
+var CITY_COUNT	= {$city_count};
+
+//关于图片上传的定义
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+var UPLOAD_SWF = '{$TMPL}/js/utils/Moxie.swf';
+var UPLOAD_XAP = '{$TMPL}/js/utils/Moxie.xap';
+var MAX_IMAGE_SIZE = '{function name='app_conf' v='MAX_IMAGE_SIZE'}';
+var ALLOW_IMAGE_EXT = '{function name='app_conf' v='ALLOW_IMAGE_EXT'}';
+var UPLOAD_URL = '{url x="index" r="file#upload"}';
+var QRCODE_ON = '{function name='app_conf' v='QRCODE_ON'}';
+</script>
+<?php
+//前台队列功能开启
+if(app_conf("APP_MSG_SENDER_OPEN")==1)
+{
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+}
+?>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/app/lang.js"></script>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$pagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$pagejs" c="$cpagejs"}"></script>
+
+</head>
+<body>
+<img src="{$TMPL}/images/loader_img.gif" style="display:none;" /><!--延时加载的替代图片生成-->
+{if count($city_list)>1}
+<div class="city_list">
+	<div class="city_list_box">
+		{foreach from=$city_list item=item}
+		<a href="{$item.url}" class="city_item" >{$item.name}</a>
+		{/foreach}
+	</div>
+</div>
+{/if}
+<div class="top_nav">
+	<div class="{function name="load_wrap" t=$wrap_type}">
+		<span class="f_l">欢迎来到{function name="app_conf" v="SHOP_TITLE"}</span>	
+		<span class="f_r">
+			<ul class="head_tip">
+				<li class="user_tip"><a href="{url r="biz"}" target="_blank">商户中心</a></li>
+				<li class="cart_tip" id="cart_tip">{insert name="load_cart_count"}</li>
+				<li class="user_tip" id="history_tip">{insert name="load_head_history"}</li>
+				<li class="user_tip" id="head_user_tip">{insert name="load_user_tip"}</li>
+			</ul>
+		</span>
+	</div>
+</div><!--顶部横栏-->
+<div class="blank15"></div>
+<div class="{function name="load_wrap" t=$wrap_type} head_main">
+	<div class="logo f_l">
+	<a class="link" href="{$APP_ROOT}/">
+		<?php
+			$this->_var['logo_image'] = app_conf("SHOP_LOGO");
+		?>
+		{function name="load_page_png" v=$logo_image}
+	</a>
+	</div>
+	<div class="city f_l">
+		{if count($city_list)>1}
+		<a class="city_name" href="javascript:void(0);"  jump="{url r="index" x="city"}">{insert name="load_city_name"}{if $city_count lt 20}&nbsp;<i></i>{/if}</a>
+		<a href="javascript:void(0);"  jump="{url r="index" x="city"}" class="city_switch f_l">切换城市</a>
+		{/if}
+	</div>
+	<div class="search f_r">
+		<div class="top_search">
+			<form action="{url r="index" x="search"}" name="search_form" method=post >
+			<select name="search_type" class="ui-select search_type f_l">
+				<option value="1" {if $search_type eq 1}selected="selected"{/if}>搜团购</option>
+				<option value="2" {if $search_type eq 2}selected="selected"{/if}>搜优惠</option>
+				<option value="3" {if $search_type eq 3}selected="selected"{/if}>搜活动</option>
+				<option value="4" {if $search_type eq 4}selected="selected"{/if}>搜商家</option>				
+				<option value="5" {if $search_type eq 5}selected="selected"{/if}>搜商品</option>
+				<option value="6" {if $search_type eq 6}selected="selected"{/if}>搜分享</option>
+			</select>
+			<input type="text" name="search_keyword" class="ui-textbox search_keyword f_l" holder="请输入您要搜索的关键词" value="{$kw}" />
+			<button class="ui-button f_l" rel="search_btn" type="submit">搜索</button>
+			</form>
+		</div>
+		<ul class="search_hot_keyword">
+			{foreach from=$hot_kw item=kw}
+			<li><a href="{$kw.url}">{$kw.txt}</a></li>
+			{/foreach}
+		</ul>
+	</div>
+</div><!--logo与头部搜索-->
+<div class="blank15"></div>
+<div class="nav_bar">
+	<div class="{function name="load_wrap" t=$wrap_type}">
+		{if !$no_nav}
+		<div class="drop_nav" id="drop_nav" ref="{$drop_nav}">
+			<span class="drop_title">全部分类<i></i></span>
+			<div class="drop_box">
+				{function name="load_cate_tree" c=0 t=$cate_tree_type}
+			</div>
+		</div><!--下拉菜单-->
+		{/if}
+		<div class="main_nav">
+			<ul>
+				{foreach from=$nav_list item=nav_item}
+				<li {if $nav_item.current eq 1}class="current"{/if}><a href="{$nav_item.url}" {if $nav_item.blank}target="_blank"{/if}>{$nav_item.name}</a></li>
+				{/foreach}
+				
+			</ul>
+		</div>
+	</div>
+</div>	
+{if $site_nav}
+<div class="{function name="load_wrap" t=$wrap_type}">
+	<div class="blank"></div>
+	<div class="site_nav">
+		{foreach from=$site_nav item=nav key=key}
+		{if $key gt 0}&nbsp;&nbsp;»&nbsp;&nbsp;{/if}<a href="{$nav.url}" title="{$nav.name}">{function name="msubstr" v=$nav.name}</a>
+		{/foreach}
+	</div>	
+	
+</div>
+{/if}

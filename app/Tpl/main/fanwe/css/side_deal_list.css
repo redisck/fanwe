@@ -1,0 +1,22 @@
+/* 关于右侧的商品 */
+
+.side_deal_box{border:1px solid @border_color; background:@box_color; padding:10px 13px 7px 12px; width:198px;}
+.side_deal_box .title_row{ font-size:14px; font-weight:bolder; height:22px; line-height:22px; margin-bottom:15px;}
+.side_deal_box .title_row span{ float:left;}
+.side_deal_box .title_row a{ float:right; font-size:12px; font-weight:normal;}
+.side_deal_box .content_row .side_deal_list li{ display:block; margin-bottom:15px;}
+
+.side_deal_box .content_row .side_deal_list .deal_img{ display:block; border:@box_color solid 1px; width:198px; margin-bottom:10px;}
+.side_deal_box .content_row .side_deal_list .deal_img img{ width:198px; height:134px;}
+.side_deal_box .content_row .side_deal_list .deal_info{ height:35px; line-height:35px;}
+.side_deal_box .content_row .side_deal_list .deal_info .deal_price .current_price i{ font-size:16px; padding-right:2px; font-weight:bolder; color:@main_color; font-style:normal; font-family:arial;}
+.side_deal_box .content_row .side_deal_list .deal_info .deal_price .current_price{ font-size:20px; font-weight:bolder; color:@main_color; padding-right:2px;}
+.side_deal_box .content_row .side_deal_list .deal_info .deal_price .origin_price{ text-decoration:line-through;}
+.side_deal_box .content_row .side_deal_list .sale_count span{ color:@main_color;} 
+
+.side_deal_box .content_row .side_deal_list li.active .deal_img{ display:block; border:@main_color solid 1px; width:198px; margin-bottom:10px;
+-moz-box-shadow: 2px 2px 2px #f2f2f2;/*firefox*/
+-webkit-box-shadow: 2px 2px 2px #f2f2f2;/*safari或chrome*/
+box-shadow:2px 2px 2px #f2f2f2;/*opera或ie9*/ }
+.side_deal_box .content_row .side_deal_list li.active .deal_title{ color:@main_color;}
+.side_deal_box .content_row .side_deal_list li.active .deal_title:hover{ color:@dark_color;}

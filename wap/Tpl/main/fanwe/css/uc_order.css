@@ -1,0 +1,154 @@
+header .right-box a span {
+display: block;
+background-size: auto 29px;
+height: 25px;
+padding: 4px 8px 0 8;
+margin-right: -0px;
+text-shadow: 0 0 1px #000;
+background-position: right 0;
+font-family: Test;
+font-size: 14px;
+background: -webkit-linear-gradient(top,#EB2555,#A04E65);
+border: 1px solid #B80F38;
+}
+
+ul, ol {
+padding-left: 0;
+list-style-type: none;
+}
+.dl {
+display: block;
+min-height: 78px;
+position: relative;
+padding: 5px 8px 10px 140px;
+border-bottom: 1px #F1F1F1 solid;
+}
+.dl>img {
+width: 122px;
+left: 8px;
+position: absolute;
+padding: 1px;
+border: 1px #DBE5E7 solid;
+}
+.dl-brand {
+font-size: 14px;
+line-height: 15px;
+color: #000;
+font-weight: 700;
+margin-top: 5px;
+}
+.break-word {
+word-wrap: break-word;
+overflow: hidden;
+}
+.dl-title {
+line-height: 16px;
+color: #999;
+font-size: 13px;
+margin-top: 4px;
+}
+.dl-price {
+font-size: 12px;
+color: #AAA;
+position: relative;
+}
+.dl-price>strong {
+font-size: 18px;
+color: #a11d58;
+}
+strong {
+font-weight: 700;
+}
+
+
+Inherited from li.dl-price
+.dl-price {
+font-size: 12px;
+color: #AAA;
+}
+.bianma ul li{line-height:30px;height:30px}
+.dingdan ul li{border-bottom: 1px #F1F1F1 solid; line-height:40px;height:40px; font-size:1em;}
+ul li{font-size: 12px;padding-left: 8px; }
+button.btn-block {
+width: 100%;
+}
+.btn-block {
+display: block;
+line-height: 46px;
+padding: 0;
+margin: 10px 0;
+font-size: 20px;
+background: #fc8600;
+border: 1px solid #c35700;
+color: #FFF;
+}
+.blank {
+height: 20px;
+line-height: 20px;
+clear: both;
+background-color:#ddd;
+}
+
+button.btn-block1 {
+width: 45%;
+padding: 0;
+margin: 10px 0;
+font-size: 20px;
+background: #fc8600;
+border: 1px solid #c35700;
+
+color: #FFF;
+margin-left:10px;
+}
+
+		.dl-price {
+		line-height: 20px;
+		font-size: 13px;
+		
+       }
+	   .bianma ul li {
+		padding: 0px;
+		border-bottom: 1px solid #f1f1f1;
+		line-height: 45px;
+		height: 45px;
+		font-size: 1em;
+}
+.bianma ul{
+	padding:0 10px;
+}
+.bianma ul .first{
+	font-size:14px;
+	font-weight:bolder;
+}
+.dl-title {
+		line-height:20px;
+		
+		}
+.collection {
+		padding: 5px 0;
+		border:none;
+		}
+.bianma ul .third	{
+	position: absolute;right:10px;
+}	
+
+.collection-list{
+	border: 1px solid #eee;
+	margin: 5px;
+	border-radius: 5px;
+	background:@box_color;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

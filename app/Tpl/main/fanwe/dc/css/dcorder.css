@@ -1,0 +1,598 @@
+
+.dc_order_info{
+   background: none repeat scroll 0 0 white;
+    border: 1px solid #ddd;
+    padding: 20px 10px 30px;
+	width: 300px;
+}
+.dc_order_info #dc_cart_info{
+	width:100%;
+}
+.order_page table{
+width:100%;
+}
+.order_page tr{
+	border-bottom: 1px dashed @border_color;
+    display: block;
+	width:100%;
+	min-height:32px;
+
+}
+.pay_method tr {
+    min-height: 47px;
+}
+.order_page td {
+    display: inline-block;
+    padding-top:7px;
+    padding-bottom:7px;
+
+ 
+}
+.s_sinfo.s_method {
+   // height: 60px;
+}
+#dc_cart_info .f_r{
+   padding-right: 10px;
+    text-align: right;
+    width: 54%;
+}
+#dc_cart_info .dc_left{
+
+ width: 41%;
+padding-left:5px;
+}
+#dc_cart_info .dc_m{
+ width: 10%;
+ text-align: center;
+}
+#dc_cart_info .unit_price{
+ width: 20%;
+ text-align: center;
+}
+#dc_cart_info .dc_right{
+ width: 21%;
+ text-align: right;
+padding-right:5px;
+}
+.dc_order_pay{
+	border:solid 1px @border_color; 
+    background: none repeat scroll 0 0 white;
+    padding: 20px 10px 30px;
+    width: 636px;
+}
+
+.header_title{
+    border-bottom: 1px solid @border_color;
+    font-size: 18px;
+    font-weight: bolder;
+    padding: 9px;
+	margin-bottom:10px;
+
+}
+
+.p_total{
+	color:@main_color;
+    float: right;
+    font-size: 18px;
+    padding-left: 5px;
+}
+
+.consignee_info .name{
+	padding: 7px 20px 0 0;
+    width: 12%;
+	clear:both;
+	height:40px;
+
+}
+.consignee_info .dc_m{
+  width: 390px;
+	float:left;
+
+	
+}
+.ce_xxx{width:360px;
+
+
+}
+.consignee_info .dc_m input[type="text"]{
+  width: 360px;
+	display:block;
+	float:left;
+
+}
+
+.consignee_info .require{
+	color: @main_color;
+	text-align: left;
+    width: 4%;
+	float:left;
+}
+.consignee_info tr{
+border:none;
+}
+
+#pay_confirm , #go_menu_div{
+    background: @main_color;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 7px 5px 5px;
+    text-align: center;
+    min-width: 100px;
+}
+.go_other {
+    display: inline-block;
+    margin: 15px 0px;
+	cursor:pointer;
+	float:left;
+}
+
+.pay_method {
+	 position: relative;
+    border-top: 1px dashed @border_color;
+    clear: both;
+	margin-top:10px;
+
+	 padding-top:10px;
+}
+
+
+.info_tip{
+padding-left:11px;
+}
+
+/*������*/
+dl.filter_select{margin-right:10px; height:auto; display:inline-block; float:left; }
+dl.filter_select dt{width: 56px;background: #fff;cursor: pointer;height: 20px;line-height: 20px;text-align: left;letter-spacing: 1px;font-size: 12px;border:1px solid @border_color;padding: 1px 17px 1px 10px;*padding: 2px 17px 0px 10px;position:relative;overflow:hidden;}
+dl.filter_select dt i{height: 0;width: 0;position:absolute;right:8px;top:9px;overflow:hidden;
+border-left: 4px solid transparent;
+border-right: 4px solid transparent;
+border-top: 5px solid transparent;
+border-top-color: #666;
+_border-left-color: tomato;
+_border-right-color: tomato;
+_filter: chroma(color=tomato);	
+}
+dl.filter_select.dropdown dt i{height:0;width:0;position:absolute;right:8px;top:9px;overflow:hidden;border-left: 4px solid transparent;border-right: 4px solid transparent;border-bottom: 5px solid transparent;border-bottom-color: #666;border-top:none;}
+dl.filter_select dd {width:83px;background:#fff;border:1px solid @border_color;border-top:none;line-height:24px;letter-spacing:1px; font-size:12px;overflow-x:hidden;overflow-y:auto;max-height:200px;}
+dl.filter_select dd a{ height:24px; cursor:pointer;text-align: left;padding-left: 10px;overflow:hidden;float:none;line-height:24px; margin-right:0px;}
+dl.filter_select dd a.current{ color:@main_color;}
+dl.filter_select dd a:hover{ background:#fbfbfb; color:@font_hover;}
+
+dl.filter_select.big dt{width:150px;}
+dl.filter_select.medium dt{width:120px;}
+dl.filter_select.small dt{width:56px}
+
+dl.filter_select.big dd{width:177px;}
+dl.filter_select.medium dd{width:147px;}
+dl.filter_select.small dd{width:83px}
+/*
+.dc_order_info input ,  .dc_order_pay input , #dc_consignee_info input{
+
+padding:8px 5px 6px 12px;
+}
+*/
+.ui-textbox{
+padding:8px 5px 6px 12px;
+}
+
+.go_other a{color:white;}
+
+#dc_cart_info .box_title , #dc_total_table .box_title {
+    background: @main_color;
+    color: white;
+}
+.comment_tip{
+	display:none;
+    border: 1px solid @border_color;
+    padding: 7px 10px;
+    width: 357px;
+	position: absolute;
+	 z-index: 1000;
+	 background:white;
+	 left:0;
+	 top:39px;
+}
+
+.comment_tip .comment_tip_item {
+    cursor: pointer;
+    padding: 2px 4px;
+	display: inline-block;
+	color:black;
+}
+.comment_tip .comment_tip_item:hover{
+background:@main_color;
+color:white;
+border-radius:3px;
+}
+.dc_comment{
+position:relative;
+z-index:100;
+}
+
+input[name='dc_comment']{
+font-size:12px;
+}
+.pay_method label[name='payment_id']{
+margin-right:10px;
+
+}
+
+#online_pay #cart_payment{
+
+}
+
+#online_pay {
+    background: white;
+}
+
+#cart_payment .payment_rdo{
+border: 2px solid @border_color;	
+}
+#cart_payment  label {
+	
+    height: 40px;
+    margin: 1px;
+    width: 146px;
+	float:left;
+}
+#cart_payment .content  p label {
+
+border:none !important;
+float:none;
+ height: 15px;
+}
+
+.final_price_box .dc_last_tr .f_r{
+height:40px;
+line-height:35px;
+}
+
+
+#cart_payment .cart_row .content > label:hover , .payment_rdo_checked{
+border: 2px solid @main_color;
+}
+.payment_active{
+border: 2px solid @main_color;	
+	
+}
+#cart_payment .cart_row.layout_box{
+border:none;
+}
+
+#cart_payment .payment_rdo , #cart_payment .payment_rdo_checked {
+    float: left;
+    line-height: 40px;
+    margin: 0 7px 5px 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.table_delete{
+
+cursor:pointer;
+
+
+}
+
+.t_text{
+font-size:14px;
+margin-right:10px;
+}
+.table_delete:hover{
+	color:@main_color;
+}
+
+
+.pay_method .delivery_tr{
+
+/*
+border-bottom:1px dashed @border_color;
+padding-bottom:15px;
+*/
+}
+
+.dc_order_pay .s_sinfo{
+	border-top: 1px dashed @border_color !important;
+	margin-top: 5px;
+    padding-top: 15px !important;
+	padding-bottom:15px;
+}
+.dc_order_pay .s_nofo{
+	padding-bottom:0px !important;
+}
+.dc_cart_consignee .t_time{
+	color:@main_color;
+}
+
+.s_bot{
+	border-bottom: 1px dashed @border_color !important;
+	margin-bottom: 10px;
+    padding-bottom: 15px !important
+}
+
+.s_method label{
+margin-right:20px;
+}
+
+.s_method .f_l.p_method {
+	width:100%;
+    height: 35px;
+}
+.p_method label {
+    clear: both !important;
+    display: block !important;
+    margin-bottom: 10px;
+}
+
+.tdx{
+width:100%;
+}
+.go_menu {
+    display: inline-block;
+    float: right;
+    margin-top: -25px;
+}
+.dc_con_td {
+    width: 49%;
+	white-space:nowrap;
+	display:inline;
+	float:left;
+	height:130px;
+	overflow:hidden;
+}
+
+
+.dc_con_td .dc_con{
+
+    border: 1px solid @border_color;
+    margin-left: 8px;
+	margin-bottom: 10px;
+    padding: 10px;
+	position:relative;
+	cursor:pointer;
+}
+.dc_con_td .dc_con:hover{
+	border-color:red;
+}
+.dc_con_td .dc_con:hover .dc_con_name .f_r{
+	display:block;
+}
+
+.dc_con_td .dc_con .dc_con_name{
+	border-bottom: 1px solid @border_color;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+	height:16px;
+
+}
+
+.dc_con_td .dc_con .dc_con_info{
+	
+}
+
+.dc_con_td .dc_con .dc_con_name .f_r span{
+
+	color: red;
+    margin: 5px;
+	cursor:pointer;
+}
+/*
+.is_selected {
+	bottom: 15px;
+    color: red;
+    font-size: 50px;
+    position: absolute;
+	right: -13px;
+}
+*/
+
+
+.is_selected {
+    color: red;
+    display: block;
+    float: right;
+    font-size: 50px;
+    height: 50px;
+    margin-right: -23px;
+    margin-top: -22px;
+    overflow: hidden;
+}
+
+#add_new_td , #switch_show_all {
+    text-align: right;
+    width: 100%;
+
+}
+.iconfont.add_new_con  , #switch_show_all .iconfont{
+
+    font-size: 14px;
+}
+#add_new_div , #switch_show_all{
+	cursor:pointer;
+    float: right;
+    width: 100px;
+	font-size:12px;
+}
+.is_selected_td{
+	border-color:red !important;
+}
+
+.p_box {
+    display: block;
+    float: right;
+    width: 220px;
+}
+.tangram-suggestion-main{
+	z-index:1050;
+}
+#fanwe_success_box .dc-button.position_btn{
+	display:none;
+}
+
+#fanwe_success_box  input{
+
+	width:100px;
+
+}
+#fanwe_success_box .dc_address input{
+	width:150px;
+}
+#dc_consignee_info td{
+	padding-right:10px;
+	width:100px;
+
+}
+#fanwe_success_box .dc_action span{
+	color:@main_color;
+	margin:0 5px;
+	cursor:pointer;
+}
+
+#fanwe_success_box  .dc_position{
+	width:220px;
+}
+
+#fanwe_success_box .location_fl{
+	height:33px;
+	width:240px;
+}
+#fanwe_success_box .location_fl .q_text{
+
+	width:200px !important;
+
+}
+
+.dc_con_td_hide{
+	display:none !important;
+}
+.add_new_tr {
+    padding: 2px 10px !important;
+}
+.dc_con_name .f_r{
+	display:none;
+}
+.final_price_box {
+    border-top: 2px solid @main_color;
+	 margin-top: 20px;
+}
+.dc_last_tr {
+    border-bottom: medium none !important;
+}
+.final_price_box .dc_last_tr .f_r{
+	font-size:18px;
+	width:90% !important;
+
+}
+.final_price_box .dc_last_tr{
+	padding-top:10px;
+}
+
+.final_price_box .dc_last_tr .f_r .p_total{
+	font-size:30px;
+}
+
+#cart_payment .content .ui-button.f_l.white{
+	margin-top: 3px
+}
+
+.s_sinfo.s_method .name{
+	padding-top:5px;
+}
+
+.final_price_box .dc_last_tr .f_r span{
+	float:rigth;
+}
+
+
+.time_span {
+    padding-right: 10px;
+}
+.blank1 {
+    clear: both;
+    height: 1px;
+    line-height: 1px;
+    visibility: hidden;
+}
+
+
+dl.voucher_select{ width:185px; margin-right:10px; height:auto; display:inline-block; float:left; margin-top:7px; }
+dl.voucher_select dt{
+background: #fff;
+cursor: pointer;
+height: 20px;
+line-height: 20px;
+width: 156px;
+text-align: left;
+letter-spacing: 1px;
+font-size: 12px;
+border:1px solid @border_color;
+padding: 1px 17px 1px 10px;
+*padding: 2px 17px 0px 10px;
+position:relative;
+overflow:hidden;
+}
+dl.voucher_select dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 5px solid transparent;
+	border-top-color: #666;	
+	
+	_border-left-color:tomato; /*For IE6-*/    
+	_border-right-color:tomato; /*For IE6-*/  
+	_filter:chroma(color=tomato);/*For IE6-*/ 
+}
+dl.voucher_select.dropdown dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-bottom-color: #666;	
+	border-top:none;
+	
+	_border-left-color:tomato; /*For IE6-*/    
+	_border-right-color:tomato; /*For IE6-*/  
+	_filter:chroma(color=tomato);/*For IE6-*/ 
+}
+dl.voucher_select dd {
+background:#fff;
+border:1px solid @border_color;
+border-top:none;
+line-height:24px;
+letter-spacing:1px; 
+font-size:12px;
+overflow-x:hidden;
+overflow-y:auto;
+height:auto;
+margin-top:7px;
+}
+dl.voucher_select dd a{ 
+height:24px; 
+cursor:pointer; 
+width:173px;
+text-align: left;
+padding-left: 10px;
+overflow:hidden;
+float:none;
+line-height:24px; 
+margin-right:0px;
+}
+dl.voucher_select dd a.current{ 
+color:@main_color;
+}
+dl.voucher_select dd a:hover{ background:#fbfbfb; color:@font_hover;}

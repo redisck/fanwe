@@ -1,0 +1,170 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/mall.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/mall.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/mall.js";
+?>
+{include file="inc/header.html"}
+
+{if $index_cates}
+<div class="{function name="load_wrap" t=$wrap_type}" id="flow_cate_outer">
+<div id="flow_cate">
+		<ul>
+			{foreach from=$index_cates item=index_cate}
+			{if $index_cate.deal_list}
+			<li rel="index_cate_{$index_cate.id}" {if $index_cate.iconcolor}bg="{$index_cate.iconcolor}"{/if}>
+				{if $index_cate.iconfont}
+				<i class="diyfont">{$index_cate.iconfont}</i>
+				{/if}
+				<font>{$index_cate.name}</font>
+			</li>
+			{/if}
+			{/foreach}
+		</ul>
+</div>
+</div>
+{/if}
+
+
+<div id="main_roll">
+<div class="{function name="load_wrap" t=$wrap_type}" id="wrap">
+	<div id="full_outer">
+		<div id="scroll_outer">
+		<ul>
+		<li><adv adv_id="商城首页轮播广告1" /></li>
+		<li><adv adv_id="商城首页轮播广告2" /></li>
+		</ul>
+		</div>
+	</div>		
+</div>	
+</div>
+<div class="{function name="load_wrap" t=$wrap_type} cate_row">
+	<div class="fix_cate_tree">
+			{function name="load_cate_tree" c=6 t=$cate_tree_type}
+	</div>
+</div>	
+{if $notice_list}
+<div class="notice_row">
+	<div class="{function name="load_wrap" t=$wrap_type}">
+			<div class="notice_board">
+				<i class="iconfont f_l">&#xe618;</i>
+				<ul>
+					{foreach from=$notice_list item=news}
+					<li><a href="{$news.url}">{$news.title}</a></li>									
+					{/foreach}
+				</ul>
+				<a href="{url x="index" r="news"}" class="more f_l news_more">更多</a>
+			</div>
+	</div>	
+</div>
+{/if}
+
+<div class="blank"></div>
+
+<!--推荐的团购分类-->
+<div class="{function name="load_wrap" t=$wrap_type}">
+	
+{if $index_cates}	
+	{foreach from=$index_cates item=index_cate}
+	{if $index_cate.deal_list}
+	<div class="index_cate" rel="index_cate_{$index_cate.id}">
+		<div class="title_row">
+			<div class="title">{if $index_cate.iconfont}<i class="diyfont">{$index_cate.iconfont}</i>&nbsp;&nbsp;{/if}{$index_cate.name}</div>
+			
+			<ul>
+				{foreach from=$index_cate.deal_cate_type_list item=cate_type name=type_loop}
+				<li><a href="{url x="index" r="cate" p="cid=$cate_type.id"}">{$cate_type.name}</a>{if !$smarty.foreach.type_loop.last} | {/if}</li>
+				{/foreach}
+			</ul>
+			<a href="{url x="index" r="cate" p="cid=$index_cate.id"}" class="more">更多</a>
+		</div>
+		<div class="content_row clearfix">
+			<ul class="tuan_list">
+				
+				{foreach from=$index_cate.deal_list item=deal}
+				
+				<li>
+					<div class="tuan_item tuan_item_border">
+						<!--qr码扫描区-->
+						<div rel="qrcode" class="scanbox_deal_list">
+						<a class="scan_outter" href="{$deal.url}" title="{$deal.name}">
+							<table><tr><td><img src="{function name="gen_scan_qrcode" v=$deal.url s="4"}" /> </td></tr></table>
+							<div></div>
+						</a>
+						</div>
+						<!--end qr码扫描区-->
+						<div class="tuan_img">
+							<div class="tags">	
+							{foreach from=$deal.deal_tags item=tag}				
+							<h2 class="tag{$tag}"></h2>
+							{/foreach}
+							{if $deal.buyin_app eq 1}
+							<h2 class="tag_buyinapp"></h2>
+							{/if}
+							</div>	
+							<a href="{$deal.url}" class="img"><img lazy="true" src="{function name="get_spec_image" v=$deal.icon w=275 h=200 g=1}" /></a>
+							{if $deal.brief}
+							<a href="{$deal.url}" class="quan">
+								{$deal.brief}
+							</a>
+							{/if}
+						</div><!--团购图片-->
+						<div class="tuan_name">
+							<a href="{$deal.url}">{$deal.sub_name}</a>
+						</div>
+						<div class="tuan_brief">
+							<a href="{$deal.url}">
+							{$deal.name}
+							</a>
+						</div>
+						<div class="tuan_price">
+							<span class="current_price"><i>&yen;</i>{function name="round" v=$deal.current_price l=2}</span>
+							<span class="origin_price">门店价：&yen;{function name="round" v=$deal.origin_price l=2}</span>
+						</div>
+						<div class="tuan_extra">
+							<div class="sale_count">
+								已售<span>{$deal.buy_count}</span>
+							</div>
+							<div class="sale_review">							
+					        	<span>
+					        	<input class="ui-starbar" value="{$deal.avg_point}" disabled="true"  />
+								</span>
+								</span>
+								<span class="review_count"><i>{$deal.dp_count}</i>人点评</span>						
+							</div>
+						</div>
+					</div><!--end tuan_item-->
+				</li>
+				
+				{/foreach}
+				
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+	{/if}
+	{/foreach}
+{/if}		
+			
+				
+					
+
+
+</div>
+<!--end 推荐团购分类-->
+
+{include file="inc/footer.html"}

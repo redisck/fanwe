@@ -1,0 +1,126 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_withdrawal_bindbank.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz_withdrawal_bindbank.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/biz_withdrawal_bindbank.js";
+
+
+
+
+?>
+
+{include file="inc/biz_header.html"}
+<script>
+var ajax_url = '{$ajax_url}';
+var sms_on = '{$sms_on}';
+</script>
+
+<div class="wrap">
+	<div class="main">
+		<div class="bind-title">
+			请绑定持卡人本人的银行卡
+		</div>
+		<form name="bind_form" action="{url r="index" p="biz_withdrawal#do_bindbank"}">
+			<div class="bind-field">
+				<ul>
+					<li>
+						<div class="field-item field-item-border">
+							<div class="i-l">
+							
+								<span class="label-name">开户行</span>
+							</div>
+							<div class="i-r">
+								<input type="text" class="int-txt" name="bank_name" value="" placeholder=""/>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="field-item field-item-border">
+						<div class="i-l">
+							<span class="label-name">卡号</span>
+						</div>
+						<div class="i-r">
+								<input  type="text" class="int-txt num-txt" name="bank_num" value="" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')"/>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="field-item field-item-border">
+						<div class="i-l">
+							<span class="label-name">持卡人</span>
+						</div>
+						<div class="i-r">
+								<input  type="text" class="int-txt" name="bank_user" value="" />
+							</div>
+						</div>
+					</li>
+					{if $sms_on eq 1}
+					<li>
+						<div class="field-item field-item-border">
+						<div class="i-l">
+							<span class="label-name">手机号</span>
+						</div>
+						<div class="i-r">
+								<input type="text" class="int-txt int-readonly num-txt" id="mobile" name="mobile" value="{$data.mobile}" readonly="readonly"/>
+							</div>
+						</div>
+					</li>
+					
+					<li>
+						<div class="field-item">
+						<div class="i-l">
+							<span class="label-name">验证码</span>
+						</div>
+						<div class="i-r">
+								<div class="sms-box">
+									<div class="sms-txt-box"><input type="number" class="int-sms-txt" name="sms_verify" value=""/></div>
+									<input type="hidden" id="mobile" name="mobile" value="{$data.mobile}" />
+									<div class="send-btn-box">
+										<input class="btn_phone" type="Button" type="Button"  id="sms_btn" unique="0" value="发送验证码" lesstime="{$sms_lesstime}">
+									</div>
+								</div>
+						</div>
+						</div>
+					</li>
+					{else}
+					<li>
+						<div class="field-item">
+						<div class="i-l">
+							<span class="label-name">密码</span>
+						</div>
+						<div class="i-r">
+								<input type="password" class="int-txt num-txt" name="pwd_verify" value="" />
+						</div>
+						</div>
+					</li>
+					{/if}
+				</ul>
+			</div>
+			<div class="sub-btn-box">
+				<button class="sub-btn">确认绑定银行卡</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

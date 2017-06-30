@@ -1,0 +1,114 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/kindeditor.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/kindeditor.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/weixin.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/weixin.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+var ajax_url = '{$ajax_url}';
+</script>
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class="publish_project_btn f_r">
+					<button class="ui-button testformbtn" onclick="location.href='{url r="biz" b="wxlbs#publish"}'"  rel="orange" type="button">新增</button>
+				</div>
+			</div>
+			<div class="blank50"></div>
+			<div class="form_box  content_hastab">
+				<form name="project_form" action="{$form_url}" method="post">
+					<table class="table_box ">
+						<colgroup>
+							<col width="90">
+							<col width="170">
+							<col width="150">
+							<col width="150">
+							<col width="100">
+							<col width="100">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>编号</th>
+								<th>地址</th>
+								<th>经度</th>
+								<th>纬度</th>
+								<th>范围（米）</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+						{if $list}
+						{foreach from=$list item=row}
+							<tr data-id="{$row.id}">
+								<td>
+									{$row.id}
+								</td>
+								<td>
+                                    {$row.address}
+								</td>
+								<td>
+                                    {$row.x_point}
+								</td>
+								<td>
+                                    {$row.y_point}
+								</td>
+								<td>
+                                    {$row.scale_meter}
+								</td>
+								<td class="operate">
+									<a href="{$row.edit_url}"><button class="ui-button edit_btn" rel="white" type="button" data-id="{$row.id}">修改</button></a>
+									<div class="blank5"></div>
+									<button class="ui-button down_btn" rel="white" type="button" data-id="{$row.id}">删除</button>
+								</td>
+							</tr>
+						{/foreach}
+						{else}
+							<tr data-id="{$row.id}">
+								<td colspan="6">
+									<div class="empty_tip">
+										没有相关数据
+									</div>
+								</td>
+							</tr>
+						{/if}		
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+
+{include file="inc/footer.html"}

@@ -1,0 +1,133 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+	function get_delivery_status_trash($status,$order_info)
+	{
+		return L("ORDER_DELIVERY_STATUS_".$status);
+	}
+
+	function get_refuse_status($status)
+	{
+		if($status)
+		return "<span style='color:#f30;'>有</span>";
+		else
+		return "无";
+	}
+	function get_handle($id,$order_info)
+	{
+		if($order_info['order_status']==0)
+		{
+			$str = l("DEAL_ORDER_HANDLE");
+		}
+		else
+		{
+			$str = l("DEAL_ORDER_VIEW");
+		}
+		$str = "<a href='".u("DealOrder/view_order_history",array("id"=>$id))."'>".$str."</a>";
+		if($order_info['order_status']==1)
+		{
+			$str.="&nbsp;&nbsp;<a href='javascript:foreverdel(".$id.");'>".l("DEL")."</a>";
+		}
+		return $str;
+	}
+
+	
+	function get_order_item($order_sn,$order_info)
+	{
+		$deal_order_item = $order_info['history_deal_order_item'];
+		$str = "<span style='font-size:14px; font-family:verdana; font-weight:bold;'>".$order_sn."</span>";
+		foreach($deal_order_item as $v)
+		{
+			$str.="<br />&nbsp;".l('DEAL_ID').":".$v['deal_id']."&nbsp;<span title='".$v['name']."'";
+			if(intval($_REQUEST['deal_id'])==$v['deal_id'])
+			{
+				$str.=" style='color:red;' ";
+			}
+			$str.=">".msubstr($v['name'],0,5)."</span>&nbsp;".l("NUMBER")." [".$v['number']."]";
+		}
+		
+		return $str;
+		
+	}
+	function get_refund_status($s)
+	{
+		if($s==0)
+		return "无";
+		if($s==1)
+		return "<span style='color:#f30;'>要求退款</span>";
+		if($s==2)
+		return "已处理";
+		if($s==3)
+		return "拒绝退款";
+	}
+
+	
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">历史订单列表</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+<div class="button_row">
+	<input type="button" class="button" value="{%DEL}" onclick="foreverdel();" />
+	<input type="submit" class="button" value="{%SEARCH}" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" style="width:100px;" />
+		{%DEAL_ID}：<input type="text" class="textbox" name="deal_id" value="{:strim($_REQUEST['deal_id'])}" style="width:30px;" />
+		{%USER_NAME_S}：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" style="width:100px;" />
+
+		
+		{%EXTRA_STATUS_S}: 
+		<select name="extra_status">
+				<option value="-1" <if condition="intval($_REQUEST['extra_status']) eq -1">selected="selected"</if>>{%ALL}</option>
+				<option value="0" <if condition="intval($_REQUEST['extra_status']) eq 0">selected="selected"</if>>{%EXTRA_STATUS_0}</option>
+				<option value="1" <if condition="intval($_REQUEST['extra_status']) eq 1">selected="selected"</if>>{%EXTRA_STATUS_1}</option>
+				<option value="2" <if condition="intval($_REQUEST['extra_status']) eq 2">selected="selected"</if>>{%EXTRA_STATUS_2}</option>
+		</select>
+		是否有退款: 
+		<select name="after_sale">
+				<option value="-1" <if condition="intval($_REQUEST['after_sale']) eq -1">selected="selected"</if>>{%ALL}</option>
+				<option value="0" <if condition="intval($_REQUEST['after_sale']) eq 0">selected="selected"</if>>无</option>
+				<option value="1" <if condition="intval($_REQUEST['after_sale']) eq 1">selected="selected"</if>>{%AFTER_SALE_1}</option>
+		</select>
+		{%REFUND_STATUS_S}: 
+		<select name="refund_status">
+				<option value="-1" <if condition="intval($_REQUEST['refund_status']) eq -1">selected="selected"</if>>{%RS_ALL}</option>
+				<option value="0" <if condition="intval($_REQUEST['refund_status']) eq 0">selected="selected"</if>>{%RS_NO}</option>
+				<option value="1" <if condition="intval($_REQUEST['refund_status']) eq 1">selected="selected"</if>>{%RS_DOING}</option>
+				<option value="2" <if condition="intval($_REQUEST['refund_status']) eq 2">selected="selected"</if>>{%RS_DONE}</option>
+		</select>
+		
+
+		<input type="hidden" value="DealOrder" name="m" />
+		<input type="hidden" value="deal_trash" name="a" />
+		
+
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal_order" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,order_sn|get_order_item=$deal_order:{%ORDER_SN},user_name:{%USER_NAME},total_price|format_price:{%PAY_AMOUNT},pay_amount|format_price:{%PAID_AMOUNT}
+		 ,create_time|to_date:{%ORDER_CREATE_TIME}
+		 ,pay_status|get_pay_status:{%PAYMENT_STATUS}		 
+		 ,delivery_status|get_delivery_status_trash=$deal_order:{%DELIVERY_STATUS}
+		 ,refund_status|get_refund_status:退款申请
+		 ,order_status|get_order_status=$deal_order:订单状态"	 
+	actionlist="id|get_handle=$deal_order" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

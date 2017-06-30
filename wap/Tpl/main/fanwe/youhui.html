@@ -1,0 +1,184 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/youhui.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/youhui.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/youhui.js";
+
+?>
+{include file="inc/header.html"}
+<script>
+var ajax_url = '{$ajax_url}';
+</script>
+<div class="wrap">
+        <div class="content">
+        	
+<div class="goods_abbr">
+            <div class="good_detail">
+                <div class="good_pic">
+                    <a><img src="{$youhui.icon}" width="100%"></a>
+                </div>
+                <div class="browse_num">
+                	<div class="note-box"><i class="iconfont">&#xe603;</i>&nbsp;已下载 <b class="font-fc8">{$youhui.user_count}</b> {if $youhui.score_limit}, 消耗  <b class="font-fc8">{$youhui.score_limit}</b> 积分{/if}{if $youhui.point_limit}, 需要 <b class="font-fc8">{$youhui.point_limit}</b> 经验{/if}</div>
+                    
+                    <div class="buy">
+                        <div class="back-main " style="border-radius: 20px;">
+                        
+                        	{if $is_login eq 1}
+	                        	{if $youhui.begin_time lt $youhui.now_time and ($youhui.end_time gt $youhui.now_time or $youhui.end_time eq 0)}
+								<input type="button" class="plank" value="立即领取" onclick="javascript:download_youhui('{$youhui.id}');" style=" background:none;"/>
+								{elseif $youhui.begin_time gt $youhui.now_time}
+								<input type="button" class="plank" value="未开始"  disabled="disabled" style=" background:#6C6C6C;"/>
+								{elseif $youhui.end_time neq 0 and $youhui.end_time lt $youhui.now_time}
+								<input type="button" class="plank" value="已过期"  disabled="disabled" style=" background:#6C6C6C;"/>
+								{/if}
+							
+							{else}
+								<input type="button" class="plank" value="登陆后领取" onclick="location.href='{url a="index" r="user#login"}';"  style=" background:none;"/>
+                            {/if}
+
+                        </div>
+                    </div>
+                    <div class="blank10"></div>
+                    <div class="info-title">
+                    	<h3>{if $youhui.supplier_info_name}[{$youhui.supplier_info_name}]{/if}{$youhui.name}</h3>
+                    </div>
+                    <div class="order-info-box">
+	                    {if $youhui.user_limit gt 0}
+	                    <div class="order-item"><i class="iconfont">&#xe63d;</i>&nbsp;还剩下 :<em>{$youhui.less}</em> 张</div>
+	                    {/if}
+	                    {if $youhui.user_limit gt 0}
+	                    <div class="order-item"><i class="iconfont">&#xe63e;</i>&nbsp;每个会员每天只能下载 :<em>{$youhui.user_limit}</em> 张</div>
+	                    {/if}
+	                    {if $youhui.begin_time ne 0 && $youhui.begin_time gt $youhui.now_time}	
+	                    <div class="order-item"><i class="iconfont">&#xe63c;</i>&nbsp;<span 
+										class="countdown" 
+									id="countdown" 
+									nowtime="{$youhui.now_time}000" 					
+									{if $youhui.end_time ne 0}
+									endtime="{$youhui.begin_time}000" showtitle="距离开始：" 
+									{/if}
+									></span><!--倒计时-->	</div>
+						{elseif $youhui.end_time ne 0 && $youhui.end_time gt $youhui.now_time}	
+						<div class="order-item"><i class="iconfont">&#xe63c;</i>&nbsp;<span 
+										class="countdown" 
+									id="countdown" 
+									nowtime="{$youhui.now_time}000" 					
+									{if $youhui.end_time ne 0}
+									endtime="{$youhui.end_time}000" showtitle="剩余时间：" 
+									{/if}
+									></span><!--倒计时-->	</div>	
+						{/if}
+						{if $youhui.expire_day gt 0}
+						<div class="order-item"><i class="iconfont">&#xe63b;</i>&nbsp;请于 <em>{$youhui.expire_day}</em> 天内使用</div>
+						{/if}
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="blank"></div>
+         <div class="list-view">               
+		                <div class="see_more">
+		                    <a style="color:#fc8600;cursor:pointer;" href="{url r="index" b="youhui#detail" p="&data_id=$youhui.id"}">查看图文详情</a>
+		                </div>
+		               
+		            </div>
+        
+		{if $data.other_supplier_location}
+				<!--其它门店-->
+	            <div class="list-view">
+	                <div class="evaluate_title">
+	                    	<i class="iconfont">&#xe602;</i>其它门店
+	                </div>
+					<ul class="item_list">
+		                {foreach from=$data.other_supplier_location item=supplier_location name=supplier_location}
+						<li class="business_info {if $smarty.foreach.supplier_location.iteration gt 3}business_display{/if}">
+			                <div class="item_info_box"  onclick ="javascript:location.href='{url a="index" r="store"  p="data_id=$supplier_location.id"}'">
+			                    <div class="business_address">
+			                        <h3>{$supplier_location.name}</h3>
+			                        <span>{$supplier_location.address}</span>
+			                    </div>
+			                    <div class="tel_box"><a class="business_phone" href="tel:{$supplier_location.tel}" style="display: block;"><i class="iconfont">&#xe637;</i></a></div>
+			                </div>
+						</li>
+		                {/foreach}
+					</ul>
+	                {if $smarty.foreach.supplier_location.iteration gt 3}
+					<!--
+	                <div class="see_more J_location_more" style="color:#fc8600;border-top:1px solid #f5f5f5;cursor:pointer;">
+	                    	点击下拉查看
+	                </div>
+					-->
+					<div class="see_more  J_item_more">点击下拉查看</div>
+	                {/if}
+	            </div>
+			{/if}	
+			
+			<div class="blank10"></div>
+			<!--关于点评-->
+			<div class="blank15"></div>
+            <div class="list-view">
+                <div class="evaluate_title">
+                    <div class="grade">
+                       	<i class="iconfont">&#xe606;</i>评价
+                        <span class="pull-right">
+   	 						<span class="stars" data="{$youhui.avg_point}"></span>
+	   	 						<em class="star-text">{$youhui.avg_point}</em>
+							</span>
+							
+                    </div>
+                </div>
+                <div class="assess_list">
+                   {if $data.dp_list}
+					<div class="rw-list">
+					{foreach from=$data.dp_list item=row key=k1}
+					<div class="rw-item">
+					        <ul>
+					        	<li class="i-title"><span class="user_name">{$row.user_name}</span><small class="datetime">{$row.create_time}</small><span class="star_box"><input class="ui-starbar" value="{$row.point}" disabled="true"  /></span></li>
+					            <li class="i-content">{$row.content}</li>
+					            <li class="i-images">
+					            	{foreach from=$row.images item=image}
+					            		<div class=" img"><img src="{$image}" /></div>
+					            	{/foreach}
+					            </li>
+					            {if $row.reply_content}<li class="i-reply"><span>[掌柜回复]{$row.reply_content}</span></li>{/if}
+					        </ul>
+					</div>
+					{/foreach}
+					
+					</div>
+					<div class="see_more">
+                    	<a href="{url a="index" r="dp_list#index"  p="data_id=$data.id&type=youhui"}" style="color:#fc8600;cursor:pointer;"><span>查看全部评价</span></a>
+                	</div>
+					{else}
+					<div class="null_data">
+					<p class="icon"><i class="iconfont">&#xe61e;</i></p>
+					<p class="message">还没有人点评</p>
+					</div>
+					<div class="see_more">
+                    	<a href="{url a="index" r="dp_list#index"  p="data_id=$data.id&type=youhui"}" style="color:#fc8600;cursor:pointer;" ><span>我去评价</span></a>
+                	</div>
+					{/if}
+                </div>
+                
+            </div>
+			<!--关于点评-->
+     </div>
+</div>
+
+{include file="inc/footer.html"}	

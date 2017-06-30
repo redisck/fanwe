@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+.withdraw{ width:180px; }
+.info_table table td.withcontent{ width:550px; border-left:1px dotted #e5e5e5; text-align:left; padding-left:50px;  }
+.info_table table td.withcontent .ui-textbox{ padding:10px; width:300px; }
+.info_table table td.withcontent .ph_verify{ width:170px; margin-right:10px;}
+
+.order_table td h1 {
+  color: #e64d5e;
+  display: inline;
+  font-family: verdana;
+  font-size: 12px;
+  font-weight: normal;
+}
+.op_box {
+  border-left: 1px dotted #e5e5e5;
+}

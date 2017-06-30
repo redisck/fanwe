@@ -1,0 +1,146 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_filter_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/sort_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_inc_location.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_position.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_location.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_location.js";
+?>
+{include file="inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+
+	user_id={$user_id};
+	var dc_title='{$s_info.dc_title}';
+	var is_login_reload={$is_login_reload};
+
+</script>
+<div class="blank10"></div>
+
+
+		
+<div class="{function name="load_wrap" t=$wrap_type} dc_banner">
+ 
+<div id="dc_banner"><adv adv_id="外卖列表广告位" /></div>
+
+</div>
+<div class="{function name="load_wrap" t=$wrap_type} filter-category">
+
+<div class="f_l">
+<ul>
+<li class="active" onclick="">附近商家</li>
+<li><a href="{url i="index" r="dcres"}">预订商家</a></li>
+<li><a href="{url i="index" r="dcmenu"}">大家都在吃</a></li>
+<li><a href="{if $user_id eq 0}javascript:login_success_reload(collect_url);{else}{url i="index" r="dccollect"}{/if}" id="show_collect">我的收藏</a></li>
+</ul>
+</div>
+<div class="f_r inc_location">
+{include file="dc/inc/dc_inc_location.html"}
+</div>
+</div>
+
+<div class="{function name="load_wrap" t=$wrap_type}">
+
+<div class="blank10"></div>
+<!--筛选行-->	
+	{include file="dc/inc/dc_filter_row.html"}
+<!--end筛选行-->	
+
+<div class="blank10"></div>
+<div class="deal_list_box">	
+	{if $dc_location_list}
+	<ul class="deal_list clearfix">
+		<?php
+		$i=0;
+		 ?>
+		{foreach from=$dc_location_list name=test item=deal}
+		<?php			
+			$this->_var['kk'] = 100;
+			$this->_var['kk'] -= $i;
+			$i++;
+		?>
+			<li style="z-index:{$kk};">
+				<div class="deal_item deal_item_border">
+					<div class="deal_img">
+						<a href="{$deal.url}" class="img"><img lazy="true" src="{function name="get_spec_image" v=$deal.preview w=217 h=146 g=1}" /></a>
+
+					</div><!--团购图片-->
+
+					<div class="deal_brief">
+							<a href="{$deal.url}">
+							{$deal.name}
+							</a>
+					</div>
+					<div class="dc_deliver">
+					
+					{if $deal.location_delivery_info.is_free_delivery lt 2}
+					<span class="f_l">起送：{function name=format_price v=$deal.location_delivery_info.start_price} &nbsp;配送：{function name=format_price v=$deal.location_delivery_info.delivery_price}</span><span class="f_r">{function name=round v=$deal.distance g=2}公里</span>
+					{else}
+					<span class="f_l">太远了，不送了</span>
+					<span class="f_r">{function name=round v=$deal.distance g=2}公里</span>
+					{/if}
+					</div>
+					<div class="deal_price clearfix">
+						<div class="f_l">
+							{include file="dc/inc/dc_promote_pic.html"}
+						</div>
+						<div class="f_r">收藏&nbsp;<i class="iconfont location_collect {if $deal.is_collected eq 1}collected{/if}" id="location_collect_icon" data-i="{$deal.id}">{if $deal.is_collected eq 1}&#xe60d;{else}&#xe60c;{/if}</i></div>
+					</div>
+					<div class="deal_extra">
+						<div class="sale_count">
+							已售<span>{$deal.dc_buy_count}</span>份
+						</div>
+						<div class="sale_review">							
+				        	<span>
+								<input class="ui-starbar" value="{$deal.avg_point}" disabled="true"  />
+							</span>
+							</span>
+							<span class="review_count"><i>{$deal.dp_count}</i>个点评</span>						
+						</div>
+					</div>
+				</div><!--end deal_item-->
+				{if $deal.is_close eq 1 || $deal.in_opentime eq 0}
+				<a class="dc_close_a" href="{$deal.url}">
+				<img class="dc_close" src="{$TMPL}/images/dc/dc_takeaway/dc_close_pic.png" />
+				</a>
+				{/if}
+				
+			{include file="dc/inc/dc_location_overlay.html"}
+				
+			</li>
+			
+			
+			{/foreach}
+		</ul>
+
+		<div class="pages">{$pages}</div>
+		<div class="blank"></div>
+		{else}
+		<div class="empty_tip">暂无商家</div>
+		{/if}
+</div>
+
+</div>
+<div class="blank"></div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

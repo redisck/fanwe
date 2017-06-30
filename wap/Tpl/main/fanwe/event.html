@@ -1,0 +1,168 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/event.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/event.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/event.js";
+
+?>
+{include file="inc/header.html"}
+<script>
+var ajax_url = '{$ajax_url}';
+</script>
+<div class="wrap">
+        <div class="content">
+        	
+<div class="goods_abbr">
+            <div class="good_detail">
+                <div class="good_pic">
+                    <a><img src="{$event.icon}" width="100%"></a>
+                </div>
+                <div class="browse_num">
+                	 <div class="header-box">
+                    	<h3>{if $event.supplier_info_name}[{$event.supplier_info_name}]{/if}{$event.name}</h3>
+                    </div>
+                   
+                    <div class="buy">
+                        <div class="back-main " style="border-radius: 20px;">
+                       
+							{if $data.is_login eq 1}
+								{if $event.submitted_data && $event.submitted_data.is_verify eq 1}
+										<input type="button" class="plank" value="已报名"  disabled="disabled" style=" background:#6C6C6C;"/>
+									{elseif $event.submitted_data && $event.submitted_data.is_verify eq 2}
+										<button class="ui-button" rel="disabled" type="button">报名未通过</button>
+
+									{elseif $event.submit_begin_time lt $event.now_time and ($event.submit_end_time gt $event.now_time or $event.submit_end_time eq 0)}			
+										{if $event.submitted_data && $event.submitted_data.is_verify eq 0}
+											<input type="button" class="plank" value="修改报名" onclick="location.href='{url a="index" r="event#load_event_submit" p="data_id=$event.id"}';"  style=" background:none;"/>
+										{else}
+											<input type="button" class="plank" value="我要报名" onclick="location.href='{url a="index" r="event#load_event_submit" p="data_id=$event.id"}';"  style=" background:none;"/>
+										{/if}
+									{elseif $event.submit_begin_time gt $NOW_TIME}
+										<input type="button" class="plank" value="报名未开始"  disabled="disabled" style=" background:#6C6C6C;"/>
+						
+									{elseif $event.submit_end_time neq 0 and $event.submit_end_time lt $NOW_TIME}
+										<input type="button" class="plank" value="报名已过期"  disabled="disabled" style=" background:#6C6C6C;"/>					
+								{/if}
+							{else}
+								<input type="button" class="plank" value="登录后报名" onclick="location.href='{url a="index" r="user#login"}';"  style=" background:none;"/>
+                            {/if}
+
+                        </div>
+                    </div>
+                    <div class="blank10"></div>
+                    <div class="order-info-box">
+                   		{if $event.total_count gt 0}
+	                    <div class="order-item"><i class="iconfont">&#xe63d;</i>&nbsp;活动名额 <em>{$event.total_count}</em> 人{if $event.score_limit}, 报名消耗  <i>{$event.score_limit}</i> 积分{/if}{if $event.point_limit}, 报名需要 <i>{$event.point_limit}</i> 经验{/if}</div>
+	                    {/if}
+	                    
+	  
+	                    <div class="order-item"><i class="iconfont">&#xe63f;</i>&nbsp;报名数 <em>{$event.submit_count}</em> 人</div>
+	           
+	                    
+	                    {if $event.event_begin_time gt 0 or $event.event_end_time gt 0}
+	                    <div class="order-item"><i class="iconfont">&#xe63b;</i>&nbsp;活动时间 &nbsp;{if $event.event_begin_time}<em>{$event.event_begin_time_format}</em> 至 {/if}{if $event.event_end_time}<em>{$event.event_end_time_format}</em>{else}<em>无限期</em>{/if}</div>
+	                    {/if}
+	                    
+	                    
+	                    {if $event.submit_begin_time ne 0 && $event.submit_begin_time gt $event.now_time}	
+	                    <div class="order-item"><i class="iconfont">&#xe63c;</i>&nbsp;<span 
+										id="countdown" 
+										nowtime="{$event.now_time}000" 
+										{if $event.submit_end_time ne 0}
+										endtime="{$event.submit_begin_time}000" showtitle="开始报名：" 
+										{/if}
+									></span><!--倒计时-->	</div>
+						{elseif $event.submit_end_time ne 0 && $event.submit_end_time gt $NOW_TIME}		
+						<div class="order-item"><i class="iconfont">&#xe63c;</i>&nbsp;<span 
+							id="countdown" 
+							nowtime="{$event.now_time}000" 
+							{if $event.submit_end_time ne 0}
+							endtime="{$event.submit_end_time}000" showtitle="报名截止：" 
+							{/if}
+						></span><!--倒计时-->	</div>
+						
+						{/if}
+						{if $event.address}
+						<div class="order-item"><i class="iconfont">&#xe63a;</i>&nbsp;活动地点：{$event.address}</div>
+						{/if}
+                    </div>
+                    <div class="blank10"></div>
+                    <div class="list-view">               
+		                <div class="see_more">
+		                    <a style="color:#fc8600;cursor:pointer;" href="{url r="index" b="event#detail" p="&data_id=$event.id"}">查看图文详情</a>
+		                </div>
+		               
+		            </div>
+                </div>
+            </div>
+        </div>
+			
+			<div class="blank10"></div>
+			<!--关于点评-->
+			<div class="blank15"></div>
+            <div class="list-view">
+                <div class="evaluate_title">
+                    <div class="grade">
+                       	<i class="iconfont">&#xe606;</i>评价
+                        <span class="pull-right">
+   	 						<span class="stars" data="{$event.avg_point}"></span>
+	   	 						<em class="star-text">{$event.avg_point}</em>
+							</span>
+							
+                    </div>
+                </div>
+                <div class="assess_list">
+                   {if $data.dp_list}
+					<div class="rw-list">
+					{foreach from=$data.dp_list item=row key=k1}
+					<div class="rw-item">
+					        <ul>
+					        	<li class="i-title"><span class="user_name">{$row.user_name}</span><small class="datetime">{$row.create_time}</small><span class="star_box"><input class="ui-starbar" value="{$row.point}" disabled="true"  /></span></li>
+					            <li class="i-content">{$row.content}</li>
+					            <li class="i-images">
+					            	{foreach from=$row.images item=image}
+					            		<div class=" img"><img src="{$image}" /></div>
+					            	{/foreach}
+					            </li>
+					            {if $row.reply_content}<li class="i-reply"><span>[掌柜回复]{$row.reply_content}</span></li>{/if}
+					        </ul>
+					</div>
+					{/foreach}
+					
+					</div>
+					<div class="see_more">
+                    <a href="{url a="index" r="dp_list#index"  p="data_id=$data.id&type=event"}" style="color:#fc8600;cursor:pointer;" ><span>查看全部评价</span></a>
+                </div>
+					{else}
+					<div class="null_data">
+					<p class="icon"><i class="iconfont">&#xe61e;</i></p>
+					<p class="message">还没有人点评</p>
+					</div>
+					<div class="see_more">
+                    	<a href="{url a="index" r="dp_list#index"  p="data_id=$data.id&type=event"}" style="color:#fc8600;cursor:pointer;" ><span>我去评价</span></a>
+                	</div>
+					{/if}
+                </div>
+                
+            </div>
+			<!--关于点评-->
+     </div>
+</div>
+
+{include file="inc/footer.html"}	

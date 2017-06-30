@@ -1,0 +1,139 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/nav_hide_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/nav_hide_list.js";
+
+?>
+{include file="inc/header.html"}
+
+
+<div class="wrap">
+	<div class="hide_list">
+		  <div class="abbr">
+		  	   <div class="first_list">
+		  	   	    <ul>
+						{foreach from=$data.bcate_list item=cate }
+						<li class="directory">{$cate.name}</li>
+						{/foreach}
+		  	   	    </ul>
+		  	   </div>
+			   <div class="second_list">
+			   	{foreach from=$data.bcate_list item=cate}
+			   	    <ul>
+						{foreach from=$cate.bcate_type item=blist}
+						<li class="two_directory"><a href="{$blist.url}">{$blist.name}</a></li>
+						{/foreach}
+		  	   	    </ul>
+					{/foreach}
+			   </div>
+		  </div>
+		  <div class="abbr">
+		  	   <div class="first_list">
+		  	   	    <ul>
+		  	   	    	
+						{foreach from=$data.quan_list item=quan key=key}
+						<li class="directory">{$quan.name}</li>
+						{/foreach}
+		  	   	    </ul>
+		  	   </div>
+			   <div class="second_list">
+			   	{foreach from=$data.quan_list item=quan }
+			   	    <ul>
+						{foreach from=$quan.quan_sub item=qlist}
+						<li class="two_directory"><a href="{$qlist.url}">{$qlist.name}</a></li>
+						{/foreach}
+						
+		  	   	    </ul>
+					{/foreach}
+			   </div>
+		  </div>
+		  <div class="abbr">
+		  	   <div class="first_list">
+		  	   	    <ul>
+						{foreach from=$data.navs item=navs}
+							<li class="directory"><a href="{$navs.url}">{$navs.name}</a></li>
+						{/foreach}
+					</ul>
+		  	   </div>
+		  </div>
+	</div>
+		 <div class="main_list">
+		 	   <ul class="mall-cate">
+		 	   	   <li>
+		 	   	   	    {if $request.catename}{$request.catename}{else}全部分类 {/if}<i class="iconfont fa-sort-desc"></i>
+		 	   	   </li>
+				   <li>
+		 	   	   	{if $request.quanname}{$request.quanname}{else}全城 {/if}<i class="iconfont fa-sort-desc"></i>
+		 	   	   </li>
+				   <li>
+		 	   	   	   {if $request.ordername}{$request.ordername}{else}默认 {/if}
+					  <i class="iconfont fa-sort-desc"></i>
+		 	   	   </li>
+		 	   </ul>
+		 </div>
+	{if $geo}
+	<div class="geo_row"><i class="iconfont">&#xe611;</i>{$geo.address}</div>
+	{/if}
+	<div class="content back-white">
+		<div class="list-view bor_none">
+			 <ul class="tuan_ul">
+			 	{foreach from=$data.item item=youhuiitem}
+			 	<li class="tuan_li">
+			 	     <a href="{url a="index" r="youhui#index" p="data_id=$youhuiitem.id"}">
+			 	     	<div class="list_item">
+			 	     		 <div class="pic">
+			 	     		 	<img src="{$youhuiitem.icon}" width="140" height="85"  />
+								{if $youhuiitem.youhui_type eq 1}
+								<i class="tuan_ico order">折扣券</i>
+								{else}
+								<i class="tuan_ico order">满立减</i>
+								{/if}
+			 	     		 </div>
+							 <div class="info">
+							 	<h2>{$youhuiitem.name}</h2>
+								<h3><div> {$youhuiitem.list_brief}</div></h3>
+								<div class="tuan_price">
+			                         <p class="time_row">
+			                         	 {$youhuiitem.begin_time}
+									 </p>			                         
+									 <p class="bought"><i></i>下载量：{$youhuiitem.down_count}</p>
+			                     </div>
+								 {if $youhuiitem.distance}
+								 <div class="distance_row">		
+								 	<div>         		                         
+									 <i class="iconfont">&#xe611;</i>{$youhuiitem.distance}
+									 </div>	  
+			                     </div>
+								 {/if}
+							 </div>
+			 	     	</div>
+			 	     </a>
+			 	</li>
+				{/foreach}
+				
+			 </ul>
+			 
+		</div>
+	</div>
+{if $pages}
+	<div class="fy">
+		{$pages}
+	</div>
+{/if}
+{include file="inc/footer.html"}	

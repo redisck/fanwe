@@ -1,0 +1,30 @@
+<div class="form_panel event_submit_panel">
+<form name="event_submit_form" action="{url x="index" r="event#do_submit"}">
+	{foreach from=$event_fields item=field}
+	<dl>
+		<dt>{$field.field_show_name}：</dt>
+		<dd>
+		{if $field.field_type eq 0}
+			<input type="text" size="30" name="result[{$field.id}]" class="ui-textbox" value="{$field.result}" />
+		{else}
+		<span class="select_pt">
+			<select name="result[{$field.id}]" class="ui-select event_submt_select" height="90">
+				{foreach from=$field.value_scope item=val}
+				{if strim($val) neq ''}
+				<option value="{$val}" {if $field.result eq $val}selected="selected"{/if} >{$val}</option>
+				{/if}
+				{/foreach}
+			</select>
+		</span>
+		{/if}
+		<input type="hidden" value="{$field.id}" name="field_id[]" />
+		</dd>
+	</dl>
+	{/foreach}
+	
+	<div class="submit_btn_row">
+		<input type="hidden" value="{$event_id}" name="event_id" />
+		<button class="ui-button" rel="orange" id="do_submit_btn" type="submit">{$btn_name}</button>
+	</div>
+</form>
+</div>

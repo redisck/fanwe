@@ -1,0 +1,84 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_withdrawal.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/withdrawal.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/biz/withdrawal.js";
+
+
+
+?>
+{include file="inc/biz_header.html"}
+
+<script>
+var ajax_url = '{$ajax_url}';
+var sms_no = '{$data.sms_on}';</script>
+<div class="wrap">
+	<div class="content">
+		{if $data.status eq 0}
+		<div class="common_tip">
+              <span><i class="iconfont">&#xe644;</i>&nbsp;&nbsp;{$data.info}</span>
+       	</div>
+
+       		{else}
+	       		<div class="common_tip">可提现金额：<span style="font-size: 24px;" class="total_money">{$data.supplier_info.money}</span>&nbsp;元</div>
+       		
+       
+       	
+       	
+       	<div class="blank"></div>
+			<div class="money_form bor_none">
+				<form action="{url r="biz" b="withdrawal#do_submit"}" name="withdrawal_form" method="post">
+				<div class="money_box"><input class="ui-textbox basic_input money_text" type="text" name="money" placeholder="请输入提现的金额" /></div>
+				<div class="blank"></div>
+				<div class="blank"></div>
+				{if $data.sms_on eq 1}
+				<div class="sms_verify_box">
+					<input id="mobile" type="hidden" name="mobile" value="{$data.mobile}"/>
+					<input class="ui-textbox basic_input sms_verify_text" type="text" name="sms_verify" placeholder="请输入验证码"/><input class="btn_phone" type="Button"  id="sms_btn" unique="0" value="发送验证码" lesstime="{$sms_lesstime}" />
+				</div>
+				{else}
+				<div class="password_box"><input class="ui-textbox basic_input pwd_text" type="password" name="pwd_verify" placeholder="请输入密码" /></div>
+				{/if}
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<div class="sub_withfrawal_btn">
+					<input type="submit" value="申请提现" >
+				</div>
+				</form>
+			 
+			</div>
+		{/if}
+	</div>
+	
+	{if $pages}
+	<div class="blank"></div>
+	<div class="fy">
+		{$pages}
+	</div>
+{/if}
+	<div class="blank50"></div>
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

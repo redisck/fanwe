@@ -1,0 +1,44 @@
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={function name="app_conf" value="BAIDU_MAP_APPKEY"}"></script>
+<script type="text/javascript">
+	var AJAX_URL = "{url r="index" p="ajax"}";
+	var DC_AJAX_URL = "{url r="index" p="dcajax"}";
+	var MARKER_ICON = "{$TMPL}/images/css_bg/markers_icon.png";
+	var BAIDU_APPKEY = '{function name="app_conf" value="BAIDU_MAP_APPKEY"}';
+	var dc_url='{url r="index" p="dc"}';
+	var dc_position_url='{url r="index" p="dc#do_position"}';
+	var dc_clear_history_url='{url r="index" p="dc#clear_history"}';
+	var dc_order_url='{url r="index" p="dcorder"}';
+	var collect_url='{url i="index" r="dccollect"}';
+	var CITY_NAME = '{$city_name}';
+	var is_collected_icon='&#xe60d;';
+	var not_collected_icon='&#xe60c;';
+	var arrow_right_icon='&#xe64c;';
+	var NO_IMAGE="{$TMPL}/images/dc/dcmenu/no-image.png";
+	var choose_all_icon='&#xe616;';	
+	var city_url='{url i="index" r="city"}';
+
+
+	/**
+		登录成功之后刷新页面
+	*/
+	function login_success_reload(url_link){
+		ajax_login(function(){
+			var query = new Object();
+			query.act = "check_login_status";
+			$.ajax({
+				url: AJAX_URL,
+				data: query,
+				dataType: "json",
+				type: "post",
+				success: function(data){
+					if(data.status==1){
+						location.href=url_link;
+					}
+				}
+			})	
+		});
+	}
+	
+	
+</script>
+

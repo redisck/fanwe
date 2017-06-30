@@ -1,0 +1,19 @@
+		<div class="info_table relate_deal">						
+						<table>						
+								<tr>
+									<th style="width:10px;"></th>
+									<th style="width:120px;">缩略图</th>
+									<th>名称</th>
+								</tr>
+								{foreach from=$list item=item}	
+								<tr class="alt" rel="{$item.id}">
+		                               <td class="add_relate">+</td>
+		                               <td class="detail"><img  src="{function name="get_spec_image" v=$item.icon w=70 h=50  g=1}" style="width:70px;height:50px;"></td>
+		                               <td class="relate_name">{$item.name}</td>                               
+		                         </tr>
+		                         {/foreach}	
+				
+						</table>
+						
+			</div>
+			<div class="pages">{$pages}</div>

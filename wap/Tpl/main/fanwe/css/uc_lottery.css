@@ -1,0 +1,49 @@
+.list .item{
+display: -webkit-box;
+display: -moz-box;
+width: 100%;
+display: box;
+padding: 10px;
+background-color: #fff;
+border-bottom: 1px solid #DDD8CE;
+overflow: hidden;
+}
+.list .item .imgbox{
+width: 140px;
+height: 85px;
+margin: 0px 12px 0 0;
+display: inline-block;
+overflow: hidden;
+}
+.list .item .right-box {
+-webkit-box-flex: 1;
+-moz-box-flex: 1;
+}
+
+.right-box .single-line {
+	padding-top: 1px;
+	margin-bottom: 12px;
+	font-size: 12px;
+	font-weight: 400;
+	color: #333;
+	height: 34px;
+	line-height: 15px;
+	padding-right: 10px;
+	overflow:hidden;
+}
+.right-box small {
+	font-size:12px;
+	color: #666;
+	padding: 16px 0 2px 0;
+	display: block;
+}
+.right-box weak {
+	font-size: 12px;
+	color: #999;
+	display: block;
+	width: 100%;
+}
+.right-box weak b{
+	color: #F00;
+	font-weight: 400;
+}

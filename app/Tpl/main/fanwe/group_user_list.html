@@ -1,0 +1,83 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/group.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/group.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/group.js";
+?>
+{include file="inc/header.html"} 
+
+<div class="blank"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+
+	<div class="group_bg" style="background:url({function name="get_spec_image" v=$group_info.image w=960 h=150 g=1});">
+		<div class="group_intro">		
+				<div class="group_title " style="color:#fff; padding-left:10px;">
+				<span style="line-height:18px; font-size:18px; font-weight:bolder; font-family:微软雅黑;">{$group_info.name}</span>
+				<div class="blank1"></div>
+				<span style="font-size:12px; font-weight:normal; line-height:22px;">创建于：{function name="to_date" v=$group_info.create_time f="Y-m-d"}</span>
+				</div>					
+		</div>
+	</div>
+	<div class="blank"></div>
+
+<div class="inc">
+<div class="inc_top">{$group_info.name}组员</div>
+<div class="inc_main pd10">
+				<div class="rand_user user_list_more">			
+					{function name="show_avatar" uid=$user_leader.id  type="small"}			
+					<br />	
+					<!--[if gte IE 8]> 
+					<div class="blank5"></div>
+					<![endif]-->
+					{function name="get_user_name" value=$user_leader.id} 
+					<br />			
+					{if $user_leader.focused eq 1}
+					<a href="javascript:;" onclick="focus_user({user_leader.id},this);" class="remove_focus">{$LANG.CANCEL_FOCUS}</a>
+					{else}
+					<a href="javascript:;" onclick="focus_user({$user_leader.id},this);" class="add_focus">{$LANG.FOCUS_THEY}</a>
+					{/if}		
+				</div>			
+		{foreach from=$user_list item=user_item}		
+				<div class="rand_user user_list_more">			
+					{function name="show_avatar" uid=$user_item.id  type="small"}			
+					<br />	
+					<!--[if gte IE 8]> 
+					<div class="blank5"></div>
+					<![endif]-->
+					{function name="get_user_name" value=$user_item.id} 
+					<br />			
+					{if $user_item.focused eq 1}
+					<a href="javascript:;" onclick="focus_user({$user_item.id},this);" class="remove_focus">{$LANG.CANCEL_FOCUS}</a>
+					{else}
+					<a href="javascript:;" onclick="focus_user({$user_item.id},this);" class="add_focus">{$LANG.FOCUS_THEY}</a>
+					{/if}		
+				</div>			
+		{/foreach}
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+</div>
+</div>
+
+</div>
+<div class="blank"></div>
+
+
+
+
+{include file="inc/footer.html"}

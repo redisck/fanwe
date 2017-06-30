@@ -1,0 +1,12 @@
+<form name="opform" action="{url x="index" r="group#submit"}">
+<div class="topic_pub_form">	
+	<textarea style="width:530px; height:280px;" id="reason" name="reason" class="f-textarea pubform">{$group.memo}</textarea>
+	<input type="hidden" name="id" value="{$group.id}" />
+</div>
+<div class="blank"></div>
+<div class="btn_row tc">
+	<button class="ui-button" rel="orange" type="button" onclick="do_submit_opform();">确定</button>
+	<button class="ui-button" rel="orange" type="button" onclick="close_pop();">取消</button>
+
+</div>
+</form>

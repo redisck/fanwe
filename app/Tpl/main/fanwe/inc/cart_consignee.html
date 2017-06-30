@@ -1,0 +1,74 @@
+
+
+
+
+
+<div class="form_panel">
+
+			<dl>
+				<dt>{lang v="CONSIGNEE"}</dt>
+				<dd>
+					<input class="ui-textbox" value="{$consignee_info.consignee}" name="consignee" holder="请输入收货人姓名" />
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>{lang v="REGION_INFO"}</dt>
+				<dd>
+					<select name="region_lv1" class="ui-select region_select" height="300">
+					    <option value="0">={lang v="SELECT_PLEASE"}=</option>
+						{foreach from=$region_lv1 item=lv1}
+						<option {if $lv1.selected eq 1}selected="selected"{/if} value="{$lv1.id}">{$lv1.name}</option>
+						{/foreach}
+				  	</select>
+									
+					<select name="region_lv2" class="ui-select region_select" height="300">
+						<option value="0">={lang v="SELECT_PLEASE"}=</option>
+						{foreach from=$region_lv2 item=lv2}
+						<option {if $lv2.selected eq 1}selected="selected"{/if} value="{$lv2.id}">{$lv2.name}</option>
+						{/foreach}
+					  </select>
+										
+					<select name="region_lv3" class="ui-select region_select" height="300">
+						<option value="0">={lang v="SELECT_PLEASE"}=</option>		
+						{foreach from=$region_lv3 item=lv3}
+						<option {if $lv3.selected eq 1}selected="selected"{/if} value="{$lv3.id}">{$lv3.name}</option>
+						{/foreach}
+					 </select>
+										
+					<select name="region_lv4" class="ui-select region_select" height="300">
+						<option value="0">={lang v="SELECT_PLEASE"}=</option>
+						{foreach from=$region_lv4 item=lv4}
+						<option {if $lv4.selected eq 1}selected="selected"{/if} value="{$lv4.id}">{$lv4.name}</option>
+						{/foreach}
+					  </select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>{lang v="ADDRESS"}</dt>
+				<dd>
+					<input  name="address" value="{$consignee_info.address}" class="ui-textbox" holder="请输入收货地址" />
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<dl>
+				<dt>{lang v="ZIP"}</dt>
+				<dd>
+					<input  name="zip" value="{$consignee_info.zip}" class="ui-textbox" holder="请输入邮编" />
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>{lang v="MOBILE"}</dt>
+				<dd>
+					<input  name="mobile" value="{$consignee_info.mobile}" class="ui-textbox" holder="请输入收货人手机" />
+					<span class="form_tip"></span>
+				</dd>
+			</dl>
+			<input type="hidden" name="consignee_id" value="{$consignee_info.id}" />
+	</div>
+
+
+
+

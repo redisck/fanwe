@@ -1,0 +1,457 @@
+@CHARSET "UTF-8";
+/*开头大标题*/	
+.deal_introduce{
+	padding:20px;
+	background:@box_color;
+	border:@border_color solid 1px;
+}
+.deal_introduce .title{
+	font-family: Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,Microsoft Yahei,Simhei,sans-serif;
+	line-height:45px;
+	font-size:28px;
+	height:45px;
+}
+
+/*简单介绍*/
+.deal_introduce .component{
+	background:@box_color;
+}
+.deal_introduce .details{
+	padding-bottom: 15px;
+	line-height: 165%;
+	font-size: 14px;
+}
+/*左边图片的介绍*/
+.deal_introduce .component .component_left{
+	width:460px;
+}
+
+.component_left .big_pic{
+	position:relative;
+}
+.component_left  .big_pic .tags{
+	position: absolute;
+	left: 10px;
+	top: -4px;	
+}
+.component_left .small_pic{
+	margin:10px 0px;
+	width:2000px;
+	top:5px;
+	position:absolute;
+}
+.component_left .small_pic a{
+	margin-right: 10px;
+	cursor: pointer;
+	border: 1px solid @border_color;
+	padding: 2px;
+	float:left;
+}
+.component_left .pic_hidden{
+	overflow:hidden;
+	position:relative;
+	height:71px;
+}
+.component_left .pic_hidden .hide_tag{
+	position:absolute;
+	display:block;
+	width:29px;
+	height:100%;
+	*height:51px;
+	top:10px;	
+	 filter:alpha(opacity=70);  
+    -moz-opacity:0.7;  
+    -kHTML-opacity: 0.7;  
+    opacity: 0.7;  
+}
+
+.component_left .pic_hidden .hide_tag:hover{
+	 filter:alpha(opacity=60);  
+    -moz-opacity:0.6;  
+    -kHTML-opacity: 0.6;  
+    opacity: 0.6;  
+}
+
+.component_left .pic_hidden .disable_tag,.component_left .pic_hidden .disable_tag:hover{
+	/*display:none;*/
+}
+
+.component_left .pic_hidden .pre{
+	left:-29px;
+	height:51px;
+	top:15px;
+	background:url(../images/css_bg/slide_arrow.png) no-repeat 0px -10px black;
+}
+.component_left .pic_hidden .next{
+	right:-29px;
+	height:51px;
+	top:15px;
+	background:url(../images/css_bg/slide_arrow.png) no-repeat -35px -10px black;
+}
+
+.component_left .small_pic a:hover,.component_left .small_pic a.active {
+	border: 3px solid @font_hover;
+	padding: 0;
+}
+/*-----------------------图片右边的内容*/
+
+.deal_introduce .component .component_rigth{
+	width:450px;
+	font-size:13px;
+}
+.component_rigth .component_price{
+	height:54px;
+}
+/*价格，折扣*/
+.component_rigth .component_price h2{
+	color:@main_color;
+	font-size:24px;
+	font-weight:100;	
+	float:left;
+	padding-right:10px;
+}
+.component_rigth .component_price h2 span{
+	font-size:14px;
+}
+.component_rigth .countdown
+{
+	padding-top:33px;
+}
+.component_rigth .countdown span{
+	color:@main_color;
+	padding:0 3px;
+}
+.component_rigth .component_price h2 strong{
+	font: 700 45px tahoma,sans-serif;	
+}
+.component_rigth .component_price .discount{
+	padding: 11px 0px 0px;
+	height: 18px;
+	display: block;
+	font: 700 16px arial,hiragino sans gb,sans-serif;
+	color:@main_color;
+	width:100px;
+}
+.component_rigth .component_price del {
+	float: left;
+	color: #999;
+	font-weight: 700;
+	line-height:23px;
+}
+/*已售-评分-评价数量*/
+.component_rigth .component_rating{
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	margin-bottom: 5px;
+	font-size: 13px;
+	height:38px;
+	line-height:38px;
+}
+.component_rigth .component_rating ul li{
+	display:inline-block;
+	width:30%;
+	height:38px;
+}
+.component_rigth .component_rating ul li.first{
+	width:35%;
+}
+.component_rigth .component_rating ul li.last{
+	width:34%;
+	text-align:right;
+}
+.component_rigth .component_rating ul li strong{
+	color:@main_color;
+	font-family: arial,sans-serif;
+}
+/*商家-使用日期-有效期----------------------------在商家详情页共有*/
+.component_rigth  .hangtag .width{
+	width:325px;
+}
+.hangtag ul li{
+	line-height:28px;
+}
+.hangtag ul li .tag{
+	display:inline-block;
+	width:70px;
+}
+.hangtag ul li span.cross{
+	display:inline-block;
+	margin:0px 10px;	
+}
+/*--------------------------------------------------------------------------*/
+/*套餐选择*/
+.component_rigth .package_choose{
+	padding:0px;
+	margin-top:20px;	
+}
+.component_rigth .package_choose span.info_title{
+	display:block;
+	width:70px;
+	line-height:28px;	
+}
+.component_rigth .package_choose .choose{
+	display:block;
+	width:375px;
+}
+
+.component_rigth .package_choose .choose a{
+	display:inline-block;
+	height: 26px;
+	line-height:26px;
+	float: left;
+	margin: 0 5px 5px 0;
+	position: relative;
+	border:2px solid @border_color;
+	background:#fff;
+	padding:0 5px;
+	*display:inline;
+	*zoom:1;
+}
+.component_rigth .package_choose .choose a i.iconfont{
+	display:none;
+	line-height:35px;
+	font-size:35px;
+	position: absolute;
+	right: -10px;
+	bottom: -2px;	
+}
+.component_rigth .package_choose .choose a.active i.iconfont{
+	display:inline-block;
+}
+.component_rigth .package_choose .choose a.active
+{
+    border-color:@main_color;
+	color:@main_color;	
+}
+.component_rigth .package_choose .choose a:hover
+{
+    border-color:@main_color;
+	color:@main_color;	
+}
+
+/*购买数量*/
+.component_rigth .num_choose .info_title{
+	width:70px;
+	line-height:28px;
+	display:inline-block;
+}
+.component_rigth .num_choose{
+	padding-top:15px;
+}
+.component_rigth .num_choose .change_box{
+	vertical-align: middle;
+	text-align: center;
+	font-size: 14px;
+	height: 32px;
+	line-height: 32px;#ff0000;
+	-webkit-appearance: none;
+	outline: 0;
+	width: 40px;
+	border: none;
+	border-top: 1px solid @border_color;
+	border-bottom: 1px solid @border_color;
+	padding: 0;
+	margin: 0;
+	margin-left: -3px;
+}
+.component_rigth .num_choose .less{
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	-webkit-appearance: none;
+	outline: 0;
+	border: 1px solid #ddd;
+	font-size: 18px;
+	font-weight: 700;
+	width:32px;
+	height:32px;
+	line-height:32px;
+	margin: 0;
+	color: #666;
+	background: #f0f0f0;
+	cursor: pointer;
+}
+
+.component_rigth .num_choose .increase{
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	-webkit-appearance: none;
+	outline: 0;
+	border: 1px solid #ddd;
+	font-size: 18px;
+	font-weight: 700;
+	width:32px;
+	height:32px;
+	line-height:32px;
+	margin: 0;
+	color: #666;
+	background: #f0f0f0;
+	cursor: pointer;
+	margin-left:-3px;
+}
+
+.component_rigth .num_choose .less:hover,.component_rigth .num_choose .increase:hover{
+	background: #f6f6f6;
+}
+
+.component_rigth .num_choose .num_choose_disabled,.component_rigth .num_choose .num_choose_disabled:hover,.component_rigth .num_choose .num_choose_disabled:active{
+	background: #999;
+}
+.component_rigth .num_choose .total{
+	padding:0px 10px;
+	display:block;
+	height: 34px;
+    line-height: 34px;
+}
+.component_rigth .num_choose .tips{
+	color:@main_color;
+	height: 34px;
+    line-height: 34px;
+}
+/*立即购买等buttom*/
+.component_rigth .roduct_button{   
+	padding:30px 0px 10px 0px;
+}
+.roduct_button .ui-button{
+	margin-right:10px;
+}
+/*分享到*/
+.share_to{
+	margin-top:20px;
+	margin-right:5px;
+}
+
+
+/*其他团购*/	
+.other_tuan{
+	background:@box_color;
+	border:1px solid @border_color;
+	border-bottom:none;
+}
+.three_title{
+	border-bottom: 2px solid @border_color;
+	padding: 10px;
+	font-size: 18px;
+	line-height:20px;
+	height:20px;
+}	
+.other_tuan .three_title h3{
+	font-size:18px;
+}		
+.other_tuan .subtitle span{
+	display:inline-block;
+	width:80px;
+	font-size:14px;
+	text-align: right;
+}	
+.other_tuan .other_list{ display:block; border-bottom: 1px solid @border_color;}
+.other_tuan .other_list li a{
+	display: block;
+	padding:0px 10px 0px 5px;
+	border-top: 1px solid @border_color;
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	-webkit-transition: background .2s;
+	-moz-transition: background .2s;
+	transition: background .2s;
+	position:relative;
+}	
+.other_tuan .other_list li a:hover{
+	background:#f5f5f5;
+}
+.other_tuan .other_list li.first a{
+	border:none;
+}	
+.other_tuan .other_list li span{
+	display:inline-block;
+	font-size:14px;
+	line-height:40px;
+	height:40px;
+}	
+.other_tuan .other_list li .content{
+	width:400px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+	letter-spacing: 1px;
+}	
+
+.other_tuan .other_list li{
+	_margin-bottom:-3px;
+	overflow:hidden;
+}	
+.other_tuan .other_list li .pirce{
+	color: @main_color;
+	font-weight:bolder;
+	right: 177px;
+	width: 90px;
+	text-align: right;
+	
+}	
+.other_tuan .other_list li .value{
+		right: 88px;
+		width: 80px;
+		text-align: right;
+		padding-right: 5px;
+	}
+.other_tuan .other_list li .sale{
+	right: 0px;
+	text-align: right;
+	width: 75px;
+	padding-right: 5px;
+	top:0px;
+	}
+	
+	
+/* 详情导航 */
+.show-nav{ border:@border_color solid 1px; background:#eee; height:40px; }
+.show-nav ul li{ float:left; display:block; height:40px; line-height:40px; text-align:center; padding:0px 25px; cursor:pointer; font-size:14px; border-right:@border_color solid 1px; }
+.show-nav ul li.active{ background:@main_color; color:#fff;}
+
+.show-content{ background:@box_color;}
+
+.fix-nav{	
+	border-top:2px solid @main_color;
+	position:fixed;
+	top:0;
+	text-align:center;	
+	height:40px;
+	_position:absolute;	
+	z-index:100;
+	
+}
+.fix-nav .show-nav{border-top:0px;}
+.flow_btn{ margin-right:8px; float:right; margin-top:8px;}
+
+.show-content .content_box .box_content{ padding:0 15px 15px 15px;}
+.show-content .content_box .box_title{ font-size:16px; font-family:"微软雅黑"; font-weight:bolder; height:22px; line-height:22px; border-bottom:@border_color solid 2px; padding:15px; margin:15px 0px; }
+
+.show-content .content_box .box_title .box_title_text{ float:left;}
+.show-content .content_box .box_title .box_title_more{ float:right; font-size:12px;}
+.show-content .content_box .box_title .box_title_more a{ color:@main_color;}
+.show-content .content_box .box_title .box_title_more a:hover{ color:@dark_color;}
+.show-content .content_box .nopadding{ padding:0px;}
+.show-content .content_box .nomargin{ margin:0px;}
+
+.promote_list{ border:@border_color solid 1px; padding:10px; color:#999;}
+
+.kf_qq_box{position: relative;}
+.s_kf_qq{
+	position: absolute;
+	right: 0px;
+	top: -50px;
+}
+
+
+.app_tip{
+	border:@main_color solid 1px;
+	color:@main_color ;
+	display:block;
+	padding:4px;
+	background:@light_color;
+}
+
+.collect_ico{ padding-top:17px; color:@main_color;}

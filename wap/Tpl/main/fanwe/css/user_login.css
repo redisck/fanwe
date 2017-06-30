@@ -1,0 +1,271 @@
+.comment_list_txt1{
+	margin: 10px;
+	background-color: white;
+	border:1px solid #ccc;
+}
+
+.blank {
+height: 0px;
+line-height:0px;
+clear: both;
+visibility: hidden;
+font-size: 0px;
+padding: 0px;
+margin: 0px;
+}
+ul{ list-style:none;}
+/*选项卡1*/
+#Tab1{
+width:100%;
+margin:0px;
+padding:0px;
+margin:0 auto;}
+/*菜单class*/
+.Menubox {
+width:100%;
+height:48px;
+line-height:48px;
+}
+
+.Menubox ul{
+margin:0px;
+padding:0px;
+display:-moz-box;
+display:-webkit-box;
+display:box;
+width:100%;
+font-size: 15px;
+color: #484848;
+}
+.Menubox li{
+ cursor:pointer;
+ text-align:center;
+ background:#f5f5f5;
+ font-weight:bold;
+  border-bottom:1px solid #ccc;
+  -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+  font-size: 14px;
+ }
+.Menubox li.hover{
+ padding:0px;
+ background:#fff;
+ font-weight:bold;
+ border: none;
+ -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+}
+.Contentbox{
+ clear:both;
+ margin-top:0px;
+ border-top:none;
+ padding:0px 5px 15px 5px;
+}
+.inputtxt{
+	border:1px solid #ccc;
+	border-radius: 4px;
+	height: 45px;
+	background: #f5f5f5;
+	margin-top: 10px;
+	display:-moz-box;
+	display:-webkit-box;
+	display:box;
+	width:100%;
+	box-shadow: 2px 3px 5px #ccc inset;
+}
+.inputtxt2{
+	width: 100%;
+	margin-top: 10px;
+}
+.inputpc{
+	height: 45px;
+	width: 45px;
+	line-height: 45px;
+	text-align: center;
+	font-size: 26px;
+	color: #878787;
+}
+.inputpc i.iconfont{ font-size:26px;}
+.input_sr{
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	position:relative;
+	overflow:hidden;
+}
+.inputtxt input{
+	color:#c0c0c0;
+	font-size:15px;
+	background: none;
+	border: none;
+
+	width: 100%;
+	height:44px;
+	
+	
+}
+.inputtxt input:disabled{color:#c0c0c0;}
+.find_pw{
+	text-align: right;
+	padding: 10px;
+}
+.find_pw a{
+	color: #fb8602;
+	font-size:15px;
+}
+.btn_login{
+	margin-top:10px;
+	width: 100%;
+	border-radius: 15px;
+	height: 35px;
+	overflow: hidden;
+	background:@main_color;
+}
+.btn_login input{
+	width: 100%;
+	border-radius: 15px;
+	background: #fb8602;
+	height: 35px;
+	text-align: center;
+	color: @font_white;
+	font-size:14px;
+	font-weight:bolder;
+	border:none;
+	
+}
+.phone{
+	
+	height: 45px;
+	width:55%;
+	background: #f5f5f5;
+	border:1px solid #ccc;
+	border-radius: 4px;
+	text-align: center;
+	float: left;
+	color:#c0c0c0;
+	font-size:15px;
+	box-shadow: 2px 3px 5px #ccc inset;
+}
+.btn_phone{
+	width:100%;
+	height:100%;
+	color:@font_style;
+	background: none;
+	line-height:45px;
+	font-size:15px;
+	text-align: center;
+}
+.chk{
+	padding: 12px 0 22px 0;
+	line-height: 25px;
+	text-align: center;
+	color: #878787;
+}
+.chk_sp1{
+	padding: 0 10px;
+}
+.chk_sp2{
+	padding-right: 20px;
+	padding-left:10px;
+}
+.chk input[type="checkbox"] {
+	height: 23px;
+	width: 22px;
+	border:1px solid #fc8600;
+	color: #fc8600;
+}
+
+
+
+.chk input[type=checkbox]:checked{
+	background:url(../images/chk.jpg) center;
+}
+
+.inputtxt2  span{
+	font-size:14px;
+	color:#888888;
+}
+
+.inputtxt .testing{
+	box-shadow: 3px 3px 10px #ccc inset;
+}
+
+.collection{
+	text-align:center;
+	padding:20px 0;
+	border-bottom: 1px solid #f5f5f5;
+}
+.collection:first-child {
+	text-align:center;
+	padding-botton:20px;
+	border-bottom: 1px solid #f5f5f5;
+}
+.dl-title{
+	color:#fb8603;
+	font-size:15px;
+}
+.dl-brand{
+	font-size:14px;
+	color:#747474;
+}
+.dl-price{
+	font-size:14px;
+	color:#747474;
+}
+
+#con_one_2 .inputtxt2 .first{
+	box-shadow: 3px 3px 5px #ccc inset;
+				    line-height: 45px;
+					height: 45px;
+					width: 55%;
+					background: #f5f5f5;
+					border: 1px solid #ccc;
+					border-radius: 4px;
+					text-align: center;
+					float: left;
+					color: #c0c0c0;
+					font-size: 15px;
+					padding-left:10px;
+}
+#con_one_2 .inputtxt2 .second{
+	float: right;
+				height: 45px;
+				width: 35%;
+				border: 1px solid @border_style;
+				border-radius: 4px;
+				color: @font_style;
+				text-align: center;
+				font-size: 15px;
+}
+#con_one_2 .third{
+	text-align: center;box-shadow: none;
+}
+.other-login {
+padding:10px;
+}
+.other-login p {
+font-size: 14px;
+color: #666;
+width:100%;
+}
+.new-tbl-type {
+display: table;
+width: 50%;
+}
+.other-login .new-tbl-type {
+margin-top: 10px;
+}
+.other-login {
+padding:10px;
+}
+.other-login p {
+font-size: 14px;
+color: #666;
+width:100%;
+}
+.new-tbl-type {
+display: table;
+width: 50%;
+}
+.other-login .new-tbl-type {
+margin-top: 10px;
+}

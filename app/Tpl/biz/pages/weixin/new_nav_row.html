@@ -1,0 +1,35 @@
+						<tr class="{if $row_type eq 'sub'}{$row_type}  {$row_type}_{$item.pid}{else}main{/if}">
+                               <td style="width:80px;">
+                               			{if $row_type eq 'sub'}
+										<i class="board">&nbsp;&nbsp;</i>
+										{/if}
+										<input type="text" name="sort[]"  size="2" value="0"  />
+										<input type="hidden" name="id[]" value="" />
+										<input type="hidden" name="pid[]" value="{$item.pid}" />
+										<input type="hidden" name="row_type[]" value="{$row_type}" />									
+                               </td>
+                               <td  class="detail">
+                               			{if $row_type eq 'sub'}
+										<i class="board">&nbsp;&nbsp;</i>
+										{/if}
+ 										<input type="text" name="name[]"   value=""  size="15" />
+										<span class="maroon">*</span>
+ 										{if $item.id gt 0 && $row_type eq 'main'}
+										<a href="javascript:void(0);" class="add_sub_nav"  rel="{url x="biz" r="wxnav#new_nav_row" p="row_type=sub&id=$nav.id"}" pid="{$item.id}">+</a>
+										{else}
+										<a href="javascript:void(0);" >&nbsp&nbsp</a>
+										{/if}                               			
+                               </td>
+                               <td>
+										<select name="ctls[]" class="ctl">
+												{foreach from=$navs item=nav_item key=key}
+													<option value="{$key}">{$nav_item.name}</option>
+												{/foreach}
+										</select>
+										<span class="data" style="display:none;">				
+											<span class="field_name"></span>&nbsp;&nbsp;<input type="text" class="textbox" name="data[]"  value="" />
+										</span>                               
+                               </td>     
+                               <td  class="detail">未同步</td>
+                               <td><a href="javascript:void(0);" class="del_nav">删除</a></td>                           
+                         </tr>

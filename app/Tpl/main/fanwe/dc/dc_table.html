@@ -1,0 +1,110 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_rsitem.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/side_deal_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/sort_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fancybox.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/jquery-1.8.1.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/cart.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/cart.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/business_address.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/business_address.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/jquery-ui.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dateinput-ch-ZN.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/jquery-ui.js";
+?>
+{include file="inc/header.html"}
+<script>
+function submit_date()
+{
+	
+$("#date_form").submit()
+	
+}	
+
+</script>	
+<div class="blank15"></div>
+<div class="main1">	
+	<div class="banner-div" id="banner-div">
+		<div class="banner-container" id="banner-container" style="position: relative; overflow: hidden;">
+			<ul class="slide-container">
+				<li style="position: relative; float: left; margin-right: -100%; display: list-item;"><a href="http://waimai.baidu.com/zhuanti/bishengke0410?stat_bk=shoplist-top-banner" target="_blank"><img src="http://bcscdn.baidu.com/opnimg/66a27cc8a68dcd7ef4108d6360226c60.jpg" alt="必胜客活动" style="height: 80px; width: 1230px;"></a></li>
+			</ul>
+			<ol class="slide-indicators"></ol>
+		</div>
+	</div>
+	<div class="blank"></div>
+	
+	<div class="gray"><span class="location_title">{$name}</span></div>
+	
+	<div class="blank"></div>
+	<form name="search_date" method="post" id="date_form" action="{url x="index" r="dctable#index"}">
+	<div>
+		<span style="float:left;">就餐时间：</span><input type="text" value="{$date}" id="popupDatepicker" name="date" placeholder="请选择订餐日期" readonly style="float:left;margin-right:5px;" onchange="submit_date();">
+		<input type="hidden" name="lid" value="{$lid}">
+		<!--<button style="float:left;" class="ui-button add_goods_type" rel="white" type="submit">提交</button>	
+		<div  style="cursor:pointer;" class="dishOrder"  onclick=window.location.href="{url x="index" r="dcbuy#index" p="lid=$lid"}">先点菜</div>-->
+	
+	</div>
+	<script>
+		 $('#popupDatepicker').datepicker(); //绑定输入框
+	</script>
+	</form>
+	
+	{foreach from=$rs_result_list item=rs_result_item}	
+<div class="dish-list" id="dish-list">
+			
+	<div class="tables">
+		<lable class="t-head">{$rs_result_item.name}</lable>
+		<div class="small_box">￥{function name="round" v=$rs_result_item.price l=2}起订</div>
+		<div class="text">
+		{if $rs_result_item.table}	
+			<ul>
+			{foreach from=$rs_result_item.table item=rs_time_item}	
+			
+				{if $rs_time_item.today_ef eq 0}    {*以后时间*}
+					<li {if $rs_time_item.count_status eq 1}
+					class="last" onclick=window.location.href="{url x="index" r="dctable#add_table_cart" p="id=$rs_time_item.id&date=$date&supplier_id=$rs_time_item.supplier_id&location_id=$rs_time_item.location_id"}" 
+					{/if}>{$rs_time_item.rs_time}</li>
+				{else}   {*当天时间*}
+					<li {if $rs_time_item.count_status eq 1}   
+					{if $rs_time_item.today_ef eq 2}
+					class="last" onclick=window.location.href="{url x="index" r="dctable#add_table_cart" p="id=$rs_time_item.id&date=$date&supplier_id=$rs_time_item.supplier_id&location_id=$rs_time_item.location_id"}"
+					
+					{/if}
+					{/if}>{$rs_time_item.rs_time}</li>
+				{/if}
+			{/foreach}	
+				
+			</ul>
+		{else}
+			暂无时间段放出
+		{/if}
+		</div>
+	</div>
+	
+</div>
+{/foreach}
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,140 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_location.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/location_collect.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+</script>
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////////-->	
+{include file="dc/inc/dc_nav.html"}
+<!-------------------------------------------------------------------------------------------------选项卡-->
+
+<div class="bg_fff bor_3 p_020_0 w_b w_b">
+	<div class="bor_2 w220 tc">
+		<p class="f052 f_fe4d3d lh072">{function name=round v=$data.avg_point g=1}</p>
+		<p class="f029  lh060">整体评分</p>
+	</div>
+	<div class="w_b_f_1 p_010_0">
+		{foreach from=$data.dp_data item=item}
+		<div class="w_b p_013_0">
+			<div class="w_b_f_1 tc f024 w_percentage_25 f_7f7f7f lh030">{$item.name}</div>
+			<div class="pr w220 h030  ">
+		    	<div class="ps f_a6a6a6 f028 lh030">	
+		    		<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+		    	</div>
+				<div class="ps f_fa952f lh030 h030 f028 nowrap ovhide star_width" rel="{$item.avg_point}">
+		    		<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+		    	</div>
+		    </div>
+			<div class="w_b_f_1 tc f_fe4d3d lh030 f024">{$item.avg_point}分<div  class="lh030 mt-030 opacity_0 ">0.0分</div></div>
+		</div>
+		{/foreach}
+
+	</div>
+</div>
+<!-------------------------------------------------------------------------------------------------整体评分-->
+<div class="blank024"></div>
+
+<div class="bg_fff">
+	<div class="bor_3 bor_4 pl030 f029 lh100">全部点评</div>
+	{if $data.dp_list}
+	<ul class="Reviews_list">
+		{foreach from=$data.dp_list item=item}
+		<li class="bor_5 pl030 pr030 pt014 pb016">
+			
+			<div class="clearfix p_010_0">
+				<span class="f_l  f_fe4d3d f024 lh030 pr022">{$item.user_name}</span>
+				<span class="f_l f_7f7f7f f024 lh030">{$item.create_time_format}</span>
+				<div class="pr w220 h030 f_r mt-1">
+			    	<div class="ps f_a6a6a6 f028 lh030">	
+			    		<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+			    	</div>
+					<div class="ps f_fa952f lh030 h030 f028 nowrap ovhide  star_width" rel="{$item.point}">
+			    		<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+			    	</div>
+		       </div>
+			</div>
+			
+			<p class="f_7f7f7f f024 lh036 p_010_0">{$item.content}</p>
+			
+			<div class="clearfix mb006 img_list_show">
+				<!--
+				<span class="imgbox f_l"><img src="../images/show_img_04.png" width="100%"/></span>
+				-->
+				{foreach from=$item.images item=pic}
+				   <span class="imgbox f_l"><img src="{$pic}" /></span>
+				{/foreach}
+			</div>
+			{if $item.counti>3}
+			<div class="f_7f7f7f f024 lh030 tc img_list_show_but">点击查看更多图片</div>
+			{/if}
+			{if $item.reply_content}
+			<div class="supplier_reply lh036">
+				<span class="reply_title">掌柜回复：</span>	
+				{$item.reply_content}</div>
+			{/if}	
+		</li>
+		{/foreach}
+		{if $pages}
+		<div class="fy">
+			{$pages}
+		</div>
+		{/if}
+	</ul>
+	{else}
+
+		<div class="fy">
+			暂无点评
+		</div>
+	{/if}
+</div>
+<!-------------------------------------------------------------------------------------------------点评详情-->	
+</body>
+</html>

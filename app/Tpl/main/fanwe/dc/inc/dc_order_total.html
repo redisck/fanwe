@@ -1,0 +1,104 @@
+	{if $location_dc_table_cart.total_data.total_count gt 0 && $location_dc_cart.total_data.total_count eq 0}
+		<table id="dc_cart_info" cellpadding="0" cellspacing="0">
+			<tbody>
+				<tr class="box_title"><td class="dc_left">座位</td><td class="unit_price">定金</td><td class="dc_m">数量</td><td class="dc_right">金额</td></tr>
+					{foreach from=$location_dc_table_cart.cart_list item=cart_row}
+
+					<tr><td class="dc_left"><i data-parmas="{$cart_row.id}" class="iconfont table_delete"><span class="t_text">{$cart_row.name}</span>&#xe62f;</i></td>
+					<td class="unit_price">{function name=format_price item=$cart_row.unit_price}</td>
+					<td class="dc_m">{$cart_row.num}</td>
+					<td class="dc_right">{function name=format_price item=$cart_row.total_price}</td></tr>
+
+					{/foreach}
+					
+					
+			</tbody>
+		</table>
+		
+	{else}
+		<table id="dc_cart_info" cellpadding="0" cellspacing="0">
+			<tbody>
+				<tr class="box_title">
+					<td class="dc_left" >商品</td>
+					<td class="unit_price">单价</td>
+					<td class="dc_m">份数</td>
+					<td class="dc_right">金额</td>
+					
+			    </tr>
+					{foreach from=$location_dc_cart.cart_list item=cart_row}
+
+					<tr><td class="dc_left">{$cart_row.name}</td>
+					<td class="unit_price">{function name=format_price item=$cart_row.unit_price}</td>
+					<td class="dc_m">{$cart_row.num}</td>
+					<td class="dc_right">{function name=format_price item=$cart_row.total_price}</td></tr>
+
+					{/foreach}
+					
+			</tbody>
+		</table>
+		
+	{/if}	
+
+<table id="dc_cart_info" cellspacing="0" cellpadding="0">
+
+	{if $location_dc_table_cart.total_data.total_count lt 1}	
+		{if $location_dc_cart.total_data.total_count gt 0}
+		
+			{* 打包费 *}
+			{if $result.dc_package_info.is_free_package eq 0}
+			<tr>
+					<td class="dc_left">{lang v="DC_PACKAGE_PRICE"}</td>
+					<td class="unit_price">{function name=format_price item=$result.dc_package_info.package_price}</td>
+					<td class="dc_m">{$location_dc_cart.total_data.total_count}</td>
+					<td class="dc_right">{function name=format_price item=$result.package_fee}</td>	
+			</tr>
+			{/if}
+			{* 打包费 *}
+			{* 配送费 *}
+			{if $result.location_delivery_info.is_free_delivery eq 0}
+			<tr><td class="dc_left" colspan="2">
+				{lang v="DC_DELIVERY_PRICE"}</td><td class="f_r" colspan="2">{function name=format_price v=$result.delivery_fee}
+			</td></tr>
+			{/if}
+			{* 配送费 *}
+		
+		{/if}
+	{/if}
+	{if $result.payment_fee gt 0}
+	<tr><td class="dc_left" colspan="2">手续费</td><td class="f_r" colspan="2">{function name=format_price item=$result.payment_fee}</td></tr>
+	{/if}
+	<tr class="dc_last_tr"><td class="dc_left" colspan="2">
+		{lang v="DC_TOTAL_PRICE"}</td><td class="f_r" colspan="2"><span class="p_total">{function name=format_price item=$result.pay_total_price}</span>
+	</td></tr>
+
+</table>
+{if $result}	
+	<table id="dc_cart_info" class="final_price_box" cellspacing="0" cellpadding="0">
+			
+			{if $result.paid_account_money gt 0}
+			<tr><td class="dc_left">已付余额</td><td class="f_r">-&nbsp;{function name=format_price item=$result.paid_account_money}</td></tr>
+			{/if}
+			{if $result.paid_ecv_money gt 0}
+			<tr><td class="dc_left">已付红包</td><td class="f_r">-&nbsp;{function name=format_price item=$result.paid_ecv_money}</td></tr>
+			{/if}	
+			{if $result.paid_promote_amount gt 0}
+			<tr><td class="dc_left">已优惠</td><td class="f_r">-&nbsp;{function name=format_price item=$result.paid_promote_amount}</td></tr>
+			{/if}			
+			{if $result.dc_promote}
+			{foreach from=$result.dc_promote item=dc_promote}
+			<tr><td class="dc_left"> {$dc_promote.name}</td><td class="f_r">-&nbsp;{function name=format_price item=$dc_promote.discount_amount}</td></tr>
+			{/foreach}
+			{/if}
+			{if $result.ecv_money gt 0}
+			<tr><td class="dc_left">红包支付</td><td class="f_r">-&nbsp;{function name=format_price item=$result.ecv_money}</td></tr>
+			{/if}
+			{if $result.account_money gt 0}
+			<tr><td class="dc_left">余额支付</td><td class="f_r">-&nbsp;{function name=format_price item=$result.account_money}</td></tr>
+			{/if}
+			<tr class="dc_last_tr">
+				<td class="f_r" colspan="2"><span class="p_total">{function name=format_price item=$result.pay_price}</span><span>应付款金额</span>
+			</td></tr>
+
+
+	</table>
+{/if}

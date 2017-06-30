@@ -1,0 +1,25 @@
+<div class="publish_img_edit_page publish_eidt_box_full_bg">
+	<form name="publish_img_edit_form" action="{url b="index" r="ajax#publish_save"}" method="post">
+	<div class="pub_a_edit_item_box">
+		<div class="pub_label">
+			<h4>说说想法，发发图片</h4>
+		</div>
+		
+		<div class="a_edit_area ">
+			{include file="inc/publish_edit_box_img.html"}
+		</div>
+		<div class="blank0"></div>
+		
+	</div>
+
+	<div class="pub_g_info_btn f_r">
+			<input type="hidden" name="jump" value="{url b="index" r="uc_home#index"}">
+			<input type="hidden" name="ajax" value="1">
+
+			<input type="hidden" name="type" value="share"/>
+			<div class="publish_btn_box">
+				<button class="ui-button" rel="orange"> 提 交 </button>
+			</div>
+		</div>
+	</form>
+</div>

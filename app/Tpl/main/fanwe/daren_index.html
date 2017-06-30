@@ -1,0 +1,180 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/daren.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/daren.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/daren.js";
+?>
+{include file="inc/header.html"} 
+
+<div class="{function name="load_wrap" t=$wrap_type}">
+	<div class="blank"></div>	
+	<div class="daren_recommend_box">
+		<div class="darenshow_tag"></div>		
+		<div class="m">
+			<div class="daren_list">
+			{if count($rnd_daren_list) < 42}
+			<img src="{$TMPL}/images/daren/demo_daren.jpg" />
+			{else}
+			{foreach from=$rnd_daren_list item=daren}
+			{function name="show_avatar" uid="$daren.id"  type="small"}
+			{/foreach}
+
+			{/if}
+			</div>
+			<div class="daren_submit">
+				<a href="{url x="index" r="daren#submit"}"><img src="{$TMPL}/images/daren/darensubmit.png" /></a>
+			</div>
+			<div class="clear"></div>
+		</div>		
+	</div>
+	<div class="blank20"></div>
+	
+	<div class="show-nav" id="rel_nav">
+		<!--{start: 达人导航 -->
+			<ul>
+				<li class="first on" data-category="0"><a href="javascript:;">热门推荐</a></li>
+				{foreach from=$cate_list item=cate_item name=cateloop}							
+				<li data-category="{$cate_item.id}" {if $smarty.foreach.cateloop.last}class="last"{/if}><a href="javascript:;">{$cate_item.name}</a></li>
+				{/foreach}
+			</ul>
+		<!--}end: 达人导航 -->
+	</div>
+	<div class="blank20"></div>
+	
+	
+	<div data-category="0" class="cate_topic">
+	<div class="cate_title">热门推荐</div>
+	<div class="blank20"></div>
+	{foreach from=$topic_list item=topic key=key}
+	<div class="rec_topic_item {if $key mod 2 neq 0}r{/if}">
+	<span>
+			<div class="f_l">
+			{function name="show_avatar" uid=$topic.user_id  type="small"}
+			</div>
+			<div class="f_l" style="padding-left: 10px; width:200px; overflow:hidden;">
+			{function name="get_user_name" value=$topic.user_id} 
+			
+			<br />
+			{if $topic.user_info.focused eq 1}
+			<a href="javascript:;" onclick="focus_user({$topic.user_id},this);" class="remove_focus">{$LANG.CANCEL_FOCUS}</a>
+			{else}
+			<a href="javascript:;" onclick="focus_user({$topic.user_id},this);" class="add_focus">{$LANG.FOCUS_THEY}</a>
+			{/if}
+			</div>
+			
+			<div class="fav_row f_r"><span>{$topic.fav_count}</span>人喜欢</div> 
+	</span>	
+	<div class="blank"></div>
+	<div class="tp_content">{$topic.content}</div>
+	<div class="blank5"></div>
+	<a href="{url x="index" r="topic#view" p="id=$topic.id"}" class="topic_view"><img src="{if $topic.daren_page}{function name="get_spec_image" v=$topic.daren_page w=458 h=160 g=1}{else}{function name="get_spec_image" v=$topic.images.0.o_path w=458 h=160 g=1}{/if}" lazy="true" /></a>
+	</div>	
+	{/foreach}
+	<div class="blank"></div>
+	
+	{foreach from=$daren_list item=daren key=key}
+	{if $key lt 8}
+	<span class="daren_item">
+			<div class="f_l">
+			{function name="show_avatar" uid=$daren.id  type="small"}
+			</div>
+			<div class="f_l" style="padding-left: 10px; width:180px; overflow:hidden;">
+			{function name="get_user_name" value=$daren.id} 
+			
+			<br />
+			{if $daren.focused eq 1}
+			<a href="javascript:;" onclick="focus_user({$daren.id},this);" class="remove_focus">{$LANG.CANCEL_FOCUS}</a>
+			{else}
+			<a href="javascript:;" onclick="focus_user({$daren.id},this);" class="add_focus">{$LANG.FOCUS_THEY}</a>
+			{/if}
+			</div>
+
+	</span>	
+	{/if}
+	{/foreach}
+	<div class="blank"></div>
+	</div><!--end cate_topic-->
+
+	{foreach from=$cate_list item=cate_item name=cateloop}							
+	<div data-category="{$cate_item.id}" class="cate_topic">
+		<div class="cate_title">{$cate_item.name}</div>
+		<div class="blank20"></div>
+		{foreach from=$cate_item.topic_list item=topic key=key}
+		<div class="rec_topic_item {if $key mod 2 neq 0}r{/if}">
+		<span>
+				<div class="f_l">
+				{function name="show_avatar" uid=$topic.user_id  type="small"}
+				</div>
+				<div class="f_l" style="padding-left: 10px; width:200px; overflow:hidden;">
+				{function name="get_user_name" value=$topic.user_id} 
+				
+				<br />
+				{if $topic.user_info.focused eq 1}
+				<a href="javascript:;" onclick="focus_user({$topic.user_id},this);" class="remove_focus">{$LANG.CANCEL_FOCUS}</a>
+				{else}
+				<a href="javascript:;" onclick="focus_user({$topic.user_id},this);" class="add_focus">{$LANG.FOCUS_THEY}</a>
+				{/if}
+				</div>
+				
+				<div class="fav_row f_r"><span>{$topic.fav_count}</span>人喜欢</div> 
+		</span>	
+		<div class="blank"></div>
+		<div class="tp_content">{$topic.content}</div>
+		<div class="blank5"></div>
+		<a href="{url x="index" r="topic#view" p="id=$topic.id"}" class="topic_view"><img src="{if $topic.daren_page}{function name="get_spec_image" v=$topic.daren_page w=458 h=160 g=1}{else}{function name="get_spec_image" v=$topic.images.0.o_path w=458 h=160 g=1}{/if}" lazy="true" /></a>
+		</div>	
+		{/foreach}
+		<div class="blank"></div>
+		
+		{foreach from=$cate_item.daren_list item=daren}
+		<span class="daren_item">
+				<div class="f_l">
+				{function name="show_avatar" uid=$daren.id  type="small"}
+				</div>
+				<div class="f_l" style="padding-left: 10px; width:180px; overflow:hidden;">
+				{function name="get_user_name" value=$daren.id} 
+				<br />
+				{if $daren.focused eq 1}
+				<a href="javascript:;" onclick="focus_user({$daren.id},this);" class="remove_focus">{$LANG.CANCEL_FOCUS}</a>
+				{else}
+				<a href="javascript:;" onclick="focus_user({$daren.id},this);" class="add_focus">{$LANG.FOCUS_THEY}</a>
+				{/if}
+				</div>
+	
+		</span>	
+		{/foreach}
+		<div class="blank"></div>
+	</div>
+	{/foreach}	
+	
+	<div style="display:none;" class="fix-nav">
+		<!--{start: 浮动达人导航 -->
+		<div class="show-nav">						
+			<ul>
+				<li class="first on" data-category="0"><a href="javascript:;">热门推荐</a></li>
+				{foreach from=$cate_list item=cate_item name=cateloop}							
+				<li data-category="{$cate_item.id}" {if $smarty.foreach.cateloop.last}class="last"{/if}><a href="javascript:;">{$cate_item.name}</a></li>
+				{/foreach}
+			</ul>						
+		</div>
+		<!--}end: 达人导航 -->
+	</div>
+<div class="blank"></div>
+</div>
+{include file="inc/footer.html"}

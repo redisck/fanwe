@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+.info_table table td.payment_list_td{ padding:12px 0px 10px 33px;}
+.info_table table td.payment_input{ padding:5px; width:640px; text-align:right;}
+.info_table table td.payment_btn{ padding:5px; width:140px;}
+
+#cart_payment .payment_rdo{float:left; border:#f2f2f2 2px solid;  width:150px; height:40px; display:inline-block; margin:0px 33px 10px 0px; overflow:hidden; text-align:center; line-height:40px;}
+#cart_payment .payment_rdo_hover,#cart_payment .payment_rdo_checked{float:left; border:@main_color 2px solid; width:150px; height:40px; display:inline-block; margin:0px 33px 10px 0px;  overflow:hidden; text-align:center;  line-height:40px;}
+#cart_payment .payment_rdo img,#cart_payment .payment_rdo_hover img,#cart_payment .payment_rdo_checked img{ width:150px; height:40px;}
+#cart_payment .ui-textbox{ padding:5px;}
+#cart_payment .content{ padding-right:0px;}
+
+
+.order_table td h1 {
+  color: #e64d5e;
+  display: inline;
+  font-family: verdana;
+  font-size: 12px;
+  font-weight: normal;
+}
+.op_box {
+  border-left: 1px dotted #e5e5e5;
+}

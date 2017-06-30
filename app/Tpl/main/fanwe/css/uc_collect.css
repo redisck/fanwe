@@ -1,0 +1,6 @@
+.uc_info_box .info_nav ul li {*display: inline;}
+.uc_info_box .info_nav ul li a{outline:none;}
+.info_table table td{*zoom:expression(this.innerHTML==""?(this.innerHTML="&nbsp;"):0);}
+
+.info_table .ctime{border-left: 1px dotted #E5E5E5;border-right: 1px dotted #E5E5E5;}
+.info_table td.operate a{margin-right:5px;}

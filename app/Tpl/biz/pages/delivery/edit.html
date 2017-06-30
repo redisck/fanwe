@@ -1,0 +1,121 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/kindeditor.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/delivery.css";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/kindeditor.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/delivery/delivery.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/delivery/delivery.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+var APP_ROOT = '{$APP_ROOT}';
+
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class="publish_project_btn f_r"><a href="{$go_list_url}"><button class="ui-button " rel="white" type="button">返回列表</button></a></div>
+			</div>
+			<div class="blank20"></div>
+			<div class="form_box">
+				<form name="delivery_publish_form" action="{url r="biz" b="delivery#do_save_publish"}" method="post">
+				<div class="publish_box ">
+						<table class="form_teble_box add_border">
+									<colgroup>
+										<col width="100">
+										<col width="690">
+									</colgroup>
+									<tbody>
+										<tr>
+											<td class="t_field_name ">名称:</td>
+											<td class="t_field_value">{$vo.name}</td>
+										</tr>	
+							
+										<tr>
+											<td class="t_field_name">描述:</td>
+											<td class="t_field_value">
+												{$vo.description}
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">计重单位:</td>
+											<td class="t_field_value">{$vo.weight_name}</td>
+										</tr>
+										
+										<tr>
+											<td class="t_field_name ">默认开启:</td>
+											<td class="t_field_value">
+												{if $vo.allow_default eq 1}	
+												{$LANG.FIRST_WEIGHT}:{$vo.first_weight}{$vo.weight_name}&nbsp;&nbsp;
+												{$LANG.FIRST_FEE}:{$vo.first_fee}元&nbsp;&nbsp;
+												{$LANG.CONTINUE_WEIGHT}:{$vo.continue_weight}{$vo.weight_name}&nbsp;&nbsp;
+												{$LANG.CONTINUE_FEE}:{$vo.continue_fee}元
+												{else}
+												未开启，不设置地区配置将不支持该配送方式
+												{/if}
+											</td>
+										</tr>
+										
+										<tr>
+											<td class="t_field_name "><button id="add_region_conf" class="ui-button add_goods_type" rel="white" type="button">{$LANG.ADD_REGION_CONFIG}</button></td>
+											<td class="t_field_value">
+												<div id="region_conf">
+													{foreach from=$regions_list item="region_item" name="region_item"}
+														<div > 
+														{$LANG.FIRST_WEIGHT}:<input type='text' class='ui-textbox long_input' name='region_first_weight[]' style='width:40px;' value="{$region_item.first_weight}" />
+														{$LANG.FIRST_FEE}:<input type='text' class='ui-textbox long_input' name='region_first_fee[]' style='width:40px;' value="{$region_item.first_fee}"  />
+														{$LANG.CONTINUE_WEIGHT}:<input type='text' class='ui-textbox long_input' name='region_continue_weight[]' style='width:40px;' value="{$region_item.continue_weight}"  />
+														{$LANG.CONTINUE_FEE}:<input type='text' class='ui-textbox long_input' name='region_continue_fee[]' style='width:40px;' value="{$region_item.continue_fee}"  />
+														
+														{$LANG.SUPPORT_REGION}:<input type='text' class='ui-textbox long_input' name='region_support_region_name[]' style='width:100px;' onfocus='select_delivery_regions(this);' value="{$region_item.names}"  />&nbsp;
+														<input type='hidden' name='region_support_region[]' value="{$region_item.region_ids}"  />
+														<input type='hidden' name='region_conf_id[]' value="{$region_item.id}"  />
+														[ <a href='javascript:void(0);' onclick='$(this.parentNode).remove();' style='text-decoration:none;' title='删除'>-</a> ] </div>
+													{/foreach}
+												</div>
+											</td>
+										</tr>	
+									</tbody>
+								</table>
+						<div class="blank10"></div>
+					</div>
+					<div class="confirm_form_btn">
+					<input type="hidden" name="id" value="{$vo.id}"/>
+						<div class="sub_form_btn">
+							<button class="ui-button " rel="orange" type="submit">确认提交</button>
+						</div>
+							
+					</div>
+				</form>
+				<div class="blank10"></div>
+			</div>
+			<div class="blank10"></div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

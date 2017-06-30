@@ -1,0 +1,128 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/wxnav.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/wxnav.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/wxnav.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+var navs = {$navs_json};
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box">
+				<h2>{$head_title}</h2>
+			</div>
+
+
+
+			<div class="info_box">
+				<div class="blank20"></div>
+
+				<div class="bg_box growth_content">
+					
+					<div class="info_items">
+              <p>注意：1级菜单最多只能开启3个，2级子菜单最多开启5个!</p>
+              <p>只有保存主菜单后才可以添加子菜单</p>
+              <p>生成自定义菜单,必须在已经保存的基础上进行,临时勾选启用点击生成是无效的! 第一步必须先修改保存状态！第二步点击生成!</p>
+              <p>当您为自定义菜单填写链接地址时请填写以"http://"开头，这样可以保证用户手机浏览的兼容性更好</p><br/>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="blank20"></div>
+			<form action="{url x="biz" r="wxnav#nav_save"}" method="post" name="wxnav" >
+			<div class="info_table">			
+				
+				<div class="blank20"></div>
+				<table>
+					<tbody id="listTable">
+						<tr>
+							<th>显示排序</th>
+							<th>主菜单名称</th>
+							<th>触发关键词或地址链接</th>
+							<th>同步结果</th>
+							<th>操作</th>
+						</tr>
+						{foreach from=$result_navs item=nav}
+						<tr class="nav_row {if $nav.pid eq 0}main{else}sub sub_{$nav.pid}{/if}">
+                               <td style="width:80px;">
+                               			{if $nav.pid neq 0}
+										<i class="board">&nbsp;&nbsp;</i>
+										{/if}
+										<input type="text" name="sort[]"  size="2" value="{if $nav.sort}{$nav.sort}{else}0{/if}"  />
+										<input type="hidden" name="id[]" value="{$nav.id}" />
+										<input type="hidden" name="pid[]" value="{$nav.pid}" />
+										<input type="hidden" name="row_type[]" value="{if $nav.pid eq 0}main{else}sub{/if}" />									
+                               </td>
+                               <td  class="detail" style="width:186px;">
+                               			{if $nav.pid neq 0}
+										<i class="board">&nbsp;&nbsp;</i>
+										{/if}
+ 										<input type="text" name="name[]"  size="15" value="{$nav.name}"  />
+										<span class="maroon">*</span>
+ 										{if $nav.pid eq 0}
+										<a href="javascript:void(0);" class="add_sub_nav"  rel="{url x="biz" r="wxnav#new_nav_row" p="row_type=sub&id=$nav.id"}" pid="{$nav.id}">+</a>
+										{/if}                               			
+                               </td>
+                               <td style="width:295px;">
+										<select name="ctls[]" class="ctl">
+												{foreach from=$navs item=nav_item key=key}
+													<option value="{$key}" {if $key eq $nav.ctl}selected="selected"{/if} >{$nav_item.name}</option>
+												{/foreach}
+										</select>
+										<span class="data" {if $nav.data eq ""}style="display:none;"{/if}>				
+											<span class="field_name">{$nav.data_name}</span>&nbsp;&nbsp;<input type="text" class="textbox" name="data[]"  value="{$nav.data} "/>
+										</span>                               
+                               </td>     
+                               <td  class="detail">{if $nav.status eq 0}未同步{else}已同步{/if}</td>
+                               <td><a href="javascript:void(0);" class="del_nav">删除</a></td>                           
+                         </tr>
+                         {/foreach}
+
+					</tbody>
+				</table>
+				
+			</div>	
+	
+	
+	
+			
+	
+	
+				<div class="blank20"></div>
+			
+				<div class="add_nav">
+					<button class="ui-button " rel="orange" type="submit">保存</button>&nbsp&nbsp
+					<button class="ui-button " rel="orange" type="button"  id="add_weixin_main_nav"  url="{url x="biz" r="wxnav#new_nav_row" p="row_type=main"}" >添加主菜单</button>&nbsp&nbsp
+					<button class="ui-button " rel="orange" type="button"  id="syn_weixin"  url="{url x="biz" r="wxnav#syn_to_weixin"}">同步到微信公众平台</button>
+					<div class="clear"></div>
+				</div>			
+			</form>
+		
+
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

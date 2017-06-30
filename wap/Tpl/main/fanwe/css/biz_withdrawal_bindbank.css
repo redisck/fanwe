@@ -1,0 +1,43 @@
+.bind-title{padding:25px 10px 5px 10px;background-color:#f0eff4;color:#96959a;font-size:16px;}
+.bind-field{   background-color: #fff; padding-left: 10px;border-top: 1px solid #dfdfdf;border-bottom: 1px solid #dfdfdf;}
+.bind-field .field-item{height:44px;line-height:44px;}
+.bind-field .field-item .iconfont{font-size:22px;}
+.bind-field .field-item-border{border-bottom: 1px solid #dfdfdf;}
+.bind-field .field-item .label-name{display:inline-block;width:60px;text-align:left;font-size:16px;}
+.bind-field .field-item{display: -webkit-box;}
+.bind-field .field-item .i-r{  -webkit-box-flex: 1;}
+.bind-field .field-item .i-r .int-txt{width:90%;height:40px;  font-size: 14px;font-weight: bold;}
+.bind-field .field-item  .i-r .int-txt.num-txt{  letter-spacing: 1px;font-size: 16px;}
+.bind-field .field-item  .i-r .int-txt.int-readonly{color: #C1C1C1;}
+
+/*按钮部分*/
+.i-r .sms-box{display: -webkit-box;}
+.sms-box .sms-txt-box{-webkit-box-flex: 1;text-align: center;}
+.sms-box .sms-txt-box .int-sms-txt{width:120px;height:40px;text-align: center;font-size:16px;font-weight: bold;}
+.sms-box .send-btn-box{-webkit-box-flex: 1;text-align: center;}
+.send-btn-box .btn_phone{   width: 90px;height: 30px;text-align: center;background-color: #FFF;color: #f80; border-radius: 10px;border: 1px solid #f80;font-size: 12px;line-height: 30px;font-weight: 100;}
+.sub-btn-box{  width: 90%;margin: 30px auto 0;}
+.sub-btn-box .sub-btn{width: 100%;height: 38px;text-align: center;background: #fc8600;border: 1px solid #fc8600;border-radius: 5px;color: #fff;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

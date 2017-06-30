@@ -1,0 +1,280 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/user.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<load href='__TMPL__Common/js/deal_order.js' />
+<load href='__TMPL__Common/js/dc.js' />
+<style>
+
+.form table{
+	width:100%;
+	
+}
+table.form td , table.form th{
+	border:solid 1px #ccc;
+	text-align:center;
+}
+.item_input{text-align:left !important;}
+.menu_list td{
+	text-align:center;
+}
+.consignee_tab {
+}
+.consignee_info {
+    width: 40%;
+}
+.o_link{margin:0 10px;}
+.ss_right{text-align:right !important;}
+</style>
+
+<div class="main">
+<div class="main_title"><if condition="$order_info['order_status'] eq 0">{%DEAL_ORDER_HANDLE}<else />{%DEAL_ORDER_VIEW}</if>{$order_info.order_sn}
+
+</div>
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=4 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%ORDER_USER}:</td>
+		<td class="item_input">
+			{$order_info.user_id|get_user_name_js}
+		</td>
+		
+		<td class="item_title">{%ORDER_CREATE_TIME}:</td>
+		<td class="item_input">{$order_info.create_time|to_date}</td>
+	</tr>
+	<tr>
+		<td class="item_title">订单状态:</td>
+		<td class="item_input">
+			<php>
+			if($order_info['is_cancel']>0 || $order_info['refund_status']>1){
+				$str="订单已关闭";
+			}elseif($order_info['order_status']==1){
+				$str="已结单";
+			}
+			echo $str;
+			</php>
+			
+		</td>
+
+		<td class="item_title">支付状态:</td>
+		<td class="item_input">
+			<if condition="$order_info['pay_status'] neq 1">
+			未支付
+			<else/>
+			已支付
+			</if>
+		</td>
+	</tr>	
+	
+	<tr>
+		<th colspan=4>{%PAYMENT_INFORMATION}</th>
+	</tr>
+	<tr>
+		<td class="item_title">{%ORDER_TOTAL_PRICE}:</td>
+		<td class="item_input">{$order_info.total_price|format_price}</td>
+		<td class="item_title">{%INCHARGE_AMOUNT}:</td>
+		<td class="item_input">{$order_info.paid_price|format_price}</td>
+	</tr>
+	<tr>
+		<td class="item_title">订单总额:</td>
+		<td class="item_input">{$order_info.order_price|format_price}</td>
+		<td class="item_title">余额支付:</td>
+		<td class="item_input">{$order_info.account_money|format_price}</td>
+	</tr>
+	
+	<tr>
+
+		<if condition="$order_info.promote_amount gt 0">
+		<td class="item_title">{%ECV_PAYMENT}:</td>
+		<td class="item_input">{$order_info.ecv_money|format_price}</td>
+		<td class="item_title">优惠:</td>
+		<td class="item_input">
+		<foreach name="order_info.promote_str" item="promote">
+	
+			{$promote.name}&nbsp;{$promote.discount_amount|format_price}&nbsp;&nbsp;&nbsp;
+			
+		</foreach>
+		</td>
+		<else />
+		<td class="item_title">{%ECV_PAYMENT}:</td>
+		<td class="item_input" colspan="3">{$order_info.ecv_money|format_price}</td>
+		</if>
+	</tr>
+	
+	<tr>
+		<td class="item_title">收款方式:</td>
+		<td class="item_input"><if condition="$order_info['payment_id'] eq 1">货到付款<else/>在线支付</if></td>
+		<td class="item_title">手续费:</td>
+		<td class="item_input">{$order_info.payment_fee|format_price}</td>
+	</tr>
+
+</table>
+
+
+<div class="blank5"></div>
+<if condition="$order_info['menu_list']">
+<table class="form" cellpadding=0 cellspacing=0>
+
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+
+	<tr>
+		<th>外卖商品</th><th>送货信息</th>
+	</tr>
+	
+	<tr>
+	<td class="menu_info" valign="top">
+		<table class="menu_list">
+	<tr>
+		<th>菜单名</th>
+		<th>单价</th>
+		<th>数量</th>
+		<th>总价</th>
+	</tr>
+		<foreach name="order_info.menu_list.cart_list" item="menu_item">
+	<tr>
+		<td>{$menu_item.name}</td>
+		<td>{$menu_item.unit_price|format_price}</td>
+		<td>{$menu_item.num}</td>
+		<td>{$menu_item.total_price|format_price}</td>
+	</tr>
+		</foreach>
+		<if condition="$order_info['package_price'] gt 0">
+	<tr>	
+		<td colspan=3 class="ss_right">打包费</td>
+		<td colspan=1>{$order_info.package_price|format_price}</td>
+	</tr>
+		</if>
+		<if condition="$order_info['delivery_price'] gt 0">
+	<tr>	
+		<td colspan=3 class="ss_right">配送费</td>
+		<td colspan=1>{$order_info.delivery_price|format_price}</td>
+	</tr>
+		</if>
+		<if condition="$order_info['payment_fee'] gt 0">
+	<tr>	
+		<td colspan=3 class="ss_right">手续费</td>
+		<td colspan=1>{$order_info.payment_fee|format_price}</td>
+	</tr>
+		</if>
+		<if condition="$order_info['ecv_money'] gt 0">
+	<tr>	
+		<td colspan=3 class="ss_right">代金券</td>
+		<td colspan=1>-{$order_info.ecv_money|format_price}</td>
+	</tr>
+		</if>
+		<if condition="$order_info.promote_amount gt 0">
+		<foreach name="order_info.promote_str" item="promote">
+	<tr>	
+		<td colspan=3 class="ss_right">{$promote.name}</td>
+		<td colspan=1>-{$promote.discount_amount|format_price}</td>
+	</tr>
+	</foreach>
+		</if>
+		
+	<tr>
+		<td colspan=3 class="ss_right">总计</td>
+		<td colspan=1>{$order_info.pay_price|format_price}</td>
+	</tr>
+	</table>
+	</td>
+	
+	
+	<td class="consignee_info" valign="top">
+	
+		<table class="consignee_tab">
+	<tr>
+		<th>收货人</th><td>{$order_info.consignee}</td>
+	</tr>
+	<tr><th>电话</th><td>{$order_info.mobile}</td></tr>
+	<tr>
+		<th>地址</th><td>{$order_info.api_address}{$order_info.address}</td>
+	</tr>
+	<tr><th>配送时间</th><td>
+	<if condition="$order_info['order_delivery_time'] eq 1">
+	尽快送达
+	<else/>
+	{$order_info.order_delivery_time|to_date}
+	</if>
+	</td></tr>	
+	<if condition="$order_info['dc_comment']">
+	<tr><th>备注</th><td>{$order_info.dc_comment}</td></tr>	
+	</if>
+	<if condition="$order_info['invoice']">
+	<tr>
+		<th>发票</th><td>{$order_info.invoice}</td>
+	</tr>	
+	</if>
+	</table>
+	</td>
+	</tr>
+
+
+
+</table>
+</if>
+
+<div class="blank5"></div>
+
+<if condition="$notice_info">
+<div class="blank5"></div>
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=6 class="topTd"></td>
+	</tr>
+	<tr>
+		<th colspan=6>付款单</th>
+	</tr>
+	<tr>
+		<td>付款单号</td>
+		<td>支付平台交易号</td>
+		<td>支付时间</td>
+		<td>付款金额</td>
+		<td>收款方式</td>
+		<td>付款单备注</td>
+	</tr>
+	<foreach name="notice_info" item="notice_item">
+	<tr>
+		<td>{$notice_item.notice_sn}</td>
+		<td>{$notice_item.outer_notice_sn}</td>
+		<td>{$notice_item.pay_time|to_date}</td>
+		<td>{$notice_item.money}</td>
+		<td>{$notice_item.name}</td>
+		<td>{$notice_item.memo}</td>
+	</tr>
+	</foreach>
+
+</table>
+</if>
+
+<if condition="$log_list">
+<div class="blank5"></div>
+<table class="form" cellpadding=0 cellspacing=0>
+<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<th colspan=2>操作日志</th>
+	</tr>
+	<tr>
+		<td>操作</td> <td>操作时间</td>
+	</tr>
+	<foreach name="log_list" item="log_item">
+	<tr>
+		<td>{$log_item.log_info}</td>
+		<td>{$log_item.log_time|to_date}</td>
+	</tr>
+	</foreach>
+</table>
+</if>
+<div class="blank5"></div>
+</div>
+<include file="Public:footer" />

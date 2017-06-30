@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+.head_info .sub_info{
+	background-color: #D6E0FF;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 0 0;
+}
+
+a.withidrawal_btn{
+	color: #0088CC;
+	padding: 5px;
+	border: 1px solid #DDDDDD;
+}
+
+.money_form{
+	padding:10px;
+}
+.money_text,.pwd_text{width:90%}
+.sms_verify_text{background-color: #F1F1F1;width: 48%;}
+.btn_phone{
+	width: 38%;
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+	color: #6E6E6E;
+	font-size: 15px;
+	height: 100%;
+	line-height: 40px;
+	text-align: center;
+	display: inline-block;
+	padding: 0 10px;
+	margin-left: 10px;
+	border: 1px solid #c9c9c9;
+	border-radius: 4px;
+	font-weight:bold;
+}
+.sub_withfrawal_btn input{
+	width: 100%;
+	border-radius: 15px;
+	background: #fb8602;
+	height: 35px;
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bolder;
+	border: none;
+}
+a.bind_link{color:#3259D2;}

@@ -1,0 +1,58 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/payment.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+
+?>
+{include file="inc/header.html"}
+<div class="wrap">
+	<div class="pay_order_index">
+	<div class="pay_info">
+			<div class="h font-fc8">订单编号：{$data.order_sn}</div>
+			{if $data.pay_status eq 1}
+				{foreach from=$data.couponlist item=couponlist}
+				<div class="detail">
+					<div class="img_block"><img src="{$couponlist.qrcode}" width="100%"></div>
+					<div class="p tc">{$couponlist.password}</div>
+				</div>
+				{/foreach}
+			{/if}
+	</div>
+		
+	{if $data.pay_status eq 1}
+ 	<form id="form" method="post" action="{url x="index" r="payment#order_share" }">
+ 		<div style="width: 150px;margin: 0 auto;"><input style="zoom:1.5" type="checkbox" id="is_share" name="is_share" value="1" checked="true" /><label for="is_share">分享到个人中心</label></div>
+	    <div class="btn_login">
+	    	<input type="hidden" name="id" value="{$data.order_id}">
+	    	<input type="submit" value="{$data.pay_info}" style="background: none;">
+		</div>
+    </form>
+	{else}
+	<form id="form" method="post" action="{url x="index" r="cart#order" p="id=$data.order_id"}">
+	    <div class="btn_login">
+	    	<input type="submit" value="{$data.pay_info}，继续付款" style="background: none;">
+		</div>
+    </form>
+	{/if}
+	</div>
+			
+</div>				
+
+{include file="inc/footer.html"}	

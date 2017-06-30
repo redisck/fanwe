@@ -1,0 +1,28 @@
+<div class="user_info_box clearfix">
+	<div class="f_l avatar_box">{function name="show_avatar" id="$user_info.id" type="small" is_card=0}</div>
+	<div class="f_r u_name">
+		{$user_info.user_name}
+		<div class="blank5"></div>
+		{if $user_info.is_merchant eq 1 }<span class="is_merchant" title="认证商家"></span>{/if}{if $user_info.is_daren eq 1 }<span class="is_daren" title="{$user_info.daren_title}"></span>{/if}
+	</div>
+	<div class="blank5"></div>
+	
+</div>
+<div class="nav_account_info">
+		<a class="account_item item_l" href="{url r="index" b="uc_log#money"}">{function name="round" p="$user_info.money" l=2}<span>余额</span></a>
+		<a class="account_item item_r" href="{url r="index" b="uc_log#score"}">{function name="intval" p="$user_info.score"}<span>积分</span></a>
+	</div>
+	<div class="blank5"></div>
+<div class="side_nav">
+{if $uc_nav_list}
+{foreach from=$uc_nav_list item=nav_item key=nav_key}
+	<dl class="nav_item">
+		<dt class="nav_item_title"><i class=""></i>{$nav_item.name}</dt>
+		{foreach from=$nav_item.node item=s_nav_item key=s_nav_key}
+			<dd><div class="s_item clearfix {if $s_nav_item.current eq 1 }current{/if}"><i class="dot"></i>&nbsp;&nbsp;<a href="{$s_nav_item.url}">{$s_nav_item.name}</a><i class="triangle"></i></div></dd>
+		{/foreach}
+	</dl>
+{/foreach}
+{/if}
+<div class="blank20"></div>
+</div>

@@ -1,0 +1,83 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/voucher.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+?>
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav left_box">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		
+		<div class="main_box uc_info_box">
+			<div class="info_nav">
+				<ul>
+					<li id="deal_li"  class="cur"><a href="{url x="index" r="uc_voucher"}">我的红包</a></li>					
+					<li id="event_li"><a href="{url x="index" r="uc_voucher#exchange"}">红包兑换</a></li>
+				</ul>
+			</div>						
+			<div class="blank20"></div>
+			
+			{if $list}
+			
+			<div class="voucher_box">
+				{foreach from=$list item=voucher key=key}
+				<div class="voucher_item">
+					<div class="voucher_bg">
+						<table>
+							<tr>
+								<td>
+									<span class="bonus_name">{$voucher.name} {if $voucher.use_limit gt 0}x{$voucher.use_limit}{/if}</span>
+									<br />
+									<span>面额：{function name="format_price" value=$voucher.money}</span>
+									<span>有效期：{if $voucher.begin_time eq 0}无限{else}{function name="to_date" value=$voucher.begin_time}{/if} {if $voucher.end_time eq 0}{else}{$LANG.TO} {function name="to_date" value=$voucher.end_time}{/if}</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="voucher_info">
+						sn：{$voucher.sn}
+						{if $voucher.use_count}<br />
+						已使用：{$voucher.use_count}次
+						{/if}
+					</div>
+				</div>
+				
+				{/foreach}
+			</div>
+			
+			<div class="blank20"></div>
+				
+			
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>
+			{else}
+			<div class="empty_tip">没有相关的红包记录</div>
+			{/if}
+
+
+
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

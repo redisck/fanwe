@@ -1,0 +1,30 @@
+{if $supplier_data_list}
+<div class="data_list">
+		<dl>
+        	<dt class="clearfix">
+        		<span class="dl_img"></span>
+				<span class="dl_name">名称</span>
+				<span class="dl_price">价格</span>
+				<span class="dl_salecount">销量</span>
+        	</dt>   
+			{foreach name="supplier_data_list" from=$supplier_data_list item=data}
+			<dd class="clearfix">
+				<span class="dl_img">
+					<a href="{$data.url}" title="{$data.name}" target="_blank"><img src="{function name="get_spec_image" v=$data.icon w=100 h=75 g=1}" /></a>
+				</span>
+				<span class="dl_name"><a href="{$data.url}" title="{$data.name}" target="_blank"><h1>{$data.sub_name}</h1><h2>{function name="msubstr" v=$data.name b=0 e=50}</h2></a></span>
+				<span class="dl_price">
+					<i class="origin"><font>&yen;</font>{function name="round" v=$data.origin_price l=2}</i>
+					<i class="current"><font>&yen;</font>{function name="round" v=$data.current_price l=2}</i>
+				</span>
+				<span class="dl_salecount">{$data.buy_count}</span>
+			</dd>
+			{/foreach}
+        </dl>		
+</div>
+{if $total>$page_size}
+<div class="blank"></div>
+<div class="pages">{$pages}</div>
+{/if}
+<div class="blank"></div>
+{/if}

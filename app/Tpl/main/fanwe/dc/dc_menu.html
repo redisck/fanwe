@@ -1,0 +1,150 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_menu.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/side_deal_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/sort_row.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_position.js";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_inc_location.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fancybox.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/cart.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/cart.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/business_address.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/business_address.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+
+?>
+{include file="inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	user_id={$user_id};
+	var is_collected='&#xe60d;';
+	var not_collected='&#xe60c;';
+	var arrow_right='&#xe64c;';
+	var dc_title='{$s_info.dc_title}';
+	var collect_url='{url i="index" r="dccollect"}';
+	var dc_position_url='{url r="index" p="dc#do_position"}';
+	var dc_location_url='{url r="index" p="dc"}';
+	var dc_clear_history_url='{url r="index" p="dc#clear_history"}';
+	var DC_AJAX_URL = "{url r="index" p="dcajax"}";
+	var dc_url='{url r="index" p="dc"}';
+
+</script>
+<style>
+.filter_row dl dt{
+	width:50px;
+}
+</style>
+<div class="main">
+		
+<div class="{function name="load_wrap" t=$wrap_type} dc_banner">
+<div id="dc_banner"><adv adv_id="热卖列表广告位" /></div>
+</div>
+		
+		
+	<div class="filter-category {function name="load_wrap" t=$wrap_type}">
+			<div class="f_l">
+			<ul>
+				<li onclick=window.location.href="{url x="index" r="dc#index"}">附近商家</li>
+				<li onclick=window.location.href="{url i="index" r="dcres"}">预定商家</li>
+				<li class="active" onclick="javascript:window.location.reload()">大家都在吃</li>
+				<li><a href="{if $user_id eq 0}javascript:login_success_reload(collect_url);{else}{url i="index" r="dccollect"}{/if}" id="show_collect">我的收藏</a></li>
+			</ul>
+			
+			</div>
+			<div class="f_r inc_location">
+			{include file="dc/inc/dc_inc_location.html"}
+			</div>	
+	</div>
+
+
+<div class="filter_row">
+	<dl class="clearfix ">
+		<dt>分类：</dt>
+		<dd class="wrap_filter">
+							<ul>
+								<li {if !$menu_cate_id}class="current"{/if}><a href="{url x="index" r="dcmenu#index"}">全部</a></li>
+								{if $cate_list}
+								{foreach from=$cate_list item=cate_item}
+								<li {if $menu_cate_id eq $cate_item.id}class="current"{/if}><a href="{url x="index" r="dcmenu#index" p="cate_id=$cate_item.id"}">{$cate_item.name}</a></li>
+								{/foreach}
+								{/if}
+								
+							</ul>
+		</dd>
+		<dd class="expend" style="display: none;">
+			<a href="javascript:void(0);" class="open">更多</a>
+			<a href="javascript:void(0);" class="close">收起</a>
+		</dd>
+	</dl>
+			
+</div>
+	
+
+<div class="dishlist clearfix">
+{if $dc_menu_list}
+	<ul class="clearfix">
+{foreach from=$dc_menu_list item=dc_menu__item name=pic}	
+		<li class="dish">
+		<div class="dishImg">
+			{if $smarty.foreach.pic.iteration<=5}
+			<i class="dishRankImg rank{$smarty.foreach.pic.iteration}"></i>
+			<span class="dishRankNum">{$smarty.foreach.pic.iteration}</span>
+			{/if} 
+			<img src="{function name="get_spec_image" v=$dc_menu__item.image w=120 h=120 g=1}" onclick=window.location.href="{url x="index" r="dcbuy#index" p="lid=$dc_menu__item.location_id"}">
+		</div>
+		<div class="dishInfo">
+	<p class="dishName" data-title="{$dc_menu__item.name}" onclick=javascript:window.location="{url x="index" r="dcmenu#add_menu_cart" p="menu_id=$dc_menu__item.id&location_id=$dc_menu__item.location_id&supplier_id=$dc_menu__item.supplier_id"}">{$dc_menu__item.name}</p>
+	<p class="shopName" onclick=javascript:window.location="{url x="index" r="dcbuy#index" p="lid=$dc_menu__item.location_id"}">{$dc_menu__item.location_name}</p>
+	<p class="dishSale">
+	<!--	<span class="dishSaleRecommand">33人推荐</span>-->
+		<span class="dishSaleAmount">销售{$dc_menu__item.buy_count}份</span>
+	</p>
+		<span class="dishPrice">{function name=format_price v=$dc_menu__item.price l=2}</span>
+		{if $dc_menu__item.ol eq 1}
+			<input type="button" value="来一份" {if !$dc_menu__item.is_close}class="dishOrder" onclick=window.location.href="{url x="index" r="dcmenu#add_menu_cart" p="menu_id=$dc_menu__item.id&location_id=$dc_menu__item.location_id&supplier_id=$dc_menu__item.supplier_id"}"{else}class="nool"{/if}>
+		{else}
+			<input type="button" value="休息中" class="nool" >
+		{/if}
+		</div>
+
+	<div class="mod-tip desc-float" style="z-index: 1000; display: none; position: absolute; top: 41px; left: 264px;">
+ 		<div class="mod-tip-hd">{$dc_menu__item.name}</div><div class="mod-tip-bd">赠送饭后甜点——水果、沙拉</div>
+	</div>
+		</li>
+{/foreach}
+	</ul>
+	<div class="blank10"></div>
+	<div class="pages">{$pages}</div>
+		{else}
+		<div class="empty_tip">暂无商品</div>
+		{/if}
+	
+</div>
+
+</div>
+	<div class="blank20"></div>
+
+
+{include file="inc/footer.html"}

@@ -1,0 +1,51 @@
+<script>
+$(function(){
+	$('#is_shop').val(is_shop);
+});
+</script>
+<div class="container-f">
+	<div class="box-title clearfix">
+		<div class="f_l">
+			
+		</div>
+		<div class="search-box f_r">
+			<form action="{:u("Deal/ajaxGoodsList",array('id'=>$currId))}" method="POST" id="ajax_news_form">
+                <input type="text" id="keyword-input" value="{$keywords}" name="keywords" class="input-small-z" placeholder="请输入关键词">
+				<input type="hidden" value="" name="is_shop" id="is_shop" />
+                <input type="submit" class="btn" value="查询" />
+            </form>
+		</div>
+	</div>
+	
+	<div class="box-content clearfix">
+		<div class="row clearfix">
+			<form action="{:u("Deal/ajaxGoodsList")}" method="post" class="form-horizontal">
+                 <table id="listTable" class="table-hover dataTable ajaxdataTable" >
+                    <thead>
+                        <tr>
+                            <th class="with-checkbox">
+                                <input type="checkbox" class="check_all">
+							</th>
+                            <th>缩略图</th>
+                            <th>名称</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<foreach name="list" item="item" >
+                    		<tr>
+	                        	<td width="20"><input type="checkbox" name="check" rel="relate_goods_id" value="{$item.id}"></td>
+								<td width="60" class="goods_image">
+									<span class="dl_img">
+										<a href="{$item.url}" title="{$item.name}" target="_blank"><img src="{$item.img}" width="100" heigth="70" /></a>
+									</span>
+								</td>
+								<td class="goods_name"><a href="{$item.url}" title="{$item.name}" target="_blank">{$item.name}</a></td>
+	                        </tr>
+                    	</foreach>
+                     </tbody>
+                </table>
+            </form>
+			<div class="pages clearfix" id="ajax_news_page"><include file="Public:pager" /></div>
+		</div>
+	</div>
+</div>

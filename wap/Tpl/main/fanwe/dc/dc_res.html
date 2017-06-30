@@ -1,0 +1,165 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_location.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+
+	var dc_title='{$s_info.dc_title}';
+
+
+</script>
+{if $data.advs}
+<div class="swipe">
+				<ul id="slider">
+				{foreach from=$data.advs item=advs}
+					<li ><a href="{$advs.data.url}"><img src="{$advs.img}" alt="{$advs.img}" width="100%"/></a></li>
+
+				{/foreach}
+				</ul>
+				<div id="pagenavi">
+				{foreach from=$data.advs item=advs key=key}
+				    {if $key eq 0}
+					<a href="javascript:void(0);" class="active">{$key}</a>
+					{else}
+					<a href="javascript:void(0);">{$key}</a>
+					{/if}
+				{/foreach}	
+				</div>
+</div>
+{/if}
+<!----------------------------------------------------------------------------------------------------adv-->
+<div class="t_0 w_percentage_100 z100"  id="Classification_list_all">
+	<div class="bg_fff bor_3 w_percentage_100  ">
+		<ul class="nav-bar_00 w_b lh080 p_010_0 ">
+			<li class="w_b_f_1 tc bor_2 pointer"><span class="f_696969 f030 pr032 pr">{if $data.cate_info}{$data.cate_info.name}{else}商家分类{/if}<i class="icon iconfont f022 f_b0ada7  ps t-018 r_0">&#xe665;</i></span></li>
+			<li class="w_b_f_1 tc bor_2 pointer"><span class="f_696969 f030 pr032 pr">{if $data.quan_info}{$data.quan_info.name}{else}商圈{/if}<i class="icon iconfont f022 f_b0ada7  ps t-018 r_0">&#xe665;</i></span></li>
+			
+		</ul>
+	</div>
+	<div class="toggle_down">
+	<div class="ps rgba_05 w_percentage_100 h1200 hide_show child">
+		 <div class="bg_fff w_percentage_100 ">
+			<div class="bor_3 w_o_s o-y m_h605">
+			      <ul class="Classification_list_parents">
+					   {if $data.bcate_list}
+					   	{foreach from=$data.bcate_list item=bcate_list}
+					   		<li class="bor_5 mb-1 f_696969 h100 lh100 pl056"><a href="{$bcate_list.url}" class="block">{$bcate_list.name}</a></li>
+					   	{/foreach}
+					   {/if}
+				 </ul>
+			</div>
+			<div class="tc lh057 nav_list_close_but"><i class="icon iconfont f040 f_b0ada7   ">&#xe686;</i></div>
+	    </div>
+	</div>
+	<div class="ps rgba_05 w_percentage_100 h1200 hide_show child">
+		 <div class="bg_fff w_percentage_100 ">
+			<div class="bor_3 w_o_s m_h605" id="qlist">
+			      <ul class="Classification_list_parents">
+					   {if $data.quan_list}
+					   	{foreach from=$data.quan_list item=quan_list}
+						   	{if $quan_list.quan_sub}
+						  		 <li class="bor_5 mb-1 f_696969 h100 lh100 pl056 first_q">{$quan_list.name}
+						   	{else}
+						   		
+						   		 <li class="bor_5 mb-1 f_696969 h100 lh100 pl056"><a href="{$quan_list.url}" class="block">{$quan_list.name}</a>
+							{/if}	
+							{if $quan_list.quan_sub}
+							<div class="sub_q">
+							<ul>
+								<li class="bor_5 mb-1 f_696969 h100 lh100 pl056"><a href="{$quan_list.url}" class="block">{$quan_list.name}</a>
+							{foreach from=$quan_list.quan_sub item=quan_sub}
+								<li class="bor_5 mb-1 f_696969 h100 lh100 pl056"><a href="{$quan_sub.url}" class="block">{$quan_sub.name}</a></li>
+							{/foreach}
+							</ul>
+							</div>
+							{/if}
+							
+							</li>
+					   	{/foreach}
+					   {/if}
+				 </ul>
+			</div>
+			<div class="tc lh057 nav_list_close_but"><i class="icon iconfont f040 f_b0ada7   ">&#xe686;</i></div>
+	    </div>
+	</div>
+
+	</div>
+</div>
+<!----------------------------------------------------------------------------------------------------nav-->		
+<div class="blank012"></div>		
+<div class="bg_fff bor_4 bor_3">
+	<dl>
+		{if $data.dc_location_list}
+		{foreach from=$data.dc_location_list item=location}
+		<a href="{$location.url}"><dd class="clearfix bor_5 p_30_30_30_220">
+			<img src="{$location.preview}" class="f_l w180 h135 ml-190"/>
+
+
+			<h6 class="no_bold f032 lh034 h034 text-overflow">{$location.name}{if $location.is_close eq 1 }<i class="icon iconfont  f076 f_fe4d3d ps">&#xe696;</i>{/if}</h6>
+		    <div class="pr w220 h030 mt021 mb021">
+		    	<div class="ps f_a6a6a6 f028 lh030">	
+		    		<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+					<i class="icon iconfont   ">&#xe67f;</i>
+		    	</div>
+				<div class="ps f_fa952f lh030 h030 f028 nowrap ovhide star_width" rel="{$location.avg_point}">
+		    		<i class="icon iconfont">&#xe67f;</i>
+					<i class="icon iconfont">&#xe67f;</i>
+					<i class="icon iconfont">&#xe67f;</i>
+					<i class="icon iconfont">&#xe678;</i>
+					<i class="icon iconfont">&#xe67f;</i>
+		    	</div>
+		    </div>
+			<div class=" lh034 f_7f7f7f f023 ovhide">{$location.address}</div>
+
+		</dd></a>
+
+
+		{/foreach}
+		{if $pages}
+		<div class="fy">
+			{$pages}
+		</div>
+		{/if}
+		
+	{else}
+		<div class="fy">暂无商家</div>
+	{/if}
+	</dl>
+</div>
+<!----------------------------------------------------------------------------------------------------详情列表-->
+{include file="dc/inc/foot_nav.html"}
+<!----------------------------------------------------------------------------------------------------底部浮动菜单-->
+

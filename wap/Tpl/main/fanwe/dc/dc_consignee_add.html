@@ -1,0 +1,83 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_consignee_add.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$data.dc_consignee_info.api_address}';
+	var from='{$from}';
+	var lid='{$lid}';
+	if(from){
+		
+		var dc_consignee_cart='{url i="index" r="dc_consignee" g="from=$from&lid=$lid"}';
+	}
+</script>
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////////-->	
+<div class="blank024"></div>
+
+<div class="bor_3 bor_4 bg_fff">
+	<div class="clearfix bor_5 pl180 pt026 pb026 pr030">
+		<span class="f_l ml-150 f_444 lh048 f029">姓名</span>
+		<input name="consignee" type="text" placeholder="请填写收货人姓名" class="w_percentage_100 bor0 f_dcdcdc f029 lh048 f_l" value="{$data.dc_consignee_info.consignee}"/>
+	</div>
+	<div class="clearfix bor_5 pl180 pt026 pb026 pr030">
+		<span class="f_l ml-150 f_444 lh048 f029">手机号</span>
+		<input name="mobile" type="text" placeholder="请填写收货手机号" class="w_percentage_100 bor0 f_dcdcdc f029 lh048 f_l" value="{$data.dc_consignee_info.mobile}"/>
+	</div>
+	<div class="clearfix bor_5 pl180 pt026 pb026 pr030">
+		<span class="f_l ml-150 f_444 lh048 f029">收货地址</span>
+		<input id="q_text" name="api_address" type="text" placeholder="学校，写字楼，小区，街道" class="w_percentage_100 bor0 f_dcdcdc f029 lh048 f_l" value="{$data.dc_consignee_info.api_address}"/>
+	</div>
+	<div class="clearfix bor_5 pl180 pt026 pb026 pr030">
+		<span class="f_l ml-150 f_444 lh048 f029"></span>
+		<input name="address" type="text" placeholder="楼号，门牌号等详细信息" class="w_percentage_100 bor0 f_dcdcdc f029 lh048 f_l" value="{$data.dc_consignee_info.address}"/>
+	</div>	
+	<div class="clearfix  pl030 pt026 pb026 pr030 w_b">
+		<div class="w_b_f_1 f029 lh048 f_444">设为默认地址</div>
+		{if $data.dc_consignee_info.is_main eq 1}
+		<i class="set_default_address icon iconfont f044 lh048 f_fe4d3d default_but y">&#xe67a;</i>
+		{else}
+		<i class="set_default_address icon iconfont f044 lh048 f_c9cacf default_but">&#xe684;</i>
+		{/if}
+		<input type="hidden" name="is_main" value="{if $data.dc_consignee_info.is_main eq 1}{$data.dc_consignee_info.is_main}{else}0{/if}" />
+		<input type="hidden" name="xpoint" value="{$data.dc_consignee_info.xpoint}" />
+		<input type="hidden" name="ypoint" value="{$data.dc_consignee_info.ypoint}" />
+		<input type="hidden" name="id" value="{$data.dc_consignee_info.id}" />
+	</div>
+
+<div id="map_show"></div>
+</div>
+<!-------------------------------------------------------------------------------------------------信息填写-->
+<div class="pf b_0 l_0 w_percentage_100">
+	<div class="pl030 pr030 pt064 pb030 ">
+	      <button class="dc_consignee_save tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100">{if $data.consignee_id eq 0}确认新增{else}保存{/if}</button>
+    </div>
+</div>
+<!-------------------------------------------------------------------------------------------------确认新增-->
+</body>
+</html>

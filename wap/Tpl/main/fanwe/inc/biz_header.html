@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+<!-- Mobile Devices Support @begin -->
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="false" name="twcClient" id="twcClient">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<!--允许全屏模式-->
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<!--指定sari的样式-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta content="telephone=no" name="format-detection" />
+<!-- Mobile Devices Support @end -->
+<title>{$data.page_title}</title>	
+<script type="text/javascript">
+	var APP_ROOT = '{$APP_ROOT}';
+	var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+	var AJAX_URL = '{url x="index" r="ajax"}';
+</script>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$pagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$pagejs" c="$cpagejs"}"></script>
+</head> 
+<body>
+<div class="header">
+	<div class="c-hd">
+
+        <section class="cut_city">
+              <a onclick="window.history.go(-1);"><i class="iconfont">&#xe60b;</i></a>
+	    </section>
+
+        <section class="logo_img">{$data.page_title}</section>
+         {if $data.page_type neq ''}
+        <section class="h_search"><!--这里是头部的隐藏列表，点击可操作-->
+			 <a href="javascript:void(0);"><i class="iconfont">&#xe60c;</i></a>
+	    </section>
+	    {else}
+	    <section class="h_search"><!--这里是头部的隐藏列表，点击可操作-->
+			&nbsp;
+	    </section>
+	    {/if}
+     </div>
+     {if $data.page_type eq 'v'}
+	 <div class="biz_pull_down">
+	       <ul>
+	       	    <li>
+	       	    	<a href="{url r="biz" b="dealv#index"}">
+	       	    		<div class="biz_menu">
+	       	    			<i class="iconfont">&#xe626;</i>
+							<span>团购券验证</span>
+	       	    		</div>
+	       	    	</a>
+	       	    </li>
+				 <li>
+	       	    	<a href="{url r="biz" b="youhuiv#index"}">
+	       	    		<div class="biz_menu">
+	       	    			<i class="iconfont">&#xe603;</i>
+							<span>优惠券验证</span>
+	       	    		</div>
+	       	    	</a>
+	       	    </li>
+				<li>
+	       	    	<a href="{url r="biz" b="eventv#index"}">
+	       	    		<div class="biz_menu">
+	       	    			<i class="iconfont">&#xe606;</i>
+							<span>活动报名验证</span>
+	       	    		</div>
+	       	    	</a>
+	       	    </li>
+	       </ul>
+	 </div>
+	 {elseif $data.page_type eq 'r'}
+	 <div class="biz_pull_down">
+	       <ul>
+	       	    <li>
+	       	    	<a href="{url r="biz" b="dealr#index"}">
+	       	    		<div class="biz_menu">
+	       	    			<i class="iconfont">&#xe626;</i>
+							<span>消费评价</span>
+	       	    		</div>
+	       	    	</a>
+	       	    </li>
+				 <li>
+	       	    	<a href="{url r="biz" b="youhuir#index"}">
+	       	    		<div class="biz_menu">
+	       	    			<i class="iconfont">&#xe603;</i>
+							<span>优惠券评价</span>
+	       	    		</div>
+	       	    	</a>
+	       	    </li>
+				<li>
+	       	    	<a href="{url r="biz" b="eventr#index"}">
+	       	    		<div class="biz_menu">
+	       	    			<i class="iconfont">&#xe606;</i>
+							<span>活动评价</span>
+	       	    		</div>
+	       	    	</a>
+	       	    </li>
+	       	    <li>
+	       	    	<a href="{url r="biz" b="storer#index"}">
+	       	    		<div class="biz_menu">
+	       	    			<i class="iconfont">&#xe602;</i>
+							<span>门店评价</span>
+	       	    		</div>
+	       	    	</a>
+	       	    </li>
+	       </ul>
+	 </div>
+	 {elseif $data.page_type eq 'o'}
+	 <div class="biz_pull_down">
+	       <ul>
+	       	    <li>
+	       	    	<a href="{url r="biz" b="dealo#index"}">
+	       	    		<div class="biz_menu">
+	       	    			<i class="iconfont">&#xe626;</i>
+							<span>团购</span>
+	       	    		</div>
+	       	    	</a>
+	       	    </li>
+				 <li>
+	       	    	<a href="{url r="biz" b="goodso#index"}">
+	       	    		<div class="biz_menu">
+	       	    			<i class="iconfont">&#xe603;</i>
+							<span>商品</span>
+	       	    		</div>
+	       	    	</a>
+	       	    </li>
+				
+	       </ul>
+	 </div>
+	 {/if}
+</div>	

@@ -1,0 +1,136 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/cart_index.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_login.css";	
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sms_verify.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/cart_index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/cart_index.js";
+
+?>
+{include file="inc/header.html"}
+<script type="text/javascript">
+	var jsondata = {$jsondata};
+</script>
+<div class="wrap">
+	
+	 <div class="body bg-common">
+        <form id="buy_form" action="{url a="index" r="cart#check_cart"}" method="POST" style="margin-bottom:0px">
+        	
+        	{foreach from=$data.cart_list item=cart_item}
+            <div class="back-white cart_row" rel="{$cart_item.id}">
+
+				<div class="list-view bor_none">
+					 <ul class="tuan_ul">
+					 	<li class="tuan_li">
+					 	     <a href="{url a="index" r="deal#index" p="data_id=$cart_item.deal_id"}">
+					 	     	<div class="list_item">
+					 	     		 <div class="pic">
+					 	     		 	<img src="{$cart_item.icon}" lazy="true" width="140" height="85" />
+					 	     		 </div>
+									 <div class="info">
+									 	<h2>{$cart_item.sub_name}</h2>	
+									 	<h3>{$cart_item.name}</h3>									
+										<div class="tuan_price">
+					                         <p class="price">
+					                         	 {if $data.is_score}
+												 <em>{$cart_item.return_score}<i>积分</i></em>
+												 {else}
+					                         	 <em>{$cart_item.unit_price}<i>元</i></em>
+												 {/if}
+											 </p>
+					                     </div>
+									 </div>
+					 	     	</div>
+					 	     </a>
+					 	</li>					
+					 </ul>					 
+				</div>
+
+                <div>
+                    <div class="item-common">
+                        <span class="item-label">数量：</span>
+                        <span class="item-content quantity-box count_box">
+                        	<a class="btn-mini minus min_btn" rel="{$cart_item.id}">
+                        		<span>I</span>
+							</a>
+					
+							<input name="num[{$cart_item.id}]"  rel="{$cart_item.id}" class="input-amount buy_number" type="tel" value="{$cart_item.number}" />
+							<a class="btn-mini plus add_btn" rel="{$cart_item.id}">
+								<span>✚</span>
+							</a>
+						</span>
+                    </div>
+                </div>
+                <div class="item-common over" style="border:none;">
+				<div class="total_money f_l">
+                    <span class="item-label">总价：</span>
+                    <span class="item-content amount">
+                    	{if $data.is_score}
+                    	<span class="cart_row_total" >{$cart_item.return_total_score}</span>积分<span class="J_campaign-value"></span>
+						{else}
+						<span class="cart_row_total" >{$cart_item.total_price}</span>元<span class="J_campaign-value"></span>
+					    {/if}
+					</span>
+                 </div>
+				  <div class="delete_but f_r">
+                    	<div class="buy">
+                    		<a href="{url a="index" r="cart#del"  p="id=$cart_item.id"}" class="plank"> 删除</a>
+						</div>
+                    </div>
+				</div>
+            </div>			
+			{/foreach}
+			<div class="blank"></div>
+			{if $data.user_login_status eq 0 or $data.has_mobile eq 0}
+			<div id="con_one_2"  class="phbox">
+		   
+				<div class="inputtxt2">
+					<div class="first">
+						<input type="text" class="phone" id="mobile" name="mobile" placeholder="请输入手机号"  style=" width:100%; background:none;box-shadow:none; border:none; float:none;">
+
+					</div>
+				<div class="second">
+				    <input class="btn_phone" type="Button"  id="sms_btn" unique="0" value="发送验证码" lesstime="{$sms_lesstime}" />
+				</div>
+				
+				<div class="blank"></div>
+				</div>
+				<div class="inputtxt"> 
+				<div class="input_sr" style=" margin-left:10px;">
+					<input class="testing third" type="tel" id = "sms_verify" name="sms_verify"  placeholder="请输入手机短信中的验证码">
+					</div>	 
+				</div>
+				
+				
+		   </div>
+		   <div class="blank"></div>
+		   {/if}
+		   <div class="phbox">
+		   <div class="btn_login ">
+				<input type="submit" value="去结算" style="background: none;">
+		  </div>
+		  </div>
+		</form>
+    </div>
+	
+	
+</div>
+{include file="inc/footer.html"}	

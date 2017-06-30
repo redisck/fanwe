@@ -1,0 +1,30 @@
+<div style="padding-left:117px;">从
+	<select name="begin_time_h[]">
+		<php>for($i=0; $i<24; $i++){</php>
+		<option value="{$i}" <if condition="$data['begin_time_h'] eq $i">selected="selected"</if>>{$i|str_pad=2,0,STR_PAD_LEFT}</option>
+		<php>}</php>
+
+	</select>:
+	<select name="begin_time_m[]">
+
+		<php>for($i=0; $i<60; $i++){</php>
+		<option value="{$i}" <if condition="$data['begin_time_m'] eq $i">selected="selected"</if>>{$i|str_pad=2,0,STR_PAD_LEFT}</option>
+		<php>}</php>
+
+	</select>&nbsp;至&nbsp;
+	<select name="end_time_h[]">
+
+		<php>for($i=0; $i<24; $i++){</php>
+		<option value="{$i}" <if condition="$data['end_time_h'] eq $i">selected="selected"</if>>{$i|str_pad=2,0,STR_PAD_LEFT}</option>
+		<php>}</php>
+
+	</select>:
+	<select name="end_time_m[]">
+
+		<php>for($i=0; $i<60; $i++){</php>
+		<option value="{$i}" <if condition="$data['end_time_m'] eq $i">selected="selected"</if>>{$i|str_pad=2,0,STR_PAD_LEFT}</option>
+		<php>}</php>
+
+	</select>&nbsp;时
+	<a href="javascript:void(0);" onclick="remove_open_time(this);">[-]</a>
+</div>

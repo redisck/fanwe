@@ -1,0 +1,188 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/uc_dc_order.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+</script>
+<!-------------------------------------------------------------------------------------------------选项卡-->
+<div class="bg_fff bor_4 bor_3">
+
+
+	<div class="clearfix p_35_30_35_178 bor_5">
+		<span class="f_l ml-150 f030 lh030">订单号</span>
+		<p class="f029 f_858585 lh030">{$data.order_info.order_sn}</p>
+	</div>
+	
+	<div class="clearfix p_35_30_35_178 bor_5">
+		<span class="f_l ml-150 f030 lh030">订单状态</span>
+		<p class="f029 f_858585 lh030">{$data.order_info.order_state.state_format}</p>
+	</div>
+	
+	{if $data.order_info.order_state.state==5}
+
+		<div class="clearfix p_35_30_35_178 ">
+			<span class="f_l ml-150 f030 lh030">关闭理由</span>
+			<p class="f029 f_858585 lh030">{if $data.order_info.refuse_memo}{$data.order_info.refuse_memo}{else}{$data.order_info.refund_memo}{/if}</p>
+		</div>
+
+	{/if}
+	
+</div>
+
+
+<!-------------------------------------------------------------------------------------------------券码-->	
+{if $data.order_info.dc_coupon }
+<div class="blank024"></div>
+<div class="bor_3 bor_4 bg_fff">
+	<div class="clearfix bor_5 pl180 pt026 pb026 pr030">
+		<span class="f_l ml-150 f_444 lh048 f029">电子券</span>
+		<div class="f_l f_fe4d3d lh048 f024">有效期至：{$data.order_info.dc_coupon.end_time_format}</div>
+		{foreach from=$data.order_info.coupon_state.act item=action_x}
+             <div class="f_r w125 h048 lh048 tc f_fff  f024  bdr3 bg_fe4d3d  {if $action_x.has_reason eq 1}uc_dc_order_has_reason{else}uc_dc_order_action_but{/if}" action-url="{$action_x.url}">{$action_x.name}</div>
+       {/foreach}
+	</div>
+	<div class="clearfix  pl180 pt026 pb026 pr030">
+		<span class="f_l ml-150 f_444 lh048 f029">券码</span>
+		<div class="f_l f_858585 lh048 f024">{$data.order_info.dc_coupon.sn}</div>
+		<div class="f_r   lh048   f024 sd"><span class="f_fe4d3d ml-150">{$data.order_info.coupon_state.state}</span>{if $data.order_info.coupon_state.memo}&nbsp;&nbsp;备注：{$data.order_info.coupon_state.memo}{/if}</div>
+		
+	</div>
+</div>
+{/if}
+
+<!-------------------------------------------------------------------------------------------------订单状态-->
+<div class="blank024"></div>
+
+<div class="bg_fff bor_4 bor_3">
+
+
+	<div class="clearfix p_35_30_35_178 bor_5">
+		<span class="f_l ml-150 f030 lh030">商家</span>
+		<p class="f029 f_858585 lh030">{$data.order_info.location_name}</p>
+	</div>
+	
+	<div class="clearfix p_35_30_35_178 bor_5">
+		<span class="f_l ml-150 f030 lh030">联系人</span>
+		<p class="f029 f_858585 lh030">{$data.order_info.consignee}</p>
+	</div>
+	<div class="clearfix p_35_30_35_178 bor_5">
+		<span class="f_l ml-150 f030 lh030">手机号</span>
+		<p class="f029 f_858585 lh030">{$data.order_info.mobile}</p>
+	</div>
+	{if $data.order_info.order_menu_list.rs_list.cart_list}
+		{foreach from=$data.order_info.order_menu_list.rs_list.cart_list item=rs_list}
+		<div class="clearfix p_35_30_35_178 bor_5">
+			<span class="f_l ml-150 f030 lh030">预订信息</span>
+			<p class="f029 f_858585 lh030">{$rs_list.name}</p>
+		</div>
+		<div class="clearfix p_35_30_35_178 bor_5">
+			<p class="f029 f_858585 lh030">{$rs_list.table_time_format}</p>
+		</div>
+		{/foreach}
+	{/if}
+	{if $data.order_info.dc_comment}
+	<div class="clearfix p_35_30_35_178 bor_5">
+		<span class="f_l ml-150 f030 lh030">备注</span>
+		<p class="f029 f_858585 lh030">{$data.order_info.dc_comment}</p>
+	</div>
+	{/if}
+	<div class="clearfix p_35_30_35_178 bor_5">
+		<span class="f_l ml-150 f030 lh030">支付方式</span>
+		<p class="f029 f_858585 lh030">{if $data.order_info.payment_id eq 0}在线支付{else}货到付款{/if}</p>
+	</div>
+
+	<div class="clearfix p_35_30_35_178 ">
+		<span class="f_l ml-150 f030 lh030">下单时间</span>
+		<p class="f029 f_858585 lh030">{function name=to_date v=$data.order_info.create_time}</p>
+	</div>
+</div>
+
+<div class="blank024"></div>
+<div class=" bor_3 p_0_030 lh100 bg_fff bor_4 f029">
+				{if $data.order_info.order_menu_list.menu_list.cart_list}
+                      <div  class="bor_5">菜品</div>
+					  {foreach from=$data.order_info.order_menu_list.menu_list.cart_list item=item_second}
+					   <div class=" w_b bor_5">
+							<div class="w_percentage_30">{$item_second.name}</div>
+							<div class="w_b_f_1 tc">X{$item_second.num}</div>
+							<div class="w_percentage_30 tr">{function name=format_price v=$item_second.total_price g=2}</div>
+					    </div>
+						{/foreach}
+				{/if}
+
+<div class=" w_b  ">
+	<div class="w_b_f_1 tl">合计</div>
+	<div class="w_b_f_1 tr f_fe4d3d">{function name=format_price v=$data.order_info.total_price g=2}</div>
+</div>
+				</div>
+	
+			
+<div class="blank124"></div>
+
+<!-------------------------------------------------------------------------------------------------订单详情-->
+
+{if $data.order_info.order_state.act}
+	        
+			 <div class="p_017_030 w_b_s  w_b b_0 bg_fff w_percentage_100 bor_4 pf">
+			 	{foreach from=$data.order_info.order_state.act item=item}
+					{if $item.is_a eq 1}
+					<div class="w_b_f_1 p_0_030">
+					    <a  href="{$item.url}" class="tc f_fff bg_ffb955 bdr5 h066 lh066 f026 w_percentage_100 block"> {$item.name}</a>
+					</div>
+					{else}
+				<div class="w_b_f_1 p_0_030">
+				 	<span  action-url="{$item.url}" href="{$item.url}"class="tc f_fff bg_ffb955 bdr5 h066 lh066 f026 w_percentage_100 block uc_dc_order_action_but"> {$item.name}</span>
+				</div>
+				{/if}
+					{/foreach}
+			</div>
+
+{/if}
+<!-------------------------------------------------------------------------------------------------订单详情-->
+<!--
+<div class="bg_fff ovhide pf w_percentage_50 bor_1 bdr5 l_percentage_25 t_percentage_25 rsorder_view_reason">
+	<div class="claearfix lh080">
+		<i class="icon iconfont f040 f_fe4d3d mr040 f_r rsorder_view_close_but">&#xe671;</i>
+	</div>
+    <div class="p030"><textarea placeholder="请输入您的原因" name="content"  class="uc_dc_order_has_reason_content textarea_content bor_1"></textarea></div>
+	<div class="p_017_030 w_b_s  w_b  bg_fff w_percentage_100  ">
+			 	<div class="w_b_f_1 pb030">
+				 	<span action-url="/o2onew2/wap/index.php?&sess_id=pvep98cqf0epf5kjh7gejqcd17&ctl=dc_rsorder&act=do_refund&id=40" class="tc f_fff bg_ffb955 bdr5 h066 lh066 f026 w_percentage_100 block uc_dc_order_has_reason_but"> 确认</span>
+				</div>
+	</div>
+</div>
+-->
+</body>
+</html>

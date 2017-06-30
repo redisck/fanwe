@@ -1,0 +1,160 @@
+<div class="comments_details">
+	{if $ACTION_NAME eq 'index'}
+	<table class="table_box ">
+					<colgroup>
+						<col width="90">
+						<col width="420">
+						<col width="150">
+						<col width="100">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>标题</th>
+							<th>开始/结束时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					{if $list}
+					{foreach from=$list item=row}
+						<tr data-id="{$row.id}">
+							<td class="rate">
+								{$row.id}
+							</td>
+							<td>
+								<div>
+									<p class="rate" title="{$row.name}">{function name="msubstr" v=$row.name l=0 e=65}</p>
+									{if $row.images}
+										<ul class="photos_box clearfix">
+											{foreach from=$row.images item=img_row}
+												<li>
+													<a href="{$img_row.img}" target="_blank">
+														<img src="{function name="get_spec_image" v=$img_row.img h=40 w=40 g=1}" lazy="true"/>
+													</a>
+												</li>
+											{/foreach}
+											
+											
+										</ul>
+									{/if}
+									{if $MODULE_NAME eq 'goods' || $MODULE_NAME eq 'deal'}
+									<?php if(defined("FX_LEVEL")){?>
+									<li style="border:none;width:200px;font-weight:bold;">该商品被{$row.fx_count}人代理</li>
+									<?php }?>
+									{/if}
+								</div>
+							</td>
+							<td class="date_p" {$row.time_status}>
+								<p class="date">{$row.begin_time}</p><p>/</p><p class="date">{$row.end_time}</p>
+								{if $row.time_status >0 or $row.time_status ===0}
+									【{if $row.time_status ==0}未开始{elseif $row.time_status ==1}进行中{elseif $row.time_status ==2}已过期{/if}】
+								{/if}
+							</td>
+							<td class="operate">
+								<a href="{$row.edit_url}"><button class="ui-button edit_btn" rel="white" type="button" data-id="{$row.id}">修改</button></a>
+								<div class="blank5"></div>
+								<button class="ui-button down_btn" rel="white" type="button" data-id="{$row.id}">下架</button>
+								<div class="blank5"></div>
+								<a href="{$row.preview_url}" target="_blank"><button class="ui-button " rel="white" type="button" data-id="{$row.id}">预览</button></a>
+								
+							</td>
+						</tr>
+					{/foreach}
+					{else}
+						<tr data-id="{$row.id}">
+							<td colspan="5">
+								<div class="empty_tip">
+									没有相关数据
+								</div>
+							</td>
+						</tr>
+					{/if}		
+					</tbody>
+				</table>
+	{else}
+	<table class="table_box ">
+					<colgroup>
+						<col width="90">
+						<col width="420">
+						<col width="150">
+						<col width="100">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>
+								编号
+							</th>
+							<th>
+								标题
+							</th>
+							<th>
+								<select name="filter_admin_check" class="ui-select filter_select" >
+									<option value="" {if $filter_admin_check eq ''} selected = "selected" {/if}>状态</option>
+									<option value="0" {if $filter_admin_check eq '0'} selected = "selected" {/if}>待审核</option>
+									<option value="1" {if $filter_admin_check eq 1} selected = "selected" {/if}>通过</option>
+									<option value="2" {if $filter_admin_check eq 2} selected = "selected" {/if}>拒绝</option>
+								</select>
+							</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					{if $list}
+					{foreach from=$list item=row}
+						<tr data-id="{$row.id}">
+							<td class="rate">
+								{$row.id}
+							</td>
+							<td class="review_cnt">
+								<div>
+									<p class="rate" title="{$row.name}">{function name="msubstr" v=$row.name l=0 e=65}</p>
+									{if $row.images}
+										<ul class="photos_box clearfix">
+											{foreach from=$row.images item=img_row}
+												<li>
+													<a href="{$img_row}" target="_blank">
+														<img src="{function name="get_spec_image" v=$img_row h=40 w=40 g=1}" lazy="true"/>
+													</a>
+												</li>
+											{/foreach}
+										</ul>
+									{/if}
+								</div>
+							</td>
+							<td class="status_p">{if $row.biz_apply_status eq 2}<p>(修改申请)</p>{elseif $row.biz_apply_status eq 3}<p>(下架申请)</p>{else}<p>(新增申请)</p>{/if}{if $row.admin_check_status eq 0}待审核{elseif $row.admin_check_status eq 1}通过{elseif $row.admin_check_status eq 2}拒绝{/if}</td>
+							<td class="operate">
+								{if $row.admin_check_status eq 0 }
+									{if $row.biz_apply_status neq 3}
+										<a href="{$row.edit_url}">
+											<button class="ui-button edit_btn" rel="white" type="button" data-id="{$row.id}">修改</button>
+										</a>
+										<div class="blank5"></div>
+										<a href="{$row.preview_url}"  target="_blank"><button class="ui-button edit_btn" rel="white" type="button" data-id="{$row.id}">预览</button></a>
+										<div class="blank5"></div>
+									{/if}
+									<button class="ui-button del_btn" rel="white" type="button" data-id="{$row.id}">删除</button>
+								{elseif $row.admin_check_status eq 1 or $row.admin_check_status eq 2}
+									<button class="ui-button del_btn" rel="white" type="button" data-id="{$row.id}">删除</button>
+								{/if}
+							</td>
+						</tr>
+					{/foreach}
+					{else}
+						<tr data-id="{$row.id}">
+							<td colspan="5">
+								<div class="empty_tip">
+									没有相关数据
+								</div>
+							</td>
+						</tr>
+					{/if}		
+					</tbody>
+				</table>
+	{/if}
+	<div class="blank"></div>
+	<div class="pages">
+		{$pages}
+	</div>
+</div>
+		

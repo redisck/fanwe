@@ -1,0 +1,196 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_location.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+
+	var dc_title='{$s_info.dc_title}';
+
+</script>
+
+{if $data.advs}
+<div class="swipe">
+				<ul id="slider">
+				{foreach from=$data.advs item=advs}
+					<li ><a href="{$advs.data.url}"><img src="{$advs.img}" alt="{$advs.img}" width="100%"/></a></li>
+
+				{/foreach}
+				</ul>
+				<div id="pagenavi">
+				{foreach from=$data.advs item=advs key=key}
+				    {if $key eq 0}
+					<a href="javascript:void(0);" class="active">{$key}</a>
+					{else}
+					<a href="javascript:void(0);">{$key}</a>
+					{/if}
+				{/foreach}	
+				</div>
+</div>
+{/if}
+<!----------------------------------------------------------------------------------------------------adv-->
+<div class="t_0 w_percentage_100 z100"  id="Classification_list_all">
+	<div class="bg_fff bor_3 w_percentage_100  ">
+		<ul class="nav-bar_00 w_b lh080 p_010_0 ">
+			<li class="w_b_f_1 tc bor_2 pointer"><span class="f_696969 f030 pr032 pr">{if $data.cate_info}{$data.cate_info.name}{else}商家分类{/if}<i class="icon iconfont f022 f_b0ada7  ps t-020 r_0">&#xe665;</i></span></li>
+			<li class="w_b_f_1 tc bor_2 pointer"><span class="f_696969 f030 pr032 pr">{if $data.ptag.name}{$data.ptag.name}{else}优惠活动{/if}<i class="icon iconfont f022 f_b0ada7  ps t-020 r_0">&#xe665;</i></span></li>
+			<li class="w_b_f_1 tc bor_2 pointer"><span class="f_696969 f030 pr032 pr">{$data.sort_info.name}<i class="icon iconfont f022 f_b0ada7  ps t-020 r_0">&#xe665;</i></span></li>
+		</ul>
+	</div>
+	<div class="toggle_down">
+	<div class="ps rgba_05 w_percentage_100 h1200 hide_show child">
+		 <div class="bg_fff w_percentage_100 ">
+			<div class="bor_3 w_o_s o-y m_h605">
+			      <ul class="Classification_list_parents">
+					   {if $data.bcate_list}
+					   	{foreach from=$data.bcate_list item=bcate_list}
+					   		<li class="bor_5 mb-1 f_696969 h100 lh100 pl056"><a href="{$bcate_list.url}" class="block {if $bcate_list.current eq 1}current{/if}">{$bcate_list.name}</a></li>
+					   	{/foreach}
+					   {/if}
+				 </ul>
+			</div>
+			<div class="tc lh057 nav_list_close_but"><i class="icon iconfont f040 f_b0ada7   ">&#xe686;</i></div>
+	    </div>
+	</div>
+	<div class="ps rgba_05 w_percentage_100 h1200 hide_show child">
+		 <div class="bg_fff w_percentage_100 ">
+			<div class="bor_3 w_o_s o-y m_h605">
+			      <ul class="Classification_list_parents">
+					   {if $data.promote}
+					   	{foreach from=$data.promote item=promote}
+					   		<li class="bor_5 mb-1 f_696969 h100 lh100 pl056"><a href="{$promote.url}" class="block {if $promote.ptag eq $data.ptag.id}current{/if}">{$promote.name}</a></li>
+					   	{/foreach}
+					   {/if}
+				 </ul>
+			</div>
+			<div class="tc lh057 nav_list_close_but"><i class="icon iconfont f040 f_b0ada7   ">&#xe686;</i></div>
+	    </div>
+	</div>
+		<div class="ps rgba_05 w_percentage_100 h1200 hide_show child">
+		 <div class="bg_fff w_percentage_100 ">
+			<div class="bor_3 w_o_s o-y m_h605">
+			      <ul class="Classification_list_parents">
+					   {if $data.sort}
+					   	{foreach from=$data.sort item=sort}
+					   		<li class="bor_5 mb-1 f_696969 h100 lh100 pl056"><a href="{$sort.url}" class="block {if $sort.sort_index eq $data.sort_info.id}current{/if}">{$sort.name}</a></li>
+					   	{/foreach}
+					   {/if}
+				 </ul>
+			</div>
+			<div class="tc lh057 nav_list_close_but"><i class="icon iconfont f040 f_b0ada7   ">&#xe686;</i></div>
+	    </div>
+	</div>
+	</div>
+</div>
+<!----------------------------------------------------------------------------------------------------nav-->		
+<div class="blank012"></div>		
+<div class="bg_fff bor_4 bor_3">
+	<dl class="con_list">
+	{if $data.dc_location_list}
+		{foreach from=$data.dc_location_list item=location}
+		<dd class="clearfix bor_5 p_30_30_30_220">
+			<a href="{$location.url}"><img src="{$location.preview}" class="f_l w180 h135 ml-190"/>
+			<a href="{$location.url}"><h6 class="no_bold f032 lh034 h34 pr z99">{$location.name}{if $location.is_close eq 1 || $location.in_opentime eq 0}<i class="icon iconfont  f076 f_fe4d3d ps">&#xe696;</i>{/if}</h6>
+			
+			<ul class="nav-bar_01 w_b lh025 f023 f_7f7f7f pt020">
+			
+				<li class="w_b_f_1 bor_2">起送价&nbsp;{function name=format_price v=$location.location_delivery_info.start_price}</li>
+				<li class="w_b_f_1 tc bor_2">配送费&nbsp;{function name=format_price v=$location.location_delivery_info.delivery_price}</li>
+			
+				<li class="w_b_f_1 tc bor_2">{function name=round v=$location.distance g=2}公里</li>
+			</ul>
+		</a>
+			<div class="clearfix pt024 Preferential_Detail">
+
+			{if $location.is_firstorderdiscount eq 1}
+				<img class="ico_class f_l mr010" src="{$TMPL}/images/dc/xin_s.png" />
+			{/if}	
+			{if $location.is_payonlinediscount eq 1}
+				<img class="ico_class f_l mr010" src="{$TMPL}/images/dc/jian_s.png" />
+			{/if}	
+			{if $location.dc_allow_ecv eq 1}	
+				<img class="ico_class f_l mr010" src="{$TMPL}/images/dc/coupon_s.png" />
+			{/if}	
+			{if $location.dc_allow_invoice eq 1}	
+				<img class="ico_class f_l mr010" src="{$TMPL}/images/dc/invoice_s.png" />
+			{/if}	
+	
+			{if $location.is_firstorderdiscount eq 1 || $location.is_payonlinediscount eq 1 || $location.dc_allow_ecv eq 1 || $location.dc_allow_invoice eq 1}
+				<span class="f_7f7f7f f023 lh030 f_l mr010">优惠详情</span>
+				<i class="icon iconfont lh030 f022 f_7f7f7f f_l open_but">&#xe601;</i>
+			{/if}	
+			</div>
+			<div class="pt024 hide_show Preferential_Detail"><!--思路：进行里面的内容切换，容器一起切换-->
+				<div>
+					{if $location.is_firstorderdiscount eq 1}
+					<div class="clearfix pb025">
+						<img class="ico_class f_l mr010" src="{$TMPL}/images/dc/xin_s.png" />
+						<p class="w_b_f_1 f_7f7f7f f023 lh030">{$data.promote_info.is_firstorderdiscount.description}</p>
+				    </div>
+					{/if}	
+					{if $location.is_payonlinediscount eq 1}
+					<div class="clearfix pb025">
+						<img class="ico_class f_l mr010" src="{$TMPL}/images/dc/jian_s.png" />
+						<p class="w_b_f_1 f_7f7f7f f023 lh030">{$data.promote_info.is_payonlinediscount.description}</p>
+				    </div>
+				    {/if}	
+					{if $location.dc_allow_ecv eq 1}
+				   <div class="clearfix pb025">
+						<img class="ico_class f_l mr010" src="{$TMPL}/images/dc/coupon_s.png" />
+						<p class="w_b_f_1 f_7f7f7f f023 lh030">可代金券支付，每日限1张</p>
+				    </div>
+				    {/if}	
+					{if $location.dc_allow_invoice eq 1}
+				   <div class="clearfix">
+						<img class="ico_class f_l mr010" src="{$TMPL}/images/dc/invoice_s.png" />
+						<p class="w_b_f_1 f_7f7f7f f023 lh030">支持开发票</p>
+				   </div>
+				    {/if}
+				</div>
+				<div class="tc close_but"><i class="icon iconfont lh030 f022 f_7f7f7f">&#xe680;</i></div>
+			</div>
+		</dd>
+		{/foreach}
+		{if $pages}
+		<div class="fy">
+			{$pages}
+		</div>
+		{/if}
+	{else}
+		<div class="fy">暂无商家</div>
+	{/if}
+	</dl>
+</div>
+<!----------------------------------------------------------------------------------------------------详情列表-->
+{include file="dc/inc/foot_nav.html"}
+<!----------------------------------------------------------------------------------------------------底部浮动菜单-->
+

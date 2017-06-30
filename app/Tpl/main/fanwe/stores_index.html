@@ -1,0 +1,165 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/filter_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/sort_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/stores.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/store_pop_map.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/side_deal_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sort_row.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sort_row.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/store_pop_map.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/store_pop_map.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/stores.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/stores.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+
+
+?>
+{include file="inc/header.html"}
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={function name="app_conf" v="BAIDU_MAP_APPKEY"}"></script> 
+<div class="blank15"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+<!--筛选行-->	
+	{include file="inc/filter_row.html"}
+<!--end筛选行-->	
+<div class="blank"></div>
+<!--排序行-->	
+	{include file="inc/sort_row.html"}
+<!--end排序行-->	
+</div>
+<div class="blank"></div>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">	
+	<div class="wrap_m2 f_l store_list">
+		{if $supplier_info}
+		<div class="supplier_info clearfix">
+			<div class="sp_image f_l">
+				<img src="{function name="get_spec_image" v=$supplier_info.preview w=100 h=75 g=1}" />
+			</div>
+			<div class="sp_info f_l">
+				<span class="sp_name">{$supplier_info.name}</span>
+				{if $location_count}
+				<br />
+				<span class="sp_total"><span class="sp_city"><i class="iconfont">&#xe615;</i>{$current_city.name}</span> 共有 <span class="sp_count">{$location_count}</span> 家分店</span>
+				{/if}
+			</div>
+		</div>
+		<div class="blank"></div>
+		{/if}
+		{if $store_list}
+		<!--商家列表单行-->
+		
+		{foreach from=$store_list item=store_item}
+		<div class="store_row clearfix">
+			<!--qr码扫描区-->
+			<div rel="qrcode" class="scan_store_list">
+			<a class="scan_outter" href="{$store_item.url}" title="{$store_item.name}">
+				<table><tr><td><img src="{function name="gen_scan_qrcode" v=$store_item.url s="3"}" /> </td></tr></table>
+				<div></div>
+			</a>
+			</div>
+			<!--end qr码扫描区-->
+			<div class="store_image f_l">
+				<a href="{$store_item.url}" title="{$store_item.name}">
+				<img lazy="true" src="{function name="get_spec_image" v="$store_item.preview" w=200 h=150 g=1}" />
+				</a>
+			</div>
+			<div class="store_info f_l">
+				<a href="{$store_item.url}" class="store_name" title="{$store_item.name}">
+					{$store_item.name}
+					{if $store_item.is_verify}
+					<i class="iconfont" title="认证商户">&#xe629;</i>
+					{/if}
+				</a>
+				<div class="store_address"><i class="iconfont">&#xe615;</i> {if $store_item.address}{$store_item.address} &nbsp;<a href="javascript:void(0);" class="store_pop_map" rel="{$store_item.id}">[查看地图]</a>{else}商家未填写地址{/if}</div>
+				<div class="store_phone"><i class="iconfont">&#xe623;</i> <em>{if $store_item.tel}{$store_item.tel}{else}无{/if}</em></div>
+			</div>
+			
+			<div class="store_dp f_r">
+				<div class="store_dp_avg">总评  <input class="ui-starbar" value="{$store_item.avg_point}" disabled="true" /> </div>
+				<div class="store_dp_total"><i class="iconfont">&#xe621;</i> (<em>{$store_item.dp_count}</em>)人点评，好评率 {$store_item.good_rate_precent}%</div>
+				<div class="store_dp_price"><i class="iconfont">&#xe622;</i> 人均消费：<em>{$store_item.ref_avg_price}</em> 元</div>
+			</div>
+		</div>
+		{/foreach}
+		
+		<!--商家列表单行-->
+		<div class="blank"></div>
+		<div class="pages">{$pages}</div>
+		{else}
+		
+		<div class="layout_box">
+			<div class="content">					
+				<div class="empty_tip">没有相关数据</div>
+			</div>
+		</div>
+		
+		{/if}
+		
+	</div>	
+	<div class="wrap_s2 f_r">
+		{if $side_store_list}
+		<div class="side_deal_box">
+		<div class="title_row">口碑排行</div>
+		<div class="content_row">
+			<ul class="side_deal_list">
+				{foreach from=$side_store_list item=side_store}
+				<li>
+					<a href="{$side_store.url}" class="deal_img"><img src="{function name="get_spec_image" v=$side_store.preview w=198 h=134 g=1}" lazy="true" /></a>
+					<a href="{$side_store.url}"  class="deal_title">{$side_store.name}</a>
+					<div class="deal_info">
+						<span class="deal_price f_l">
+							好评率:{$side_store.good_rate_precent}%
+						</span>
+						<span class="sale_count f_r">
+							总评：<input class="ui-starbar" disabled="true" value="{$side_store.avg_point}" />
+						</span>
+					</div>
+				</li>
+				{/foreach}
+				
+			</ul>
+		</div>
+		</div>
+		<div class="blank"></div>
+		{/if}
+		{if $history_deal_list}
+			<div class="side_deal_box">
+			<div class="title_row">
+				<span>浏览历史</span>
+				<a href="javascript:void(0);" class="clear_history" type="store">清空</a>
+			</div>
+			<div class="content_row">
+				<ul class="side_deal_list">
+					{foreach from=$history_deal_list item=side_store}
+					<li>
+						<a href="{$side_store.url}" class="deal_img"><img src="{function name="get_spec_image" v=$side_store.preview w=198 h=134 g=1}" lazy="true" /></a>
+						<a href="{$side_store.url}"  class="deal_title">{$side_store.name}</a>
+						
+					</li>
+					{/foreach}
+					
+				</ul>
+			</div>
+			</div>
+		{/if}
+	</div>	
+</div><!--end wrap-->
+<div class="blank20"></div>
+{include file="inc/footer.html"}

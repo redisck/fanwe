@@ -1,0 +1,31 @@
+<form name="delivery_form">
+	<div >
+		
+		<input type="hidden" value="{$delivery_fee_id}" name="delivery_fee_id" />
+		{foreach from=$delivery_regions item="region_item"}
+		<div class='region_level_{$region_item.pid}' style="padding-left:{$region_item.region_level}em;height:250px;  overflow-y: scroll;">
+				<input type="checkbox" name='region_id[]' value="{$region_item.id}" onclick="check_sub(this);"  {if $region_item.ischecked eq 1 } checked='checked'{/if}/> 
+				<a href='javascript:void(0);' onclick='switch_region(this);' style="text-decoration:none;">				
+				-
+				</a> <span>{$region_item.name}</span>
+				{foreach from=$region_item.delivery_regions item="region_item_sub"}
+					<div class='region_level_{$region_item_sub.pid}' style="padding-left:{$region_item_sub.region_level}em;">
+						 
+						<input type="checkbox" name='region_id[]' onclick="check_sub(this);" value="{$region_item_sub.id}" {if $region_item_sub.ischecked eq 1 } checked='checked'{/if} />
+						<a href='javascript:void(0);' onclick='switch_region(this);' style="text-decoration:none;">				
+						+
+						</a> <span>{$region_item_sub.name}</span>
+						
+					</div>
+				{/foreach}
+			</div>
+		{/foreach}
+	</div>
+	<div class="blank"></div>
+	<div class="btn_row tc">
+		
+		<button class="ui-button dialog-cancel" rel="dialog-cancel" type="button" onclick="close_pop();">取消</button>
+		<button class="ui-button dialog-ok" rel="dialog-ok" type="button" onclick="do_submit_opform();">确定</button>
+	</div>	 
+</from>
+</div>

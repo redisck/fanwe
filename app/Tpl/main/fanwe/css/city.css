@@ -1,0 +1,36 @@
+.city_box{background:@box_color;border:1px solid @border_color;padding-bottom:30px;}
+.city_box .login-panel{border-bottom: 1px @border_color solid;padding: 15px 20px;}
+.city_box .login-panel .ui-textbox{width:160px;}
+.city_box .login-panel dl dt{width:95px;}
+
+.city_lists h2{width:180px;_width:200px;text-align:center;zoom: 1;height: 36px;margin: 20px 20px 12px;padding: 0 14px;line-height: 36px;border-radius:5px;background: @main_color;color: #FFF;}
+.city_lists ul li{border-top: 1px #FFF solid;border-bottom: 1px #FFF solid;}
+.city_lists ul li.cur{border-color:@border_color;background:#eee;}
+.city_lists ul li p{padding: 6px 10px 6px 30px;border-top: 1px #FFF solid;border-bottom: 1px #FFF solid;zoom: 1;}
+.city_lists span {display: inline-block;width: 880px;vertical-align: top;zoom: 1;}
+.city_lists .label{display: inline-block;width: 30px;height: 30px;vertical-align: top;border: 1px #ddd solid;margin-right: 5px;zoom: 1;border-radius: 0;color: #666;line-height: 24px;}
+.label strong {display: block;width: 28px;height: 28px;text-align: center;background: #F1F1F1;border: 1px #F7F7F7 solid;border-radius: 0;font-family: Tahoma;font-size: 16px;}
+.city_lists a {display: inline-block;zoom: 1;height: 20px;padding: 0 2px 1px;margin: 5px 10px;border-radius: 0;line-height: 20px;font-weight: 600;color:@main_color;font-size:14px;}
+.city_lists a:hover{background: @main_color;border-radius: 2px;color: #FFF;}
+
+.by_province select{float:left;margin-top:10px;margin-right:5px;}
+.by_province .province_select{width:80px;}
+.by_province .city_select{width:95px;}
+.by_province .sure_city{margin-top:8px;float:left;}
+
+.search_list{width:178px;_overflow:hidden;border: 1px solid @border_color;background:@box_color;position:absolute;top:-10px;left:50px;display:none;box-shadow: 2px 2px 10px #999;-moz-box-shadow: 2px 2px 10px #999;-webkit-box-shadow: 2px 2px 10px #999;z-index:99;}
+.search_list ul{color:#333;font-size: 13px;}
+.search_list ul li{padding: 0 9px;line-height: 28px;cursor: pointer;}
+.search_list ul li.cur{background:#ddd;}
+.search_list ul li .item_name{*float:left;}
+.search_list ul li .item_py{color:#999;float:right;}
+
+
+
+
+
+
+
+
+
+

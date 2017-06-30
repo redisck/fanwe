@@ -1,0 +1,33 @@
+<span class="cart_drop_box" id="cart_drop_box">
+	<a href="{url x="index" r="cart"}" title="购物车{$cart_count}件"><i class="iconfont">&#xe612;</i> 购物车<span class="cart_count">{$cart_count}</span>件<i class="iconfont"></i></a>
+</span>
+<div id="head_cart_drop_box">
+		<dl>
+			{if count($head_cart_data.cart_list) gt 0}
+				{foreach from=$head_cart_data.cart_list item=row}
+				<dd id="{$row.id}" class="deal-item">
+					<a href="{$row.url}" title="{$row.name}" target="_blank"  class="deal-link" ><img class="deal-cover" src="{$row.icon}" width="80" height="50"></a>
+					<h5 class="deal-title" id="{$row.id}">
+						<a href="{$row.url}" title="{$row.name}" target="_blank" class="deal-link" >{$row.name}</a>
+					</h5>
+					<p class="deal-price-w">
+						<a href="javascript:void(0);" rel="{$row.id}" class="delete">删除</a>
+						<em class="deal-price"><i>&yen;</i>{function name="round" v=$row.unit_price l=2}</em>
+					</p>
+				</dd>
+				
+				{/foreach}
+				<dd>
+					<p class="check-my-cart" id="{$row.id}">
+					<a href="{url x="index" r="cart"}" class="btn-small check_cart_btn "  id="{$row.id}">查看我的购物车</a></p>
+				</dd>
+			{else}
+				<div class="blank10"></div>
+				<p class="check-my-cart" id="{$row.id}">
+					
+					<span>暂时没有商品</span>
+				</p>
+			{/if}
+			
+		</dl>
+	</div>

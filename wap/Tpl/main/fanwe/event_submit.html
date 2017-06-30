@@ -1,0 +1,70 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/event_submit.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/event_submit.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/event_submit.js";
+
+?>
+{include file="inc/header.html"}
+<div class="wrap">
+        <div class="content">
+        <div class="evaluate_title">
+                    <div class="grade">
+                       	<i class="iconfont">&#xe638;</i>报名表单
+							
+                    </div>
+                </div>
+            
+	<div class="form_panel event_submit_panel">
+	<form name="event_submit_form" action="{url x="index" r="event#do_submit"}">
+		{foreach from=$event_fields item=field}
+		<dl>
+			<dt>{$field.field_show_name}：</dt>
+			<dd>
+			{if $field.field_type eq 0}
+				<input type="text" size="30" name="result[{$field.id}]" class="ui-textbox" value="{$field.result}" />
+			{else}
+			<span class="select_pt">
+				<select name="result[{$field.id}]" class="event_submt_select" height="90">
+					{foreach from=$field.value_scope item=val}
+					{if strim($val) neq ''}
+					<option value="{$val}" {if $field.result eq $val}selected="selected"{/if} >{$val}</option>
+					{/if}
+					{/foreach}
+				</select>
+			</span>
+			{/if}
+			<input type="hidden" value="{$field.id}" name="field_id[]" />
+			</dd>
+		</dl>
+		{/foreach}
+		<div class="blank"></div>
+		<div class="submit_btn_row">
+			<input type="hidden" value="{$event_id}" name="event_id" />
+			<input type="submit" class="plank" value="{$data.btn_name}"  />
+		</div>
+	</form>
+	</div>
+</div>
+
+
+</div>
+<div class="blank20"></div>
+
+{include file="inc/footer.html"}

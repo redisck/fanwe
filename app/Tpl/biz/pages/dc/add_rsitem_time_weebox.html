@@ -1,0 +1,33 @@
+<div class="dc_add_menu_cate_page">
+<form action="{url r="biz" b="dc#do_save_rsitem_time"}" method="post" name="add_rsitem_time_form"  bindsubmit="true">
+	<div class="blank10"></div>
+	<div class="con_box">
+	
+		<div class="field_group ">
+			<label class="f_label">预定时间：</label>
+			<div class="f_text"><input type="text" class="ui-textbox "  name="rs_time" value=""/></div>
+		</div>
+		<div class="field_group ">
+			<label class="f_label">人数：</label>
+			<div class="f_text"><input type="text" class="ui-textbox "  name="total_count" value=""/></div>
+		</div>
+		
+		<div class="field_group ">
+		<label class="f_label">是否有效：</label>
+			<div class="f_select">
+				<select class="ui-select filter_select medium" name="is_effect">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</div>
+		</div>
+		
+		
+	</div>
+	<div class="blank10"></div>
+		<div style="text-align:right;padding-right: 20px;">
+			<input type="hidden" name="location_id" value="{$location_id}"/>
+			<button class="ui-button menu_cate_btn" rel="orange" type="submit">确认保存</button>
+		</div>
+</form>
+</div>

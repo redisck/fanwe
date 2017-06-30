@@ -1,0 +1,18 @@
+	{if $account_info}
+	<li class="option"><a href="{url r="biz"}">【{$supplier_name}】 {$account_info.account_name}<i class="vertical-bar"></i></a></li>
+	<li class="option"><a href="{url x="biz" r="user#logout"}">退出<i class="vertical-bar"></i></a></li>
+	<li class="option"><a href="{url x="biz" r="user#edit_password"}">修改密码<i class="vertical-bar"></i></a></li>
+	{else}
+	<li class="option"><a href="{url x="biz" r="user#login"}">登录<i class="vertical-bar"></i></a></li>
+	{/if}
+
+	<li class="option"><a href="{url r="index"}">回到首页<i class="vertical-bar"></i></a></li>
+	<li class="option option-qrcode">
+		<a>下载商家手机客户端</a>
+		<i class="triangle"></i>
+		<div class="qrcode-box">
+			<a href="javascript:void(0);"><img src="{$biz_gen_qrcode}" /></a>
+			<span class="qrcode-text">手机版验证快捷更方便</span>
+			<div class="blank"></div>
+		</div>
+	</li>

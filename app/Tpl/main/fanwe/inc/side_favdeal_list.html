@@ -1,0 +1,26 @@
+<ul class="side_deal_list">
+	{foreach from=$side_deal_list item=side_deal}
+	<li>
+		<a href="{$side_deal.url}" class="deal_img"><img src="{function name="get_spec_image" v=$side_deal.icon w=198 h=134 g=1}" lazy="true" /></a>
+		<a href="{$side_deal.url}"  class="deal_title">{$side_deal.sub_name}</a>
+		<div class="deal_info">
+			<span class="deal_price f_l">
+				{if $side_deal.buy_type eq 1}
+				<span class="current_price">{function name="abs" v=$side_deal.return_score}<i>积分</i></span>
+				{else}
+				<span class="current_price"><i>&yen;</i>{function name="round" v=$side_deal.current_price l=2}</span>
+				<span class="origin_price">&yen;{function name="round" v=$side_deal.origin_price l=2}</span>
+				{/if}
+			</span>
+			<span class="sale_count f_r">
+				{if $side_deal.buy_type eq 1}
+				已兑换<span>{$side_deal.buy_count}</span>
+				{else}
+				已售<span>{$side_deal.buy_count}</span>
+				{/if}
+			</span>
+		</div>
+	</li>
+	{/foreach}
+	
+</ul>

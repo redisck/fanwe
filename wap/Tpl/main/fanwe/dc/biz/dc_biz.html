@@ -1,0 +1,132 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_biz.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_more.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_more.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+</script>
+<!-------------------------------------------------------------------------------------------------选项卡-->
+<div class="bg_fff bor_4 bor_3">
+	<div class="clearfix p_026_030">
+			<div class="f_l f029 lh048 w165">待结算</div>
+			<div class="f_l f029 lh048 f_858585">{function name=format_price v=$data.unbalance_money g=2}</div>
+			<a href="javascript:void(0);" id="dc_biz_balance" action-url="{url r="index" p="dc_biz#dc_supplier_balance"}" class="f_r p_0_030 h048 lh048 tc f_fff bg_fe4d3d bdr5 ">结算</a>
+		</div>
+</div>
+
+<div class="blank024"></div>
+<!-------------------------------------------------------------------------------------------------待结算-->	
+{foreach from=$data.order_info item=item}
+{if $item.location_info.is_dc eq 1}
+<div class="bg_fff  bor_4">
+	<div class="clearfix lh100 f029 p_0_030 bor_3 bold_600 ">
+		<span class="f_l">{$item.location_name}</span>
+		<a href="{url r="index" p="dc_biz#view" g="lid=$item.location_info.id" }" class="f_r">管理</a>
+	</div>
+	<div class="bor_3 lh100 f029 p_0_030"><i class="icon iconfont f042 f_7f7f7f ">&#xe691;</i>外卖订单</div>
+	<div class="w_b pt035">
+		<div class="w_b_f_1 tc">
+			<a href="{url r="index" p="dc_biz_order" g="lid=$item.location_info.id" }">
+				<div class=" w150 h150 pr show">
+					<img src="{$TMPL}/images/xindingdan.png"  class="w_percentage_100"/>
+					<span class="Record_num">{$item.dc_order_count}</span>
+				</div>
+				<p class="f028 lh099">新订单</p>
+			</a>
+		</div>
+		<div class="w_b_f_1 tc ">
+			<a href="{url r="index" p="dc_biz_order#order" g="lid=$item.location_info.id" }">
+				<div class=" w150 h150 pr show">
+					<img src="{$TMPL}/images/jilu.png"  class="w_percentage_100"/>
+				</div>
+				<p class="f028 lh099">订单记录</p>
+			</a>
+		</div>
+		<div class="w_b_f_1 tc">
+			<a href="{url r="index" p="dc_biz_order#dc_reminder" g="lid=$item.location_info.id" }">
+				<div class=" w150 h150 pr show">
+				     <img src="{$TMPL}/images/cuidan.png"  class="w_percentage_100"/>
+				</div>
+				<p class="f028 lh099">催单</p>
+			</a>
+		</div>
+	</div>
+</div>
+{/if}
+<!-------------------------------------------------------------------------------------------------外卖订单-->	
+{if $item.location_info.is_reserve eq 1}
+<div class="bg_fff bor_3 bor_4">
+	<div class="bor_3 lh100 f029 p_0_030"><i class="icon iconfont f042 f_7f7f7f ">&#xe692;</i>订座订单</div>
+	<div class="w_b pt035">
+		<div class="w_b_f_1 tc">
+			<a href="{url r="index" p="dc_biz_resorder" g="lid=$item.location_info.id" }">
+				<div class=" w150 h150 pr show">
+					<img src="{$TMPL}/images/xindingdan.png"  class="w_percentage_100"/>
+					<span class="Record_num">{$item.rc_order_count}</span>
+				</div>
+				<p class="f028 lh099">新订单</p>
+			</a>
+		</div>
+		<div class="w_b_f_1 tc ">
+			<a href="{url r="index" p="dc_biz_resorder#order" g="lid=$item.location_info.id" }">
+				<div class=" w150 h150 pr show">
+					<img src="{$TMPL}/images/jilu.png"  class="w_percentage_100"/>
+				</div>
+				<p class="f028 lh099">订单记录</p>
+			</a>
+		</div>
+		<div class="w_b_f_1 tc">
+			<a href="{url r="index" p="dc_biz_verify" g="lid=$item.location_info.id" }">
+				<div class=" w150 h150 pr show">
+				     <img src="{$TMPL}/images/yanzheng.png"  class="w_percentage_100"/>
+				</div>
+				<p class="f028 lh099">验证</p>
+			</a>
+		</div>
+	</div>
+</div>
+{/if}
+<!-------------------------------------------------------------------------------------------------订座订单-->	
+<div class="blank024"></div>
+{/foreach}
+				<li class="lh080 f029"><a rel="{url r="biz" p="user#loginout"}"  class="loginout_btn plank" href="javascript:void(0);">退出登录</a></li>
+<!----------------------------------------------------------------------------------------------------详情列表-->
+{include file="dc/inc/foot_nav.html"}
+<!----------------------------------------------------------------------------------------------------底部浮动菜单-->
+
+</body>
+</html>
+
+   

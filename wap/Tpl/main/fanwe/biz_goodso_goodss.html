@@ -1,0 +1,123 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_goodso_goodss.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+?>
+{include file="inc/biz_header.html"}
+<script>var ajax_url = "{$ajax_url}";</script>
+<div class="wrap">
+	<div class="content">
+	{if $data.status eq 0}
+		<div class="common_tip">
+              <span><i class="iconfont">&#xe644;</i>&nbsp;&nbsp;{$data.info}</span>
+       	</div>
+       	{/if}
+       		
+		<div class="list-view bor_none">
+			 <ul class="item_ul">
+			 	{foreach from=$data.item item=row}
+			 	<li class="item_li">
+			 	     <a href="javascript:void(0);">
+			 	     	<div class="o_box">
+				 	     	<div class="o_head">
+				 	     	{if $row.order_status eq 1}
+								<div class="o_status s_success">已完结</div>
+							{else}	
+					 	     	{if $row.delivery_status eq 5}
+					 	     		<div class="o_status s_success">已成功</div>
+					 	     	{elseif $row.delivery_status eq 1 && $row.is_arrival eq 1}
+					 	     		<div class="o_status s_success">已成功</div>
+					 	     	{else}
+					 	     		<div class="o_status s_not">未完成</div>
+					 	     	{/if}
+				 	     	{/if}
+				 	     	<span class="o_sn">{$row.order_sn}</span>&nbsp;&nbsp;<span class="c_time">{$row.create_time}</span></div>
+				 	     	<div class="sub_info">
+				 	     		<div class="o_icon"><img src="{$row.icon}" width="84" height="70"  /></div>
+				 	     		<div class="r_info">
+				 	     			<div class="o_name">{$row.sub_name}</div>
+				 	     			<div class="o_kd" {$row.refund_status}>
+				 	     			{if $row.order_status eq 1}
+										已完结
+									{else}	
+					 	     			{if $row.delivery_status eq 0}
+											<span style="color:#000">未发货</span>&nbsp;&nbsp;
+											<a class="btn_box red_btn" href="{url r="biz" b="goodso#delivery_form" p="data_id=$row.id"}">立即发货</a>
+										{elseif $row.delivery_status eq 1}
+											已发货
+											<!--<a  {if app_conf("KUAIDI_TYPE") eq 1}ajax="true" href="javascript:void(0);" action="{url x="biz" r="goodso#check_delivery" p="id=$item.id"}"{else}href="{url x="biz" r="goodso#check_delivery" p="id=$item.id"}" target="_blank"{/if} rel="{$item.id}" class="check_delivery">查看物流</a>  -->													
+											{if $row.is_arrival eq 1}
+												(已收货)
+											{elseif $row.is_arrival eq 2}
+												(维权中)
+											{else}
+												{if $data.NOW_TIME - $row.delivery_notice.delivery_time > 3600*24*$data.ORDER_DELIVERY_EXPIRE}
+												(超期收货)
+												{/if}
+											{/if}										
+										{/if}
+									{/if}
+									
+									{if $row.refund_status eq 1}
+									[退款中]
+									{elseif $row.refund_status eq 2}
+									[已退款]
+									{/if}
+				 	     			</div>
+				 	     		</div>
+				 	     	</div>
+				 	     	{if $row.order_status eq 1}
+										
+									{else}	
+					 	     			
+										{if $row.delivery_status eq 1}
+													<div class="delivery-info">
+									 	     		<div class="i-consignee">{$row.consignee}</div>
+									 	     		<div class="i-address">
+									 	     			<a href="tel:{$row.mobile}">{$row.mobile}</a>,{$row.address_str}
+									 	     		</div>
+									 	     	</div>						
+										{/if}
+									{/if}
+				 	     	<div class="o_bottom">{$row.user_name} {$row.number}件，结算价：<span class="o_price">{$row.balance_total_price}</span>元</div>
+
+				 	     			
+				 	     	
+			 	     	</div>
+			 	     </a>
+			 	</li>
+				{/foreach}
+				
+			 </ul>
+			 
+		</div>
+	</div>
+	
+	{if $pages}
+		<div class="blank"></div>
+		<div class="fy">
+			{$pages}
+		</div>
+	{/if}
+	<div class="blank50"></div>
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

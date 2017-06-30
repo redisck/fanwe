@@ -1,0 +1,140 @@
+@CHARSET "UTF-8";
+/*������λ*/
+
+#l-map{height:300px;width:100%;}
+#r-result{width:100%;}
+.dc_position_bg{
+background:url(../images/dc/dc_takeaway/takeaway_bg.png) center 0 repeat;
+width:100%;
+height:400px;
+}
+
+#map_show{width: 0;height:0;}
+.q_text{
+ height: 17px;
+    line-height: 17px;
+    padding: 12px 13px;
+ width: 420px;
+}
+
+
+.dc_position_bg .map_con .bd{
+
+  padding-left: 20%;
+    padding-top: 15%;
+float:left;
+
+}
+
+.dc-button{
+   background: @main_color;
+    padding: 12.5px 35px;
+	 font-size: 15px;
+	 cursor:pointer; color: white;font-weight:bold;
+
+}
+
+.tangram-suggestion{
+ border: none !important; 
+    margin-top: 2px;
+-moz-margin-left:1px;
+	width:100%;
+}
+.tangram-suggestion-grey{
+color:#aaa !important;
+}
+
+.tangram-suggestion-main tr {
+
+    display: block;
+	cursor:pointer;
+	overflow:hidden;
+}
+.tangram-suggestion-current{
+background:none !important;
+color:#666666 !important;
+}
+
+.tangram-suggestion-prepend , .tangram-suggestion-append{
+padding:0 !important;
+}
+
+
+.tangram-suggestion .dc_result {
+    display: block;
+	padding-left:27px;
+}
+
+
+.tangram-suggestion .iconfont {
+    color: #888;
+    display: inline-block;
+    float: left;
+    font-size: 18px;
+    margin-right: 10px;
+}
+#dc_loto input{
+display:none;
+}
+
+.tangram-suggestion-main tr td{
+width:100%;
+display:table;
+height:24px;
+padding: 10px;
+border-bottom: 1px solid #dddddd !important;
+}
+
+
+.dc_clear_history {
+   background: none repeat scroll 0 0 #f8f8f8; 
+    font-size: 18px;
+    text-align: center;
+	width:100% !important;
+	display:block !important;
+	padding:10px 0;
+	clear:both;
+	cursor:pointer;
+}
+.tangram-suggestion table{
+float:left;
+border:solid 1px @border_color;
+background:white;
+}
+.search_input {
+    height: 45px;
+    overflow: hidden;
+
+}
+.result-item h3 {
+    font-size: 14px;
+}
+.dc_result .desc {
+    font-size: 12px;
+}
+#dc_loto_t{
+
+}
+#dc_loto_t tbody {
+    display: block;
+    width: 100%;
+}
+#dc_loto {
+	max-height: 382px;
+	overflow-y: scroll;
+	overflow-x:hidden;
+
+}
+
+.dc_result .dc_num_show{
+font-size:12px;
+color:red;
+}
+
+
+
+
+
+
+
+

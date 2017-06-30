@@ -1,0 +1,83 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	var sale_line_data_url = '{:urlencode(u("DcOfc/sale_month_line",array("year"=>$cyear,"month"=>$cmonth)))}';
+</script>
+<style>
+table.form td{text-align:center;}
+</style>
+<load href='__TMPL__Common/js/dcbalance.js' />
+<div class="main">
+<div class="main_title"> {$balance_title}</div>
+
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+	
+		<select name="year">
+			<foreach name="year_list" item="year">
+				<option value="{$year.year}" <if condition="$year['current']">selected="selected"</if>>{$year.year}年</option>
+			</foreach>
+		</select>
+		<select name="month">
+			<foreach name="month_list" item="month">
+				<option value="{$month.month}" <if condition="$month['current']">selected="selected"</if>>{$month.month}月</option>
+			</foreach>
+		</select>
+		<input type="hidden" value="DcBalance" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+		<input type="button" class="button" value="清空当月报表" onclick="clear_balance('{:u("DcBalance/foreverdelete",array("month"=>$cmonth,"year"=>$cyear))}');" />
+	</form>
+</div>
+<div class="blank5"></div>
+
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=8 class="topTd"></td>
+	</tr>
+	<tr>
+		<th width="70">订单数</th><th width="70">本月营业额</th><th width="70">结算</th><th width="70">在线支付</th><th width="70">活动补贴</th><th width="70">代金券</th><th width="70">退款/取消订单</th><th width="70">佣金</th>
+	</tr>
+	<tr><td>
+	<if condition="$stat_result.order_num gt 0">
+	{$stat_result.order_num}
+	<else />
+	0
+	</if>
+	</td><td>{$stat_result.sale_money|format_price}</td><td>{$stat_result.balance_money|format_price}</td>
+	<td>{$stat_result.online_pay_money|format_price}</td><td>{$stat_result.promote_money|format_price}</td><td>{$stat_result.ecv_money|format_price}</td>
+	<td>{$stat_result.refund_money|format_price}</td><td>{$stat_result.admin_charges|format_price}</td></tr>
+	<tr>
+		<td colspan=8>
+			<div id="sale_line_data_chart"></div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan=8 class="bottomTd"></td>
+	</tr>
+</table>
+
+<div class="blank5"></div>
+<div class="search_row" style="text-align:right;">
+	【{$balance_title}总计：{$sum_money|format_price}】 【{$balance_title}本页总计：{$page_sum_money|format_price}】
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="log" 
+	datasource="list" 
+	show="id:{%ID}|50px,log_info:日志,money|format_price:金额|100px,create_time|to_date:发生日期|200px" 
+	actionlist = ""
+	 /> 
+<div class="blank5"></div>
+<div class="search_row" style="text-align:right;">
+	【{$balance_title}总计：{$sum_money|format_price}】 【{$balance_title}本页总计：{$page_sum_money|format_price}】
+</div>
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

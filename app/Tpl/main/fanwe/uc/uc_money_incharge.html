@@ -1,0 +1,164 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_money_incharge.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_money_incharge.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_money_incharge.js";
+
+?>
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav left_box">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		
+		<div class="main_box uc_info_box">
+			<div class="info_nav">
+				<ul>
+					<li class="cur"><a href="{url r="index" b="uc_money#incharge" }">会员充值</a></li>
+					<li><a href="{url r="index" b="uc_money#withdraw" }">会员提现</a></li>
+				</ul>
+			</div>
+
+			<!-- 资产标题 -->
+			<div class="info_box">
+				<div class="blank20"></div>
+				<h3>我的资产信息</h3>
+				<div class="blank10"></div>
+				<div class="bg_box growth_content">
+					
+					<div class="info_items">
+						<ul>
+							<li><label>我当前的余额是：</label><span class="main_color">{function name="format_price" v=$user_info.money}</span>
+							<label>&nbsp;&nbsp;&nbsp;&nbsp;会员等级：</label><span class="level_bg level_{$uc_query_data.cur_level}" title="{$uc_query_data.cur_level_name}"></span>
+							</li>
+							{if $uc_query_data.cur_gourp gt 0}
+								<li><label>我当前所在的会员组：</label><span class="main_color">{$uc_query_data.cur_gourp_name}</span></li>
+								{if $uc_query.data.cur_discount<10}
+								<li><label>会员组享受的折扣：</label><span class="main_color">{$uc_query_data.cur_discount} 折</span></li>
+								{/if}
+							{/if}
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div id="cart_payment">
+		
+					<form name="incharge_form" action="{url x="index" r="uc_money#incharge_done"}" method="post" />	
+					<div class="info_table">
+					<table>
+						<tr>
+							<td colspan=2 class="payment_list_td">
+								{if $bank_paylist}
+								{foreach from=$bank_paylist item=payment_item}	
+									{$payment_item.display_code}											
+								{/foreach}	
+								{/if}
+								{if $bank_paylist && $icon_paylist}<div class="blank"></div>{/if}
+								{if $icon_paylist}
+								{foreach from=$icon_paylist item=payment_item}	
+									{$payment_item.display_code}											
+								{/foreach}
+								{/if}
+								
+							</td>
+						</tr>
+						<tr>
+							<td class="payment_input"><input type="text" class="ui-textbox" name="money" holder="请输入充值金额" /></td>
+							<td class="payment_btn"><button class="ui-button orange" rel="orange" type="submit">立即支付</button></td>
+						</tr>
+					</table>
+					</div>
+					</form>
+					
+	
+			</div>
+			
+			<!-- 资产内容 -->
+			<div class="blank20"></div>
+			<div class="info_box">
+				<h3>充值记录</h3>
+				<div class="blank10"></div>
+				<div class="info_table order_table">
+					<table>
+						<tbody>
+							<tr>
+								<th width="120">时间</th>
+								<th width="auto">详情</th>
+								<th width="100">手续费</th>
+								<th width="70">操作</th>
+							</tr>
+							
+							{foreach from=$list item=row}
+							<tr class="alt">
+                                <td>
+								{function name="to_date" value=$row.create_time}
+								</td>
+                                <td class="tl">
+                                	充值订单号：<h1>{$row.order_sn}</h1><br />
+									支付单号：<h1>{$row.payment_notice.notice_sn}</h1>，支付方式：<h1>{$row.payment.name}</h1><br />
+									{if $row.payment_notice.outer_notice_sn}
+									支付平台单号：<h1>{$row.payment_notice.outer_notice_sn}</h1><br />
+									{/if}
+									充值金额：<h1><?PHP echo format_price($this->_var['row']['total_price']-$this->_var['row']['payment_fee']);?></h1>
+									{if $row.pay_status eq 2}
+									&nbsp;&nbsp;充值到账时间：<h1>{function name="to_date" value=$row.payment_notice.pay_time}</h1>
+									{/if}
+                                </td>
+                                <td>{function name="format_price" v=$row.payment_fee}</td>
+								<td class="op_box">
+									{if $row.pay_status eq 0}									
+									<a href="{url x="index" r="payment#pay" p="id=$row.payment_notice.id"}">继续付款</a><br />
+									<a href="javascript:void(0);" class="del_order" action="{url x="index" r="uc_order#cancel" p="id=$row.id"}">删除</a>
+									{/if}
+									{if $row.order_status eq 1}
+									{if $row.pay_status eq 2}<br />{/if}
+									<a href="javascript:void(0);" class="del_order" action="{url x="index" r="uc_order#cancel" p="id=$row.id"}">删除</a>
+									{/if}
+								</td>
+                            </tr>
+                            {/foreach}
+                           
+                            <tr >
+                            	{if $list}
+                                <td colspan="4"><div class="pages">{$pages}</div></td>
+                                {else}
+                                <td colspan="4"><span>暂时没有充值记录</span></td>
+                                {/if}
+                            </tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>	
+			
+			
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,61 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/link.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+?>
+{include file="inc/header.html"} 
+<script type="text/javascript" >
+$(document).ready(function(){	
+	$(".flink").find("a").bind("click",function(){
+		var click_url='{$click_url}';
+		var query= new Object();
+		query.url=$(this).attr('click_url');		
+		$.ajax({ 
+			url: click_url,
+			data:query,
+			type: "POST",
+			success: function(html){
+				
+			}
+		});			
+	});
+});
+</script>
+<div class="{function name="load_wrap" t=$wrap_type}">
+	<div class="blank"></div>	
+	<div class="inc">
+		<div class="article_top"><h3><span>{$page_title}</span></h3></div>		
+		<div class="blank20"></div>
+		<div class="inc_main pd10">
+				<div class="flink">
+							{foreach from=$p_link_data item=link_group}			
+								<h2>{$link_group.name}</h2>
+								{foreach from=$link_group.links item=link}
+									<a href="http://{$link.url}" target="_blank" title="{if $link.description}{$link.description}{else}{$link.name}{/if}" click_url="{$link.url}">{if $link.img neq ''}<img src='{function name="get_spec_image" v=$link.img w=100 h=36 g=1}' alt="{if $link.description}{$link.description}{else}{$link.name}{/if}" />{else}{$link.name}{/if}</a>
+								{/foreach}
+								<div class="blank"></div>
+							{/foreach}
+				</div>
+				<div class="blank"></div>
+
+		</div><!--end inc_main-->		
+		
+	</div>
+	<div class="blank"></div>
+</div>
+{include file="inc/footer.html"}

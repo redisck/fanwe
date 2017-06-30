@@ -1,0 +1,11 @@
+<style>
+	.package{
+		width:50px;	
+	}
+</style>
+<div>
+	<lable  style="padding-right:50px;">{$location_promote_item.description}</lable>&nbsp;&nbsp;权重
+	<input  class="package" type="text" name="promote_sort[]" value="{$location_promote_item.sort}" />
+	<input type="hidden" name="location_promote_id[]" value="{$location_promote_item.id}">
+	<a href="javascript:void(0);" onclick="remove_promote(this);">[-]</a>
+</div>

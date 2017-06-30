@@ -1,0 +1,205 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_buy.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_table.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/location_collect.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+	var location_id='{$data.dclocation.id}';
+	var supplier_id='{$data.dclocation.supplier_id}';
+	var dc_type='{$data.dc_type}';
+	var has_menu={$has_menu};
+	var tid={$s_tid};
+
+</script>
+{include file="dc/inc/dc_nav.html"}
+<form id="cart_form" action="" method="get">
+<div class=" bor_3 bg_fff">
+	<div class="clearfix bor_5 pl180 pt026 pb026 pr030 pr">
+		<span class="f_l ml-150 f_444 lh048 f029">座位类型</span>
+		<div class="f_l f_858585 lh048 f029 people_num">
+		{if $table_now.name}
+			{$table_now.name}
+		{else}
+			请选择座位
+		{/if}	
+		 </div>	
+		<a class="f_r people_num_change"><i class=" icon iconfont f040 f_444">&#xe689;</i></a>
+	
+			{if $data.table_info}
+			<select id="people_num_select" style=" position:absolute; top:0px; right:0px; opacity: 0; z-index:-1;	">
+				<option>请选择座位</option>
+				 {foreach from=$data.table_info item=table_info}
+				<option {if $table_now.id eq $table_info.id}seleceed="selected"{/if} href="{$table_info.url}">{$table_info.name}</option>
+			     {/foreach}
+			</select>
+		    {/if}		
+	  
+	</div>
+	
+	<div class="clearfix bor_5 pl180 pt026 pb026 pr030 pr">
+		<span class="f_l ml-150 f_444 lh048 f029">预约时间</span>
+		<div class="f_l f_858585 lh048 f029 book_time">
+		{if $cart_info.cart_date_format}
+		{if $ss_tid eq 0 || $cart_info.tid eq $ss_tid}{$cart_info.cart_date_format}{else}请选择预定时间{/if}
+		{else}
+		请选择预订时间
+		{/if}
+		</div>
+		<a class="f_r book_time_change"><i class=" icon iconfont f040 f_444">&#xe689;</i></a>
+		{if $data.time_info}
+			<select id="book_time_select" style=" position:absolute; top:0px; right:0px; opacity: 0; z-index:-1;">
+			<option time_id="0" date="0">请选择预定时间</option>
+			{foreach from=$data.time_info item=time_item}
+					{if $time_item.table_info }
+					       {foreach from=$time_item.table_info item=time}
+					       <option time_id="{$time.id}" date="{$time_item.date_info}" {if $time_item.date_info eq $cart_info.cart_date && $cart_info.cart_time_id eq $time.id}selected="selected"{/if}>{$time_item.date_info}&nbsp;{$time.rs_time}</option>
+					       {/foreach}
+					{/if}
+			{/foreach}
+			</select>
+		 {/if}
+	</div>
+	
+	
+	<div class="clearfix  pl180 pt026 pb026 pr030 pr">
+		<span class="f_l ml-150 f_444 lh048 f029">所需定金</span>
+		<div class="f_l lh048 f029 people_num f_fe4d3d">
+
+			{function name=format_price v=$table_now.price g=2}
+	
+		 </div>	
+	
+	  
+	</div>
+		
+</div>
+<div class="blank024"></div>
+<div class="bor_3 bor_4 bg_fff">
+	<div class="clearfix bor_5 pl180 pt026 pb026 pr030">
+		<span class="f_l ml-150 f_444 lh048 f029">姓名</span>
+		<input name="consignee" type="text" value="{$data.user_info.consignee}" class="f_l f_858585 lh048 f029 w_percentage_100" placeholder="请输入姓名(必填)" />
+	</div>
+	<div class="clearfix bor_5 pl180 pt026 pb026 pr030">
+		<span class="f_l ml-150 f_444 lh048 f029">电话</span>
+		<!--<div class="f_858585 lh048 f029">{$data.user_info.mobile}</div>-->
+		<input name="mobile" type="text" value="{$data.user_info.mobile}" class="f_l f_858585 lh048 f029 w_percentage_100" placeholder="请输入电话(必填)" />
+	</div>
+	<div class="clearfix  pl180 pt026 pb026 pr030">
+		<span class="f_l ml-150 f_444 lh048 f029">备注</span>
+		<input name="dc_comment" type="text" placeholder="请输入备注(可不填)" class="w_percentage_100 bor0 f_858585 f029 lh048"/>
+	</div>	
+</div>
+
+<div class="blank024"></div>
+
+<div class="bor_3 bor_4 bg_fff">
+	<div class="clearfix bor_5 pl180 pt026 pb026">
+		<span class="f_l ml-150 f_444 lh048 f029">预定方式</span>
+		<input class="mt f_l book_way" action-url="{$book_0_url}" {if $book_way eq 0}checked="checked"{/if} type="radio" value="0" name="book_way" rel="0">
+		<span class="f_l lh048 f029 f_858585 pl015">只订座，不提前点菜</span>
+	</div>
+	<div class="clearfix  pl180 pt026 pb026">
+		<input class="mt f_l book_way" action-url="{$book_1_url}" {if $book_way eq 1}checked="checked"{/if} type="radio" value="1" name="book_way" rel="1">
+		<span class="f_l lh048 f029 f_858585 pl015">提前点菜，去了等着吃</span>
+
+	</div>
+</div>
+
+<!----------------------------------------------------------------------------------------------------订单菜单列表-->
+{if $location_dc_cart.cart_list}
+<div class="blank024"></div>
+<div class=" bor_3 p_0_030 lh100 bg_fff bor_4 f029">
+       <div  class="bor_5">菜品
+       
+       		 {if $book_way eq 1}
+	     <a href="{url i="index" r="dcbuy" g="lid=$data.dclocation.id&tid=$s_tid"}" class="f_r h067 lh067 mt016 p_0_016 bdr5 bg_fe4d3d f_fff f026">继续点菜</a>
+	     
+
+		 {/if}
+       </div>
+	  {foreach from=$location_dc_cart.cart_list item=menu}
+	   <div class=" w_b bor_5">
+			<div class="w_percentage_30">{$menu.name}</div>
+			<div class="w_b_f_1 tc">X{$menu.num}</div>
+			<div class="w_percentage_30 tr">{function name=format_price v=$menu.total_price g=2}</div>
+	  </div>
+	  {/foreach}
+ <div >合计
+ <span class="f_l ml-150 f_444 lh048 f029">合计</span>
+  <span class="f_r tr f_fe4d3d">{function name=format_price v=$location_dc_cart.total_data.total_price g=2}</span>
+ </div>
+</div>
+{/if}
+
+<!-------------------------------------------------------------------------------------------------预定方式-->	
+
+<div class="pf bor_4 h099 w_percentage_100  b_0 bg_fff ">
+	<div class="f_l pl030 pt016 pb016  f028 lh067  ">
+   <i  id="dc_total" class="icon iconfont f050  ">&#xe67d;</i>
+	<span class="table_info_price f_fe4d3d">定金：{function name=format_price v=$pay_price g=2}</span>
+
+	</div>
+	<div class="f_r">
+	{if $data.dclocation.is_close eq 0}
+		{if $less_table_money gt 0 && $book_way eq 1}
+		
+		    <div class="f_r h067 lh067 p_0_016 mr030 mt016 bdr5 bg_ffb955 f_fff f026 book_way_change_but">差{function name=format_price v=$less_table_money g=2}起订</div>
+		{else}
+			<a id="go_t_pay" href="javascript:void(0);" action-url="{url i="index" r="dcorder#make_order" g="lid=$data.dclocation.id"}" class="f_r h067 lh067 p_0_016 mr030 mt016 bdr5 bg_ffb955 f_fff f026 book_way_change_but">去支付</a>
+		    <a id="go_t_menu" action-url="{url i="index" r="dctable#check_table_cart"}" class="f_r h067 lh067 p_0_016 mr030 mt016 bdr5 bg_ffb955 f_fff f026 book_way_change_but hide_show">去点菜</a>
+		
+		{/if}
+		
+	{else}
+		<div class="h067 lh067 p_0_016 mr030 mt016 bdr5 bg_ffb955 f_fff f026">休息中</div>
+	{/if}	
+	</div>
+</div>
+
+<input type="hidden" name="dc_type" value="1" />
+<input type="hidden" name="payment_id" value="0" />
+<input type="hidden" name="lid" value="{$data.dclocation.id}" />
+<input type="hidden" name="date" value="{if $s_tid eq 0 || $cart_info.tid eq $s_tid}{$cart_info.cart_date}{else}0{/if}" />
+<input type="hidden" name="table_time_id" value="{if $s_tid eq 0 || $cart_info.tid eq $s_tid}{$cart_info.cart_time_id}{else}0{/if}" />
+<!----------------------------------------------------------------------------------------------------底部浮动菜单-->
+
+<div class="blank124"></div>
+</form>
+
+ <div id="dc_cart">
+	{include file="dc/inc/dc_table_cart.html"}
+ </div>
+</body>
+</html>

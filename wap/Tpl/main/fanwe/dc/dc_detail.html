@@ -1,0 +1,124 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_location.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/location_collect.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+</script>
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////////-->	
+{include file="dc/inc/dc_nav.html"}
+<!-------------------------------------------------------------------------------------------------选项卡-->
+<div class="bg_fff bor_3">
+	<div class="clearfix bor_5 p_30_30_30_240">
+		<div class="w180 h135 ml-210 f_l ovhide pr"><img src="{$data.dclocation.preview}" width="100%" class="img"></div><!--这个做法很好，全部改成这样-->
+		<h6 class="no_bold f032 lh034 h34 ">{$data.dclocation.name}</h6>
+		<div class="clearfix h030 p_024_0">
+			<div class="pr w220 h030 f_l mt-1">
+			    	<div class="ps f_a6a6a6 f028 lh030">	
+			    		<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+						<i class="icon iconfont   ">&#xe67f;</i>
+			    	</div>
+					<div class="ps f_fa952f lh030 h030 f028 nowrap ovhide star_width" rel="{$data.dclocation.avg_point}">
+					    <i class="icon iconfont">&#xe67f;</i>
+						<i class="icon iconfont">&#xe67f;</i>
+						<i class="icon iconfont">&#xe67f;</i>
+						<i class="icon iconfont">&#xe67f;</i>
+						<i class="icon iconfont">&#xe67f;</i>
+			    	</div>
+		       </div>
+			   <span class="f_l f_7f7f7f f023 pl013 lh030">({$data.dclocation.dp_count})</span>
+		</div>
+		<p class="f_7f7f7f lh050 f023">
+		      {foreach from=$data.dclocation.cate_data item=item}<div class="pr010 nowrap f_l lh040 f_7f7f7f f024">{$item}</div>{/foreach}
+		</p>
+	</div> 
+	{if $data.dclocation.location_delivery_info && $data.dclocation.is_dc eq 1}
+	<div class="h080 lh080 f029 w_b pl030 pr030">
+		<p class="w_b_f_1"><span class="f_7f7f7f">起送价：</span><span class="f_fe4d3d">{function name=format_price v=$data.dclocation.location_delivery_info.start_price g=2}</span></p>
+		<p class="w_b_f_1"><span class="f_7f7f7f">配送费：</span><span class="f_fe4d3d">{function name=format_price v=$data.dclocation.location_delivery_info.delivery_price g=2}</span></p>
+	</div>
+	{/if}
+</div>
+<!-------------------------------------------------------------------------------------------------起送价；配送费-->
+
+
+{if $data.dclocation.dc_location_notice ||  $data.promote_info}
+<div class="blank024"></div>
+<div class="bg_fff bor_3 bor_4">
+	{if $data.dclocation.dc_location_notice}<h5 class="bor_3 pl030 f029  lh100 no_bold">商家公告</h5>
+	<p class="f_858585 f024 lh044 p_020_030">{$data.dclocation.dc_location_notice}</p>
+	{/if}
+	{if $data.promote_info}
+	    {if $data.dclocation.is_firstorderdiscount}
+			<div class="bor_8 p_026_030">
+		    	<div class="clearfix pl038">
+		    		<img class="ico_class f_l  ml-038" src="{$TMPL}/images/dc/xin_s.png" />
+				    <p class=" f_7f7f7f f024 lh030">{$data.promote_info.is_firstorderdiscount.description}</p>
+		    	</div>
+		    </div>
+		{/if}	
+		{if $data.dclocation.is_payonlinediscount}
+			<div class="bor_8 p_026_030">
+		    	<div class="clearfix pl038">
+					<img class="ico_class f_l  ml-038" src="{$TMPL}/images/dc/jian_s.png" />
+				    <p class=" f_7f7f7f f024 lh030">{$data.promote_info.is_payonlinediscount.description}</p>
+		    	</div>
+		    </div>
+		{/if}
+	{/if}
+</div>
+{/if}
+<!-------------------------------------------------------------------------------------------------商家公告-->
+<div class="blank024"></div>
+
+<div class="bg_fff bor_4 bor_3">
+	<div class="clearfix p_35_30_35_178 bor_5">
+		<span class="f_l ml-150 f030 lh030">营业时间</span>
+		{if $data.dclocation.open_time_cfg_str}
+		<p class="f024 f_858585 lh030">{$data.dclocation.open_time_cfg_str}</p>
+		{else}
+		<p class="f024 f_858585 lh030">全天24小时</p>
+		{/if}
+	</div>
+	<div class="clearfix p_35_30_35_178 ">
+		<span class="f_l ml-150 f030 lh030">商家地址</span>
+		<p class="f024 f_858585 lh030">{$data.dclocation.address}</p>
+	</div>
+</div>
+<!-------------------------------------------------------------------------------------------------营业时间；商家地址-->
+</body>
+</html>

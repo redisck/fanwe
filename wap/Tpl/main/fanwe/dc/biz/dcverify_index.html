@@ -1,0 +1,71 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_biz_verify.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_more.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_more.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+</script>
+
+{include file="dc/inc/dc_biz_resorder_nav.html"}
+<div class="blank024"></div>
+<div class="bg_fff p_022_030 bor_3 bor_4">
+	<div class="clearfix bg_e8e9ea bdr5 ovhide w_b">
+		<i class="icon iconfont f028   f_9fa0a4 lh056 w060 tc block">&#xe600;</i>
+		<input type="text" placeholder="请输入您的电子券号码！" class="w_b_f_1 bg_e8e9ea bor0 f024 f_9fa0a4 lh056 dc_biz_verify_content">
+	</div>
+</div>
+
+<div class="blank024"></div>
+<!--
+<div class="p030">
+	<button action-url="{url r="index" p="dc_biz_verify#check_dcverify" g="lid=$data.lid"}"   class="tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100 dc_biz_verify_but">验证</button>
+</div>
+
+<div class="p030">
+	<button action-url="{url r="index" p="dc_biz_verify#use_dcverify" g="lid=$data.lid"}"   class="tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100 dc_biz_verify_but">确认消费</button>
+</div>
+-->
+<div class="p_017_030 w_b_s  w_b b_0  w_percentage_100  ">
+			 	<div class="w_b_f_1 p_0_030">
+					    <button action-url="{url r="index" p="dc_biz_verify#check_dcverify" g="lid=$data.lid"}"   class="tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100 dc_biz_verify_but">验证</button>
+				</div>
+				<div class="w_b_f_1 p_0_030">
+				 	<button action-url="{url r="index" p="dc_biz_verify#use_dcverify" g="lid=$data.lid"}"   class="tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100 dc_biz_verify_but">确认消费</button>
+				</div>
+</div>
+</body>
+</html>
+   

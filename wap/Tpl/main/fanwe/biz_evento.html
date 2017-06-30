@@ -1,0 +1,68 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+?>
+{include file="inc/biz_header.html"}
+<script>var ajax_url = "{$ajax_url}";</script>
+<div class="wrap">
+	<div class="content">
+	{if $data.status eq 0}
+		<div class="common_tip">
+              <span><i class="iconfont">&#xe644;</i>&nbsp;&nbsp;{$data.info}</span>
+       	</div>
+       	{/if}
+		<div class="list-view bor_none">
+			 <ul class="item_medium_ul">
+			 	{foreach from=$data.item item=row}
+			 	<li class="item_li">
+			 	     <a href="{url a="biz" r="evento#events" p="data_id=$row.id"}">
+			 	     	<div class="list_item">
+			 	     		 <div class="pic">
+			 	     		 	<img src="{$row.icon}" width="84" height="70"  />
+			 	     		 </div>
+							 <div class="info ">
+							 	<div>{$row.name}</div>
+							 	<div class="h_info">活动到期：{$row.f_event_end_time}</div>
+							 	<div class="sub_info">
+							 		名额：<span>{$row.total_count}</span>&nbsp;&nbsp;&nbsp;&nbsp;已报名：<span>{$row.submit_count}</span>
+							 	</div>
+							 </div>
+							 <div class="r_arrow"><i class="iconfont">&#xe607;</i></div>
+			 	     	</div>
+			 	     </a>
+			 	</li>
+				{/foreach}
+				
+			 </ul>
+			 
+		</div>
+	</div>
+	
+	{if $pages}
+	<div class="blank"></div>
+	<div class="fy">
+		{$pages}
+	</div>
+{/if}
+	<div class="blank50"></div>
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

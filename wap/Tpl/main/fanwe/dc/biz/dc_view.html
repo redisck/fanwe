@@ -1,0 +1,83 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_biz_view.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_more.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/biz/biz_more.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+</script>
+<form action="{url i="index" r="dc_biz#save"}" method="post" id="cart_form">
+<div class="bg_fff bor_3 bor_4 lh048">
+	<div class="bor_5 p_026_030">{$data.location_info.name}</div>
+	<div class="p_026_030 f_858585 ">{$data.location_info.address}</div>
+</div>
+
+<div class="blank024"></div>
+<div class="bg_fff bor_4 bor_3">
+	<div class="bor_5 w_b p_0_030 lh100">
+		<div class="w165">营业时间</div>
+
+		<div class="w_b_f_1 f_858585"></div>
+		<select class="lh100 f_858585 f029 p_0_050" name="is_close"  id="is_close_change">
+			<option value="0" {if $data.location_info.is_close eq 0}selected="selected" {/if} >正常营业</option>
+			<option value="1" {if $data.location_info.is_close eq 1}selected="selected" {/if}>暂停营业</option>
+		</select>
+		<i class="icon iconfont f042 f_7f7f7f " id="is_close_but">&#xe685;</i>
+	</div>
+	<div class="p_035_030">
+		<ul class="pb015 open_time_info_ul">
+			{$open_time_html}
+		</ul>
+		<div class="tc f_fff bg_fe4d3d bdr5 h066 lh066 f026 w_percentage_100" id="open_time_info_add">+添加一个新的营业时间断</div>
+	</div>
+</div>
+
+<div class="blank024"></div>
+
+<div class="clearfix  pl180 pt026 pb026 pr030 bg_fff bor_3 bor_4">
+		<span class="f_l ml-150 f_444 lh048 f029">业务电话</span>
+		<input type="text" value="{$data.location_info.tel}" class="f_l f_858585 lh048 f029 w_percentage_100" name="tel"/>
+	</div>
+	
+<div class="blank024"></div>
+<input type="hidden" name="lid" value="{$data.location_info.id}" />
+
+</form>
+<div class="pf w_percentage_100  b_0 w_b_s p030">
+	<button class="tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100 save_lid">保存修改</button>
+</div>
+</body>
+</html>
+
+   

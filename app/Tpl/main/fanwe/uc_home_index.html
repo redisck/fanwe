@@ -1,0 +1,68 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_home_index.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/publish.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pin_layout.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/pin_box.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/login_page.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/user_header.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_follow_fans.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/pin.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/pin.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/topic.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/topic.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_best.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_best.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc_home_index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc_home_index.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc_follow_fans.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc_follow_fans.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/publish.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/publish.js";
+?>
+{include file="inc/user_header.html"}
+<script type="text/javascript">
+	var TOPIC_IMAGE_UPLOAD = '{url x="index" r="file#upload_topic"}'; //分享点评的图片上传路径
+	var is_best_user = '{$is_best_user}';
+</script>
+<div class="blank"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+	<div class="pin_layout" id="pin_layout_box">
+	</div>
+</div>
+{if $is_best_user}
+<div class="null_data_box {function name="load_wrap" t=$wrap_type}">
+	<div class="u_list_main">
+		<div class="u_list_box">
+			
+		</div>
+		<div class="tip"><h3>{if $is_why neq 1}TA没关发布动态，{/if}上面可能是你感兴趣的用户 ^_^ </h3>&nbsp;<a href="javascript:void(0);" onclick="load_best_user()"><i class="iconfont">&#xe624;</i>换一批</a></div>
+	</div>
+</div>
+{/if}
+<input type="hidden" name="page" id="hd_page" value="{$page}" />
+<input type="hidden" name="step_size" id="hd_step_size" value="{$step_size}" />
+<input type="hidden" name="step" id="hd_step" /> 
+<input type="hidden" name="ajax_wait" id="ajax_wait" /> 
+<input type="hidden" name="user_id" value="{$id}" id="user_id"/>
+<div id="loading"> <span class="loading_span"></span><span>正在玩命加载中......</span></div>
+<div class="pages">{$pages}</div>
+<div class="blank"></div>
+{include file="inc/footer.html"}

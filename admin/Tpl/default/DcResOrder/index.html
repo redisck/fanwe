@@ -1,0 +1,185 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/dc.js' />
+<style>
+.time_span {
+    margin: 0 2px;
+}
+#close_formx label{
+	display:block;
+	clear:both;
+	
+}
+#dataTable td span{
+	clear: both;
+    display: block;
+    float: left;
+}
+</style>
+
+<PHP>
+
+function get_handle($id,$order_info)
+	{	
+		
+		if($order_info['is_cancel']>0 || $order_info['refund_status'] > 1)
+		{		
+			$str = l("DEAL_ORDER_VIEW");
+			
+			$str = "<a href='".u("DcResOrder/view_order",array("id"=>$id))."'>".$str."</a>";
+			$str.="&nbsp;&nbsp;<a href='javascript:del(".$id.");'>".l("删除订单")."</a>";
+		}
+		else
+		{
+			if($order_info['order_status']==0)
+			{
+				$str = l("DEAL_ORDER_HANDLE");
+				$str = "<a href='".u("DcResOrder/view_order",array("id"=>$id))."'>".$str."</a>";
+				if($order_info['confirm_status'] < 2 && $order_info['refund_status']==0 && $order_info['is_cancel']==0){
+					
+					$str.="&nbsp;&nbsp;<a href='javascript:close_order(".$id.");'>".l("关闭交易")."</a>";
+				}
+			}
+			else
+			{
+				$str = l("DEAL_ORDER_VIEW");
+				$str = "<a href='".u("DcResOrder/view_order",array("id"=>$id))."'>".$str."</a>";
+				$str.="&nbsp;&nbsp;<a href='javascript:del(".$id.");'>".l("删除订单")."</a>";
+			}
+		}	
+		
+			return $str;
+	}
+
+	
+	function get_order_item($order_sn,$order_info)
+	{
+		$str = "<span><b>".$order_sn."</b></span>";
+	
+		$str.= "<span>".$order_info['location_name']."</span>";
+		
+		if($order_info['dc_comment']){
+		
+		$str.= "<span style='width: 260px; word-wrap: break-word;'>订单备注：".$order_info['dc_comment']."</span>";
+		}
+		
+		return $str;
+		
+	}
+	
+	
+	function dc_get_pay_status($status)
+	{
+	
+		return L("DC_PAY_STATUS_".$status);
+	}
+	
+	function get_dc_order_status($id,$order_info)
+	{
+	
+		if($order_info['is_cancel']>0)
+		{
+			$str="订单已关闭";
+		}
+		else
+		{
+			if($order_info['pay_status']==0){
+				$str="支付中";
+			}elseif($order_info['pay_status']==1){
+			
+				if($order_info['order_status']==0){
+					if($order_info['confirm_status']==0){
+						$str="待接单";
+						if($order_info['refund_status']==1){
+							$str.="<span style='color:#f30;'>申请退款</span>";
+						}elseif($order_info['refund_status']==2){
+							$str.="<span style='color:#f30;'>已退款</span>";
+						}elseif($order_info['refund_status']==3){
+							$str.="<span style='color:#f30;'>退款驳回</span>";
+						}
+					
+					}elseif($order_info['confirm_status']==1){
+					
+						$str="已接单";
+						if($order_info['refund_status']==1){
+							$str.="<span style='color:#f30;'>申请退款</span>";
+						}elseif($order_info['refund_status']==2){
+							$str="订单已关闭";
+							$str.="<span style='color:#f30;'>已退款</span>";
+						}elseif($order_info['refund_status']==3){
+							$str.="<span style='color:#f30;'>退款驳回</span>";
+						}
+					}elseif($order_info['confirm_status']==2){
+					$str="已完成";
+					}
+				}else{
+					$str="已结单";
+				}
+			}
+		}
+		
+		return 	$str;
+	}
+	
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<div class="main">
+<div class="main_title">外卖订单列表</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+<div class="button_row">
+	<input type="button" class="button" value="{%DEL}" onclick="del();" />
+	<if condition="!$_REQUEST['referer']">
+	<input type="button" class="button" value="{%EXPORT}" onclick="export_csv();" />
+	</if>
+
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" style="width:100px;" />
+		{%USER_NAME_S}：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" style="width:100px;" />
+		{%SUPPLIER_NAME}：<input type="text" class="textbox" name="location_name" value="{:strim($_REQUEST['location_name'])}" style="width:100px;" />
+
+		
+		订单状态: 
+		<select name="order_status">
+				<option value="-1" <if condition="intval($_REQUEST['order_status']) eq -1">selected="selected"</if>>全部</option>
+				<option value="0" <if condition="intval($_REQUEST['order_status']) eq 0">selected="selected"</if>>支付中</option>
+				<option value="1" <if condition="intval($_REQUEST['order_status']) eq 1">selected="selected"</if>>待接单</option>
+				<option value="2" <if condition="intval($_REQUEST['order_status']) eq 2">selected="selected"</if>>已接单</option>
+				<option value="3" <if condition="intval($_REQUEST['order_status']) eq 3">selected="selected"</if>>已完成</option>
+				<option value="4" <if condition="intval($_REQUEST['order_status']) eq 4">selected="selected"</if>>已结单</option>
+				<option value="5" <if condition="intval($_REQUEST['order_status']) eq 5">selected="selected"</if>>申请退款</option>
+				<option value="6" <if condition="intval($_REQUEST['order_status']) eq 8">selected="selected"</if>>订单关闭</option>
+		</select>
+
+		<input type="hidden" value="DcResOrder" name="m" />
+		<input type="hidden" value="index" name="a" />
+		
+		<input type="submit" class="button" value="{%SEARCH}" />
+
+</div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal_order" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,order_sn|get_order_item=$deal_order:{%DC_ORDER_INFO}|260;,table_time_format:预订信息,menu:{%DC_MENU_INFO},user_name:{%USER_NAME}
+		 ,create_time|to_date:{%ORDER_CREATE_TIME}
+		,total_price|format_price:{%PAY_AMOUNT}
+		,pay_amount|format_price:{%PAID_AMOUNT}	 
+		 ,id|get_dc_order_status=$deal_order:订单状态"	 
+	actionlist="id|get_handle=$deal_order" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

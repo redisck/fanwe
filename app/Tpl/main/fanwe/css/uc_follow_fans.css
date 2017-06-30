@@ -1,0 +1,43 @@
+.u_list_main{
+border: 1px solid #e6e6e6;
+background-color: #fff;
+padding:20px;}
+
+.u_item{float:left;display: block;
+width: 160px;
+height: 54px;
+padding: 10px;
+border: 1px solid #ccc;
+background-color: #FFFCF5;
+border-radius: 5px;
+margin: 10px 24px}
+
+.u_item:hover{border:1px solid @main_color;}
+.u_item .avatar{display: block;
+float: left;
+width: 48px;
+height: 48px;
+padding: 2px;
+overflow: hidden;
+margin-right: 10px;}
+
+.u_item .avatar img{border-radius: 50%;}
+
+.u_item .u_info{float: left;}
+
+.u_item .u_info .u_name{display: block;
+margin: 0px 5px;
+margin-bottom: 11px;
+width:84px;
+overflow:hidden;white-space: nowrap;     
+-o-text-overflow: ellipsis; text-overflow:ellipsis;}
+.u_list_main .tip{text-align:center;}
+.u_list_main .tip h3{display:inline-block;_display:inline;font-size:14px;}
+.u_list_main .tip a{display: inline-block;_display:inline;
+border: 1px solid #D7D7D7;
+padding: 1px 5px;
+-webkit-border-radius: 3px;
+border-radius: 3px;}
+.u_list_main .tip a .iconfont{font-size:14px;}
+.u_list_main .tip a:hover{color:@main_color;border-color:@dark_color}
+

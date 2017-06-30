@@ -1,0 +1,18 @@
+﻿{if $deal.dc_online_pay}
+<img class="dc_promote_icon" src="{$TMPL}/images/dc/dc_takeaway/pay_s.png" />
+{/if}
+{if $deal.is_firstorderdiscount}
+<img class="dc_promote_icon" src="{$TMPL}/images/dc/dc_takeaway/xin_s.png" />
+{/if}
+{if $deal.is_payonlinediscount}
+<img class="dc_promote_icon" src="{$TMPL}/images/dc/dc_takeaway/jian_s.png" />
+{/if}
+{if $deal.is_dc eq 1 && !$deal.location_delivery_info}
+<img class="dc_promote_icon" src="{$TMPL}/images/dc/dc_takeaway/mian_s.png" />
+{/if}
+{if $deal.dc_allow_ecv}
+<img class="dc_promote_icon" src="{$TMPL}/images/dc/dc_takeaway/coupon_s.png" />
+{/if}
+{if $deal.dc_allow_invoice}
+<img class="dc_promote_icon" src="{$TMPL}/images/dc/dc_takeaway/invoice_s.png" />
+{/if}

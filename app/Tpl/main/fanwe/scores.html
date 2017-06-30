@@ -1,0 +1,138 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/filter_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/sort_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/side_deal_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/deal_list.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sort_row.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sort_row.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/deal_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/deal_list.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/side_deal_list.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/scores.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/scores.js";
+?>
+{include file="inc/header.html"}
+<div class="blank20"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+<!--筛选行-->	
+	{include file="inc/filter_row.html"}
+<!--end筛选行-->	
+<div class="blank"></div>
+<!--排序行-->	
+	{include file="inc/sort_row.html"}
+<!--end排序行-->	
+<div class="blank"></div>
+<div class="deal_list_box wrap_full2 f_l">	
+	{if $deal_list}
+	<ul class="deal_list clearfix">
+		{foreach from=$deal_list item=deal}
+			<li>
+				<div class="deal_item deal_item_border">
+					<!--qr码扫描区-->
+					<div rel="qrcode" class="scanbox_deal_list_inner">
+					<a class="scan_outter" href="{$deal.url}" title="{$deal.name}">
+						<table><tr><td><img src="{function name="gen_scan_qrcode" v=$deal.url s="4"}" /> </td></tr></table>
+						<div></div>
+					</a>
+					</div>
+					<!--end qr码扫描区-->
+					<div class="deal_img">
+						<div class="tags">					
+						{foreach from=$deal.deal_tags item=tag}				
+						<h2 class="tag{$tag}"></h2>
+						{/foreach}
+						{if $deal.buyin_app eq 1}
+						<h2 class="tag_buyinapp"></h2>
+						{/if}
+						</div>	
+						<a href="{$deal.url}" class="img"><img lazy="true" src="{function name="get_spec_image" v=$deal.icon w=296 h=200 g=1}" /></a>
+						{if $deal.brief}
+						<a href="{$deal.url}" class="quan">
+							{$deal.brief}
+						</a>
+						{/if}
+					</div><!--团购图片-->
+					<div class="deal_name">
+						<a href="{$deal.url}">{$deal.sub_name}</a>
+					</div>
+					<div class="deal_brief">
+							<a href="{$deal.url}">
+							{$deal.name}
+							</a>
+					</div>
+					<div class="deal_price">
+						<span class="current_price">{function name="abs" v=$deal.return_score}<i>积分</i></span>
+					</div>
+					<div class="deal_extra">
+						<div class="sale_count">
+							已兑换<span>{$deal.buy_count}</span>
+						</div>
+						<div class="sale_review">							
+				        	<span>
+				        	<input class="ui-starbar" value="{$deal.avg_point}" disabled="true"  />
+							</span>
+							</span>
+							<span class="review_count"><i>{$deal.dp_count}</i>人点评</span>						
+						</div>
+					</div>
+				</div><!--end deal_item-->
+			</li>
+			
+			
+			{/foreach}
+		</ul>
+
+		<div class="pages">{$pages}</div>
+		<div class="blank"></div>
+		{else}
+		<div class="empty_tip">没有数据</div>
+		{/if}
+</div><!--end deal_list_box-->
+<div class="f_r wrap_s2">
+	{if $side_deal_list}
+	<div class="side_deal_box">
+	<div class="title_row">兑换排行</div>
+	<div class="content_row">
+		<ul class="side_deal_list">
+			{foreach from=$side_deal_list item=side_deal}
+			<li>
+				<a href="{$side_deal.url}" class="deal_img"><img src="{function name="get_spec_image" v=$side_deal.icon w=198 h=134 g=1}" lazy="true" /></a>
+				<a href="{$side_deal.url}"  class="deal_title">{$side_deal.sub_name}</a>
+				<div class="deal_info">
+					<span class="deal_price f_l">
+						<span class="current_price">{function name="abs" v=$side_deal.return_score}<i>积分</i></span>
+					</span>
+					<span class="sale_count f_r">
+						已兑换<span>{$side_deal.buy_count}</span>
+					</span>
+				</div>
+			</li>
+			{/foreach}
+			
+		</ul>
+	</div>
+	</div>
+	{/if}
+</div>
+<div class="blank"></div>
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

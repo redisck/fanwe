@@ -1,0 +1,189 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/youhuis.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/filter_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/sort_row.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/filter_row.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/sort_row.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/sort_row.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/youhuis.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/youhuis.js";
+
+?>
+{include file="inc/header.html"}
+<div class="blank15"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+<!--筛选行-->	
+	{include file="inc/filter_row.html"}
+<!--end筛选行-->	
+<div class="blank"></div>
+<!--排序行-->	
+	{include file="inc/sort_row.html"}
+<!--end排序行-->	
+</div>
+<div class="blank20"></div>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">	
+		<div class="f_l width_700">			
+		{if $youhui_list}
+		<div class="yh_l"><!--优惠券列表右边-->
+			<ul>
+				{foreach from=$youhui_list item=youhui}
+				<li>
+					<div class="back clearfix">
+						<div class="youhui_qrbox">
+						<!--qr码扫描区-->
+						<div rel="qrcode" class="scan_youhui_list">
+						<a class="scan_outter" href="{$youhui.url}" title="{$youhui.name}">
+							<table><tr><td><img src="{function name="gen_scan_qrcode" v=$youhui.url s="3"}" /> </td></tr></table>
+							<div></div>
+						</a>
+						</div>
+						<!--end qr码扫描区-->
+						</div>
+						    <div class="show f_l clearfix"><!--展示部分-->
+						    	     <div class="show_img">
+						    	     	<a href="{$youhui.url}" title="{$youhui.name}"><img src="{function name="get_spec_image" v=$youhui.icon w="180" h=135 g=1}" /></a>
+						    	     </div>
+									 <div class="show_text f_l">
+									 	<h3><a href="{$youhui.url}" title="{$youhui.name}">{function name="msubstr" v=$youhui.name b=0 e=10}</a></h3>
+										<p>{if $youhui.list_brief}{function name="msubstr" v=$youhui.list_brief b=0 e=25}{else}{function name="msubstr" v=$youhui.name b=0 e=25}{/if}</p>
+										<dl>
+											<dd>
+												<em class="iconfont">&#xe609;</em>已有<font>{$youhui.user_count}</font>人下载
+											</dd>
+											{if $youhui.less gt -1}
+											<dd class="remain">
+												<em class="iconfont">&#xe608;</em>还有<font>{$youhui.less}</font>张剩余
+											</dd>
+											{/if}
+											{if $youhui.end_time>0}
+											<dd class="validity">
+												<em class="iconfont">&#xe607;</em>有效期至{function name="to_date" v=$youhui.end_time f="Y.m.d"}
+											</dd>
+											{/if}
+										</dl>
+										
+									 </div>
+						    </div>
+							<div class="ticket f_r">
+									<a class="go_see" href="{$youhui.url}">
+										<button class="ui-button f_l" rel="orange">马上领取</button>
+									</a>
+									<div class="tags">	
+											{foreach from=$youhui.tags item=tag}
+											<h2 class="tag{$tag}"></h2>
+											{/foreach}
+									</div>
+									<div class="scissor"></div>
+								
+							</div>
+					</div>
+				</li>
+				{/foreach}
+				
+			</ul>
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>
+			<div class="blank"></div>
+			
+		</div>
+		{else}
+		<div class="layout_box">
+			<div class="content">
+			<div class="empty_tip">
+				没有相关数据
+			</div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		{/if}
+	</div>
+	
+	
+	<div class="f_r width_260">
+		{if $side_youhui_list}
+		<div class="layout_box">
+		<div class="get_list content">
+			<div class="l_h clearfix">
+				<h3>热门优惠券</h3>				
+			</div>
+			 <ul>
+			 	{foreach from=$side_youhui_list name=side_youhui_list item=youhui}
+			  	<li>
+			  		<div class="h clearfix">
+			  			<span>{$smarty.foreach.side_youhui_list.iteration}</span>
+			  			<h4><a href="{$youhui.url}">{$youhui.name}</a></h4>
+						<i></i>
+			  		</div>
+					<div class="info clearfix">
+						<div class="show_img"><a href="{$youhui.url}"><img src="{function name="get_spec_image" v=$youhui.icon w=80 h=80 g=1}" alt="优惠券"></a></div>
+					    <div class="show_text f_l">
+					    	  <p>下载量：{$youhui.user_count}</p>
+							  {if $youhui.end_time>0}
+							  <p>有效期：{function name="to_date" v=$youhui.end_time f="Y.m.d"}</p>
+							  {/if}
+							  <a href="{$youhui.url}">去领</a>
+					    </div>
+					</div>
+			  	</li>	
+				{/foreach}			
+			  </ul>
+		</div>
+		</div>
+		<div class="blank"></div>
+		{/if}
+		
+		
+		{if $history_deal_list}
+		<div class="layout_box">
+		<div class="get_list content">
+			<div class="l_h clearfix">
+				<h3>浏览历史</h3>	
+				<a href="javascript:void(0)" class="clear_history" type="youhui">清空</a>			
+			</div>
+			 <ul>
+			 	{foreach from=$history_deal_list name=history_deal_list item=youhui}
+			  	<li>
+			  		<div class="h clearfix">
+			  			<span>{$smarty.foreach.side_youhui_list.iteration}</span>
+			  			<h4><a href="{$youhui.url}">{$youhui.name}</a></h4>
+						<i></i>
+			  		</div>
+					<div class="info clearfix">
+						<div class="show_img"><a href="{$youhui.url}"><img src="{function name="get_spec_image" v=$youhui.icon w=80 h=80 g=1}" alt="优惠券"></a></div>
+					    <div class="show_text f_l">
+					    	  <p>下载量：{$youhui.user_count}</p>
+							  {if $youhui.end_time>0}
+							  <p>有效期：{function name="to_date" v=$youhui.end_time f="Y.m.d"}</p>
+							  {/if}
+							  <a href="{$youhui.url}">去领</a>
+					    </div>
+					</div>
+			  	</li>	
+				
+				{/foreach}			
+			  </ul>
+		</div>
+		</div>
+		<div class="blank"></div>
+		{/if}
+	</div>
+	
+</div><!--end wrap-->
+
+{include file="inc/footer.html"}

@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+
+
+.deal_list_box{ border:1px solid @border_color; background:@box_color; }
+
+.deal_list{ display:block; padding:16px 0px 10px 16px;}
+.deal_list li{ float:left; display:inline; margin:0px 16px 20px 0px;}
+.deal_list li .deal_item{ width:296px;  float:left; -moz-box-shadow: 2px 2px 2px #f0f0f0;/*firefox*/
+-webkit-box-shadow: 2px 2px 2px #f0f0f0;/*safari或chrome*/
+box-shadow:2px 2px 2px #f0f0f0;/*opera或ie9*/  }
+.deal_list li .deal_item_border{ border:solid 1px @border_color; border-bottom:solid 3px @border_color;}
+.deal_list li .deal_item_border_hover{ border:solid 1px @border_color; border-bottom:solid 3px @main_color;}
+
+.deal_list li .deal_item .deal_img{ width:296px; height:200px; position:relative; }
+.deal_list li .deal_item .deal_img a.img{ width:296px; height:200px; display:block; position:absolute; left:0px; top:0px; z-index:5; }
+.deal_list li .deal_item .deal_img a.quan{ width:276px; padding:10px; display:block; position:absolute; left:0px; bottom:0px; z-index:6;
+	background:#000;
+	color:#fff;
+	filter:alpha(opacity=70);
+	-moz-opacity:0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
+	display:none;
+}
+
+.deal_list li .deal_item .deal_img img{ width:296px; height:200px; }
+.deal_list li .deal_item .deal_img .tags{ position:absolute; left:10px; top:-4px; z-index:10; width:270px;}
+
+.deal_list li .deal_name{ font-size:14px; font-weight:bolder; line-height:40px; height:40px;  padding:0px 10px;overflow:hidden;}
+.deal_list li .deal_name a{ color:#000;}
+.deal_list li .deal_name a:hover{ color:@font_hover;}
+.deal_list li .deal_brief{ line-height:18px; padding:0px 10px; height:55px; overflow:hidden;}
+
+.deal_list li .deal_price{ padding:10px;}
+.deal_list li .deal_price .current_price{ font-weight:bolder; font-size:20px; color:@main_color;}
+.deal_list li .deal_price .current_price i{ font-size:12px; font-style:normal; padding:0px 3px;}
+.deal_list li .deal_price .origin_price{ text-decoration:line-through; color:#999; padding-left:5px;}
+
+.deal_list li .deal_extra{ background:#fcfcfc; height:40px; border-top:@border_color solid 1px;}
+.deal_list li .deal_extra .sale_count{ float:left; height:40px; line-height:40px; padding:0px 10px; }
+.deal_list li .deal_extra .sale_count span{ color:@main_color;}
+.deal_list li .deal_extra .sale_review{ float:right; height:12px; line-height:12px; padding:14px 10px; }
+.deal_list li .deal_extra .sale_review i{ font-style:normal; color:@main_color;}
+
+
+
+.wrap_full .wrap_s2{ display:none;}
+.wrap_full .wrap_full2{ width:990px; }
+
+.wrap_full .deal_list{ display:block; padding:16px 0px 10px 23px;}
+.wrap_full .deal_list li{ float:left; display:inline; margin:0px 23px 20px 0px;}
+
+.geo_row{ background:@box_color; border:solid 1px @border_color; padding:10px;}
+.geo_row i.iconfont{ font-size:14px; color:@main_color;}
+.geo_row a{ color:@main_color;}
+.geo_row a:hover{ color:@dark_color;}
+.deal_price .position{ color:#666; }
+.deal_price .position i.iconfont{font-size:14px; color:@main_color; }

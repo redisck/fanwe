@@ -1,0 +1,74 @@
+@CHARSET "UTF-8";
+
+
+/*点评的详细内容*/
+.comments_details .fy{
+	padding:20px 0;
+	height:20px;
+}
+.comments_details .details_li{
+	/*border-bottom: 1px dotted @border_color;*/
+	padding: 20px 10px 10px;
+	display:block;
+	border-bottom:@border_color dotted 1px;
+	
+}
+.comments_details .details_li .date{
+	padding-left:10px;
+}
+.comments_details .details_li .content{
+	padding:10px 0;
+}
+.comments_details .details_li .shopname{
+	margin: 10px 0;
+}
+
+
+
+/* 图库 */
+.review_pic .big_img{ display:none;
+	position:relative;
+	text-align:center;
+ }
+ .review_pic .big_img a{ position:absolute;	 display:block;	 top:0px; z-index:10;}
+ .review_pic .big_img a.bprev{ left:0px; cursor: url(../images/deal_index/pre.png),url(../images/deal_index/cursor-rate-pic-prev.cur),auto;}
+ .review_pic .big_img a.bnext{right:0px;cursor: url(../images/deal_index/last.png),url(../images/deal_index/cursor-rate-pic-next.cur),auto; }
+.review_pic .over{ position:relative; overflow:hidden; height:104px;  float:left; }
+.review_pic .over .hide_tag{	
+	position:absolute;
+	width:29px; height:51px; 
+ 	filter:alpha(opacity=70);  
+    -moz-opacity:0.7;  
+    -kHTML-opacity: 0.7;  
+    opacity: 0.7;  
+	top:26px;
+	}
+.review_pic .over .hide_tag:hover{
+	filter:alpha(opacity=60);  
+    -moz-opacity:0.6;  
+    -kHTML-opacity: 0.6;  
+    opacity: 0.6;  
+}
+.review_pic .over .pre{
+	left:-29px;
+	background:url(../images/css_bg/slide_arrow.png) no-repeat 0px -10px black;
+	}
+.review_pic .over .next{
+	right:-29px;
+	background:url(../images/css_bg/slide_arrow.png) no-repeat -35px -10px black;
+	}
+.review_pic .over .pic_box{ position:absolute;}
+.review_pic .over .pic_box ul li{ float:left;  display:inline-block;}
+.review_pic .over .pic_box ul li a{ display:block; width:100px; height:100px; border:#f2f2f2 solid 2px;}
+.review_pic .over .pic_box ul li a:hover,.review_pic .over .pic_box ul li a.active{ display:block; width:100px; height:100px; border:@main_color solid 2px;}
+.review_pic .over .pic_box ul li a img{ width:100px; height:100px;}
+
+
+span.user_name a{ font-weight:bolder; color:@main_color;}
+span.user_name a:hover{ font-weight:bolder; color:@dark_color;}
+
+.supplier_reply{ border:@border_color dotted 1px; padding:15px;}
+.reply_title{ color:@main_color; font-weight:bolder;}
+
+.dp_data{ color:@main_color;}
+.dp_data:hover{ color:@dark_color;}

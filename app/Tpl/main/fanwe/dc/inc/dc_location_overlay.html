@@ -1,0 +1,37 @@
+	
+
+	<div class="overlay">
+		<div class="over_div">
+				<div class="o-arrow"><i class="iconfont arrow">&#xe64b;</i></div>
+					<div class="shop-title">
+					<h2>{$deal.name}</h2>
+					</div>
+					<div class="shop-feature">
+						<ul>
+						{if $deal.dc_online_pay}<li class="payonline"><img src="{$TMPL}/images/dc/dc_takeaway/pay_s.png" />支持在线支付</li>{/if}						
+						{if $deal.is_firstorderdiscount}
+						<li class="payonline"><img src="{$TMPL}/images/dc/dc_takeaway/xin_s.png" />{$promote_info.is_firstorderdiscount.description}</li>
+						{/if}
+						{if $deal.is_payonlinediscount}
+						<li class="payonline"><img src="{$TMPL}/images/dc/dc_takeaway/jian_s.png" />{$promote_info.is_payonlinediscount.description}</li>
+						{/if}
+						{if $deal.is_dc eq 1 && !$deal.location_delivery_info}
+						<li class="payonline"><img src="{$TMPL}/images/dc/dc_takeaway/mian_s.png" />免费配送</li>
+						{/if}
+						{if $deal.dc_allow_invoice}
+						<li class="payonline"><img src="{$TMPL}/images/dc/dc_takeaway/invoice_s.png" />支持开发票</li>
+						{/if}
+						{if $deal.dc_allow_ecv}
+						<li class="payonline"><img src="{$TMPL}/images/dc/dc_takeaway/coupon_s.png" />可代金券支付,每日限1张</li>
+						{/if}
+						</ul>
+					</div>
+					
+					{if $deal.dc_location_notice}
+					<div class="shop-notice">
+						<h2>商家公告</h2>
+						<p>{$deal.dc_location_notice}</p>
+					</div>
+					{/if}	
+			</div>
+	</div>

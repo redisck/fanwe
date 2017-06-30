@@ -1,0 +1,64 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<php>
+	function get_is_reply($c)
+	{
+		if($c)return "已回复";
+		else
+		return "<span style='color:#f30;'>未回复</span>";
+	}
+	function get_dp_item($id,$dp)
+	{
+		if($dp['deal_id'])
+		{
+			return $GLOBALS['db']->getOne("select sub_name from ".DB_PREFIX."deal where id = ".$dp['deal_id']);
+		}
+		elseif($dp['youhui_id'])
+		{
+			return $GLOBALS['db']->getOne("select name from ".DB_PREFIX."youhui where id = ".$dp['youhui_id']);
+		}
+		elseif($dp['event_id'])
+		{
+			return $GLOBALS['db']->getOne("select name from ".DB_PREFIX."event where id = ".$dp['event_id']);
+		}
+		else
+		{
+			return $GLOBALS['db']->getOne("select name from ".DB_PREFIX."supplier_location where id = ".$dp['supplier_location_id']);
+		}
+	}
+</php>
+<div class="main">
+<div class="main_title">{$main_title}<a href="{:u("SupplierLocation/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		类型：<select name="type">
+			<option value="all" <if condition="$_REQUEST['type'] eq 'all'">selected="selected"</if>>全部点评</option>
+			<option value="dealdp" <if condition="$_REQUEST['type'] eq 'dealdp'">selected="selected"</if>>商品或团购点评</option>			
+			<option value="youhuidp" <if condition="$_REQUEST['type'] eq 'youhuidp'">selected="selected"</if>>优惠券点评</option>
+			<option value="eventdp" <if condition="$_REQUEST['type'] eq 'eventdp'">selected="selected"</if>>活动点评</option>		
+		</select>
+	关键词：<input type="text" class="textbox" name="keyword" value="{:strim($_REQUEST['keyword'])}" />	
+		<input type="hidden" value="SupplierLocationDp" name="m" />
+		<input type="hidden" value="index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<html:list 
+	id="checkList" 
+	style="dataTable" 
+	name="dp" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|80,title|msubstr:标题,user_id|getUNAME:会员,id|get_dp_item=$dp:点评项目,is_img|getIsImg:有图,create_time|to_date:发表时间,reply_content|get_is_reply:回复,is_index|get_toogle_status=$dp['id']#is_index:置顶" 
+	actionlist="edit:{%EDIT}:id,foreverdel:{%DEL}:id" action_width="150" />
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

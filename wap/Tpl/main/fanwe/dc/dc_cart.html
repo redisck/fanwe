@@ -1,0 +1,209 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_location.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_order.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+	var location_id='{$data.dclocation.id}';
+	var payment_id={$data.payment_id};
+	var is_return={$data.is_return};
+	var status={$data.status};
+	var info='{$data.info}';
+</script>
+<form id="cart_form" action="{url r="index" p="dcorder#cart" g="lid=$data.dclocation.id"}" method="post">
+
+<!----------------------------------------------------------------------------------------------------详情列表-->
+<div class="blank024"></div>
+<a href="{url r="index" p="dc_consignee" g="from=cart&lid=$data.dclocation.id"}">
+<div class="bor_3 bor_4 p_020_030  lh100 bg_fff" id="dc_consignee">
+		<i class="icon iconfont f042 f_7f7f7f f_r"  rel="1">&#xe685;</i>
+		<i class="icon iconfont f046 f_l f_fe4d3d">&#xe67e;</i>
+		{if $data.consignee_info}
+		
+		<p class="lh046 f_858585 p2030"><span class="f_7f7f7f">{$data.consignee_info.consignee}</span>
+		<span class="f_7f7f7f">{$data.consignee_info.mobile}</span></p>
+		<p class="lh046 f_858585 p2030"><span class="f_7f7f7f">{$data.consignee_info.api_address}{$data.consignee_info.address}</span></p>
+		<input type="hidden" name="consignee_id" value="{$data.consignee_info.id}"/>
+	
+		{else}
+		<span class="f_7f7f7f">点击选择地址</span>
+		{/if}
+		
+
+	
+</div>
+</a>
+<!-------------------------------------------------------------------------------------------------点击选择地址-->
+<div class="blank024"></div>
+<div class="bg_fff bor_3 bor_4 ">
+	
+		{if $data.dclocation.dc_online_pay eq 1}
+			<div class="clearfix pl030 pr074 bor_5">
+	   	    	<i class="icon iconfont f044 lh100 f_fe4d3d  f_r mr-044 pay_ico" rel="0">&#xe67a;</i>
+				<p class="lh100 f029">在线支付
+				{if $data.buy_total.dc_promote}
+					{foreach from=$data.buy_total.dc_promote item=dc_promote}
+						<span class="h067 lh067 p_0_016 mr030 mt016 bdr5 bg_ffb955 f_fff f026">{$dc_promote.name}{function name=format_price v=$dc_promote.discount_amount g=2}</span>
+					{/foreach}
+				{/if}
+				</p>
+			</div>
+		{/if}	
+		
+		{if $data.dc_type eq -1 && $data.dclocation.dc_allow_cod eq 1}
+		<div class="clearfix pl030 pr074">
+   	    	<i class="icon iconfont f044 lh100 f_c9cacf    f_r mr-044 pay_ico"  rel="1">&#xe684;</i>
+			<p class="lh100 f029">货到付款</p>
+		</div>
+			
+			
+		{/if}
+		<input id="payment_id" type="hidden" name="payment_id" value="{$data.payment_id}"/>
+		<input type="hidden" name="lid" value="{$data.dclocation.id}"/>
+		
+</div>
+<!-------------------------------------------------------------------------------------------------余额付款-->
+<div class="blank024"></div>
+<div class="bg_fff lh100 f029 bor_3 bor_4">
+	<div class="clearfix  p_0_030 bor_5 mb-1">
+		
+			<span class="f_l">送达时间</span>
+			<i class="icon iconfont f042 f_7f7f7f f_r"  rel="1">&#xe685;</i>
+			<span class="f_r">
+			<select name="order_delivery_time" style=" font-size:0.29rem;">
+				{foreach from=$data.delivery_time item=delivery_time key=key}
+					<option value="{if $key eq 0}1{else}{$delivery_time}{/if}">{$delivery_time}</option>
+				{/foreach}
+			</select>
+			</span>
+	
+	</div>
+	<div class="clearfix  p_0_030 bor_5 mb-1">
+		
+			<span class="f_l">备注</span>
+			<div class="f_r" id="add_remark">
+				<span>添加备注</span>
+				<i class="icon iconfont f042 f_7f7f7f"  rel="1">&#xe685;</i>
+			</div>
+			
+		
+	</div>
+	<div class="clearfix  p_030_060 bor_5 mb-1 hide_show" id="cart_Remark_textarea">		
+			<textarea placeholder="添加备注！~" class="Remark_textarea" name="dc_comment" ></textarea>
+	</div>
+	{if $data.payment_id eq 0 && $data.voucher_list}
+	<div class="clearfix  p_0_030 bor_5 mb-1">
+		
+			<span class="f_l">红包</span>
+			<i class="icon iconfont f042 f_7f7f7f f_r"  rel="1">&#xe685;</i>
+			<span class="f_r">
+				{if $data.voucher_list}
+					<select name="ecvsn"  style=" font-size:0.29rem;">
+					<option value="0">请选择红包</option>
+					{foreach from=$data.voucher_list item=voucher_list key=key}
+						<option value="{$voucher_list.sn}" {if $data.buy_total.ecv_data.sn eq $voucher_list.sn}selected="selected"{/if}>{$voucher_list.name}</option>
+					{/foreach}
+					</select>
+				{else}	
+					无可用红包
+				{/if}
+				
+			</span>
+	
+	</div>
+	{/if}
+
+	{if $data.buy_total.delivery_fee}
+			<div class="bor_5 w_b p_0_030 mb-1 lh100">
+				 <div class="w_percentage_50">配送费</div>
+				 <div class="w_percentage_50 tr">{function name=format_price v=$data.buy_total.delivery_fee g=2}</div>
+			</div>
+	{/if}
+	
+	{if $data.buy_total.package_fee}
+			<div class="bor_5 w_b p_0_030 mb-1 lh100">
+				 <div class="w_percentage_50">打包费</div>
+				 <div class="w_percentage_50 tr">{function name=format_price v=$data.buy_total.package_fee g=2}</div>
+			</div>
+	{/if}
+	{if $data.buy_total.dc_promote}
+			<div class="bor_5 w_b p_0_030 mb-1 lh100">
+				{foreach from=$data.buy_total.dc_promote item=dc_promote}
+				 <div class="w_percentage_50">{$dc_promote.name}</div>
+				 <div class="w_percentage_50 tr f_fe4d3d">-{function name=format_price v=$dc_promote.discount_amount g=2}</div>
+				{/foreach}
+			</div>
+	{/if}
+	{if $data.buy_total.ecv_money}
+			<div class="bor_5 w_b p_0_030 mb-1 lh100">
+				 <div class="w_percentage_50">红包支付</div>
+				 <div class="w_percentage_50 tr f_fe4d3d">-{function name=format_price v=$data.buy_total.ecv_money g=2}</div>
+			</div>
+	{/if}
+	
+
+	{if $location_dc_cart}
+		{foreach from=$location_dc_cart.cart_list item=dc_cart}
+			<div class="bor_5 w_b p_0_030 mb-1 lh100">
+		    <div class="w_percentage_30 lh030 p_035_0">{$dc_cart.name}</div>
+			<div class="w_b_f_1 tc ">X{$dc_cart.num}</div>
+			<div class="w_percentage_30 tr ">{function name=format_price v=$dc_cart.total_price g=2}</div>
+			</div>
+	    {/foreach}
+	{/if}
+</div>
+<div class="blank124"></div>
+
+<!-- 
+<div class="pf b_100 l_0 w_percentage_100">
+	<a href="{url i="index" r="dcbuy" g="lid=$data.dclocation.id"}"><div class="pl030 pr030 pt064 pb030 ">
+	      <div class="tc f_fff bg_fe4d3d bdr5 h080 lh080 f034 w_percentage_100">继续购物</div>
+    </div>
+    </a>
+</div>
+-->
+
+
+<!----------------------------------------------------------资费详情-->
+<div class="pf bor_4 h099 w_percentage_100  b_0 bg_fff ">
+	{if $data.buy_total.promote_amount}
+	<div class="f_l pl030 pt016 pb016 f_fe4d3d f028 lh067  ">已优惠：{function name=format_price v=$data.buy_total.promote_amount g=2}</div>
+ 	{/if}
+	<a href="javascript:void(0);" class="cart_done f_r h067 lh067 p_0_016 mr030 mt016 bdr5 bg_ffb955 f_fff f026">去支付</a>
+	<span class="f_r lh067 pt016 pb016 pr010 f_fe4d3d">总计：<i class="bold">{function name=format_price v=$data.buy_total.pay_price g=2}</i></span>
+</div>
+
+</form>
+</body>
+</html>

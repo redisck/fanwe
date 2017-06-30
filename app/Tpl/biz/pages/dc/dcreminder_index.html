@@ -1,0 +1,89 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/dc_order.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_dcborder_index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_dcborder_index.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+var DC_AJAX_URL = "{url r="index" p="dcajax"}";
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+
+			</div>
+
+	        <form name="project_form" action="{$form_url}" method="post">
+	        <div class="common_tip f_search">
+	        
+		               <div class="f_l"><input tpye="text" name="begin_time" class="text_box time_input ui-textbox" placeholder="查询起始日期" />-
+		               <input tpye="text" name="end_time" class="text_box time_input ui-textbox" placeholder="查询截止日期" />
+		    		         关键词： <input tpye="text" name="keywords" {if $keywords}placeholder="{$keywords}"{else}placeholder="输入订单号或者手机号"{/if} class="text_box ui-textbox" />
+		    		         
+		               </div><div class="f_r"> <button class="ui-button f-button" rel="white" type="submit" name="submit" >搜索</button></div>
+		               
+	        </div>
+			<div class="blank50"></div>
+			<div class="form_box  content_hastab">
+			
+				
+					<div class="comments_details">
+					
+					<table>
+					<tr><th width="50">序号</th><th width="150">订单号</th><th width="150">联系人</th><th width="150">电话</th><th width="250">配送地址</th><th width="200">催单时间</th></tr>
+				
+					{if $list}
+					{foreach from=$list item=list_unit name="list_loop"}
+					<tr><td>{$smarty.foreach.list_loop.iteration}</td><td>{$list_unit.order_sn}</td><td>{$list_unit.consignee}</td>
+					<td>{$list_unit.mobile}</td><td>{$list_unit.api_address}{$list_unit.address}</td><td>{function name=to_date v=$list_unit.create_time}</td>
+					</tr>
+					{/foreach}
+					{else}
+					<tr><td colspan="11">无内容</td></tr>
+					{/if}
+					</table>
+
+
+
+					<div class="blank"></div>
+					<div class="pages">
+						{$pages}
+					</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

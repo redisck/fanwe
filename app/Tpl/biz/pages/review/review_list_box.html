@@ -1,0 +1,85 @@
+
+<div class="comments_details">
+	<table class="review_list_table table_box">
+					<colgroup>
+						<col width="90">
+						<col width="270">
+						<col width="150">
+						<col width="150">
+						<col width="100">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>
+								<select name="filter_point" class="ui-select filter_select" {$filter_point}>
+									<option value="0" {if $filter_point eq 0} selected = "selected" {/if}>全部</option>
+									<option value="1" {if $filter_point eq 1} selected = "selected" {/if}>好评</option>
+									<option value="2" {if $filter_point eq 2} selected = "selected" {/if}>中评</option>
+									<option value="3" {if $filter_point eq 3} selected = "selected" {/if}>差评</option>
+								</select>
+							</th>
+							<th>
+								<select name="filter_is_img" class="ui-select filter_select" >
+									<option value="0" {if $filter_is_img eq 0} selected = "selected" {/if}>评论内容</option>
+									<option value="1" {if $filter_is_img eq 1} selected = "selected" {/if}>有图</option>
+									<option value="2" {if $filter_is_img eq 2} selected = "selected" {/if}>无图</option>
+								</select>
+							</th>
+							<th>评论人</th>
+							<th>被评论来源</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					{if $dp_list}
+					{foreach from=$dp_list item=row}
+						<tr data-id="{$row.id}">
+							<td class="rate">
+								{if $row.fpoint eq 1}
+								<i class="iconfont" title="好评">&#xe604;</i>
+								{elseif $row.fpoint eq 2}
+								<i class="iconfont" title="中评">&#xe605;</i>
+								{else}
+								<i class="iconfont" title="差评">&#xe603;</i>
+								{/if}
+							</td>
+							<td class="review_cnt">
+								<div class="review_cnt_bd review_cnt_{$row.id}">
+									<p class="rate" title="{$row.content}">{function name="msubstr" v=$row.content l=0 e=60}</p>
+									{if $row.images}
+										<ul class="photos_box clearfix">
+											{foreach from=$row.images item=img_row}
+												<li>
+													<a href="{function name="get_spec_image" v=$img_row h=400 w=400 g=1}" target="_blank"><img src="{function name="get_spec_image" v=$img_row h=40 w=40 g=1}"/></a>
+												</li>
+											{/foreach}
+										</ul>
+									{/if}
+									<span class="date">[{$row.create_time_format}]</span>
+									{if $row.reply_content}
+										<p class="exp">[回复]{$row.reply_content}</p>
+									{/if}
+								</div>
+							</td>
+							<td class="r_user"><a href="{url r="index" b="uc_home#index" p="id=$row.user_id"}"  target="_blank">{$row.user_info.user_name}</a><span class="level_bg level_5"></span></td>
+							<td class="s_obj"><a href="{$row.filter_data.url}" target="_blank">{$row.filter_data.name}</a></td>
+							<td class="operate"><button class="ui-button reply_btn" rel="white" type="button" data-id="{$row.id}">{if $row.reply_content}修改{else}回复{/if}</button></td>
+						</tr>
+					{/foreach}
+					{else}
+						<tr data-id="{$row.id}">
+							<td colspan="5">
+								<div class="empty_tip">
+									没有相关点评数据
+								</div>
+							</td>
+						</tr>
+					{/if}		
+					</tbody>
+				</table>
+	<div class="blank"></div>
+	<div class="pages">
+		{$pages}
+	</div>
+</div>
+		

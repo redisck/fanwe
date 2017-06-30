@@ -1,0 +1,71 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/uc_dc_order.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+	var dc_title='{$s_info.dc_title}';
+</script>
+
+<!----------------------------------------------------------------------------------------------------详情列表-->
+{include file="dc/inc/order_nav.html"}
+<!-------------------------------------------------------------------------------------------------选项卡-->
+<div class="blank024"></div>
+<ul>
+	{foreach from=$data.order_list item=item}
+	<li class="bor_3 bor_4 bg_fff mb024">
+		<div class="clearfix p_026_030">
+			<div class="f_l f028 lh048">{function name=to_date v=$item.create_time}</div>
+			<span  class="f_r   lh048  f_909090">{$item.order_state.state_format}</span>
+			{if $item.order_state.act}
+			{foreach from=$item.order_state.act item=act}
+			<a href="{$act.url}" class="f_r p_0_030 h048 lh048 tc f_fff bg_fe4d3d bdr5 mr010">{$act.name}</a>
+			{/foreach}
+			{/if}
+		</div>
+		<div class="clearfix bor_8 p_30_48_30_240" onclick="location.href='{url r="index" p="dc_dcorder#view" g="id=$item.id"}';">
+			<div class="w180 h135 ml-210 f_l ovhide pr"><img src="{$item.preview}" width="100%" class="img"></div><!--这个做法很好，全部改成这样-->
+			<a href="{url r="index" p="dc_dcorder#view" g="id=$item.id"}" class="f_r lh135 w042  mr-042 block"><i class="icon iconfont f042 f_7f7f7f ">&#xe685;</i></a>
+			<h6 class="no_bold f032 lh034 h34 text-overflow">{$item.location_name}</h6>
+			<p class="h026 lh026 f_7f7f7f pt024 pb025"><span class="show w100">收货人</span>{$item.consignee}</p>
+			<div class="h026 lh026"><span class="f_7f7f7f show w100">总价</span><span class="f_fe4d3d">{function name=format_price v=$item.total_price g=2}</span></div>
+		</div>
+    </li>
+	{/foreach}
+</ul>
+		{if $pages}
+		<div class="fy">
+			{$pages}
+		</div>
+		{/if}
+<!-------------------------------------------------------------------------------------------------列表-->
+{include file="dc/inc/foot_nav.html"}
+<!----------------------------------------------------------------------------------------------------底部浮动菜单-->
+

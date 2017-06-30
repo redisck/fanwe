@@ -1,0 +1,13 @@
+<div class="side_nav">
+{if $nav_list}
+{foreach from=$nav_list item=nav_item key=nav_key}
+	<dl class="nav_item">
+		<dt class="nav_item_title"><i class="nav_icon icon_{$nav_key}"></i>{$nav_item.name}</dt>
+		{foreach from=$nav_item.node item=s_nav_item key=s_nav_key}
+			<dd><div class="{if $s_nav_item.current eq 1 }current{/if}"><a href="{$s_nav_item.url}">{$s_nav_item.name}</a></div></dd>
+		{/foreach}
+	</dl>
+{/foreach}
+{/if}
+<div class="blank20"></div>
+</div>

@@ -1,0 +1,374 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/uc_order.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/uc_order.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/uc_order.js";
+?>
+{include file="inc/header.html"}
+{include file="inc/refuse_delivery_form.html"}
+<div class="blank20"></div>
+<script>
+var DC_AJAX_URL = "{url r="index" p="dcajax"}";
+</script>
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav left_box">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		
+		<div class="main_box setting_user_info">
+			<div class="content">
+				<div class="title"><span>预订</span></div>
+				<div class="blank20"></div>
+				
+			</div>
+			
+			<div class="info_box">
+				<div class="info_table order_table">
+					<table>
+								<tr>
+									<td colspan=2 class="tl order_sum">
+										<div class="f_l">
+										订单号：<h1>{$order_info.order_sn}</h1>，交易时间：<h1>{$order_info.create_time}</h1>
+										</div>
+										{if $order_info.pay_status eq 0 && $order_info.refund_status eq 0 && $order_info.is_cancel eq 0}
+										<div class="f_r">
+											<a href="javascript:void(0);" action="{url x="index" r="dcorder#order" p="id=$order_info.id"}" date-i="{$order_info.id}" class="continue_pay">继续付款</a>
+										</div>
+										{/if}
+									</td>
+								</tr>
+								<tr>
+									<td class="ltd">付款信息 </td>
+									<td  class="rtd tl">
+										应付总额：<h1>{$order_info.total_price_format}</h1>，实付金额：<h1>{$order_info.pay_amount_format}</h1>
+										
+										{if $order_info.promote_amount gt 0}
+										 ，享受优惠：<h1>{function name=format_price v=$order_info.promote_amount g=2}</h1>
+										{/if}
+
+										
+									</td>
+								</tr>
+								{if $order_info.consignee}{*预订信息*}
+								<tr>
+									<td class="ltd">联系人信息</td>
+									<td class="rtd tl">姓名：{$order_info.consignee} &nbsp;&nbsp;手机：{$order_info.mobile}</td>
+								</tr>	
+								{/if}
+								<tr class="rs_info">
+									<td class="ltd">预订信息</td>
+									<td class="rtd tl">
+									{foreach from=$order_info.order_menu.rs_list.cart_list item=rs_unit }	
+									<h1>{$rs_unit.name}&nbsp;&nbsp;{$rs_unit.table_time_format}</h1>
+									{/foreach}						
+									</td>
+								</tr>
+								
+								{if $order_info.dc_comment}								
+								<tr>
+									<td class="ltd">
+									{$LANG.ORDER_MEMO}									
+									</td>									
+									<td class="rtd tl">
+									{$order_info.dc_comment}
+									</td>
+								</tr>
+								{/if}
+								{if $order_info.invoice}
+								<tr>
+									<td class="ltd">
+									发票									
+									</td>									
+									<td class="rtd tl">
+									{$order_info.invoice}
+									</td>
+								</tr>
+								{/if}
+								{if $order_info.send_admin_memo}
+								<tr>
+									<td  class="ltd">
+									{$LANG.ADMIN_MEMO}								
+									</td>									
+									<td  class="rtd tl">
+									{$order_info.send_admin_memo}
+									</td>
+								</tr>
+								{/if}
+								<tr>
+									<td class="rtd" colspan="2">
+										<table>
+										{if $order_info.order_menu.menu_list.cart_list}
+											<tr>
+												
+												<th width="auto" class="tl">菜单</th>
+												<th width="50">单价</th>
+												<th width="70">数量</th>
+												<th width="70">小计</th>
+
+											</tr>
+											{foreach name="deal_loop" from=$order_info.order_menu.menu_list.cart_list item=deal}
+											<tr class="alt">
+				                                <td class="tl">
+				                                	{$deal.name}
+												</td>
+				                                <td>
+				                                	{function name=format_price v=$deal.unit_price g=2}
+												</td>
+				                                <td>{$deal.num}</td>
+											
+												<td class="op_box">	
+													{function name=format_price v=$deal.total_price g=2}
+															
+												</td>
+												
+				                            </tr>
+											{/foreach}
+											
+										{else}	
+											<tr>
+												
+												<th width="auto" class="tl">预订位置</th>
+												<th width="50">单价</th>
+												<th width="70">数量</th>
+												<th width="70">小计</th>
+
+											</tr>
+											{foreach name="deal_loop" from=$order_info.order_menu.rs_list.cart_list item=deal}
+											<tr class="alt">
+				                                <td class="tl">
+				                                	{$deal.name}
+												</td>
+				                                <td>
+				                                	{function name=format_price v=$deal.unit_price g=2}
+												</td>
+				                                <td>{$deal.num}</td>
+											
+												<td class="op_box">	
+													{function name=format_price v=$deal.total_price g=2}
+															
+												</td>
+												
+				                            </tr>
+											{/foreach}
+											
+										{/if}
+										
+										{if $order_info.dc_coupon}
+										<table>
+										<tr><th width="100">电子劵</th><th width="180">详情</th><th width="100">有效期</th><th width="100">状态</th><th width="70">操作</th></tr>
+										<tr><td>{$order_info.dc_coupon.sn}</td><td class="rs_info">
+										{$order_info.location_name}<br/>
+										{foreach from=$order_info.order_menu.rs_list.cart_list item=rs_unit}	
+										<h1>{$rs_unit.name}<br/>{$rs_unit.table_time_format}</h1>
+										{/foreach}</td>
+										<td>
+										{if $order_info.dc_coupon.end_time eq 0}
+										无限期
+										{else}
+										{function name=to_date v=$order_info.dc_coupon.end_time g=Y-m-d}
+										{/if}
+										</td><td>
+										{if $order_info.refund_status eq 0}
+											{if $order_info.dc_coupon.end_time eq 0 || $now_time lt $order_info.dc_coupon.end_time}
+												{if $order_info.is_cancel eq 0 && $order_info.order_status eq 0}
+													{if $order_info.dc_coupon.is_valid eq 1 && $order_info.dc_coupon.is_used eq 0 }
+														有效
+													{elseif $order_info.dc_coupon.is_used eq 1}
+														{function name=to_date v=$order_info.dc_coupon.confirm_time g=Y-m-d} 消费
+													{else}
+														无效
+													{/if}
+												{elseif $order_info.order_status eq 1}
+													{function name=to_date v=$order_info.dc_coupon.confirm_time g=Y-m-d} 消费
+												{elseif $order_info.is_cancel eq 1}
+														无效
+												{/if}
+											{else}
+												<h1>已过期</h1>
+											{/if}
+											
+										{elseif $order_info.refund_status eq 1}	
+												<h1>退款中</h1><br/>{if $order_info.refund_memo}备注：{$order_info.refund_memo}{/if}
+										{elseif $order_info.refund_status eq 2}	
+												<h1>已退款</h1><br/>{if $order_info.refuse_memo}备注：{$order_info.refuse_memo}{/if}	
+										{elseif $order_info.refund_status eq 3}	
+												<h1>退款驳回</h1><br/>{if $order_info.refuse_memo}备注：{$order_info.refuse_memo}{/if}	
+											
+										{/if}
+										</td><td>
+										
+										{if $order_info.is_cancel eq 0 && $order_info.refund_status eq 0 && $order_info.order_status eq 0 && $order_info.dc_coupon.is_valid eq 1 && $order_info.dc_coupon.is_used eq 0 }
+											
+											{if $order_info.dc_coupon.is_expired eq 1}
+										
+											<a href="javascript:void(0);" class="refund" action="{url x="index" r="dc_rsorder#refund" p="id=$order_info.id"}">退款</a>
+											{else}
+											
+											<a href="javascript:void(0);" action="{url x="index" r="dc_rsorder#cancel" p="id=$order_info.id"}" class="del_order">取消订单</a>
+											{/if}
+											<br/><a href="javascript:void(0);" action="{url x="index" r="dc_rsorder#rend_coupon_sms" p="id=$order_info.id"}" class="rend_coupon_sms">短信发送</a>
+										{else}
+										-  -
+										{/if}
+										</td></tr>
+										
+										</table>
+										{/if}
+											
+										{if $order_info.package_price gt 0 || $order_info.delivery_price gt 0 || $order_info.payment_fee gt 0 || $order_info.promote_amount gt 0}											
+											<tr><th colspan="3" class="tl">其它费用</th><th></th></tr>
+										{/if}	
+											{if $order_info.package_price gt 0}
+											<tr><td colspan="3" class="tl">餐盒费</td><td>{function name=format_price v=$order_info.package_price g=2}</td></tr>
+											{/if}
+											{if $order_info.delivery_price gt 0}
+											<tr><td colspan="3" class="tl">配送费</td><td>{function name=format_price v=$order_info.delivery_price g=2}</td></tr>
+											{/if}
+											{if $order_info.payment_fee gt 0}
+											<tr><td colspan="3" class="tl">手续费</td><td>{function name=format_price v=$order_info.payment_fee g=2}</td></tr>
+											{/if}
+											{if $order_info.promote_amount gt 0}
+											{foreach from=$order_info.promote_str item=promote_unit}
+											<tr><td colspan="3" class="tl">{$promote_unit.name}</td><td>-{function name=format_price v=$promote_unit.discount_amount g=2}</td></tr>
+											{/foreach}
+											{/if}
+										
+									</td>
+								</tr>
+								<tr>
+									<td class="rtd" colspan="4">
+									{*订单统计*}
+									<div id="cart_total_box">
+									<div class="order-check-form ">
+										<p style="text-align: right; line-height: 24px;">
+										{$LANG.DEAL_TOTAL_PRICE}：
+										<span class="red">{function name="format_price" value=$order_info.total_price}</span>
+										</p>
+										<p style="text-align: right; line-height: 24px;">
+										
+										{if $order_info.account_money gt 0}
+										- {$LANG.ACCOUNT_PAY}：{function name="format_price" value=$order_info.account_money} <br>
+										{/if}
+										
+										{if $order_info.ecv_money gt 0}
+										- {$LANG.ECV_PAY}：{function name="format_price" value=$order_info.ecv_money} <br>
+										{/if}
+																				
+										{if $order_info.promote_amount gt 0}
+										{foreach from=$order_info.promote_str item=promote_unit}
+										-{$promote_unit.name}：{function name=format_price v=$promote_unit.discount_amount g=2}<br/>
+										{/foreach}
+										{/if}
+										
+										= {$LANG.PAY_TOTAL_PRICE_ORDER}：
+										<span class="red">
+											<?PHP echo format_price($this->_var['order_info']['total_price']-$this->_var['order_info']['account_money']-$this->_var['order_info']['ecv_money'] - $this->_var['order_info']['promote_amount']);?>
+										</span>&nbsp;
+										<br>
+										</p>
+										</div>
+									</div>
+									{*订单统计*}
+									</td>
+							</tr>
+							
+							{if $payment_notice_list}
+							
+								<tr>
+									<th colspan="4" class="tl order_sum">
+										付款记录
+									</th>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<table>
+											<tr>												
+												<th width="80">支付金额</th>
+												<th width="200">付款单号</th>
+												<th width="auto">支付平台</th>
+												<th width="150">支付状态</th>
+											</tr>
+											{foreach from=$payment_notice_list item=notice}
+											<tr>
+												<td><h1>{function name="format_price" v=$notice.money}</h1></td>
+												<td>{$notice.notice_sn}</td>
+												<td>
+													{$notice.payment.name}
+													{if $notice.outer_notice_sn}
+													<br />
+													<h1>{$notice.outer_notice_sn}</h1>
+													{/if}
+												</td>
+												<td>
+													{if $notice.is_paid eq 1}
+													{function name="to_date" v=$notice.pay_time}支付
+													{else}
+													未支付
+													{/if}
+												</td>
+											</tr>
+											{/foreach}
+											
+										</table>
+									</td>
+								</tr>
+						
+							{/if}
+							
+							
+							{if $order_logs}
+							<tr>
+								<tr>
+									<th colspan=4 class="tl order_sum">
+										订单日志
+									</th>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<table>
+											<tr>	
+												<th width="auto">内容</th>
+												<th width="150">发生时间</th>
+											</tr>
+											{foreach from=$order_logs item=log}
+											<tr>
+												<td>{$log.log_info}</td>												
+												<td>{function name="to_date" v=$log.log_time}</td>
+											</tr>
+											{/foreach}
+											
+										</table>
+									</td>
+								</tr>
+							</tr>
+							{/if}
+					</table>
+				</td>
+				</tr>
+				</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

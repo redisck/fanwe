@@ -1,0 +1,141 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/position.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/position.js";
+?>
+{include file="inc/header.html"}
+<style type="text/css">
+		#l-map{height:300px;width:100%;}
+		#r-result{width:100%;}
+	</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={function name="app_conf" value="BAIDU_MAP_APPKEY"}"></script>
+<script type="text/javascript">
+var CITY_NAME = '{$city_name}'
+var DO_POSITION_URL = '{url r="index" p="position#do_posiotn"}';
+var MARKER_ICON = "{$TMPL}/images/css_bg/markers_icon.png";
+var BAIDU_APPKEY = '{function name="app_conf" value="BAIDU_MAP_APPKEY"}';
+</script>
+<div class="blank20"></div>
+<div class="main_layout wrap_full">
+	<div class="head wrap_full">
+		
+	</div>
+	<div class="map_con wrap_full">
+
+		<div class="bd">
+		<div class="blank10"></div>
+			<div class="left_box f_l">
+				<div class="position_form_box">
+					<p class="position_title">我的位置：</p>
+					<div class="form_box">
+							<div class="search_input">
+								<div class="f_l">
+								<input id="q_text" type="text" class="ui-textbox q_text" name="q" holder="请输入完整地址或公交/地铁名" autocomplete="off"  />
+								</div>
+								<div class="f_l">
+								<button class="ui-button position_btn" rel="orange" type="button">定位</button>
+								</div>
+							</div>
+					</div>
+					<div class="result-panel">
+						<p class="search-number"></p>
+						<ul id="search-result"></ul>
+						<div class="blank10"></div>
+						<div class="page-wrapper pages" ></div>
+						<div class="blank10"></div>
+					</div>
+				</div>
+			</div>
+			<div class="right_box f_r">
+				<p class="position_title" style="text-align:right;">您可以点击地图直接定位</p>
+				<div id="searchResultPanel" style="display:none;"></div>
+				<div id="map_show"></div>
+			</div>
+			<div class="blank20"></div>
+		</div>
+		
+	</div>
+</div>
+<div class="blank20"></div>
+
+<script type="text/javascript">
+	
+	// 百度地图API功能
+	function G(id) {
+		return document.getElementById(id);
+	}
+
+	var map = new BMap.Map("map_show");
+	map.centerAndZoom(CITY_NAME,12);                   // 初始化地图,设置城市和地图级别。
+	//添加点击事件监听
+	map.addEventListener("click", function(e){    
+	 
+	 var query = {ak:BAIDU_APPKEY,location:e.point.lat+","+e.point.lng,output:"json"};
+		$.ajax({
+			url:"http://api.map.baidu.com/geocoder/v2/",
+			dataType:"jsonp",
+			callback:"callback",
+			data:query,
+			success:function(obj){
+				var address = obj.result.formatted_address;
+				var title = obj.result.sematic_description;
+				var infoWindow_obj = create_window({title:title,content:address,lng:e.point.lng,lat:e.point.lat});
+				map.openInfoWindow(infoWindow_obj,new BMap.Point(e.point.lng,e.point.lat)); //开启信息窗口
+			}
+		});
+
+	});
+	
+	map.addControl(new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT}));        
+	map.addControl(new BMap.NavigationControl());  
+	map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+	map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+	
+	var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+		{"input" : "q_text"
+		,"location" : map
+	});
+
+
+	var myValue;
+	ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+		var _value = e.item.value;
+		myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+		setPlace();
+	});
+
+	function setPlace(){
+		map.clearOverlays();    //清除地图上所有覆盖物
+		function myFun(){
+			var obj = local.getResults().getPoi(0);    //获取第一个智能搜索的结果
+			map.centerAndZoom(obj.point, 18);
+			var marker = new BMap.Marker(obj.point);
+			map.addOverlay(marker);    //添加标注
+
+			var infoWindow_obj = create_window({title:obj.title,content:obj.address,lng:obj.point.lng,lat:obj.point.lat});
+			marker.addEventListener("click", function(){          
+				map.openInfoWindow(infoWindow_obj,obj.point); //开启信息窗口
+			});
+		}
+		var local = new BMap.LocalSearch(map, { //智能搜索
+		  onSearchComplete: myFun
+		});
+		local.search(myValue);
+	}
+</script>
+{include file="inc/footer.html"}

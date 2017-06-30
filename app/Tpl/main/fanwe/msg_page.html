@@ -1,0 +1,107 @@
+<?php
+//本页不引用header.html， 直接在页面内编写单独header
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/msg_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/msg_page.js";
+?>
+{* 开始头部 *}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{if $page_title}{$page_title} - {/if}{$site_seo.title}</title>
+<meta name="keywords" content="{if $page_keyword}{$page_keyword}{else}{$site_seo.keyword}{/if}" />
+<meta name="description" content="{if $page_description}{$page_description}{else}{$site_seo.description}{/if}" />
+<script type="text/javascript">
+var APP_ROOT = '{$APP_ROOT}';
+var CART_URL = '{url x="index" r="cart"}';
+var CART_CHECK_URL = '{url x="index" r="cart#check"}';
+{if app_conf("APP_MSG_SENDER_OPEN") eq 1}
+var send_span = {function name="app_conf" v="SEND_SPAN"}000;
+var IS_RUN_CRON = 1;
+var DEAL_MSG_URL = '{url x="index" r="cron#deal_msg_list"}';
+{/if}
+var AJAX_LOGIN_URL	= '{url x="index" r="user#ajax_login"}';
+var AJAX_URL	= '{url x="index" r="ajax"}';
+var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+var order_id = {function name="intval" value=$order_info.id};
+</script>
+<?php
+//前台队列功能开启
+if(app_conf("APP_MSG_SENDER_OPEN")==1)
+{
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/msg_sender.js";
+}
+?>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/app/lang.js"></script>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$pagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$pagejs" c="$cpagejs"}"></script>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/region.js"></script>	
+</head>
+<body>
+<img src="{$TMPL}/images/loader_img.gif" style="display:none;" /><!--延时加载的替代图片生成-->
+<div class="top_nav">
+	<div class="{function name="load_wrap" t=$wrap_type}">
+		<span class="f_l">欢迎来到{function name="app_conf" v="SHOP_TITLE"}</span>	
+		<span class="f_r">
+			<ul class="head_tip">
+				<li class="cart_tip" id="cart_tip">{insert name="load_cart_count"}</li>
+				<li class="user_tip" id="head_user_tip">{insert name="load_user_tip"}</li>
+			</ul>
+		</span>
+	</div>
+</div><!--顶部横栏-->
+<div class="blank15"></div>
+<div class="{function name="load_wrap" t=$wrap_type} head_main">
+	<div class="logo f_l">
+	<a class="link" href="{$APP_ROOT}/">
+		<?php
+			$this->_var['logo_image'] = app_conf("SHOP_LOGO");
+		?>
+		{function name="load_page_png" v=$logo_image}
+	</a>
+	</div>
+	
+</div><!--logo与头部搜索-->
+{* 头部结束 *}
+<div class="blank20"></div>
+<div class="{function name="load_wrap" t=$wrap_type}">
+
+	<div class="layout_box msg_box">
+		<div class="title">{$page_title}</div>
+		<div class="content">
+			<div>
+			{$msg}
+			</div>
+			{if $stay eq 0}
+			<div class="jump_tip">				
+				系统将在 <span>5</span> 秒后自动跳转，或者直接点击 [<a href="{$jump}">这里</a>] 直接返回			
+			</div>
+			{else}
+			<div class="jump_tip">
+				请点击 [<a href="{$jump}">这里</a>] 返回
+			</div>
+			{/if}
+		</div>
+	</div>
+
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

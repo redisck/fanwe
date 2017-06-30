@@ -1,0 +1,76 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_style.css";		
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/biz_dealo.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+?>
+{include file="inc/biz_header.html"}
+<script>var ajax_url = "{$ajax_url}";</script>
+<div class="wrap">
+	<div class="content">
+	{if $data.status eq 0}
+		<div class="common_tip">
+              <span><i class="iconfont">&#xe644;</i>&nbsp;&nbsp;{$data.info}</span>
+       	</div>
+       	{/if}
+		<div class="list-view bor_none">
+			 <ul class="item_medium_ul">
+			 	{foreach from=$data.item item=row}
+			 	<li class="item_li">
+			 	     <a href="{url a="biz" r="dealo#locations" p="data_id=$row.id"}">
+			 	     	<div class="list_item">
+			 	     		 <div class="pic">
+			 	     		 	<img src="{$row.icon}" width="84" height="70"  />
+			 	     		 </div>
+							 <div class="info ">
+							 	<div>{$row.sub_name} <span style="float:right;padding-right: 10px;">{$row.f_create_time}</span></div>
+							 	<div class="sub_info">
+							 		<div class="table_box">
+							 			<div class="c_table_item t_item"  style="width:33%">销售量</div>
+							 			<div class="c_table_item t_item"  style="width:33%">验证量</div>
+							 			<div class="c_table_item t_item"  style="width:33%">退款量</div>
+							 		</div>
+							 		<div class="table_box">
+							 			<div class="c_table_item t_item"  style="width:33%">{$row.buy_count}</div>
+							 			<div class="c_table_item t_item"  style="width:33%">{$row.confirm_count}</div>
+							 			<div class="c_table_item t_item"  style="width:33%">{$row.refund_count}</div>
+							 		</div>
+							 	</div>
+							 </div>
+			 	     	</div>
+			 	     </a>
+			 	</li>
+				{/foreach}
+				
+			 </ul>
+			 
+		</div>
+	</div>
+	
+	{if $pages}
+	<div class="blank"></div>
+	<div class="fy">
+		{$pages}
+	</div>
+{/if}
+	<div class="blank50"></div>
+	</div>
+</div>
+
+{include file="inc/biz_footer.html"}	

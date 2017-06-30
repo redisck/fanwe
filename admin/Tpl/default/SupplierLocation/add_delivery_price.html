@@ -1,0 +1,13 @@
+<style>
+	.delivery{
+		width:50px;	
+	}
+</style>
+<div style="padding-left:117px;">
+	
+	<input class="delivery" type="text" name="scale[]" value="{$data['scale']}" />&nbsp;公里之内&nbsp;起送费:
+	<input class="delivery" type="text" name="start_price[]" value="<if condition="$data">{$data['start_price']|round=2}</if>" />&nbsp;元&nbsp;配送费:
+	<input class="delivery" type="text" name="delivery_price[]" value="<if condition="$data">{$data['delivery_price']|round=2}</if>" />&nbsp;元
+
+	<a href="javascript:void(0);" onclick="remove_delivery_price(this);">[-]</a>
+</div>

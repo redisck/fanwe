@@ -1,0 +1,164 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/kindeditor.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/kindeditor.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/weixin.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/weixin/weixin.js";
+
+?>
+
+{include file="inc/header.html"}
+<script type="text/javascript">
+	var ajax_url = '{$ajax_url}';
+	var navs = {$navs_json};
+    $(document).ready(function(){
+        init_nav_row($("#nav_setting"));
+    });
+</script>
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+			</div>
+			
+			<div class="form_box">
+				<form name="wxreply_dnews_form" action="{url r="biz" b="wxreply#save_dnews"}" method="post">
+				<div class="publish_box ">
+						<ul class="publish_cons">
+						<!-- 基本信息 -->
+							<li class="con_item curr">
+								<table class="form_teble_box add_border">
+									<colgroup>
+										<col width="150">
+										<col width="540">
+									</colgroup>
+									<tbody>
+										<tr>
+											<td class="t_field_name "><i class="iconfont required">&#xe606;</i>标题:</td>
+											<td class="t_field_value"><input class="ui-textbox long_input" name="reply_news_title" value="{$reply.reply_news_title}"/></td>
+										</tr>
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>图文封面图:</td>
+											<td class="t_field_value">
+												<div class="img_icon_upbtn upload_btn_box">
+													<button id="reply_news_picurl" class="ui-button img_icon_btn" rel="orange" type="button">图片上传</button>
+												
+												</div>
+												<div class="img_icon_upload_box pub_upload_img_box">
+													{if $reply.reply_news_picurl}
+													<span>
+														<a href="javascript:void(0);"></a><img src="{function name="get_spec_image" v=$reply.reply_news_picurl h=50 w=50 g=1}">
+														<input type="hidden" name="reply_news_picurl" value="{$reply.reply_news_picurl}">
+													</span>
+													{/if}
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name">回复内容:</td>
+											<td class="t_field_value"><textarea class="textarea t_textarea" name="reply_news_description" >{$reply.reply_news_description}</textarea></td>
+										</tr>
+										<tr>
+											<td class="t_field_name">多图文回复:</td>
+											<td class="t_field_value">
+												<div class="f_l" style="margin-top:7px;" >
+													<span class="f_l" style="display:block;height: 23px;line-height: 23px;">最多9条</span>
+													<div class="f_l"><button class="ui-button add_goods_type" rel="white" type="button">新增</button></div>
+												</div>
+												<div id="relate_table_div" class="control-group cf clearfix" {if !$relate_replys}style="display:none;"{/if}>
+                                                    {if $relate_replys}
+                                                    <table id="relate_table" class="table_box" style="border: 1px solid #ddd;border-collapse: collapse;border-spacing: 0;clear: both;margin-bottom: 10px; width: 100%;">
+                                                        <tr>
+                                                            <th>操作</th>
+                                                            <th>回复内容</th>
+                                                        </tr>
+                                                        {foreach from=$relate_replys item=relate_reply}
+                                                        <tr>
+                                                            <td><a class="remove_relate" href="javascript:void(0);">删除</a></td>
+                                                            <td>
+                                                                <input type="hidden" value="{$relate_reply.id}" name="relate_reply_id[]" id="relate_reply_id_{$relate_reply.id}">
+                                                                {$relate_reply.reply_news_description}
+                                                            </td>
+                                                        </tr>
+                                                        {/foreach}
+                                                    </table>
+                                                    {/if}
+												</div>
+											</td>
+										</tr>
+										<tr class="buy_type_0">
+											<td class="t_field_name">回复跳转链接:</td>
+                                            <td class="t_field_value" id="nav_setting">
+                                                <select class="ui-select filter_select medium ctl" name="ctltype" >
+													{foreach from=$navs item=nav_item key=key}
+														<option value="{$key}" {if $key eq $reply['ctl']}selected="selected"{/if} >{$nav_item.name}</option>
+													{/foreach}
+												</select>										
+												
+												<span class="data" {if $reply['data'] eq ''}style="display:none;"{/if}>
+													<span class="field_name">{$reply.data_name}</span>&nbsp;&nbsp;<input type="text" class="textbox" name="data"  value="{$reply.data} "/>
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name"><i class="iconfont required">&#xe606;</i>是否关闭默认回复:</td>
+											<td class="t_field_value">
+												<label class="ui-checkbox" rel="common_cbo"><input class="location_id_item" type="checkbox" id="default_close" name="default_close" {if $reply.default_close eq 1}checked="checked"{/if} value="1" /></label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</li>
+							
+						</ul>
+						<div class="blank10"></div>
+					</div>
+					<div class="confirm_form_btn">
+						<input type="hidden" name="id" value="{$reply.id}"/>
+						<div class="sub_form_btn f_r">
+							<button class="ui-button next_form_btn" rel="blue"  onclick="location.href='{url r="biz" b="wxreply#dtext"}'" type="button">切换到文本模式</button>
+						</div>
+						<div class="f_r">
+							<button class="ui-button " rel="orange" type="submit">保存</button>
+						</div>
+						
+							
+					</div>
+				</form>
+				<div class="blank10"></div>
+			</div>
+			<div class="blank10"></div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

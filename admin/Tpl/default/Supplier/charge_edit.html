@@ -1,0 +1,61 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<script type="text/javascript">
+	function check_incharge_form()
+	{
+
+		if($("input[name='money']").val()!=''&&isNaN($("input[name='money']").val()))
+		{
+			alert(LANG['MONEY_FORMAT_ERROR']);
+			return false;
+		}
+
+		return true;
+	}
+</script>
+<div class="main">
+<if condition="$type eq 1">
+<div class="main_title">{$charge_info.supplier_name} 可提现总余额:{$charge_info.supplier_money|format_price}</div>
+<else />
+<div class="main_title">{$supplier_info.name} 可提现总余额:{$supplier_info.money|format_price}</div>
+</if>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data" onsubmit="return check_incharge_form();">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">本次<if condition="$type eq 1">提现<else />打款</if>金额:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="money" value="<if condition="$type eq 1">{$charge_info.money}</if>"/>
+		<span class='tip_span'>[实际打款给商户的金额，单位（元）]</span>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title">{%INCHARGE_MSG}:</td>
+		<td class="item_input"><input type="text" class="textbox" name="log" style="width:400px;" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">&nbsp;</td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<if condition="$type eq 1">
+			<input type="hidden" name="charge_id" value="{$charge_info.id}" />
+			<else />
+			<input type="hidden" name="supplier_id" value="{$supplier_info.id}" />
+			</if>
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Supplier" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="docharge" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%OK}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>

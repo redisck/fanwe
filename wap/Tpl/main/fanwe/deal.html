@@ -1,0 +1,401 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/deal.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/relate_goods.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/layer.css";		
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/deal.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/swipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/relate_goods.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/relate_goods.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/layer.m/layer.m.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/layer.m/layer.m.js";
+
+
+if(defined("FX_LEVEL"))
+{
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/uc_fx.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/uc_fx.js";
+
+
+}
+
+?>
+{include file="inc/header.html"}
+<script type="text/javascript">
+	var ajax_url = '{url r="index" p="deal#add_collect"}';
+</script>
+
+{if $hasRelateGoods eq 1}
+<script>
+	//当前产品id
+	var main_id  		= parseInt({$data.id});
+    var jsonDeal  		= {$jsonDeal};
+	var jsonAttr  		= {$jsonAttr};
+	var jsonStock 		= {$jsonStock};
+	//初始化
+	$(function(){
+		init_set();
+	});
+</script>
+{/if}
+
+<?php if(defined("FX_LEVEL")){ ?>
+<script>
+    var fx_ajax_url = '{url r="index" p="uc_fx"}';
+</script>
+<?php }?>
+<div class="wrap">
+    <form id="goods-form" action="{url a="index" r="cart#addcart" }"  method="post">
+        <div class="content">
+        	
+			<!--关于商品-->
+            <div class="goods_abbr">
+                <div class="good_detail">
+                    <div class="good_pic">
+                        <a><img src="{$data.icon}" width="100%" /></a>
+                    </div>
+                    <div class="goods_price">
+                        <div class="price">
+                        	{if $data.buy_type eq 0}
+                            <b><span class="j_discount_price" id="current_price" rel="{$data.current_price}">{$data.current_price}</span>元</b>
+                            <del>
+                                {$data.origin_price}元
+                            </del>
+							{else}
+							<b><span class="j_discount_price" id="current_price" rel="{$data.return_score_show}">{$data.return_score_show}</span>积分</b>
+							{/if}
+                        </div>
+                        <input type="hidden" name="id" value="{$data.id}">
+						
+						{if $data.time_status eq 0}
+						<button id="J_post_cart" type="button" name="Submit" class="plank">
+                           	未开始
+                        </button><!--disabled-->
+						{/if}
+						{if $data.time_status eq 1}
+						{if $data.buyin_app eq 0}
+						<button id="J_post_cart" type="submit" name="Submit" class="plank">
+                           	{if $data.buy_type eq 1}立即兑换{else}立即购买{/if}
+                        </button>
+						{else}
+						<button id="J_post_cart" type="button" name="Submit" class="plank">
+                           	<a href="{$download}" style="color:#fff;">下载APP应用</a>
+                        </button>
+						{/if}
+						{/if}
+						{if $data.time_status eq 2}
+						<button id="J_post_cart" type="button" name="Submit" class="plank">
+                           	已过期
+                        </button>
+						{/if}
+						
+                        
+                    </div>
+                </div>
+                <div class="deal_info">                   
+                        <h3>{$data.name}</h3>
+                        <span>{$data.brief}</span>        
+                </div>
+					
+				
+                
+				<div class="deal_tags">
+				{foreach from=$data.deal_tags item=tag}
+				<div class="deal_tag"><i class="iconfont item_tag_{$tag.k}"></i>&nbsp;{$tag.v}</div>
+				{/foreach}
+				</div>
+				<div class="blank8"></div>
+                <div class="barter">
+                    {if ($data.begin_time ne 0 and $data.time_status eq 0) or ($data.end_time ne 0 and $data.time_status eq 1)}	
+					<div class="barter_item">
+					<i class="iconfont">&#xe629;</i>					
+					<span 
+						id="countdown" 
+						nowtime="{$data.now_time}000" 
+						{if $data.begin_time ne 0 and $data.time_status eq 0}
+						endtime="{$data.begin_time}000" showtitle="距离开始：" 
+						{/if}
+						{if $data.end_time ne 0 and $data.time_status eq 1}
+						endtime="{$data.end_time}000" showtitle="距离结束：" 
+						{/if}
+					></span><!--倒计时-->
+					&nbsp;&nbsp;
+					</div>
+					{/if}
+                    <div class="barter_item">
+                        <i class="iconfont">&#xe62a;</i>
+                        <span>已售{$data.buy_count}</span>						
+                    </div>
+                </div>
+				<div class="blank8"></div>
+                <div class="barter">
+                	<?php if(defined("FX_LEVEL")){ ?>
+					{if $data.is_fx eq 2}
+						{if $data.is_my_fx eq 0}
+	                	<div class="share" onclick="add_user_fx_deal({$data.id},this)">
+	                		<a><i class="iconfont">&#xe64a;</i><span>我要分销</span></a>
+						</div>
+						{else}
+						<div class="del_share" onclick="del_user_deal({$data.id},this)">
+	                		<a><i class="iconfont">&#xe64f;</i><span>取消分销</span></a>
+						</div>
+						{/if}
+					{/if}
+					<?php }?>
+                    <div class="bshare-custom share ">
+                        <a class="bshare-more" onclick="WapTosinaweibo('{$data.name}','{$data.share_url}');"><i class="iconfont">&#xe62c;</i><span>分享</span></a>
+                    </div>
+                    <div class="share j_share">
+                        <a onclick="add_collect({$data.id},this);"><i class="iconfont">&#xe62b;</i><span>收藏</span></a>
+                    </div>                  
+                </div>
+            </div>
+			<!--关于商品-->
+			
+			{if $data.deal_attr}
+            <div class="blank8"></div>
+			<!--关于套餐-->
+            <div class="list-view">
+                <div class="evaluate_title">
+                	<i class="iconfont">&#xe62e;</i> 套餐选择
+				</div>
+				
+				{foreach from=$data.deal_attr item=deal_attr_type}				
+				{if $deal_attr_type.attr_list}
+				<div class="package_choose" rel="{$deal_attr_type.id}">					
+					<span class="info_title">{$deal_attr_type.name}</span>
+					<span class="choose active_parent">
+						<input type="hidden" class="deal_attr_ipt" name="deal_attr[{$deal_attr_type.id}]" value="0" />
+						{foreach from=$deal_attr_type.attr_list item=attr_item}
+						<a href="javascript:void(0);" rel="{$attr_item.id}" price="{$attr_item.price}">
+							{$attr_item.name}
+							<i class="iconfont">&#xe62d;</i>
+						</a>						
+						{/foreach}							
+					</span>
+				</div>
+				{/if}
+				{/foreach}
+            </div>
+			<!--关于套餐-->
+			{/if}
+            
+            
+            
+ 			{if $goodsList}
+            <div class="blank8"></div>
+			<!--关联商品-->
+            <div class="list-view" id="relate-box">
+                <div class="evaluate_title">
+                	<i class="iconfont">&#xe62e;</i> 最佳组合
+				</div>
+                <div class="main-good-box">
+                	<div class="main-good">
+                    	<div class="checkdiv" id="checkdiv_{$data.id}" deal_id="{$data.id}"></div>
+                        <a href="javascript:void(0);" deal_id="{$data.id}">
+                        <img src="{$data.icon}" alt="" border="0" style="width:100%;" lazy="true">
+                        <div class="h">{function name="msubstr" v=$data.name b=0 e=5}</div>
+                        </a>
+                    </div>
+                </div>
+                <div id="relate-slider" class="relate-swipe">
+                    <div class='relate-swipe-wrap'>
+                    	{foreach name="goodsList" from="$goodsList" item=deal}
+                        <div>
+                            <div class="content" style="visibility: visible;">
+                                <ul class="sp_ul" style="list-style: none; transition: 500ms; -webkit-transition: 500ms;">
+                                	{foreach name="goodsListItem" from="$deal" item=dealItem}
+                                    <li class="sp_li" style="vertical-align: top; width: 32%; display: table-cell;">
+                                    	<div class="checkdiv" id="checkdiv_{$dealItem.id}" deal_id="{$dealItem.id}"></div>
+                                        <a href="javascript:void(0);" deal_id="{$dealItem.id}">
+                                        <div class="outter" style="width:{$dealItem.widthP}">
+                                        <img src="{$dealItem.icon}" alt="" border="0"  lazy="true" style="width:100%;" />
+                                        <div class="h">{function name="msubstr" v=$dealItem.name b=0 e=5}</div>
+                                        </div>
+                                        </a>
+                                    </li>
+                                    {/foreach}
+                                </ul>
+                            </div>
+                        </div>
+						{/foreach}
+                    </div>
+                </div>
+            </div>
+            <div class="relate-price-box">
+             已选择  <span id="relateCheckNum">0</span>  个配件<br />
+             搭 配 价：<span id="relateCheckCurrPrice" style="color:#F00;">￥0.00</span><br />
+             <span style="text-decoration: line-through;">参 考 价：<span id="relateCheckOrigPrice">￥0.00</span></span><br />            
+            </div>
+			<div class="relate-price-box"><button id="relateBuyBtn" type="submit" name="Submit" class="plank" onclick="return false;">合并购买</button></div>
+            
+			<!--关联商品-->
+			{/if}
+            
+            
+			
+			<div class="blank8"></div>
+			
+			<!--关于评分-->
+            <div class="list-view">
+                <div class="evaluate">
+                    <div class="grade">
+                        <input type="hidden" class="ui-starbar" value="{$data.avg_point}" disabled="true" />
+									 
+                        <b>{$data.avg_point}</b>
+                    </div>
+                    <a href="{url r="index" p="dp_list#index" p2="type=deal&data_id=$data.id"}"  class="evaluate_num"><span>{$data.dp_count}人评价</span><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                </div>
+            </div>
+			<!--关于评分-->
+			
+            <div class="blank8"></div>
+			
+			<!--支持门店-->
+            <div class="list-view">
+                <div class="evaluate_title">
+                    	<i class="iconfont">&#xe602;</i>支持门店
+                </div>
+                {foreach from=$data.supplier_location_list item=supplier_location name=supplier_location}
+                <div class="business_info {if $smarty.foreach.supplier_location.iteration gt 3}business_display{/if}" onclick ="javascript:location.href='{wap_url a="index" r="merchantitem&"  p="id=$supplier_location.id"}'">
+                    <div class="business_address">
+                        <h3>{$supplier_location.name}</h3>
+                        <span>{$supplier_location.address}</span>
+                    </div>
+                    <a class="business_phone" href="tel:{$supplier_location.tel}" style="display: block;"><i class="iconfont">&#xe637;</i></a>
+                </div>
+                {/foreach}
+                {if $smarty.foreach.supplier_location.iteration gt 3}
+                <div class="see_more J_location_more" style="color:#fc8600;border-top:1px solid #f5f5f5;cursor:pointer;">
+                    点击下拉查看
+                </div>
+                {/if}
+            </div>
+			<!--end 支持门店-->
+			
+            <div class="blank8"></div>
+			
+			<!--商品描述-->
+			{if $data.description}
+            <div class="list-view">               
+                <div class="see_more" >
+                    <a style="color:#fc8600;cursor:pointer;" href="{url a="index" r="deal_detail#index"  p="data_id=$data.id"}">查看图文详情</a>
+                </div>
+               
+            </div>
+            <div class="blank8"></div>
+			{/if}
+			
+			{if $data.notes}
+            <div class="list-view">
+             <div class="evaluate_title notes_title">
+                    	<i class="iconfont">&#xe638;</i>购买须知
+                </div>
+                <div class=" set_meal notes_content">
+                	{$data.notes}
+                </div>
+                </div>
+			
+            <div class="blank8"></div>
+			{/if}
+			<!--关于点评-->
+            <div class="list-view">
+                <div class="evaluate_title">
+                    <div class="grade">
+                       	<i class="iconfont">&#xe606;</i>评价
+                        <span class="pull-right">
+   	 						<span class="stars" data="{$data.avg_point}"></span>
+	   	 						<em class="star-text">{$data.avg_point}</em>
+							</span>
+                    </div>
+                </div>
+                <div class="assess_list">
+                   {if $data.dp_list}
+					<div class="rw-list">
+					{foreach from=$data.dp_list item=row key=k1}
+					<div class="rw-item">
+					        <ul>
+					        	<li class="i-title"><span class="user_name">{$row.user_name}</span><small class="datetime">{$row.create_time}</small><span class="star_box"><input class="ui-starbar" value="{$row.point}" disabled="true"  /></span></li>
+					            <li class="i-content">{$row.content}</li>
+					            <li class="i-images">
+					            	{foreach from=$row.images item=image}
+					            		<div class=" img"><img src="{$image}" /></div>
+					            	{/foreach}
+					            </li>
+					            {if $row.reply_content}<li class="i-reply"><span>[掌柜回复]{$row.reply_content}</span></li>{/if}
+					        </ul>
+					</div>
+					{/foreach}
+					
+					</div>
+					<div class="see_more">
+                    	<a href="{url a="index" r="dp_list#index"  p="data_id=$data.id&type=deal"}" style="color:#fc8600;cursor:pointer;"><span>查看全部评价</span></a>
+                	</div>
+					{else}
+					<div class="null_data">
+					<p class="icon"><i class="iconfont">&#xe61e;</i></p>
+					<p class="message">还没有人点评</p>
+					</div>
+					<div class="see_more">
+                    	<a href="{url a="index" r="dp_list#index"  p="data_id=$data.id&type=deal"}" style="color:#fc8600;cursor:pointer;" ><span>我去评价</span></a>
+                	</div>
+					{/if}
+                </div>
+                
+            </div>
+			<!--关于点评-->
+			
+			<!--关于购买按钮-->
+            <div class="buy">
+                {if $data.left_num}<input type="hidden" id="J_left_number" name="left_number" value="{$data.left_num}">{/if}
+                
+                
+                {if $data.time_status eq 0}
+						<button id="J_post_cart" type="button" name="Submit" class="plank">
+                           	未开始
+                        </button><!--disabled-->
+						{/if}
+						{if $data.time_status eq 1}
+						{if $data.buyin_app eq 0}
+						<button id="J_post_cart" type="submit" name="Submit" class="plank">
+                           	{if $data.buy_type eq 1}立即兑换{else}立即购买{/if}
+                        </button>
+						{else}
+						<button id="J_post_cart" type="button" name="Submit" class="plank">
+                           	<a href="{$download}" style="color:#fff;">下载APP应用</a>
+                        </button>
+						{/if}
+						{/if}
+						{if $data.time_status eq 2}
+						<button id="J_post_cart" type="button" name="Submit" class="plank">
+                           	已过期
+                        </button>
+						{/if}
+           
+            </div>
+			<!--关于购买按钮-->
+        </div>
+    </form>
+</div>
+
+{include file="inc/footer.html"}	

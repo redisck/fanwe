@@ -1,0 +1,69 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/verify.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/verify.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/verify.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+	var ajax_url = '{url r="biz" b="dealv"}';
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content content_hastab">
+			<div class="standard_tab cf">
+				<ul>
+					<li class="{if $ACTION_NAME eq 'index'}curr{/if}"><a href="{url b="biz" r="dealv#index"}">团购券验证</a></li>
+					<li class="{if $ACTION_NAME eq 'batch'}curr{/if}"><a href="{url b="biz" r="dealv#batch"}">团购券批量验证</a></li>
+					<li class="{if $ACTION_NAME eq 'super'}curr{/if}"><a href="{url b="biz" r="dealv#super"}">超级验证</a></li>
+				</ul>
+			</div>
+			<div class="verify_content">
+				<form id="verify_form" name="verify_form" method="post" action="{url r="biz" b="dealv#check_coupon"}">
+					<div class="verify_box group_box">
+						<h3>选择门店</h3>
+						<div class="blank10"></div>
+						<div class="field_select">
+							<select name="location_id" class="ui-select ">
+								{foreach from=$location_list item=row}
+									<option value="{$row.id}">{function name="msubstr" v=$row.name l=0 e=10}</option>
+								{/foreach}
+							</select>
+						</div>
+						<div class="blank10"></div>
+						<h3>请先验证团购券，再接待</h3>
+						<div class="blank10"></div>
+						<div class="form_field">
+							<div class="f_text"><input type="text" name="coupon_pwd" id="coupon_pwd" value="" class="ui-textbox " holder="请输入验证码" /></div>							
+						</div>
+						<div class="verify_btn">
+							<button class="ui-button" rel="orange" type="submit">验证团购券</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

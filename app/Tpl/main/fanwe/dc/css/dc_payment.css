@@ -1,0 +1,87 @@
+
+.payment{ border-top:@main_color 2px solid;overflow:hidden;}
+
+
+.red{ color:@main_color; font-size:14px; font-weight:bolder; font-family:verdana;}
+.payment .order-check-form{float: right;
+
+    text-align: right;
+    width: 420px;}
+.payment .payment_code{  border-top: 1px solid @border_color;
+    clear: both;
+    height: 40px;
+    padding: 30px 0;
+	}
+
+.payment_done{ padding:30px 60px;text-align: center;}
+.payment_done .done_money{
+	color:@main_color;
+	font-size:20px;
+	padding:0 5px;
+}
+.payment_done .go_list{
+	color:@main_color;
+}
+.payment_done .go_shop{
+	margin: 020px;
+}
+
+.payment_done .order_content{
+	line-height: 30px;
+    text-align: left;
+    width: 55%;
+
+}
+.payment_done  .other_info{
+	margin-top:20px;
+}
+.order_info {
+    clear: both;
+    padding: 5px;
+
+	
+}
+
+.order_info .f_l {
+    margin-right: 5px;
+    text-align: justify;
+    width: 55px;
+}
+.pay_div{
+	text-align: right;
+	padding-right:20px;
+}
+.pay_div .pay_total{
+	color: @main_color;
+    font-size: 20px;
+}
+
+.payment .pay_l.pay_left{
+
+	border-right: 1px solid @border_color;
+    padding: 20px;
+    width: 55%;
+}
+.payment .pay_r.pay_right{
+	padding:40px 20px 20px;
+	width:36%;
+}
+.pay_notice{
+	clear:both;
+	line-height: 25px
+
+}
+
+.pay_links , .pay_botton{
+float:left;
+width:200px;
+}
+.pay_links {
+    padding-top: 20px;
+}
+
+.error_content {
+    font-size: 18px;
+  
+}
+

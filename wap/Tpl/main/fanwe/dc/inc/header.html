@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+<!-- Mobile Devices Support @begin -->
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="false" name="twcClient" id="twcClient">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<!--允许全屏模式-->
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<!--指定sari的样式-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta content="telephone=no" name="format-detection" />
+<!-- Mobile Devices Support @end -->
+<title>{$data.page_title}</title>	
+<script type="text/javascript">
+	var APP_ROOT = '{$APP_ROOT}';
+	var LOADER_IMG = '{$TMPL}/images/loader_img.gif';
+	var AJAX_URL = '{url x="index" r="ajax"}';
+	var PAGE_TYPE = '{$PAGE_TYPE}';
+	
+</script>
+<link rel="stylesheet" type="text/css" href="{function name="parse_css" v="$pagecss"}" />
+<script type="text/javascript" src="{function name="parse_script" v="$pagejs" c="$cpagejs"}"></script>
+<script>
+/*app 请求时候用到*/
+$(function(){
+	{if $PAGE_TYPE eq 'app'}
+	App.page_title('{$data.page_title}');
+
+	if($(".hide_list")){
+		$(".hide_list").addClass("page_type_app");
+	}
+	{/if}
+});
+</script>
+
+
+</head> 
+<body>
+{if $PAGE_TYPE eq 'app'}
+	
+{else}
+<div class="bg_fe4d3d  h100 pr w_b">
+	<a class="lh100 p_0_030" onclick="window.history.go(-1);"><i class="icon iconfont f040 f_fff">&#xe60b; </i></a>
+	
+	{if $data.ctl eq dc || $data.ctl eq dcres}
+	<div class="w_b_f_1 tc h100 lh100 f_fff f036">
+	 <a href="{url i="index" r="dcposition"}">	<span class="pr h100 f_fff"><i class="icon f_fff iconfont ps t-028 l-038">&#xe67e;</i>{if $s_info.dc_title}{$s_info.dc_title}{else}定位失败{/if}<!--<i class="icon iconfont ps t-026 r-044">&#xe601;</i>--></span></a>
+	</div>
+	
+	{elseif $data.ctl eq dcposition}
+
+	<div class="w_b_f_1 tc h100 lh100 f_fff f036 over-flow">
+		<span class="pr"><a href="{url i="index" r="city"}" class="f_fff">{$data.city_name} <i class="icon iconfont f040 f_fff" id="dc_biz_menu_but">&#xe679;</i></a></span>
+	</div>
+	{else}
+	<div class="w_b_f_1 tc h100 lh100 f_fff f036 over-flow">
+		<span class="pr">{$data.page_title}</span>
+	</div>
+	{/if}
+	
+   
+    {if $data.ctl eq dcpoint || $data.ctl eq dcbuy || $data.ctl eq dctable || $data.ctl eq dcdetail}	
+	 <div class="lh100 p_0_030 add_location_collect" action-url="{url r="index" p="dcajax#add_location_collect" g="location_id=$data.dclocation.id"}"><i class="icon iconfont f040  f_fff ">{if $data.dclocation.is_collected eq 1}&#xe695; {else}&#xe68a;{/if}</i></div> 
+   {elseif  $data.ctl eq dc_consignee &&  $data.act eq add && $data.dc_consignee_info.id gt 0}
+  	 <div class="lh100 p_0_030"><i class="del_consignee icon iconfont f040 f_fff"  consignee_id="{$data.dc_consignee_info.id}">&#xe68d;</i></div>
+   {elseif  $data.ctl eq dc}
+  <a href="{url i="index" r="dc_search"}"><div class="lh100 p_0_030"><i class="icon iconfont f040 f_fff">&#xe662;</i></div></a>
+   {elseif  $data.ctl eq dc_biz_resorder ||  $data.ctl eq dc_biz_order ||  $data.ctl eq dc_biz_verify }
+   <div class="lh100 p_0_030 pr">
+   	    <i class="icon iconfont f040 f_fff" id="dc_biz_menu_but">&#xe693;</i>
+		<div class="ps tc bg_fff bdr5  ovhide w200 t_110 r_030 bor_9 bb0 hide_show" id="dc_biz_menu_list">
+		      <ul >
+		      	<li class="lh080 f029 bor_12"><a href="{url r="index" p="dc_biz" g="lid=$data.lid" }"  class="black"> <i class="icon iconfont f040 f_fe4d3d">&#xe694;</i>&nbsp订单管理</a></li>
+				<li class="lh080 f029 bor_12"><a href="{url r="index" p="dc_biz_order" g="lid=$data.lid" }"  class="black"> <i class="icon iconfont f040 f_fe4d3d">&#xe691;</i>&nbsp外卖订单</a></li>
+				<li class="lh080 f029 bor_12"><a href="{url r="index" p="dc_biz_resorder" g="lid=$data.lid" }"  class="black"> <i class="icon iconfont f040 f_fe4d3d">&#xe692;</i>&nbsp预订订单</a></li>
+				<li class="lh080 f029 bor_12"><a rel="{url r="biz" p="user#loginout"}"  class="black dp-item-box-link loginout_btn" href="javascript:void(0);"> <i class="icon iconfont f040 f_fe4d3d">&#xe643;</i>&nbsp退出登录</a></li>
+		      </ul>
+		</div>
+	</div>
+	{elseif  $data.ctl eq dc_dcorder&&$data.act eq view || $data.ctl eq dc_rsorder&&$data.act eq view}
+   <div class="lh100 p_0_030 pr">
+   	    <i class="icon iconfont f040 f_fff" id="dc_biz_menu_but">&#xe693;</i>
+		<div class="ps tc bg_fff bdr5  ovhide w200 t_110 r_030 bor_9 bb0 hide_show" id="dc_biz_menu_list">
+		      <ul >
+		      	<li class="lh080 f029 bor_12"><a href="{url r="index" p="dc_dcorder"}"  class="black"> <i class="icon iconfont f040 f_fe4d3d">&#xe691;</i>&nbsp我的外卖</a></li>
+				<li class="lh080 f029 bor_12"><a href="{url r="index" p="dc_rsorder"}"  class="black"> <i class="icon iconfont f040 f_fe4d3d">&#xe692;</i>&nbsp我的预订</a></li>
+		      </ul>
+		</div>
+	</div>
+	{elseif  $data.ctl eq dc_payment || $data.ctl eq dcorder}
+   <div class="lh100 p_0_030 pr">
+   	    <i class="icon iconfont f040 f_fff" id="dc_biz_menu_but">&#xe693;</i>
+		<div class="ps tc bg_fff bdr5  ovhide w200 t_110 r_030 bor_9 bb0 hide_show" id="dc_biz_menu_list">
+		      <ul >
+		      	<li class="lh080 f029 bor_12"><a href="{url r="index" p="dc"}"  class="black"> <i class="icon iconfont f040 f_fe4d3d">&#xe691;</i>&nbsp外卖</a></li>
+				<li class="lh080 f029 bor_12"><a href="{url r="index" p="dcres"}"  class="black"> <i class="icon iconfont f040 f_fe4d3d">&#xe692;</i>&nbsp预订</a></li>
+		      </ul>
+		</div>
+	</div>
+   {else}
+    <div class="w100"></div>
+   {/if}
+</div>		
+{/if}

@@ -1,0 +1,83 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/account.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/account/index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/account/index.js";
+?>
+{include file="inc/header.html"}
+<div class="wrap_full">
+		<div class="msg_tip">
+			<i class="status"></i>
+			<p class="msg_content"></p>
+			<span class="close"></span>
+		</div>
+</div>
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content ">
+			<div class="head_box">
+				<h2>账户管理</h2>
+			</div>
+			<div class="form_box">
+				<h3>当前登录账号： {$account_info.account_name}</h3>
+				<div class="blank"></div>
+				<h3>可管理帐号列表</h3>
+				<table class="standard_table">
+					<tbody>
+						<tr>
+							<th widht="20">账号的名称</th>
+							<th widht="40">管理的门店</th>
+							<th widht="30">帐号说明</th>
+							<th widht="30">操作</th>
+						</tr>
+						{foreach from=$account_list item=acct_info}
+						<tr>
+							<td>{$acct_info.account_info.account_name}</td>
+							<td>
+								{foreach from=$acct_info.location_infos item=loca_info}
+									<p>{$loca_info}</p>
+								{/foreach}
+							</td>
+							<td>{$acct_info.account_info.description}</td>
+							<td><a href="{url b="biz" r="account#set_auth" p="account_id=$acct_info.account_info.id"}">权限设置</a>&nbsp;|&nbsp;<a href="{url b="biz" r="account#set_account" p="id=$acct_info.account_info.id"}">编辑</a></td>
+						</tr>
+						{/foreach}
+					</tbody>
+				</table>
+				<div class="blank10"></div>
+				<div class="add_account_btn">
+					<button class="ui-button " rel="orange" type="button" onclick="window.location='{url r="biz" b="account#add_account"}'">添加子账户</button>
+				</div>
+				<div class="blank10"></div>
+				<div class="common_tip" >
+	                <h3>账号说明：</h3>
+	                <ul>
+	                    <li>账号数量：每个商家可以最多有1个管理员账号，每个门店可以有多个门店账号</li>
+	                    <li>账号权限：管理员账号比门店账号有更多的权限，比如财务数据、申请延期等</li>
+	                </ul>
+
+            	</div>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

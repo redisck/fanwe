@@ -1,0 +1,58 @@
+.discover_tags{ width:225px;}
+.discover_tags_top{ background:url(../images/discover/tag_top.png) no-repeat; width:225px; height:53px;}
+.discover_tags_center{ background:url(../images/discover/tag_center.png) repeat-y; width:205px; padding:10px;}
+.discover_tags_bottom{ background:url(../images/discover/tag_bottom.png) no-repeat; width:225px; height:11px; font-size:0px; line-height:0px; }
+
+.discover_tags_center li {
+  float: left;
+  letter-spacing: normal;
+  margin: 0 10px 10px 0;
+  word-wrap: normal;
+}
+.discover_tags_center li a {
+  background: none repeat scroll 0 0 #E5F4FF;
+  border: 1px solid #69ACD3;
+  border-radius: 2px 2px 2px 2px;
+  color: #367091;
+  float: left;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.discover_tags_center li a.act {
+  background:@main_color;
+  border: 1px solid @main_color;
+  border-radius: 2px 2px 2px 2px;
+  color: #fff;
+  float: left;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#loading{ text-align:center; visibility:hidden; font-size:12px; line-height:16px; color:@font_color;}
+.loading_span{ background:url(../images/discover/loading_discover.gif) no-repeat; width:16px; height:16px; display:inline-block; vertical-align:top; margin-right:10px;}
+
+
+/* 关于跟随滚动的样式 */
+#flow_cate_outer{ position:relative; z-index:50; }
+#flow_cate{ position:absolute; left:-60px; width:50px; }
+#flow_cate ul{ display: block;
+width: 50px;
+border: #ddd 1px solid;
+background: #fff;
+border-right: 0px;
+border-bottom: 0px;}
+#flow_cate ul li{display: block;padding: 10px 0px;text-align: center;cursor: pointer;border: #ddd 1px solid;border-top: 0px;border-left: 0px;}
+#flow_cate ul li a{display: block;
+width: 25px;
+margin: 0 auto;
+line-height: 18px;
+font-size: 12px;
+}
+#flow_cate ul li.current{ background:@main_color; color:#fff; }
+#flow_cate ul li.current a{color:#fff; }
+

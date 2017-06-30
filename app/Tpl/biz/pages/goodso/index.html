@@ -1,0 +1,188 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/goodso.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/goodso/goodso.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/goodso/goodso.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+?>
+
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box">
+				<h2>{$head_title}</h2>
+			</div>
+			
+			<div class="info_table">
+				<div class="blank"></div>
+				<form name="search_form" action="{url x="biz" r="goodso"}" method="post">
+				<table>
+					<tr>
+						<td width="165"><input class="ui-textbox search_box time_input" name="begin_time" holder="下单起始日期" value="{$begin_time}" readonly="readonly" /></td>
+						<td width="5">-</td>
+						<td width="165"><input class="ui-textbox search_box time_input" name="end_time" holder="下单截止日期" value="{$end_time}" readonly="readonly" /></td>
+						<td width="50">名称</td>
+						<td width="165"><input class="ui-textbox search_box" name="name" holder="商品名称" value="{$name}" /></td>
+						<td></td>
+						<td width="100">
+							<input type="hidden" name="method" value="search" />
+							<button class="ui-button add_goods_type" rel="white" type="submit">搜索</button>
+						</td>
+					</tr>
+				</table>
+				</form>
+
+				<div class="blank"></div>
+			</div>
+			{if $list}
+			<div class="info_table">
+				
+				<table>
+					<tbody>
+						<tr>
+							<th width="50">&nbsp;</th>
+							<th>详情</th>
+							<th width="90">价格</th>
+							<th width="70">数量</th>
+							<th width="70">状态</th>
+						</tr>
+						{foreach from=$list item=item key=key}
+						<tr>
+							<td colspan=5 class="tl hlight">
+								<div class="f_l">
+								订单号：<h1>{$item.order_sn}</h1>，交易时间：<h1>{$item.create_time}</h1>
+								</div>
+							</td>
+						</tr>
+						<tr class="alt">
+                            <td>
+                            	<a href="{$item.url}" target="_blank">
+                            		<img src="{function name="get_spec_image" v=$item.deal_icon w=50 h=50 g=1}" lazy="true" class="deal_icon" />
+								</a>
+                            </td>
+							<td class="tl">
+								<a href="{$item.url}" target="_blank" title="{$item.name}">{$item.sub_name}</a>
+								{if $item.memo}
+								<br />
+								订单备注：{$item.memo}
+								{/if}
+								<br />
+								下单会员：{$item.user_name}
+								{if $item.delivery_status neq 5}
+								<br />
+									<div class="delivery_info">
+									配送信息：{$item.delivery}<br />
+									收货人：{$item.consignee}，手机：{$item.mobile}<br />
+									地址：{$item.region_lv1} {$item.region_lv2} {$item.region_lv3} {$item.region_lv4} {$item.address}<br />
+									邮编：{$item.zip}	
+									</div>							
+								{/if}
+							</td>
+							<td>
+								<h1>结算价：{function name="format_price" v=$item.s_total_price}</h1>
+							</td>
+							<td>{$item.number}</td>
+							<td>
+							
+							{if $item.order_status eq 1}{*结单的订单显示说明，如有点评显示点评*}
+								订单已完结
+							{else}										
+								{if $item.delivery_status eq 5}
+								无需发货
+								{else}
+									{if $item.delivery_status eq 0}
+										<h1>未发货</h1>
+										{if $item.refund_status eq 0 or $item.refund_status eq 3}
+										<br />
+										<a href="javascript:void(0);" rel="{$item.id}" class="do_delivery">立即发货</a>
+										{/if}
+									{elseif $item.delivery_status eq 1}
+										<h1>已发货</h1>
+										<br />
+										<a  {if app_conf("KUAIDI_TYPE") eq 1}ajax="true" href="javascript:void(0);" action="{url x="biz" r="goodso#check_delivery" p="id=$item.id"}"{else}href="{url x="biz" r="goodso#check_delivery" p="id=$item.id"}" target="_blank"{/if} rel="{$item.id}" class="check_delivery">查看物流</a>													
+										{if $item.is_arrival eq 1}
+											<br />
+											已收货
+										{elseif $item.is_arrival eq 2}
+											<br />
+											维权中
+										{else}
+											{if $NOW_TIME - $item.delivery_notice.delivery_time > 3600*24*$ORDER_DELIVERY_EXPIRE}
+											<br />
+											<a href="javascript:void(0);" rel="{$item.id}" class="do_verify_delivery">超期收货</a>
+											{/if}
+										{/if}										
+									{/if}
+								{/if}
+								
+								
+								{if $item.dp_id gt 0}
+								<br />
+								<h1>已点评</h1>
+								{/if}
+								
+								{if $item.refund_status eq 1}
+								<br />
+								{if $allow_refund eq 1}
+								<h1><a href="javascript:void(0);" rel="{$item.id}" class="do_refund_item">退款审核</a></h1><br />
+								<h1><a href="javascript:void(0);" rel="{$item.id}" class="do_refuse_item">拒绝退款</a></h1>
+								{else}
+								<h1>退款中</h1>
+								{/if}
+								{elseif $item.refund_status eq 2}
+								<br />
+								<h1>已退款</h1>	
+								{/if}
+														
+							{/if}	
+							
+							</td>
+                        </tr>
+                        {/foreach}
+                          
+
+					</tbody>
+				</table>
+				
+			</div>	
+			
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>			
+			{else}
+			<div class="empty_tip">没有商品订单记录</div>
+			{/if}			
+		
+
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

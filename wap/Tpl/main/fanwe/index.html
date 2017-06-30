@@ -1,0 +1,250 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/weebox.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/fanweUI.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/color.css";	
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/index.css";	
+
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.touchwipe.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/onload.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/swipe.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/index.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/index.js";
+?>
+{include file="inc/header_index.html"}
+<script type="text/javascript">
+	var has_location = {$has_location};
+	var geo_url = '{url a="index" r="userxypoint"}';
+	var city_url = '{url x="index" r="city#city_change"}';
+</script>
+
+<div class="wrap">			
+				
+		{if $data.advs}
+        <div class="top">
+            <div class="flash" id=containerFlashAnimation>
+                <section>
+                    <div id="banner_box" class="box_swipe" style="visibility: visible;">
+                        <ul style="list-style: none; transition: 500ms; -webkit-transition: 500ms;">
+                            {foreach from="$data.advs" item="adv"}
+                            <li style="vertical-align: top; width: 640px; display: table-cell;">
+                                <a href="{$adv.url}"><img src="{$adv.img}" alt="" border="0" style="width:100%;"></a>
+                            </li>
+							{/foreach}
+                        </ul>
+                        <ol>
+                            {foreach from="$data.advs" item="adv" key="key"}
+                            <li {if $key==0}class="on"{/if}>
+                            </li>
+                            {/foreach}
+                        </ol>
+                    </div>
+                </section>
+            </div>
+        </div>
+		{/if}
+		
+		
+		{if $data.indexs}
+		<div class="sort_nav">
+			  <div class="sort_list">
+			  	    <ul>
+						{foreach from="$data.indexs" item="indexs" key=key}
+						<li class="sort_li" >
+								<a href="{$indexs.url}">
+			  	    			<span class="yuan" style="background-color:{$indexs.color}" ><i class="diyfont">{$indexs.icon_name}</i></span>
+								<span class="txt">{$indexs.name}</span>
+								</a>							
+			  	    	</li>
+						{/foreach}
+						
+
+						<li class="sort_li" >
+							<a href="{url x="index" r="index_more"}">
+								<span class="yuan" style="background-color:#45d3bf;" ><i class="iconfont">&#xe607;</i></span>
+								<span class="txt">更多</span>
+							</a>
+						</li>
+			  	    </ul>
+			  </div>
+		</div>
+		{/if}
+			
+		{if $data.zt_html}
+		<div class="blank8"></div>
+		{$data.zt_html}
+		{/if}	
+				
+				{if $data.supplier_list}
+				<div class="content">
+					<div class="blank8"></div>
+					<div class="list-view">
+						 <div class="list_title">推荐商家 <a href="{url a="index" r="stores"}" class="show_more">更多</a></div>
+						 <ul class="sp_ul">
+						 	{foreach from=$data.supplier_list item=supplier_item name=supplier_item key=key}
+							{if $smarty.foreach.supplier_item.iteration lt 4}
+						 	<li class="sp_li">
+						 	    <a href="{url a="index" r="store"  p="data_id=$supplier_item.id"}">
+						 	    	<img src="{$supplier_item.preview}" style="width:100%" lazy="true" />
+									<div class="h">{function name="msubstr" v=$supplier_item.name b=0 e=5}</div>
+						 	    </a>
+						 	</li>
+							{/if}
+							{/foreach}
+						 </ul>
+					</div>
+					{/if}
+					
+			
+					
+					<div class="blank8"></div>
+					{if $data.event_list}
+					<div class="list-view">
+						 <div class="list_title">推荐活动<a href="{url a="index" r="events"}"  class="show_more">更多</a></div>
+						 <div class="blank"></div>
+						 <ul class="activity_ul">
+						 	{foreach from=$data.event_list item=event_item name=event_item}
+						 	<li class="activity_li">
+						 	    <a href="{url a="index" r="event"  p="data_id=$event_item.id"}" class="li_box">
+						 	    	<img src="{$event_item.icon}" width="100%" lazy="true" />
+									<div class="lucency">剩余时间：{$event_item.sheng_time_format}</div>
+						 	    </a>
+						 	</li>
+							{/foreach}
+						 </ul>
+					</div>
+					{/if}
+					
+					
+					<div class="blank8"></div>
+					{if $data.deal_list}
+					<div class="list-view">
+						 <div class="list_title">推荐团购</div>
+						 <ul class="tuan_ul">
+						 	 {foreach from=$data.deal_list item=deal_item name=deal_item key=key}
+						 	<li class="tuan_li">
+						 	     <a href="{url a="index" r="deal"  p="data_id=$deal_item.id"}">
+						 	     	<div class="list_item">
+						 	     		 <div class="pic">
+						 	     		 	<img src="{$deal_item.icon}" width="140" height="85" lazy="true" />
+											{if $deal_item.buyin_app eq 1}
+											<i class="tuan_ico order">手机单</i>
+											{else}
+											{if $deal_item.is_lottery eq 1}<i class="tuan_ico order">抽奖</i>{else}
+											{if $deal_item.auto_order eq 1}<i class="tuan_ico order">免预约</i>{/if}
+											{/if}
+											{/if}											
+						 	     		 </div>
+										 <div class="info">
+										 	<h2>{if $deal_item.sub_name}{$deal_item.sub_name}{else}{$deal_item.name}{/if}</h2>
+											<h3>{$deal_item.brief}</h3>
+											<div class="tuan_price">
+						                         <p class="price">
+						                         	 <em>{$deal_item.current_price}<i>元</i></em>
+													 <del>{$deal_item.origin_price}元</del>
+												 </p>
+						                         <p class="bought"><i></i>已售{$deal_item.buy_count}</p>
+						                     </div>
+										 </div>
+						 	     	</div>
+						 	     </a>
+						 	</li>
+							{/foreach}
+							
+						 </ul>
+						 <div class="see_more">
+						 	<a href="{url a="index" r="tuan"}">查看全部团购</a>
+						 </div>
+					</div>
+					{/if}
+					<div class="blank8"></div>
+					{if $data.supplier_deal_list}
+					<div class="list-view">
+						 <div class="list_title">推荐商品</div>
+						 <ul class="tuan_ul">
+						 	 {foreach from=$data.supplier_deal_list item=supplier_deal_item name=supplier_deal_item key=key}
+						 	<li class="tuan_li">
+						 	     <a href="{url a="index" r="deal"  p="data_id=$supplier_deal_item.id"}">
+						 	     	<div class="list_item">
+						 	     		 <div class="pic">
+						 	     		 	<img src="{$supplier_deal_item.icon}" width="140" height="85" lazy="true" />
+											{if $supplier_deal_item.buyin_app eq 1}
+											<i class="tuan_ico order">手机单</i>
+											{else}
+											{if $supplier_deal_item.is_lottery eq 1}<i class="tuan_ico order">抽奖</i>{else}
+											{if $supplier_deal_item.is_refund eq 1}<i class="tuan_ico order">随时退</i>{/if}
+											{/if}
+											{/if}
+						 	     		 </div>
+										 <div class="info">
+										 	<h2>{if $supplier_deal_item.sub_name}{$supplier_deal_item.sub_name}{else}{$supplier_deal_item.name}{/if}</h2>
+											<h3>{$supplier_deal_item.brief}</h3>
+											<div class="tuan_price">
+						                         <p class="price">
+						                         	 <em>{$supplier_deal_item.current_price}<i>元</i></em>
+													 <del>{$supplier_deal_item.origin_price}元</del>
+												 </p>
+						                         <p class="bought"><i></i>已售{$supplier_deal_item.buy_count}</p>
+						                     </div>
+										 </div>
+						 	     	</div>
+						 	     </a>
+						 	</li>
+							{/foreach}
+							
+						 </ul>
+						 <div class="see_more">
+						 	<a href="{url a="index" r="goods"}">查看全部商品</a>
+						 </div>
+					</div>
+					{/if}
+      				<div class="blank8"></div>
+	                   
+					{if $data.youhui_list}   
+					<div class="list-view">
+						 <div class="list_title">推荐优惠券</div>
+						 <ul class="youhui_ul">
+						 	{foreach from=$data.youhui_list item=youhui_item name=youhui_item}
+						 	<li class="tuan_li">
+						 	     <a href="{url a="index" r="youhui"  p="data_id=$youhui_item.id"}">
+						 	     	<div class="list_item">
+						 	     		 <div class="pic">
+						 	     		 	<img src="{$youhui_item.icon}" width="140" height="85" lazy="true">
+										</div>
+										 <div class="info">
+										 	<h2>{$youhui_item.name}</h2>
+											<h3>{$youhui_item.list_brief}</h3>
+											<div class="tuan_price">
+												 <p>时间：{$youhui_item.begin_time}</p>
+						                     </div>
+										 </div>
+						 	     	</div>
+						 	     </a>
+						 	</li>
+							{/foreach}
+							</ul>
+						 <div class="see_more">
+						 	<a href="{url a="index" r="youhuis"}">查看全部优惠券</a>
+						 </div>
+					</div>
+					{/if}
+  					<div class="blank8"></div>   					
+				 
+				</div>
+</div>	
+{include file="inc/footer.html"}	

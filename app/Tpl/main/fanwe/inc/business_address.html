@@ -1,0 +1,90 @@
+<div class="business_adress clearfix">
+		<div class="content">
+				<div class="content_left">
+					{if $location_list}
+					<div id="supplier_map"></div>
+					{/if}
+				</div>
+				<div class="content_right f_r">
+					<div class="position">
+						<span class="title">位置筛选</span>
+						<div class="select_list">
+								<select name="city_id" class="ui-select search_type f_l" height=100>
+									{foreach from=$city_list item=city}
+									{if $city.current}
+									<option value="{$city.id}" {if $city.current}selected="selected"{/if}>{$city.name}</option>
+									{/if}
+									{/foreach}
+								</select>
+								<select name="aid" class="ui-select search_type f_l" height=100>											
+									<option value="0">全部城区</option>
+									{foreach from=$area_list item=area}
+									<option value="{$area.id}" {if $area.current}selected="selected"{/if}>{$area.name}</option>
+									{/foreach}
+								</select>
+								<select name="qid" class="ui-select search_type f_l" height=100>
+									<option value="0">全部商圈</option>
+									{foreach from=$quan_list item=quan}
+									<option value="{$quan.id}" {if $quan.current}selected="selected"{/if}>{$quan.name}</option>
+									{/foreach}
+								</select>
+						</div>
+					</div>
+					{if $location_list}
+					<div class="details_address">
+						
+						<ul>
+							{foreach from=$location_list item=location}
+							<li class="details_address_li show_hide">
+								<h5 class="title">
+									<a href="{$location.url}" class="f_l" title="{$location.name}"  target="_blank">{function name="msubstr" v=$location.name b=0 e=15}</a>
+									<i class="f_r none"></i>
+									</h5>
+								<div class=" info show_hide_child">
+									<div class="how_num">
+										<span class="tit">评价:</span>
+										<a href="{$location.url}" target="_blank">
+											{if $location.dp_count gt 0}
+											<span class="yes">{$location.dp_count}人评价</span>
+											{else}
+											<span class="no">暂无评价</span>
+											{/if}
+											
+										</a>
+									</div>
+									<div class="ress clearfix">
+										<span class="public_title f_l">地址:</span>
+										<div class="f_r p">
+											<p>
+											{$location.address}
+											</p>
+											<div class="see">
+												<a href="javascript:void(0);" class='map_data' store_name="{$location.name}" xpoint="{$location.xpoint}" ypoint="{$location.ypoint}" store_url="{$location.url}" store_tel="{$location.tel}" store_address="{$location.address}">查看地图</a>
+											</div>
+										</div>
+									</div>
+									<div class="ress clearfix">
+										<span class="public_title f_l">电话:</span>
+										<p>{$location.tel}</p>
+									</div>
+								</div>
+							</li>
+							{/foreach}
+							
+							
+							
+						</ul>
+						
+					</div>
+					<div class="clearfix ress_bottom">
+						<div class="fy f_l clearfix">
+						<div class="pages">{$pages}</div>
+					</div>
+						<a href="{$sellall}"  class="see_all font_hover f_r underline" target="_blank">查看所有分店»</a>
+					</div>
+					{else}
+					<div class="empty_tip">没有门店信息</div>
+					{/if}
+				</div>
+			</div>
+</div>

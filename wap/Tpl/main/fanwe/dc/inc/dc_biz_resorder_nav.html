@@ -1,0 +1,5 @@
+<div class="nav-bar_02 w_b bor_3 bg_fff tc lh048 f027">
+	<div class="w_b_f_1 pt026 pb024 {if $data.ctl eq dc_biz_resorder && $data.act eq index}current{/if}"><a href="{url r="index" p="dc_biz_resorder" g="lid=$data.lid" }" class="block bor_2">新订单</a></div>
+	<div class="w_b_f_1 pt026 pb024 {if $data.ctl eq dc_biz_resorder && $data.act eq order}current{/if}"><a href="{url r="index" p="dc_biz_resorder#order" g="lid=$data.lid" }" class="block bor_2">订单记录</a></div>
+	<div class="w_b_f_1 pt026 pb024 {if $data.ctl eq dc_biz_verify && $data.act eq index}current{/if}"><a href="{url r="index" p="dc_biz_verify" g="lid=$data.lid" }" class="block">验证</a></div>
+</div>

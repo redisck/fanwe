@@ -1,0 +1,81 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_consignee.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_consignee.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_consignee.js";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_inc_position.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+?>
+{include file="inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script>
+
+var api_addr = '{$dc_consignee_info.api_address}';
+var c_id={$c_id};
+
+</script>
+<script type="text/javascript" src="{$APP_ROOT}/public/runtime/region.js"></script>	
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav left_box">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		
+		<div class="main_box setting_user_info">
+			<div class="content">
+				<div class="title"><span>配送地址</span></div>
+				<div class="blank20"></div>
+				
+				
+			<div id="dc_cart_consignee" class="dc_cart_consignee"  rel="{$consignee_id}">
+					
+				<table cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr><td class="name">姓&nbsp;名</td><td class="dc_m"><input class="ui-textbox" holder="请输入您的姓名" type="text" name="consignee" value="{$dc_consignee_info.consignee}" /></td><td class="require">*</td></tr>
+						<tr><td class="name">电&nbsp;话</td><td class="dc_m"><input type="text" name="mobile"  class="ui-textbox" holder="请输入您的电话"   value="{$dc_consignee_info.mobile}" /></td><td class="require">*</td></tr>
+						<tr><td class="name">位&nbsp;置</td><td class="dc_m">{include file="dc/inc/dc_inc_position.html"}</td><td class="require">*</td></tr>
+						<tr><td class="name">详细地址</td><td class="dc_m"><input type="text" id="address"  class="ui-textbox" holder="请输入您的详细地址" name="address" value="{$dc_consignee_info.address}" /></td><td class="require">*</td></tr>
+							<input name="consignee_id" type="hidden" value="{$dc_consignee_info.id}">
+					</tbody>
+				</table>
+			
+			</div>
+				
+				
+					<dl class="submit_dl" style="padding-top: 12px;">
+						<dt></dt>
+						<dd>
+						<button type="button" value="确定"  rel="orange" name="commit"  id="sub_dc_address" class="ui-button noform"  >确定</button>
+						</dd>
+					</dl>
+				
+			</div>					
+		</div>
+
+		<div class="blank20"></div>
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

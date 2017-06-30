@@ -1,0 +1,77 @@
+{if $goodsList}
+<script>
+	var jsonDeal  = {$jsonDeal};
+	var jsonAttr  = {$jsonAttr};
+	var jsonStock = {$jsonStock};
+	
+	
+	
+</script>
+<div style="display: block;"  id="fitting-suit"> 
+	<div class="mt"> 
+		<ul class="tab">
+			<li style="display:" class="curr"><a href="javascript:void(0);"><strong>最佳组合</strong></a> </li> 
+		</ul>  
+	</div> 
+    
+	<div class="mc clearfix">
+    	<!--主商品box-->
+		<div class="main-good-box">
+			<div class="p-img"> 
+				<a href="{url x="index" r="deal" p="act=$mainDeal.id"}" target="_blank">
+					<img src="{function name="get_spec_image" v=$mainDeal.icon w=130 h=130 g=1}" alt="{$mainDeal.sub_name}" origin="{$mainDeal.icon}" width="130" height="130">
+				</a> 
+			</div> 
+			<div class="p-name ac"> 
+				<a href="{url x="index" r="deal" p="act=$mainDeal.id"}" title="" target="_blank">{$mainDeal.name}</a> 
+			</div> 
+			<div class="p-price ac"> 
+            	{if $mainDeal.deal_attr}
+				<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="relateCheckbox" value="{$mainDeal.id}" id="main_goods" /><strong>&yen;{function name="round" v=$mainDeal.current_price l=2}</strong></label>
+               	{else}
+				<input type="checkbox" name="relateCheckbox" value="{$mainDeal.id}" style="display:none;" checked="true" id="main_goods" /><strong>&yen;{function name="round" v=$mainDeal.current_price l=2}</strong>
+			    {/if}
+				 
+			</div>
+        </div>
+		<div class="jia">+</div>
+        <!--关联商品列表box-->
+		<div class="combine-content" id="relate_content"> 
+		{if count($goodsList) gt 3}
+			<i class="t_left"></i>
+			<i class="t_right"></i>
+		{/if}
+		<ul class="roll">
+		{foreach name="goodsList" from=$goodsList item=deal}
+		<li>
+			<div class="p-img"> 
+				<a href="{url x="index" r="deal" p="act=$deal.id"}" target="_blank">
+					<img src="{function name="get_spec_image" v=$deal.icon w=130 h=130 g=1}" alt="{$deal.sub_name}" origin="{$deal.icon}" width="130" height="130">
+				</a> 
+			</div> 
+			<div class="p-name ac"> 
+				<a href="{url x="index" r="deal" p="act=$deal.id"}" title="" target="_blank">{$deal.name}</a> 
+			</div> 
+			<div class="p-price ac"> 
+				<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="relateCheckbox"  value="{$deal.id}"/><strong>&yen;{function name="round" v=$deal.current_price l=2}</strong> </label>
+				
+			</div>
+		</li> 
+		{/foreach}
+		
+		</ul>
+		</div> 
+		<!--价格总计div-->
+		<div class="relate-price-box">
+			<div class="relate-check-num">已选择<span id="relateCheckNum">0</span>个配件</div>
+			<div class="relate-check-price" >搭 配 价：<span id="relateCheckCurrPrice">￥0.00</span><br /><span style="text-decoration:line-through;">参 考 价：￥<span id="relateCheckOrigPrice">0.00</span></span></div>
+			<div class="relate-check-btn" >
+				<button class="ui-button blue" rel="blue" type="button" id="relate_buy_btn">组合购买</button>
+			</div>
+		</div>
+		
+		
+		
+	</div> 
+</div>
+{/if}

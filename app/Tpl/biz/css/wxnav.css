@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+.info_table table td{padding:10px;}
+.info_box{padding: 0 20px 0 20px;}
+.info_box .bg_box{margin: 0 0 10px;padding: 8px 16px;font-size: 12px;border: 1px solid #F6E0AF;background: #ffffeb;overflow: hidden;zoom: 1;}
+
+.add_nav{padding-left:20px;}
+.sub i {padding-left:10px;}
+.add_sub_nav{font-size:20px;}
+
+
+

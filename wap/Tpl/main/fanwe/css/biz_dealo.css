@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+.sub_info{margin-top:10px;}
+.table_box:first-of-type{padding:0px;padding-top:5px;border-top: 1px dotted #ccc;}
+.table_box{padding:0px;}
+.item_medium_ul .item_li .list_item .info{padding-right:10px;}

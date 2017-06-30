@@ -1,0 +1,38 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<php>
+
+	function get_publish_status($status)
+	{
+		if($status==0)
+		{
+			return "<span style='color:#f30;'>未审核</span>";
+		}
+		else
+		{
+			return "已审核开通";
+		}
+	}
+</php>
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%FOREVERDEL}" onclick="foreverdel();" />
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="location" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:商户名称,h_name:企业名称,h_tel:联系电话,create_time|to_date:申请时间,is_publish|get_publish_status:状态" 
+	actionlist="edit:查看, foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

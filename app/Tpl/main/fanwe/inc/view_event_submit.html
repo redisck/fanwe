@@ -1,0 +1,25 @@
+{if $is_logined}
+<table>
+	{foreach from=$event_fields item=field}
+	<tr>
+
+		<td>{$field.field_show_name}：</td>
+		<td>
+		{if $field.field_type eq 0}
+			{$field.result}
+		{else}
+			{foreach from=$field.value_scope item=val}
+				{if strim($val) neq '' and $field.result eq $val}
+				{$val}
+				{/if}
+			{/foreach}
+		{/if}
+		</td>
+
+	</tr>
+	{/foreach}
+
+</table>
+{else}
+请先 <a href="{url x="index" r="user#login"}">登录</a>
+{/if}

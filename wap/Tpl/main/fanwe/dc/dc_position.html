@@ -1,0 +1,67 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/dc/css/dc_style.css";
+
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.6.2.min.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/page_js/dc_position.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/TouchSlide.1.1.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchScroll.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/dc/js/js_ext/touchslider.dev.js";
+?>
+{include file="dc/inc/header.html"}
+{include file="dc/inc/dc_js_var.html"}
+<script type="text/javascript">
+
+	var dc_title='{$s_info.dc_title}';
+	var CITY_NAME = '{$city_name}';
+
+</script>
+
+<!-------------------------------------------------------------------------------------------------title-->
+<div class="bg_fff p_022_030 bor_3">
+	<div class="clearfix bg_e8e9ea bdr5 ovhide w_b">
+		<i class="icon iconfont f028   f_9fa0a4 lh056 w060 tc block">&#xe600;</i>
+		<input id="q_text" type="text" placeholder="输入地址搜索周边商家" name="q_text" class="w_b_f_1 bg_e8e9ea bor0 f024 f_9fa0a4 lh056"/>
+	</div>
+</div>
+<div id="map_show"></div>
+<!-------------------------------------------------------------------------------------------------搜索块-->
+<div class="blank022"></div>
+
+<div id="do_search" class="bor_3 bor_4 bg_fff tc lh100">
+	<i class="icon iconfont f046   f_fe4d3d   pr020 ">&#xe67b;</i>
+	<span class="f029">定位当前位置</span>
+</div>
+<!-------------------------------------------------------------------------------------------------定位当前位置-->
+<div class="blank022"></div>
+
+<div class="bor_3 bor_4 bg_fff  lh100 f029 pl030">历史记录</div>
+<div class="history">
+ {foreach from=$dc_search_history item=item}
+      <div class="bor_5 bg_fff  lh040 f029 p030  f_858585 result-item" data-params="{'lng':'{$item.dc_xpoint}','lat':'{$item.dc_ypoint}','title':'{$item.dc_title}','content':'{$item.dc_content}','dc_num':'{$item.dc_num}'}">{$item.dc_title}</div>
+{/foreach}
+</div>
+<div class="bor_3  bg_fff  lh100 f029 f_858585 tc dc_clear_history">清空历史记录</div>
+<div class="blank020"></div>
+
+</body>
+</html>

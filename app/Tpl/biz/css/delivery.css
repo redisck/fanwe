@@ -1,0 +1,9 @@
+.border_none{border:none;}
+#region_conf div {padding: 5px 0px;}
+.t_field_value input{padding: 8px 0px;}
+.dialog-box .dialog-button{padding:5px;}
+.t_field_value .t_textarea {resize: none;width: 600px;height: 100px;border: none;font-size: 14px;word-spacing: 8px;-spacing: 1px;}
+
+.long_input{text-align:center;}
+
+.btn_row{ padding-top:5px;}

@@ -1,0 +1,46 @@
+<div class="item_name">{$item.name}</div>
+<form action="{url x="biz" r="goodso#do_delivery"}" method="post" name="delivery_form">
+<table class="delivery_table">
+	<tr>
+		<td class="title">发货的门店</td>
+		<td>
+			<select name="location_id" class="ui-select location_select" height="50">
+				{foreach from=$location_list item=location}
+				<option value="{$location.id}">{$location.name}</option>
+				{/foreach}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="title">快递</td>
+		<td>
+			<select name="express_id" class="ui-select express_select" height="50">
+				<option value="0">其他</option>
+				{foreach from=$express_list item=express}
+				<option value="{$express.id}">{$express.name}</option>
+				{/foreach}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="title">快递单号</td>
+		<td>
+			<div class="item_name">同一批发货的商品可填写相同的单号</div>
+			<input type="text" class="ui-textbox" name="delivery_sn" holder="请输入相应的快递单号" />
+		</td>
+	</tr>
+	<tr>
+		<td class="title">备注</td>
+		<td>
+			<textarea name="memo" class="ui-textbox memo" holder="没有备注请留空"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2  class="btn">
+			<input type="hidden" name="id" value="{$item.id}" />
+			<input type="hidden" name="ajax" value="1" />
+			<button class="ui-button orange" rel="orange" type="submit">确认发货</button>
+		</td>
+	</tr>
+</table>
+</form>

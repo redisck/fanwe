@@ -1,0 +1,109 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_voucher.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_voucher.js";
+?>
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav left_box">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		
+		<div class="main_box uc_info_box">
+			<div class="info_nav">
+				<ul>
+					<li id="deal_li" ><a href="{url x="index" r="uc_voucher"}">我的红包</a></li>					
+					<li id="event_li"  class="cur"><a href="{url x="index" r="uc_vouchert#exchange"}">红包兑换</a></li>
+				</ul>
+			</div>						
+			<div class="blank20"></div>
+			
+			
+			{if $list}
+			<div class="info_table">
+				<table>
+					<tbody>
+						<tr>
+								<th>红包名称</th>
+								<th>红包面额</th>
+								<th>所需积分</th>
+								<th>可用积分</th>									
+								<th>{$LANG.DO_EXCHANGE}</th>
+						</tr>
+						{foreach from=$list item=voucher key=key}
+						<tr class="alt">
+                               <td style="border-right: 1px dotted #E5E5E5;">{$voucher.name} </td>
+                               <td style="border-right: 1px dotted #E5E5E5;">{function name="format_price" value=$voucher.money}</td>
+                               <td style="border-right: 1px dotted #E5E5E5;">{function name="format_score" value=$voucher.exchange_score}</td>
+                               <td style="border-right: 1px dotted #E5E5E5;">{function name="intval" p="$user_info.score"}积分</td>
+                               <td><a class="exchange" href="javascript:void(0);" url="{url x="index" r="uc_voucher#do_exchange" p="id=$voucher.id"}">{$LANG.DO_EXCHANGE}</a></td>
+                         </tr>
+                         {/foreach}
+                          
+
+					</tbody>
+				</table>
+				
+			</div>			
+			
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>
+			{else}
+			<div class="empty_tip">没有相关的红包记录</div>
+			{/if}
+
+			<!--voucher exchange-->
+			<div class="blank"></div>
+			<div class="layout_box">	
+				<div class="title">序列号兑换红包</div>
+				<div class="content clearfix">	
+					<div class="form_panel" style="padding:25px;">
+					<div class="panel">
+					<form name="sn_exchange" id="sn_exchange"  method="post" action="{url x="index" r="uc_voucher#do_snexchange"}">
+						
+						<dl>
+							<dt>序列号</dt>
+							<dd>
+								<input class="ui-textbox" name="sn" holder="请输入红包兑换的序列号" />
+							</dd>
+						</dl>			
+									
+						
+						<dl>
+							<dt></dt>
+							<dd>
+								<button class="ui-button orange f_l" rel="orange" type="submit">立即兑换</button>
+							</dd>
+						</dl>
+						
+					</form>
+					</div>
+					</div>
+				</div><!--end content-->
+				</div>
+			<!--end exchange-->
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

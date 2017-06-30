@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+.voucher_item{ display:inline-block; float:left; padding:10px; width:136px; height:250px;}
+.voucher_item .voucher_bg{ display:block; background:url(../images/css_bg/bonus_bg.jpg) no-repeat; width:136px; height:199px;}
+.voucher_item table{ width:100%;}
+.voucher_item table td{ vertical-align:middle; height:150px;  padding:45px 10px 0px 10px; color:#fff; text-align:center;}
+.voucher_item table td span{ display:block;}
+.voucher_info{ height:44px; line-height:22px; text-align:center;  padding-top:10px;}
+.bonus_name{ font-size:14px; font-family:"微软雅黑"; font-weight:bolder; height:26px; line-height:26px; color:yellow;}

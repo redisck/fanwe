@@ -1,0 +1,25 @@
+{if $sort_row_data}
+<div class="sort_row">
+	<ul>
+		{foreach from=$sort_row_data.sort item=sort_item}
+		<li class="anode {if $sort_item.current}current{/if} {$sort_item.type}"><a href="{$sort_item.url}">{$sort_item.name}{if $sort_item.type}<i class="iconfont">{if $sort_item.type eq 'asc'}&#xe61c;{else}&#xe61d;{/if}</i>{/if}</a></li>
+		{/foreach}
+		
+		{foreach from=$sort_row_data.range item=range_item}
+		<li class="dnode">
+		<select class="ui-drop">
+			{foreach from=$range_item item=range_row}
+			<option value="{$range_row.url}" {if $range_row.selected}selected="selected"{/if}>{$range_row.name}</option>
+			{/foreach}
+		</select>
+		</li>
+		{/foreach}
+		
+		{foreach from=$sort_row_data.tag item=tag_item}
+		<li class="cnode">
+		<label class="ui-checkbox dtag" rel="common_cbo"><input type="checkbox" {if $tag_item.checked}checked="checked"{/if} name="t1" value="{$tag_item.url}" />{$tag_item.name}</label>
+		</li>
+		{/foreach}
+	</ul>
+</div>
+{/if}

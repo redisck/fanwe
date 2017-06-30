@@ -1,0 +1,68 @@
+﻿<div class="notice">
+	{if $dclocation.is_close eq 0}
+		{if $dclocation.is_reserve eq 1}
+		<a id="reserve_icon" href="{url r="index" t="dctable" p="lid=$dclocation.id"}">
+		<div class="box-title dc_reserve"><i class="iconfont">&#xe649;</i>预订</div>
+		</a>
+		{/if}
+	{/if}
+	<div class="box-title">商家公告</div>
+
+	<div class="content-notice">
+	
+	{if $dclocation.dc_location_notice}
+	<p class="dc_notice shop-notice">{$dclocation.dc_location_notice}</p>
+	{/if}
+	
+	{if $dclocation.dc_online_pay}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/pay_s.png" /><span class="dc_r_info dc_pay">支持在线支付</span></div>
+	{/if}
+	{if $dclocation.is_firstorderdiscount}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/xin_s.png" /><span class="dc_r_info">{$promote_info.is_firstorderdiscount.description}</span></div>
+	{/if}
+	{if $dclocation.is_payonlinediscount}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/jian_s.png" /> <span class="dc_r_info">{$promote_info.is_payonlinediscount.description}</span></div>
+	{/if}
+	<!--
+	{if $dclocation.is_close eq 1}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/payenjoy_s.png" />暂停营业</p>
+	{/if}
+	{if $dclocation.is_dc eq 1}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/payenjoy_s.png" />支持外卖</p>
+	{/if}
+	{if $dclocation.is_reserve eq 1}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/payenjoy_s.png" />支持餐厅订座</p>
+	{/if}
+	-->
+	{if $dclocation.is_dc eq 1 && !$dclocation.location_delivery_info}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/mian_s.png" /><span class="dc_r_info">免费配送</span></div>
+	{/if}
+
+	{if $dclocation.dc_allow_invoice eq 1}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/invoice_s.png" /><span class="dc_r_info">支持开发票</span></div>
+	{/if}
+	
+
+	{if $dclocation.dc_allow_ecv}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/coupon_s.png" /><span class="dc_r_info">可代金券支付,每日限1张</span></div>
+	{/if}
+	
+	{if $dclocation.location_package_conf.package_start_price eq 0}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/package_s.png" /><span class="dc_r_info">不收打包费</span></div>
+	{/if}
+	{if $dclocation.location_package_conf.package_start_price eq -1}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/package_s.png" /><span class="dc_r_info">每样商品收取{function name=format_price item=$dclocation.location_package_conf.package_price}打包费</span></div>
+	{/if}
+	{if $dclocation.location_package_conf.package_start_price gt 0}
+	<div class="dc_notice"><img src="{$TMPL}/images/dc/dc_takeaway/package_s.png" /><span class="dc_r_info">满{function name=format_price item=$dclocation.location_package_conf.package_start_price}不收打包费，
+						小于{function name=format_price item=$dclocation.location_package_conf.package_start_price}，每样商品收取{function name=format_price item=$dclocation.location_package_conf.package_price}打包费</span>
+	</div>
+	{/if}
+	
+	
+	</div>
+	
+	</div>
+
+
+

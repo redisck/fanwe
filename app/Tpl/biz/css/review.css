@@ -1,0 +1,18 @@
+.review_list_table td.rate .iconfont{width: 30px;height: 30px;line-height: 30px;margin: 5px auto;font-size: 25px;display: block;color: #888;}
+.review_list_table p.exp{border: 0;padding: 10px 16px;background: #f6f6f6;color: #b28500;margin-top: 10px;word-wrap: break-word;overflow: hidden;}
+.review_cnt .review_cnt_bd{padding: 0 5px;}
+.review_cnt_bd p.rate{width: 200px;word-wrap: break-word;margin-bottom: 2px;line-height: 18px;text-align: left;overflow: hidden;}
+
+.review_cnt_bd .date{color: #999;}
+
+/*weebox 弹出回复框*/
+.reply_cnt_box textarea{
+	width: 506px;
+	height: 50px;
+	resize: none;
+	padding:10px;
+}
+.reply_submit{
+	text-align: right;
+	margin-top: 15px;
+}

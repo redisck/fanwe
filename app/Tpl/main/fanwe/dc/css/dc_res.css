@@ -1,0 +1,23 @@
+.deal_list .overlay{
+
+min-height:250px !important;
+}
+
+/*
+.deal_list li{
+overflow:hidden;
+}
+
+*/
+
+
+.dc_close_a {
+    display: block;
+    height: 220px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 219px;
+    z-index: 60;
+}

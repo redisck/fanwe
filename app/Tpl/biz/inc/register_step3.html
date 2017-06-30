@@ -1,0 +1,207 @@
+<div class="register-panel con_box">
+	<form name="user_register_3" action="{url x="biz" r="user#do_register"}" method="post" bindsubmit="true">
+		<div class="field_group_long">
+			<label class="f_label">帐号</label> 
+			<div class="f_text">
+				<input type="text" name="account_name" id="account_name" value="" class="ui-textbox normal  " holder="请输入账号" />
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<span class="field_tip">商户登录账户，提交后不可修改</span>
+			<div class="clear"></div>
+		</div>
+		<div class="field_group_long">
+			<label class="f_label">密码</label>
+			<div class="f_text"> 
+				<input type="password" name="account_password" id="account_password" value="" class="ui-textbox  " holder="输入登录密码" />
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		<div class="field_group_long">
+			<label class="f_label">确认密码</label> 
+			<div class="f_text">
+				<input type="password" name="account_password_confirm" id="account_password_confirm" value="" class="ui-textbox " holder="确认登录密码" />
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		<!--手机号-->
+		<div class="field_group_long">
+			<label class="f_label">手机号</label> 
+			<div class="f_text">
+				<input type="text" name="account_mobile" id="account_mobile" value="" class="ui-textbox normal  " holder="请输入手机号" />
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<span class="field_tip">请正确填写手机号，以便提现、找回密码等操作</span>
+			<div class="clear"></div>
+		</div>
+		{if app_conf("SMS_ON") eq 1 && app_conf("BIZ_REGISTER_SMS") eq 1}
+		<!--防止多次短信验证手机号图片验证-->
+		<div class="field_group_long ph_img_verify" {if $sms_ipcount>1}style="display:block"{/if}>
+			<label class="f_label">图片验证码</label> 
+			<div class="img_verify_box">
+			<div class="f_text">
+				<input type="text" id="verify_code" name="verify_code" class="ui-textbox img_verify " holder="请输入验证码" />
+			</div>
+				<img src="{$APP_ROOT}/verify.php" class="verify f_l" rel="{$APP_ROOT}/verify.php" />
+				<a href="javascript:void(0);" class="refresh_verify f_l">看不清楚？换一张！</a>
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		
+		<!--短信验证手机号-->
+		<div class="field_group_long">
+			<label class="f_label">手机验证码</label> 
+			<div class="sms_verify_box">
+				<div class="f_text">
+					<input class="ui-textbox  ph_verify" id="sms_verify" name="sms_verify" holder="请输入验证码" />
+				</div>
+				<div class="f_l">
+					<button class="ui-button f_l light ph_verify_btn" rel="light" lesstime="{$sms_lesstime}" type="button">发送验证码</button>
+				</div>
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		{/if}
+		<!--企业名称 h_name-->
+		<div class="field_group_long">
+			<label class="f_label">企业名称</label>
+			<div class="f_text_long">
+				<input type="text" name="h_name" id="h_name" value="" class="ui-textbox normal  " holder="请输入企业名称" />
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		<!--法人姓名 h_faren-->
+		<div class="field_group_long">
+			<label class="f_label">法人姓名</label> 
+			<div class="f_text">
+				<input type="text" name="h_faren" id="h_faren" value="" class="ui-textbox normal  " holder="请输入法人姓名" />
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		<div class="blank0"></div>
+		<!--营业执照 -->
+		<div class="field_group_long field_img_box">
+			<label class="f_label">营业执照</label> 
+			<input type="hidden" id="h_license" name="h_license" value="" />
+			<div style="position: relative;">
+				<div class="upimg_btn">
+					<button class="ui-button  h_license" rel="orange" type="button" id="h_license_btn" >选择图片</button>
+				</div>
+			</div>
+			<div class="show_img_box" onclick="$.Show_big_img('h_license_big_img');">
+				<img class="h_license_img" src="{$TMPL}/images/css_bg/add_img_icon.png"/>
+				<div title="点击查看大图" class="h_license_big_img" id="h_license_big_img" style="display:none;text-align:center;">
+					<div class="big_img_item"></div>
+				</div>
+			</div>
+			<span class="field_tip">请上传彩色的扫描件,请上传小于292kb</span>
+			<div class="clear"></div>
+		</div>
+		<!--其他资质-->
+		<div class="field_group_long field_img_box">
+			<label class="f_label">其他资质</label>
+			<input type="hidden" id="h_other_license" name="h_other_license" value="" />
+			<div class="upimg_btn">
+				<button class="ui-button upimg_btn h_other_license" rel="orange" type="button" id="h_other_license_btn" >选择图片</button>
+			</div>
+			<div class="show_img_box" onclick="$.Show_big_img('h_other_license_big_img');">
+				<img class="h_other_license_img" src="{$TMPL}/images/css_bg/add_img_icon.png"/>
+				<div title="点击查看大图" class="h_other_license_big_img" id="h_other_license_big_img" style="display:none;text-align:center;">
+					<div class="big_img_item"></div>
+				</div>
+			</div>
+			<span class="field_tip">请上传彩色的扫描件,请上传小于292kb</span>
+			<div class="clear"></div>
+		</div>
+		<!--商户商标-->
+		<div class="field_group_long field_img_box">
+			<label class="f_label">商户商标</label> 
+			<input type="hidden" id="h_supplier_logo" name="h_supplier_logo" value="" />
+			<div class="upimg_btn">
+				<button class="ui-button upimg_btn h_supplier_logo" rel="orange" type="button" id="h_supplier_logo_btn" >选择图片</button>
+			</div>
+			<div class="show_img_box" onclick="$.Show_big_img('h_supplier_logo_big_img');">
+				<img class="h_supplier_logo_img" src="{$TMPL}/images/css_bg/add_img_icon.png"/>
+				<div title="点击查看大图" class="h_supplier_logo_big_img" id="h_supplier_logo_big_img" style="display:none;text-align:center;">
+					<div class="big_img_item"></div>
+				</div>
+			</div>
+			<span class="field_tip">请上传小于292kb</span>
+			<div class="clear"></div>
+		</div>
+		<!--门店图片-->
+		<div class="field_group_long field_img_box">
+			<label class="f_label">门店图片</label> 
+			<input type="hidden" id="h_supplier_image" name="h_supplier_image" value="" />
+			<div class="upimg_btn">
+				<button class="ui-button upimg_btn h_supplier_image" rel="orange" type="button" id="h_supplier_image_btn" >选择图片</button>
+			</div>
+			<div class="show_img_box" onclick="$.Show_big_img('h_supplier_image_big_img');">
+				<img class="h_supplier_image_img" src="{$TMPL}/images/css_bg/add_img_icon.png"/>
+				<div title="点击查看大图" class="h_supplier_image_big_img" id="h_supplier_image_big_img" style="display:none;text-align:center;">
+					<div class="big_img_item"></div>
+				</div>
+			</div>
+			<span class="field_tip">请上传小于292kb</span>
+			<div class="clear"></div>
+		</div>
+		<!--申请会员//如果有会员账户显示没有就隐藏-->
+		{if $user_info}
+		<div class="field_group_long">
+			<label class="f_label">申请会员</label> 
+			<div class="f_text">
+				<input type="text" name="user_name" value="{$user_info.user_name}" disabled="disabled"/>
+			</div>
+			<div class="clear"></div>
+		</div>
+		{/if}
+		<!--联系电话-->
+		<div class="field_group_long">
+			<label class="f_label">联系电话</label> 
+			<div class="f_text_long">
+				<input type="text" name="h_tel"  id="h_tel" value="" class="ui-textbox  " holder="请留下真实的联系电话，该号码不会在网站上公开" />
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		
+		<!--开户行户名-->
+		<div class="field_group_long">
+			<label class="f_label">开户银行户名</label>
+			 <div class="f_text_long">
+			<input type="text" name="h_bank_user" id="h_bank_user" value="" class="ui-textbox normal   " holder="请留下真实银行转帐结算信息，该信息不会在网站上公开"/>
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		<!--开户行名称-->
+		<div class="field_group_long">
+			<label class="f_label">开户银行名称</label> 
+			<div class="f_text_long">
+			<input type="text" name="h_bank_name"  id="h_bank_name" value="" class="ui-textbox normal   " holder="请留下真实银行转帐结算信息，该信息不会在网站上公开"/>
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		<!--开户行帐号-->
+		<div class="field_group_long">
+			<label class="f_label">开户银行帐号</label> 
+			<div class="f_text_long">
+			<input type="text" name="h_bank_info" id="h_bank_info" value="" class="ui-textbox normal   " holder="请留下真实银行转帐结算信息，该信息不会在网站上公开"/>
+			</div>
+			<div class="status_icon hide"> <i class=""></i></div>
+			<div class="clear"></div>
+		</div>
+		<!---->
+		<!---->
+		<input type="hidden" name="base_data" value="{$base_data}"/>
+		<div class="field_group_long"><button class="ui-button " rel="orange" type="submit">提交</button><div class="clear"></div></div>
+
+	</form>
+</div>
+

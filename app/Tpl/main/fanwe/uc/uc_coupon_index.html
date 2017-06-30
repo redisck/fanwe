@@ -1,0 +1,159 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/uc_order.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/uc/uc_order.js";
+?>
+{include file="inc/header.html"}
+<div class="blank20"></div>
+
+<div class="{function name="load_wrap" t=$wrap_type} clearfix">
+	<div class="side_nav left_box">
+		{include file="inc/uc_nav_list.html"}
+	</div>
+	<div class="right_box">
+		
+		<div class="main_box setting_user_info">
+			<div class="content">
+				<div class="title"><span>我的团购券</span></div>
+				<div class="blank20"></div>
+				
+			</div>
+			
+			{if $list}
+			<div class="info_box">
+				<div class="info_table order_table">
+					<table>
+						<tbody>
+							{if $deal}
+							<tr>
+								<td colspan=5>
+									<table>
+										<tr>
+											<th width="50">&nbsp;</th>
+											<th width="auto">详情</th>
+											<th width="50">价格</th>
+											<th width="70">数量</th>
+										</tr>
+										<tr>
+												<td>
+													<a href="{$deal.url}" target="_blank"><img src="{function name="get_spec_image" v=$deal.deal_icon w=50 h=50 g=1}" lazy="true" class="deal_icon" /></a>
+												</td>
+				                                <td class="tl">
+				                                	<a href="{$deal.url}" target="_blank">{$deal.name}</a>
+												</td>
+				                                <td>
+				                                	{function name="format_price" v=$deal.total_price}
+												</td>
+				                                <td>{$deal.number}</td>												
+										</tr>
+									</table>
+								</td>
+							</tr>
+							{/if}
+							<tr>
+								<th width="100">序列号</th>
+								<th width="auto">详情</th>
+								<th width="150">有效期</th>
+								<th width="120">状态</th>
+								<th width="60">操作</th>
+							</tr>
+				
+							{foreach from=$list item=coupon}
+							<tr>
+								<td>{$coupon.password}</td>
+								<td>
+									<a href="{$coupon.deal.url}" target="_blank">{$coupon.deal.sub_name}</a>
+									&nbsp;&nbsp;{if $coupon.deal_type eq 1}【可消费 <h1>{$coupon.number}</h1> 位】{/if}
+									
+								</td>
+								<td>
+									{if $coupon.end_time}{function name="to_date" v=$coupon.end_time f="Y-m-d"}{/if}
+									{if $coupon.end_time eq 0}无限期{/if}
+								</td>
+								<td>
+									{if $coupon.confirm_time eq 0}
+										{if $coupon.refund_status eq 1}
+											<h1>退款中</h1>
+										{elseif $coupon.refund_status eq 2}
+											<h1>已退款</h1>
+										{elseif $coupon.refund_status eq 3}
+											<h1>退款被拒</h1>
+										{else}
+											{if $coupon.is_valid eq 1}
+												{if $coupon.end_time > 0 and $coupon.end_time < $NOW_TIME}
+												<h1>已过期</h1>
+												{else}
+												有效
+												{/if}
+											{else}
+												<h1>作废</h1>
+											{/if}
+										{/if}
+									{else}
+										<h1>{function name="to_date" v=$coupon.confirm_time f="Y-m-d"}</h1> 消费
+									{/if}
+									
+								</td>
+								<td>
+									{if $coupon.refund_status eq 0 and $coupon.confirm_time eq 0}{*从未退过款可以退款，且未使用过*}
+										{if $coupon.any_refund eq 1 or ($coupon.expire_refund eq 1 and $coupon.end_time > 0 and $coupon.end_time < $NOW_TIME)}{*随时退或过期退已过期*}
+										<a href="javascript:void(0);" class="refund" action="{url x="index" r="uc_order#refund" p="cid=$coupon.id"}">退款</a>
+										{else}
+										--
+										{/if}
+									{else}
+									--
+									{/if}
+									
+									{if  $coupon.refund_status neq 1 and $coupon.refund_status neq 2 and $coupon.confirm_time eq 0 and ($coupon.end_time > $NOW_TIME or $coupon.end_time = 0)} {*未退款未生效或已拒绝退款，未使用未过期*}
+									{if $deal.forbid_sms eq 0 and app_conf("SMS_ON") eq 1 and app_conf("SMS_SEND_COUPON") eq 1 and $coupon.sms_count < app_conf("SMS_COUPON_LIMIT")}
+									<br />
+									<a href="javascript:void(0);" class="send_coupon" action="{url x="index" r="uc_coupon#send" p="t=sms&id=$coupon.id"}">短信发送</a>
+									{/if}
+									
+									{if app_conf("MAIL_ON") eq 1 and app_conf("MAIL_SEND_COUPON") eq 1 and $coupon.mail_count < app_conf("MAIL_COUPON_LIMIT")}
+									<br />
+									<a href="javascript:void(0);" class="send_coupon" action="{url x="index" r="uc_coupon#send" p="t=mail&id=$coupon.id"}">邮件发送</a>
+									{/if}
+									{/if}
+									<br />
+									<a href="{url x="index" r="uc_order#view" p="id=$coupon.order_id"}">查看订单</a>
+								</td>
+							</tr>
+							{/foreach}
+                   
+   
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+
+			<div class="blank20"></div>
+			<div class="pages">{$pages}</div>
+			{else}
+			<div class="empty_tip">没有相关的团购券记录</div>
+			{/if}
+		</div>
+	</div>	
+</div>
+<div class="blank20"></div>
+{include file="inc/footer.html"}

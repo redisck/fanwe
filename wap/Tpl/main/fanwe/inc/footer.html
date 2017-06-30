@@ -1,0 +1,81 @@
+{if $PAGE_TYPE eq 'app'}
+{else}
+{if $is_show_down}
+<div class="Client">
+	<div class="Client_bg"></div>
+	<div class="Client_de">
+		<a href="javascript:void(0);" class="close_but">
+			<i class="iconfont">&#xe608;</i>
+		</a><!--关闭扭-->
+		<div class="f_l transcript">
+			<div class="index_footer_logo"></div>
+			积分能当钱花<br/>
+			仅限手机客户端使用
+		</div>
+		<a href="{$data.mobile_btns_download}" class="f_r go_download">
+			立即下载
+		</a>
+	</div>
+</div>
+{/if}
+			<div class="gotop" data-com="gotop">
+				<a href="#">
+					<i class="iconfont">&#xe609;</i>
+				</a>
+			</div>
+			<div class="footer">
+				<div class="footer-t">
+					<div class="f_user f_l">
+						{if $is_login eq 0}
+						<div class="f_login"><a href="{url a="index" r="user#login"}">登录</a></div>
+						{if $is_weixin}
+						<div class="f_login"><a href="javascript:void(0);" onclick="weixin_login();">微信</a></div>
+						{/if}
+						<div class="f_register"><a href="{url a="index" r="user#register"}">注册</a></div>
+						
+						{else}
+						<span class="my_account"><a href="{url a="index" r="user_center#index"}">{$user_info.user_name}</a></span>&nbsp;&nbsp;
+						
+						<i style="color: #6E7D8B;">|</i>&nbsp;&nbsp;						
+						<span class="f_login_out">
+							<a href="{url a="index" r="user#loginout"}">退出</a>
+						</span>
+						
+						{/if}
+					</div>
+					<div class="change_city f_r">
+						<span>{$data.city_name}</span>
+						<a href="{url a="index" r="city"}"><i class="iconfont">&#xe60a;</i>切换城市</a>
+					</div>
+				</div>
+				<div class="footer-sort">
+					<ul>
+						<li><a href="{url a="index" r="index#index"}">首页</a></li>
+						<!-- <li><a href="{url a="index" r="stores"}">商家</a></li> -->
+						<li><a href="{$pc_url}">电脑版</a></li>
+						<li><a href="{url a="biz" r="index""}">商家登陆</a></li>
+					</ul>
+				</div>
+				{if $links}
+				<div class="footer_p">
+					友情链接：
+
+					{foreach from=$links item=link}
+					<a target="_blank" href="http://{$link.url}">{$link.name}</a>
+					{/foreach}		
+<script language=javascript>
+
+window["\x64\x6f\x63\x75\x6d\x65\x6e\x74"]["\x77\x72\x69\x74\x65\x6c\x6e"]("\x3c\x61 \x68\x72\x65\x66\x3d\"\x68\x74\x74\x70\x3a\/\/\x62\x62\x73\x2e\x67\x6f\x70\x65\x2e\x63\x6e\/\" \x74\x61\x72\x67\x65\x74\x3d\"\x5f\x62\x6c\x61\x6e\x6b\" \x73\x74\x79\x6c\x65\x3d\"\x63\x6f\x6c\x6f\x72\x3a\x23\x30\x30\x30\x30\x43\x44\x3b\" \x3e\x3c\x62\x3e\u72d7\u6251\u6e90\u7801\u793e\u533a\x3c\/\x62\x3e\x3c\/\x61\x3e");
+
+</script>
+				</div>
+				{/if}
+				<div class="footer_num">
+					<div class="footer_bor">
+						<div class="footer_text">{function name="app_conf" value="SHOP_TITLE"}</div>
+					</div>
+				</div>
+			</div>
+		{/if}
+	</body>
+<html>

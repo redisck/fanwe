@@ -1,0 +1,115 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/dc_menu.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_menu.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_menu.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+var ajax_url = '{$ajax_url}';
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class=" f_r">
+						<a class="back_menu_index" href="{url r="biz" p="dc#index"}">[ 返回列表 ]</a>
+						<button class="ui-button add_menu_btn" rel="orange" type="button" data-id="{$location_id}">添加 +</button>
+				</div>
+			</div>
+			<div class="common_tip">注意：可以点击【状态】进行修改菜单有效标识</div>
+			<div class="blank50"></div>
+			<div class="form_box  content_hastab">
+			<div class="comments_details">
+				<form name="menu_manage_form" action="{url r="biz" b="dc#batch_del_menu"}" method="post">
+				<div class="top_option">
+					<button class="ui-button batch_del" rel="white" type="button">删除</button>
+					<input type="hidden" name="location_id" value="{$location_id}"/>
+				</div>
+				<table class="table_box ">
+					<colgroup>
+						<col width="10">
+						<col width="90">
+						<col width="220">
+						<col width="100">
+						<col width="150">
+						<col width="100">
+						<col width="100">
+					</colgroup>
+					<thead>
+						<tr>
+							<th></th>
+							<th>编号</th>
+							<th>名称</th>
+							<th>图片</th>
+							<th>分类</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+					{if $list}
+					{foreach from=$list item=row}
+						<tr data-id="{$row.id}">
+							<td class="rate">
+								<label class="ui-checkbox" rel="common_cbo"><input type="checkbox" name="del_ids[]" value="{$row.id}" /></label>
+							</td>
+							<td class="rate">
+								{$row.id}
+							</td>
+							<td>
+								<div class="menu">{$row.name}</div>
+							</td>
+							<td><a href="{$row.image}" target="_blank"><img src="{function name="get_spec_image" v=$row.image h=40 w=40 g=1}" lazy="true"/></a></td>
+							<td>
+								{$row.cate_name}
+							</td>
+							<td>
+								<a class="iconfont is_effect is_effect_btn" style="font-size:25px;" data-id="{$row.id}">{if $row.is_effect eq 1}&#xe612;{else}&#xe60b;{/if}</a>
+							</td>
+							<td class="operate">
+								<a href="javascript:void(0);" class="edit_menu_btn" data-id="{$row.id}" >编辑</a>
+								<a href="javascript:void(0);" onclick="del_menu(this);" data-id="{$row.id}" >删除</a>
+								
+							</td>
+						</tr>
+					{/foreach}
+					{/if}
+					</tbody>
+				</table>
+	<div class="blank"></div>
+	<div class="pages">
+		{$pages}
+	</div>
+	</form>
+</div>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

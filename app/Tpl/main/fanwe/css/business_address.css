@@ -1,0 +1,174 @@
+/*商家地址*/
+.business_adress {
+	background:@box_color;
+
+	
+}
+.business_adress .content_right{
+	width: 350px;
+	/*min-height: 300px;
+	_height: 360px;*/
+	background:@box_color;
+}
+.business_adress .content_left{
+	width: 400px;
+	float:left;
+	overflow:hidden;
+}
+#supplier_map{
+	width: 400px;
+    height: 400px;
+}
+.business_adress .content_right .position .title{
+	display:block;
+	line-height: 25px;
+}
+
+.business_adress .content_right .position{
+	padding: 10px 0 10px 15px;
+	border-bottom: 1px solid @border_color;
+	background-color: #fbfbfb;
+	height:49px;
+}
+
+.business_adress .content_right .details_address{
+	padding:0px 15px;
+}
+.business_adress .content_right .details_address_li .title{
+	height: 36px;
+	padding-right: 15px;
+	line-height: 36px;
+	font-size:14px;
+}
+.business_adress .content_right .details_address_li{
+	border-bottom:1px solid @border_color;
+}
+.business_adress .content_right .details_address_li .title  a{
+	color:@main_color;
+	font-weight: 700;
+}
+
+.business_adress .content_right .details_address_li .info{
+	 line-height: 200%;
+}
+.business_adress .content_right .details_address_li .no{
+	color: #999;
+}
+.business_adress .content_right .details_address_li .yes{
+	color:@main_color;
+}
+.business_adress .details_address_li .ress{	
+	padding-right:10px;
+	}
+.business_adress .details_address_li .ress .public_title{
+	display:block;
+	width:30px;
+	
+}
+.business_adress .details_address_li .ress .see a{
+	color:@main_color;
+	padding-right:10px;
+}
+.business_adress .details_address_li .ress .p{
+	width:275px; height:95px;
+}
+.business_adress .details_address_li .ress .see a:hover{
+	color:@dark_color;
+}
+.business_adress .content_right .details_address_li .title i{
+	width: 12px;
+	height: 8px;
+	background: url(../images/deal_index/sp-common.ve863dd23.png) 0 -68px;
+	margin: 15px -10px 0 0;
+}
+
+.see_all{
+	min-width: 130px;
+	text-align: right;
+	_width: 130px;
+	line-height:24px;	
+}
+.business_adress .content_right .fy{
+	 height:30px;
+}
+.business_adress .content_right .ress_bottom{
+	padding:20px 15px;
+}
+
+
+
+
+/*下拉菜单样式重写---位置筛选*/
+.position .select_list .search_type{ width:85px; margin-right:10px; }
+.position .select_list .search_type dt{
+background: #fff;
+cursor: pointer;
+height: 20px;
+line-height: 20px;
+width: 56px;
+text-align: left;
+letter-spacing: 1px;
+font-size: 12px;
+border:1px solid @border_color;
+padding: 1px 17px 1px 10px;
+*padding: 2px 17px 0px 10px;
+position:relative;
+overflow:hidden;
+}
+.position .select_list .search_type dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 5px solid transparent;
+	border-top-color: #666;	
+	
+	_border-left-color:tomato; /*For IE6-*/    
+	_border-right-color:tomato; /*For IE6-*/  
+	_filter:chroma(color=tomato);/*For IE6-*/ 
+}
+.position .select_list .search_type.dropdown dt i{
+	height: 0;
+	width: 0;
+	position:absolute;
+	right:8px;
+	top:9px;
+	overflow:hidden;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-bottom-color: #666;	
+	border-top:none;
+	
+	_border-left-color:tomato; /*For IE6-*/    
+	_border-right-color:tomato; /*For IE6-*/  
+	_filter:chroma(color=tomato);/*For IE6-*/ 
+}
+.position .select_list .search_type dd {
+background:#fff;
+border:1px solid @border_color;
+border-top:none;
+line-height:24px;
+letter-spacing:1px; 
+font-size:12px;
+overflow-x:hidden;
+overflow-y:auto;
+}
+.position .select_list .search_type dd a{ 
+height:24px; 
+cursor:pointer; 
+width:73px;
+text-align: left;
+padding-left: 10px;
+overflow:hidden;
+}
+.position .select_list .search_type dd a.current{ 
+color:@main_color;
+}
+.position .select_list .search_type dd a:hover{ background:#fbfbfb; color:@font_hover;}
+
+.pop_store_title{ color:@main_color; font-size:14px; display:block;}

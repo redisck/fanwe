@@ -1,0 +1,187 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/group.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/group.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/group.js";
+?>
+{include file="inc/header.html"} 
+
+<div class="{function name="load_wrap" t=$wrap_type}">
+	<div class="blank"></div>
+	<div class="rec_forum_topic">
+		<div class="rec_image_topic" id="rec_topic">
+			<div class="img_topic_tab">
+			{foreach from=$rec_topic_list.image item=topic key=key}
+			<div class="rec_image_topic_item" style="display:none;" rel="<?php echo intval($this->_var['key'])+1; ?>" >
+				<div>
+					<a href="{url x="index" r="topic" p="id=$topic.id"}" title="{$topic.forum_title}" target="_blank">
+					{if $topic.daren_page}
+					<img src="{function name="get_spec_image" v=$topic.daren_page w=340 h=185 g=1}" />
+					{else}
+					<img src="{function name="get_spec_image" v=$topic.images.0.o_path w=340 h=185 g=1}" />
+					{/if}
+					</a>
+				</div>
+				<div class="topic_title"><a href="{url x="index" r="topic" p="id=$topic.id"}" title="{$topic.forum_title}" target="_blank">{function name="msubstr" v=$topic.forum_title b=0 e=20}</a></div>
+				<div class="topic_group_title"><a href="{url x="index" r="group#forum" p="id=$topic.group_info.id"}" title="{$topic.group_info.name}" target="_blank">{$topic.group_info.name}</a></div>
+			</div>
+			{/foreach}
+			</div>
+			<div class="blank1"></div>
+			<div class="tr rec_img_count">
+			{foreach from=$rec_topic_list.image item=topic key=key}
+			<span class="img_ico" rel="<?php echo intval($this->_var['key'])+1; ?>"><?php echo intval($this->_var['key'])+1; ?></span>
+			{/foreach}
+			</div>
+			<div class="blank1"></div>
+		</div>
+		
+		<div class="rec_list_topic">
+			{foreach from=$rec_topic_list.list item=topic key=key}
+				<div class="rec_list_topic_item  {if $key gt 5}rec_item_bottom{/if}" {if $key mod 2 eq 1}style="margin-left:10px;"{/if}>
+					{if $key lt 2}
+					<div class="f_l">
+							<a href="{url x="index" r="group#forum" p="id=$topic.group_info.id"}" title="{$topic.group_info.name}" target="_blank">
+							<img src="{function name="get_spec_image" v=$topic.group_info.icon w=80 h=80 g=1}" />
+							</a>
+						</div>
+						<div class="f_l" style="padding-left:10px;">
+							<div class="list_topic_title"><a href="{url x="index" r="topic" p="id=$topic.id"}" title="{$topic.forum_title}" target="_blank">{function name="msubstr" v=$topic.forum_title b=0 e=10}</a></div>
+							<div class="list_topic_group_title"><a href="{url x="index" r="group#forum" p="id=$topic.group_info.id"}" title="{$topic.group_info.name}" target="_blank">{function name="msubstr" v=$topic.group_info.name b=0 e=15}</a></div>
+							{function name="get_user_name" v=$topic.user_id}
+						</div>
+						
+					
+					{else}
+						<div class="f_l topic_user_icon">
+							{function name="show_avatar" v=$topic.user_id}
+						</div>
+						<div class="f_l topic_info_row">
+							<div class="rec_row_topic_title"><a href="{url x="index" r="topic" p="id=$topic.id"}" title="{$topic.forum_title}" target="_blank">{function name="msubstr" v=$topic.forum_title b=0 e=16}</a></div>
+							<div class="rec_row_topic_group_title"><a href="{url x="index" r="group#forum" p="id=$topic.group_info.id"}" title="{$topic.group_info.name}" target="_blank">{$topic.group_info.name}</a></div>
+						</div>
+					{/if}
+					<div class="blank5"></div>
+				</div>
+			{/foreach}
+		</div>
+	</div>
+	<div class="blank"></div>
+	
+	<div class="long f_l">
+			<div class="goods_detail_box">
+			<ul class="detail_nav">
+				<li>活跃小组</li>		
+			</ul>
+			</div>
+			<div class="blank"></div>
+			<div class="hot_group">
+				{foreach from=$hot_group item=group}
+				<div class="group_item">
+					<div class="group_icon f_l">
+					<a href="{url x="index" r="group#forum" p="id=$group.id"}" title="{$group.name}">
+					<img src="{function name="get_spec_image" v=$group.icon w=90 h=90 g=1  }" alt="{$group.name}" />
+					</a>
+					</div>
+					<div class="group_info f_l">
+						<div class="group_title"><a href="{url x="index" r="group#forum" p="id=$group.id"}" title="{$group.name}">{$group.name}</a></div>
+						<div class="group_count">
+							<span>{$group.user_count}</span> 成员&nbsp;&nbsp;
+							<span>{$group.topic_count}</span> 分享 				
+						</div>
+						<div class="group_memo">
+							{function name="msubstr" v=$group.memo b=0 e=35}
+						</div>
+					</div>					
+				</div>
+				{/foreach}
+			</div>
+			<div class="blank"></div>
+			{foreach from=$cate_list item=item}
+			{if $item.list}
+				<div class="goods_detail_box" style="padding:0px; margin:0px;">
+					<ul class="detail_nav">
+						<li><a href="{url x="index" r="group" p="id=$item.id"}">{$item.name}</a></li>
+					</ul>
+				</div>
+				<div class="blank"></div>
+				<div class="hot_group">
+				{foreach from=$item.list item=list}				
+				<div class="group_item">
+					<div class="group_icon f_l">
+					<a href="{url x="index" r="group#forum" p="id=$list.id"}" title="{$list.name}">
+
+					<img src="{function name="get_spec_image" v=$list.icon w=90 h=90 g=1  }" alt="{$list.name}" />
+					</a>
+					</div>
+					<div class="group_info f_l">
+						<div class="group_title"><a href="{url x="index" r="group#forum" p="id=$list.id"}" title="{$list.name}">{$list.name}</a></div>
+						<div class="group_count">
+							<span>{$list.user_count}</span> 成员&nbsp;&nbsp;
+							<span>{$list.topic_count}</span> 分享 				
+						</div>
+						<div class="group_memo">
+							{function name="msubstr" v=$list.memo b=0 e=35}
+						</div>
+					</div>					
+				</div>
+				
+				{/foreach}
+				</div>
+				<div class="blank"></div>
+			{/if}
+			{/foreach}
+	<div class="blank"></div>
+	<div class="pages">{$pages}</div>
+	</div>	
+	
+	
+	<div class="short f_r">
+		<div class="ui-button orange"><div><a href="{url x="index" r="group#create"}" title="申请创建小组">申请创建小组</a></div></div>
+		<div class="blank"></div>
+		
+		<div class="inc">
+			<div class="inc_top">优秀小组长</div>
+			<div class="inc_main">				
+				{foreach from=$group_adm_list item=group}
+				<div class="group_adm">
+					<div class="avatar">
+						{function name="show_avatar" v=$group.user_id }
+					</div>
+					<div class="info">
+						<a href="{url x="index" r="group#forum" p="id=$group.id"}" title="{$group.name}" class="group_name">{function name="msubstr" v=$group.name b=0 e=5}</a>
+						<div class="blank1"></div>
+						<span class="user_count">{$group.user_count}个成员</span>
+						<div class="blank1"></div>
+						{function name="get_user_name" v=$group.user_id}						
+					</div>
+				</div>
+				{/foreach}			
+				<div class="inc_foot"></div>
+			</div>		
+		</div>
+		<div class="blank"></div>		
+
+	</div>
+	
+
+
+	<div class="blank"></div>
+</div>
+{include file="inc/footer.html"}

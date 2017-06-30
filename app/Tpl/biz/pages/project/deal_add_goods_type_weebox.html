@@ -1,0 +1,30 @@
+<div class="deal_add_goods_type_page">
+<form action="{url r="biz" b="deal#do_save_goods_type"}" method="post" name="add_goods_type_form"  bindsubmit="true">
+	<div class="common_tip">注意：添加后不可删除，谨慎添加！</div>
+	<div class="blank10"></div>
+	<div class="con_box">
+		<div class="field_group goods_type_i">
+			<label class="f_label">分类名称：</label>
+			<div class="f_text"><input type="text" class="ui-textbox "  name="goods_type_name" value=""/></div>
+			<div class="blank10"></div>
+		</div>
+		
+		<div class="sub_con">
+			<div class="blank0"></div>
+			<span>添加属性</span>
+			<div class="blank10"></div>
+			<div class="attr_item_list">
+				<p><input type="text" name="goods_attr[]" class="ui-textbox i_text" value=""/></p>
+			</div>
+			
+			<div class="add_attr_btn">
+				<button class="ui-button add_gt_btn" rel="white" type="button">增加属性</button>
+			</div>
+			<div class="blank10"></div>
+			<div style="text-align:right;padding-right: 20px;">
+				<button class="ui-button sub_goods_attr_btn" rel="orange" type="submit">确认保存</button>
+			</div>
+		</div>
+	</div>
+</form>
+</div>

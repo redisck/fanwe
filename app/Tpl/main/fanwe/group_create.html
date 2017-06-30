@@ -1,0 +1,99 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/group.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/user.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/login_panel.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/group.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/page_js/group.js";
+?>
+{include file="inc/header.html"} 
+<script type="text/javascript">
+	var ROOT_PATH = '{$APP_ROOT}';
+</script>
+<div class="{function name="load_wrap" t=$wrap_type}">
+	<div class="blank"></div>
+	
+	<div class="form_panel group_panel" >
+		<form name="create_group" class="login" method="post" action="{url x="index" r="group#do_create_group"}">
+			
+			<dl>
+				<dt>小组名称</dt>
+				<dd>
+					<input class="ui-textbox group_textbox"  name="name1" holder="请输入小组名称" />
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>小组分类</dt>
+				<dd>
+					<select name="cate_id" class="ui-select group_select">
+						{foreach from=$cate_list item=cate_item}
+						<option value="{$cate_item.id}">{$cate_item.name}</option>
+						{/foreach}
+					</select>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>小组图标</dt>
+				<dd id="icon_uploader" class="upload_row">
+					<input type="hidden" name="icon" value="">
+					<button class="ui-button" rel="white" type="button">上传小组图标 (大小90*90像素)</button>
+				</dd>						
+			</dl>
+			
+			<dl class="img_show group_icon">
+				<dt>&nbsp</dt>
+				<dd  class="loader"></dd>
+			</dl>
+
+			<dl>
+				<dt>小组图片</dt>
+				<dd id="image_uploader" class="upload_row">
+					<input type="hidden" name="image" value="">
+					<button class="ui-button" rel="white" type="button">上传小组图片 (大小990*150像素)</button>
+				</dd>				
+			</dl>
+			
+			<dl class="img_show group_image">
+				<dt>&nbsp</dt>
+				<dd  class="loader"></dd>				
+			</dl>
+			
+			
+			<dl class="description">
+				<dt>小组说明</dt>				
+				<dd><textarea name="memo" class="ui-textbox" ></textarea></dd>		
+			</dl>
+			
+			
+			<dl>
+				<dt></dt>
+				<dd class="upload_row">
+					<button type="button" value="立即申请"  rel="orange" name="commit"  id="submit_group" class="ui-button noform"  >创建小组</button>
+				</dd>
+			</dl>
+			
+			
+		</form>
+
+	</div>
+
+	<div class="blank"></div>
+</div>
+{include file="inc/footer.html"}

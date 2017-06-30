@@ -1,0 +1,190 @@
+.per_li{
+	 padding:0 10px;
+	 border-bottom:1px solid #f5f5f5;
+	 color:#939393;
+	 position:relative;
+	 height:45px;
+	 line-height:45px;
+}
+
+.per_li .fa-chevron-right{
+	position:absolute;
+	right:10px;
+	top:17px;
+	font-size:12px;
+}
+
+
+
+.per_li i{
+	font-size:22px;
+	position:absolute;
+	color:#a6a6a6;
+    left:16px;
+}
+
+
+.per_li span{
+	font-size:15px;
+	position:absolute;
+	left:45px;
+}
+
+
+ .one li:last-child .per_li {
+	border-bottom:none;	
+}
+
+
+.person_privilege{
+	display:-webkit-box;
+}
+
+.p_tuan{
+	-webkit-box-flex:1;
+	display:-webkit-box;
+	padding:9px 0 9px 10px;
+	border-right:1px solid #e6e6e6;	
+}
+
+.p_tuan:last-child{
+	border-right:none;
+}
+.p_tuan .ico{
+	display:inline-block;
+	height:40px;
+	width:40px;
+	background:#f4626d;
+	border-radius:20px;
+	text-align:center;
+	line-height:40px;
+	color:#fff;
+	font-size:22px;
+}
+.p_youhui.p_tuan .ico{
+	background:#fa8600;
+} 
+
+.p_tuan .detail{
+	padding:0 0 0 19px;
+	color:#7a7a7a;
+}
+
+
+.detail h6{
+	font-size:15px;
+	line-height:21px;
+}
+
+.detail p{
+	font-size:12px;
+	line-height:24px;
+}
+
+
+.person_account{
+	overflow:hidden;
+	width:100%;
+	height:75px;
+	position:relative;
+	
+}
+
+.person_account img{
+	position:absolute;
+	top:0;
+}
+
+.account_info{
+	display:-webkit-box;
+	position:absolute;
+	z-index:100;
+	margin:8px 0 0 15px;
+}
+
+.account_info .pic{
+   width:59px;
+	height:59px;
+	border-radius:35px;
+	overflow:hidden;
+	position:relative;
+	
+	
+}
+
+.account_info .name b{
+	color:#434343;
+	font-size:13px;
+	font-weight:bolder;
+}
+
+.account_info .name p{
+	font-size:12px;
+	/*color:#616161;*/
+}
+
+
+.account_info .name{
+	line-height:20px;
+	padding:10px 0 0 10px;
+}
+
+
+.buy {
+padding: 8px 10px;
+}
+.plank{
+	width:100%;
+	height:33px;
+	line-height:33px;
+	text-align:center;
+	color:@font_white;
+	font-size:14px;
+    border-radius: 20px;
+	background:@main_color;
+	display:block;
+	border:none;
+	font-weight: bolder;
+}
+
+.uc_home_link{
+	  height: 35px;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 1);
+  line-height: 35px;
+}
+.uc_home_link a{
+	display: inline-block;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+	background: -webkit-gradient(linear, 14% 96%, 64% 59%, from(#F6C894), to(#FFAABF));
+  color: #FFFFFF;
+}
+.uc_home_link a i{
+	padding-right:3px;
+  -webkit-background-clip: text;
+}
+
+/*列表右侧 消息框*/
+.right-msg{  position: absolute;
+  right: 10px;
+  padding: 0 10px;
+  border: 1px solid #f80;
+  height: 28px;
+  line-height: 28px;
+  top: 50%;
+  margin-top: -15px;
+  border-radius: 10px;
+  color: #f80;}
+.right-msg .h-num{  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  color: #f80;
+  text-align: center;
+  padding: 0 5px;}
+
+
+
+

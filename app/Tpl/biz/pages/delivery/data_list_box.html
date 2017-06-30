@@ -1,0 +1,62 @@
+<div class="comments_details">
+	<table class="table_box ">
+		<colgroup>
+			<col width="90">
+			<col width="570">
+
+			<col width="100">
+		</colgroup>
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>名称</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		{if $list}
+		{foreach from=$list item=row}
+			<tr data-id="{$row.id}">
+				<td class="rate">
+					{$row.id}
+				</td>
+				<td>
+					<div>
+						<p class="rate" title="{$row.name}">{function name="msubstr" v=$row.name l=0 e=65}</p>
+						{if $row.preview}
+							<ul class="photos_box clearfix">
+									<li>
+										<a href="{$row.preview}" target="_blank">
+											<img src="{function name="get_spec_image" v=$row.preview h=40 w=40 g=1}" lazy="true"/>
+										</a>
+									</li>
+							</ul>
+						{/if}
+						
+					</div>
+				</td>
+				
+				<td class="operate">
+					<a href="{$row.edit_url}"><button class="ui-button edit_btn" rel="white" type="button" data-id="{$row.id}">设置</button></a>
+
+				</td>
+			</tr>
+		{/foreach}
+		{else}
+			<tr data-id="{$row.id}">
+				<td colspan="5">
+					<div class="empty_tip">
+						没有相关数据
+					</div>
+				</td>
+			</tr>
+		{/if}		
+		</tbody>
+	</table>
+	
+	<div class="blank"></div>
+	<div class="pages">
+		{$pages}
+	</div>
+</div>
+		

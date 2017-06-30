@@ -1,0 +1,6 @@
+.con_box{border-bottom: 1px #ccc solid;}
+.null_cate_btn{color:@main_color;}
+.is_effect{cursor: pointer;}
+.back_menu_index{float: left;padding: 17px 10px 0 0;font-size: 14px;color: #f60;}
+.tag_box{float: left;padding-top: 9px;width: 380px;}
+.tag_box label{margin: 0 5px 5px 0;}

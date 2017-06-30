@@ -1,0 +1,61 @@
+/*.event_d_info*/
+.event_d_info{
+background:#fff;
+padding:10px;	
+}
+.event_d_info .h{
+	color:#333;
+	font-size:22px;
+	line-height:30px;
+	font-weight:bolder;
+	font-family: "Microsoft YaHei";
+	padding-bottom:10px;
+}
+.event_d_info .info .show_img img{
+	width:330px;
+	height:230px;
+}
+.event_d_info .info .show_text {
+	width:100%;
+}
+.event_d_info .info .show_img{
+	width:330px;
+	height:230px;
+	overflow:hidden;
+	margin-left:-350px;	
+	_margin-left:-173px;	
+}
+.event_d_info .info {
+	padding:0 0 0 350px;
+}
+.event_d_info .info .show_text p{
+	line-height:20px;
+	font-weight:700;
+}
+.event_d_info .info .show_text .time_address{
+	line-height:30px;
+}
+.event_d_info .info .show_text .time_address .content{
+	color:#4185c9;
+	font-weight:bolder;
+}
+.event_d_info .info .show_text .but{
+	margin-top:10px;
+}
+.event_d_info .share_but{
+	text-align:right;
+}
+/*.event_d_detail*/
+.event_d_detail{
+	background:#fff;
+	padding:10px;
+}
+.public_h{
+	background: #f2f2f2;
+height: 28px;
+line-height: 28px;
+text-indent: 10px;
+font-size: 14px;
+font-weight: bolder;
+}
+

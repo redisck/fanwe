@@ -1,0 +1,83 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+function del(id)
+{
+	/*
+	if(!id)
+	{
+		idBox = $(".key:checked");
+		if(idBox.length == 0)
+		{
+			alert(LANG['DELETE_EMPTY_WARNING']);
+			return;
+		}
+		idArray = new Array();
+		$.each( idBox, function(i, n){
+			idArray.push($(n).val());
+		});
+		id = idArray.join(",");
+	}*/
+	if(confirm(LANG['CONFIRM_DELETE']))
+	$.ajax({ 
+			url: ROOT+"?"+VAR_MODULE+"="+MODULE_NAME+"&"+VAR_ACTION+"=del_charge&id="+id, 
+			data: "ajax=1",
+			dataType: "json",
+			success: function(obj){
+				$("#info").html(obj.info);
+				if(obj.status==1)
+				location.href=location.href;
+			}
+	});
+}
+
+function charge_edit(id)
+{
+	$.weeboxs.open(ROOT+'?m=Supplier&a=charge_edit&charge_id='+id, {contentType:'ajax',showButton:false,title:"提现审核",width:600,height:195});
+}
+function refuse_edit(id)
+{
+	$.weeboxs.open(ROOT+'?m=Supplier&a=refuse_edit&charge_id='+id, {contentType:'ajax',showButton:false,title:"拒绝提现",width:600,height:145});
+}
+</script>
+<div class="main">
+<div class="main_title">提现申请</div>
+<div class="blank5"></div>
+<PHP>
+function get_charge_status($status,$charge)
+{
+	$id = $charge['id'];
+	if($status==0)
+	return "待审核   <a href='javascript:charge_edit(".$id.")'>已打款给商户，确认提现</a> | <a href='javascript:refuse_edit(".$id.")'>拒绝</a>";
+	else if($status==1) return "已审核";
+	else 
+	{
+		if($charge['reason'])
+		return "已拒绝：".$charge['reason'];
+		else 
+		return "已拒绝";
+	}
+}
+function get_supplier_show_name($id)
+{
+	$supplier = M("Supplier")->getById($id);
+	return   "<a href='".u("Supplier/index",array("name"=>$supplier['name']))."'>".$supplier['name']."</a>";
+}
+</PHP>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="charge" 
+
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,money|format_price:提现金额,create_time|to_date:日期,supplier_id|get_supplier_show_name:商户,status|get_charge_status=$charge:状态" 
+	actionlist="del:{%DEL}" 
+	/> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

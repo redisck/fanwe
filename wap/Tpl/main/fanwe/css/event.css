@@ -1,0 +1,65 @@
+
+.browse_num .buy{
+	padding:0 10px 15px 10px;
+}
+.note-box{padding:10px 5px;}
+.note-box .iconfont{color:@main_color;}
+.info-title{padding:5px;border-bottom: 1px solid #e6e6e6;}
+.info-title h3{font-size: 14px;font-weight: bolder;line-height: 22px;}
+
+.order-info-box .order-item{padding:5px;}
+.order-info-box .order-item .iconfont{color:@main_color}
+.order-info-box .order-item em{color:@main_color;}
+
+.evaluate_title{ line-height:22px; padding:10px 5px; color:#666; border-bottom:solid 1px @border_main;}
+.business_info {
+display: -moz-box;
+display: -webkit-box;
+display: box;
+width: 100%;
+padding: 14px 10px;
+border-top: 1px solid #f5f5f5;
+margin-top: -1px;
+}
+.business_info .business_address {
+-webkit-box-flex: 1;
+-moz-box-flex: 1;
+}
+.business_address h3 {
+color: #272727;
+font-size: 15px;
+line-height: 25px;
+}
+.business_address span {
+color: #a3a3a3;
+font-size: 13px;
+line-height: 20px;
+padding: 7px 0;
+}
+.business_info .business_phone {
+width: 70px;
+height: 60px;
+border-left: 1px solid #f5f5f5;
+color: @main_color;
+line-height:60px;
+padding-left:20px;
+}
+
+.business_info .business_phone .iconfont{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+
+.business_display,.business_tuan_display,.business_goods_display,.business_youhui_display{
+		display:none;
+	}
+	.business_blank,.business_tuan_blank{
+	display:-webkit-box;
+	}
+.item_info_box{display: table;width: 100%;}
+.item_info_box .business_address{display: table-cell;vertical-align: middle;}
+.item_info_box .tel_box{display: table-cell;vertical-align: middle;width:100px;}
+
+.header-box h3{font-size:14px;font-weight:bold;padding:10px;}	
+.section_box{padding:0 5px;}	

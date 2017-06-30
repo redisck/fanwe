@@ -1,0 +1,12 @@
+.youhui_title{ text-align:center; height:35px; line-height:35px; font-family:"微软雅黑"; font-size:18px; font-weight:bolder; }
+.youhui_print_box{ width:629px; margin:50px auto; }
+.youhui_print_t{ background:url(../images/youhui/print-t.png) no-repeat; width:100%; height:22px;}
+.youhui_print_c{ background:url(../images/youhui/print-c.png) repeat-y; width:100%; }
+.youhui_print_b{ background:url(../images/youhui/print-b.png) no-repeat; width:100%; height:35px;}
+.youhui_print_img{ width:100%; margin:5px auto; overflow:hidden; text-align:center; }
+.youhui_print_img img{ width:95%;}
+
+
+div{ font-size:14px; }
+.youhui_sn{ text-align:center; height:35px; line-height:35px; font-family:"微软雅黑"; }
+.youhui_sn span{ color:@main_color;}

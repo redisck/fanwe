@@ -1,0 +1,43 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">添加联系人<a href="{:u("Confirm/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+	<form name="add" id="form" action="__APP__" method="post" enctype="multipart/form-data">
+	<table cellpadding="4" cellspacing="0" border="0" class="form">
+		<tr>
+			<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr>
+			<td class="item_title">{%NAME}</td>
+			<td class="item_input"><input type="text" class="textbox require" name="confirm_name" id="confirm_name" /></td>
+		</tr>
+                
+                <tr>
+			<td class="item_title">联系方式</td>
+			<td class="item_input"><input type="text" class="textbox" name="confirm_tel" id="confirm_tel" /></td>
+		</tr>
+		
+		<tr>
+			<td class="item_title">备注</td>
+			<td class="item_input"><input type="text" class="textbox" name="tag" id="tag" /></td>
+		</tr>
+	
+		
+		<tr>
+			<td class="item_title"></td>
+			<td class="item_input">
+				<input type="hidden" name="{:conf("VAR_MODULE")}" value="Confirm" />
+				<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+				<input type="submit" class="button" value="{%ADD}" />
+				<input type="reset" class="button" value="{%RESET}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table>
+	</form>
+</div>
+<include file="Public:footer" />

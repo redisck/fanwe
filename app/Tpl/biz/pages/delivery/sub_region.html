@@ -1,0 +1,12 @@
+{foreach from=$delivery_regions item="region_item_sub"}
+<div class='region_level_{$region_item_sub.pid}' style="padding-left:{$region_item_sub.region_level}em;">
+	<input type="checkbox" name='region_id[]' value="{$region_item_sub.id}" onclick="check_sub(this);" {if $region_item_sub.ischecked eq 1}checked='checked'{/if} /> 
+	{if $region_item_sub.region_level neq 4}
+	<a href='javascript:void(0);' onclick='switch_region(this);' style="text-decoration:none;">				
+	+
+	</a>
+	{/if} 
+	<span>{$region_item_sub.name}</span>
+	
+</div>
+{/foreach}

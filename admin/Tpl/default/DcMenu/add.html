@@ -1,0 +1,122 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/supplier.js' />
+<load href='__TMPL__Common/js/dc.js' />
+<style type="text/css">
+    #container{height:300px; width: 300px; float:left;} 
+
+</style>
+<script type="text/javascript">
+var blue_point = "__ROOT__/system/blue_point.png";
+var red_point = "__ROOT__/system/red_point.png";
+	$(document).ready(function(){
+
+        $('#change_type select').change(function(){     	
+        	var type=$(this).children('option:selected').val(); 
+        	$("#taglist label").hide();
+        	$("#taglist label[data-param!='"+type+"'] input").attr('checked',false);
+        	$("#taglist label[data-param='"+type+"']").show();
+        });
+		
+		
+	});
+
+</script>
+<div class="main">
+<div class="main_title">
+	{%ADD} 
+	
+	<a href="{:u("DcMenu/index",array("supplier_location_id"=>$location_info['id']))}" class="back_list">{%BACK_LIST}</a>
+	
+</div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">菜单名:</td>
+		<td class="item_input"><input type="text" class="textbox require" name="name" /></td>
+	</tr>
+
+	<tr>
+		<td class="item_title">分类:</td>
+		<td class="item_input">
+		<select name="cate_id">
+			<option value="0">=={%NO_SELECT_CATE}==</option>
+			<foreach name="cate_list" item="cate_item">
+				<option value="{$cate_item.id}">{$cate_item.name}</option>
+			</foreach>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">图片:</td>
+		<td class="item_input"><html:imgUpload name = 'image' id='image' /></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">状态:</td>
+		<td class="item_input">
+			
+			有效<input type="radio" name="is_effect" value="1" checked="checked" />
+			无效<input type="radio" name="is_effect" value="0" />
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td class="item_title">价格:</td>
+		<td class="item_input">
+			<input type="text" class="textbox" name="price" value="0" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">宝贝类型:</td>
+		<td class="item_input" id="change_type">
+			{$menu_cate_type}
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">标签:</td>
+		<td class="item_input" id="taglist">
+			<if condition="$tag_list">
+			<foreach name="tag_list" item="tag">
+				<label data-param="{$tag.type}" <if condition="$tag['type'] neq 0">style="display:none;"</if>>
+				<input type="checkbox" value="{$tag.id}" name="tags[]">{$tag.name}
+				</label>
+			</foreach>
+			<else />
+				<a href="{:u("DcMenuCate/index")}">菜单标签未添加，请先添加标签</a>
+			</if>
+			
+		</td>
+	</tr>
+
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="DcMenu" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<if condition="$location_info">
+			<input type="hidden" name="supplier_id" value="{$location_info.supplier_id}" />
+			</if>
+			<if condition="$location_info">
+					<input type="hidden" name="location_id" value="{$location_info.id}" />
+			</if>
+			<!--隐藏元素-->
+			<input type="hidden" name="id" value="0" />
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

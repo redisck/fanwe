@@ -1,0 +1,30 @@
+{if $supplier_tuan_list}
+<div class="other_tuan">
+		<div class="three_title">
+			<h3 class="f_l">该商家的其他团购</h3>
+            <div class="subtitle f_r">
+            	<span>团购价</span>
+				<span>门店价</span>
+				<span>已售</span>
+            </div>
+		</div>
+		<ul class="other_list clearfix">
+			{foreach name="supplier_tuan_list" from=$supplier_tuan_list item=deal}
+			<li {if $smarty.foreach.supplier_tuan_list.first}class="first"{/if}>
+				<a href="{$deal.url}">
+					<span class="content f_l">{if $supplier_name}【{$supplier_name}】{/if}{$deal.name}</span>
+					<span class="sale f_r">{$deal.buy_count}</span>
+					<span class="value f_r">&yen;{function name="round" v=$deal.origin_price l=2}</span>
+					<span class="pirce f_r">&yen;{function name="round" v=$deal.current_price l=2}</span>
+				</a>
+			</li>
+			{/foreach}
+			
+		</ul>
+</div>
+{if $total>$page_size}
+<div class="blank"></div>
+<div class="pages">{$pages}</div>
+{/if}
+<div class="blank"></div>
+{/if}

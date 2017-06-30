@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+.event_list{ }
+
+.event_row{ background:@box_color; padding:15px; border:@border_color solid 1px;  }
+.event_row i.iconfont{ font-size:20px; }
+.event_row em{ font-style:normal; color:@main_color; font-family:verdana; font-size:12px;}
+
+.event_image{ margin-right:15px;}
+.event_image a{ display:block; width:200px; height:150px; border:@border_color solid 1px; padding:5px; }
+.event_image a:hover{ display:block; width:200px; height:150px; border:@main_color solid 1px; }
+.event_image a img{ width:200px; height:150px; }
+
+.event_info{ width:470px; margin-right:15px; font-size:14px;}
+.event_info div{ line-height:25px; }
+.event_name{ font-size:16px; font-weight:bolder; color:@main_color; display:block; line-height:45px; height:45px; overflow:hidden;}
+.event_info i.iconfont{ font-weight:normal; font-size:16px;}
+
+
+.row_current i.iconfont{ color:@main_color;}
+.row_current .store_image a{ border:@main_color solid 1px;}
+.row_current{ border:@main_color solid 1px;} 
+
+.sale_count i{ font-size:14px;}

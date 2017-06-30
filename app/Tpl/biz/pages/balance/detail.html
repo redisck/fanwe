@@ -1,0 +1,127 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/balance.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+?>
+
+{include file="inc/header.html"}
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box">
+				<div class="standard_tab cf">
+				<ul>
+					<li class="{if $ACTION_NAME eq 'index'}curr{/if}"><a href="{url b="biz" r="balance#index"}">财务概况</a></li>
+					<li class="{if $ACTION_NAME eq 'line'}curr{/if}"><a href="{url b="biz" r="balance#line"}">销售走势</a></li>
+					<li class="{if $ACTION_NAME eq 'detail'}curr{/if}"><a href="{url b="biz" r="balance#detail"}">财务明细</a></li>
+				</ul>
+			</div>
+			</div>
+			
+			<div class="info_table">
+				<div class="blank"></div>
+				<form name="search_form" action="{url x="biz" r="balance#detail"}" method="post">
+				<table>
+					<tr>
+						<td width="165"><input class="ui-textbox search_box time_input" name="begin_time" holder="查询起始日期" value="{$begin_time}" readonly="readonly" /></td>
+						<td width="5">-</td>
+						<td width="165"><input class="ui-textbox search_box time_input" name="end_time" holder="查询截止日期" value="{$end_time}" readonly="readonly" /></td>
+						<td width="35">类型</td>
+						<td width="105" class="select_row">							
+							<select name="type" class="ui-select filter_select" height=100>
+					
+								<option value="1" {if $type eq 1}selected="selected"{/if}>销售明细</option>
+								<option value="3" {if $type eq 3}selected="selected"{/if}>消费明细</option>
+								<option value="4" {if $type eq 4}selected="selected"{/if}>退款明细</option>
+								<option value="5" {if $type eq 5}selected="selected"{/if}>打款明细</option>
+							
+							</select>
+						</td>
+						<td width="60">
+							<input type="hidden" name="method" value="search" />
+							<button class="ui-button add_goods_type" rel="white" type="submit">搜索</button>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+				</form>
+
+				<div class="blank"></div>
+			</div>
+			
+			
+			{if $list}
+			<div class="info_table">
+				<table>
+					<tbody>
+						<tr>
+							<th>日志</th>							
+							<th width=100>金额</th>
+							<th width=150>发生时间</th>
+						</tr>
+						<tr class="alt sum">
+                               <td class="tr" colspan=3>
+                               	本页合计：<span class="main_color">{function name="format_price" v=$page_sum}</span>&nbsp;&nbsp;
+								合计：<span class="main_color">{function name="format_price" v=$sum}</span>
+								</td>                              
+
+                        </tr>
+						{foreach from=$list item=item key=key}
+						<tr class="alt">
+                               <td class="log_info">{$item.log_info}</td>
+                               <td>{function name="format_price" v=$item.money}</td>
+                               <td>{function name="to_date" v=$item.create_time}</td>
+
+                         </tr>
+                         {/foreach}
+                         <tr class="alt sum">
+                               <td class="tr" colspan=3>
+                               	本页合计：<span class="main_color">{function name="format_price" v=$page_sum}</span>&nbsp;&nbsp;
+								合计：<span class="main_color">{function name="format_price" v=$sum}</span>
+								</td>                              
+
+                         </tr>
+
+					</tbody>
+				</table>
+				
+			</div>	
+			
+			<div class="blank"></div>
+			<div class="pages">{$pages}</div>			
+			{else}
+			<div class="empty_tip">没有相关明细</div>
+			{/if}
+				
+
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

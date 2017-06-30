@@ -1,0 +1,70 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<style>
+.dataTable td{text-align:center;}
+</style>
+<php>
+
+function get_balance_link($name,$id)
+{
+	return '<a href="'.u("SupplierBalance/index",array("id"=>$id)).'">'.$name.'</a>';
+}
+
+function admin_charges_format($price){
+	return "-".format_price($price);
+}
+
+
+</php>
+<script type="text/javascript">
+
+function charge_edit(id)
+{
+	$.weeboxs.open(ROOT+'?m=Supplier&a=charge_edit&supplier_id='+id, {contentType:'ajax',showButton:false,title:"打款确认",width:600,height:195});
+}
+</script>
+<div class="main">
+<div class="main_title"> {$supplier_info['name']}{$balance_title}对帐单</div>
+
+<div class="blank5"></div>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		 类型：
+		<select name="type" class="ui-select filter_select medium">	
+				<option value="1" <if condition="$type eq 1">selected="selected"</if>>销售明细</option>
+				<option value="2" <if condition="$type eq 2">selected="selected"</if>>已完成明细</option>
+				<option value="3" <if condition="$type eq 3">selected="selected"</if>>退款/取消订单</option>
+				<option value="4" <if condition="$type eq 4">selected="selected"</if>>已结算明细</option>
+		</select>	
+		{%SEARCH_REFERER_TIME}：
+		<select name="year">
+			<foreach name="year_list" item="year">
+				<option value="{$year.year}" <if condition="$year['current']">selected="selected"</if>>{$year.year}年</option>
+			</foreach>
+		</select>
+		<select name="month">
+			<foreach name="month_list" item="month">
+				<option value="{$month.month}" <if condition="$month['current']">selected="selected"</if>>{$month.month}月</option>
+			</foreach>
+		</select>
+		<input type="hidden" value="DcBalance" name="m" />
+		<input type="hidden" value="supplier_order" name="a" />
+		<input type="hidden" value="{$supplier_info.id}" name="id" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+</form>
+</div>
+<div class="blank5"></div>
+
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="spl" 
+	datasource="list"
+	show="id:{%ID}|50px,location_id:门店号,order_sn:订单号,online_pay|format_price:在线支付,promote_amount|format_price:活动补贴,ecv_money|format_price:代金劵,admin_charges|admin_charges_format:佣金,balance_price|format_price:结算价,time|to_date:发生时间"
+	actionlist = ""
+	 /> 
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,104 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/dc_menu_cate.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_menu_cate.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/dc/dc_menu_cate.js";
+?>
+
+{include file="inc/header.html"}
+<script>
+var ajax_url = '{$ajax_url}';
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class=" f_r">
+						<a class="back_menu_index" href="{url r="biz" p="dc#index"}">[ 返回列表 ]</a>
+						<button class="ui-button add_menu_cate" rel="orange" type="button" data-id="{$location_id}">添加 +</button>
+				</div>
+			</div>
+			<div class="common_tip">
+		               <span>注意：可以点击以上【分类名称】【排序】【状态】可以进行修改</span>
+	            	</div>
+			<div class="blank50"></div>
+			<div class="form_box  content_hastab">
+					<div class="comments_details">
+	<table class="table_box ">
+					<colgroup>
+						<col width="90">
+						<col width="320">
+						<col width="150">
+						<col width="100">
+						<col width="100">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>名称</th>
+							<th>排序</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+					{if $list}
+					{foreach from=$list item=row}
+						<tr data-id="{$row.id}">
+							<td class="rate">
+								{$row.id}
+							</td>
+							<td>
+								<div class="cate_name_box"><a class="name_edit_btn" href="javascript:void(0);">{$row.name}</a></div>
+								<div class="edit_item_txt"><input class="ui-textbox" value="{$row.name}" data-id="{$row.id}" style="width:220px;padding:5px;"/>&nbsp;<i class="iconfont edit_save">&#xe60d;</i></div>
+							</td>
+							<td>
+								<input class="ui-textbox sort_item" value="{$row.sort}" data-id="{$row.id}" data-sort="{$row.sort}" style="width:50px;padding:5px;" />
+							</td>
+							<td>
+								<a class="iconfont is_effect is_effect_btn" style="font-size:25px;" data-id="{$row.id}">{if $row.is_effect eq 1}&#xe612;{else}&#xe60b;{/if}</a>
+							</td>
+							<td class="operate">
+								
+								<a href="javascript:void(0);" onclick="del_menu_cate(this);" data-id="{$row.id}" >删除</a>
+								
+							</td>
+						</tr>
+					{/foreach}
+					{/if}
+					</tbody>
+				</table>
+	<div class="blank"></div>
+	<div class="pages">
+		{$pages}
+	</div>
+</div>
+		
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

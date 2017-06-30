@@ -1,0 +1,15 @@
+<div class="city_select_box clearfix">
+	<div class="selected_city f_l"><span></span></div>
+	<div class="select_city_btn_box f_l"><button class="ui-button select_city_btn" rel="white" type="button">选择城市</button></div>
+	<input type="hidden"  name="city_id" value="{$city_id}"/>
+	<div class="city_list_box">
+		<dl>
+			{foreach from=$city_tree item=row}
+				<dt>{$row.name}</dt>
+				{foreach from=$row._child item=sub_item}
+					<dd><a class="city_item {if $sub_item.selected eq 1} curr {/if}" href="javascript:void(0);" onclick="select_city(this)" data="{$sub_item.id}">{$sub_item.name}</a></dd>
+				{/foreach}
+			{/foreach}
+		</dl>
+	</div>
+</div>

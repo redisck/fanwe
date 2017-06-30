@@ -1,0 +1,97 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/balance.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/swfobject.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/balance/balance_line.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/balance/balance_line.js";
+?>
+
+{include file="inc/header.html"}
+<script type="text/javascript">
+	var ofc_data_url = '{$ofc_data_url}';
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box">
+				<div class="standard_tab cf">
+				<ul>
+					<li class="{if $ACTION_NAME eq 'index'}curr{/if}"><a href="{url b="biz" r="balance#index"}">财务概况</a></li>
+					<li class="{if $ACTION_NAME eq 'line'}curr{/if}"><a href="{url b="biz" r="balance#line"}">销售走势</a></li>
+					<li class="{if $ACTION_NAME eq 'detail'}curr{/if}"><a href="{url b="biz" r="balance#detail"}">财务明细</a></li>
+				</ul>
+			</div>
+			</div>
+			
+			<div class="info_table">
+				<div class="blank"></div>
+				<form name="search_form" action="{url x="biz" r="balance#line"}" method="post">
+				<table>
+					<tr>
+						<td width=50>日期</td>
+						<td width="105" class="select_row">
+							<select name="year" class="ui-select filter_select" height=100>
+								{foreach from=$year_list item=year}
+								<option value="{$year.year}" {if $year.current}selected="selected"{/if}>{$year.year}年</option>
+								{/foreach}
+							</select>
+						</td>						
+						<td width="105" class="select_row">							
+							<select name="month" class="ui-select filter_select" height=100>
+								{foreach from=$month_list item=month}
+								<option value="{$month.month}" {if $month.current}selected="selected"{/if}>{$month.month}月</option>
+								{/foreach}
+							</select>
+						</td>						
+						<td width="50">
+							<button class="ui-button add_goods_type" rel="white" type="submit">搜索</button>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+				</form>
+
+				<div class="blank"></div>
+			</div>
+			
+			<div class="blank"></div>
+			<table>
+				<tr>
+					<td width=20></td>
+					<td width=768><div id="data_line_chart"></div></td>
+					<td width=20></td>
+				</tr>
+			</table>		
+
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

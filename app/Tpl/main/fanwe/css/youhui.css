@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+.youhui_box{ border:@border_color solid 1px; padding:20px; background:@box_color; }
+
+.youhui_box .title {
+  font-family: Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,Microsoft Yahei,Simhei,sans-serif;
+  font-size: 28px;
+  line-height: 45px;
+}
+.youhui_box .details{
+	padding-bottom: 15px;
+	line-height: 165%;
+	font-size: 14px;
+}
+
+.youhui_info_box{ height:270px; margin-top:10px;}
+
+.youhui_box .youhui_info_box .youhui_img .img{ position:relative; border:#ccc solid 1px; width:320px; height:240px; padding:10px; }
+.youhui_box .youhui_info_box .youhui_img .img .tags{ position:absolute; left:10px; top:-4px; z-index:2;}
+.youhui_box .youhui_info_box .youhui_img .img{ position:absolute; z-index:1;}
+
+.youhui_intro{ width:350px; }
+.youhui_intro dl{ display:block; height:30px; width:100%;}
+.youhui_intro dl dt{ display:block; float:left; width:30px;   }
+.youhui_intro dl dt .iconfont{ color:@font_color;}
+.youhui_intro dl dd{ display:block; float:left; }
+.youhui_intro dl dd i{ font-style:normal; color:@main_color; }
+/* 详情导航 */
+.show-nav{ border:@border_color solid 1px; background:#eee; height:40px; }
+.show-nav ul li{ float:left; display:block; height:40px; line-height:40px; text-align:center; padding:0px 25px; cursor:pointer; font-size:14px; border-right:@border_color solid 1px; }
+.show-nav ul li.active{ background:@main_color; color:#fff;}
+
+.show-content{ background:@box_color;}
+
+.fix-nav{	
+	border-top:2px solid @main_color;
+	position:fixed;
+	top:0;
+	text-align:center;	
+	height:40px;
+	_position:absolute;	
+	z-index:100;
+	
+}
+.fix-nav .show-nav{border-top:0px;}
+.flow_btn{ margin-right:8px; float:right; margin-top:8px;}
+
+.show-content .content_box .box_content{ padding:0 15px 15px 15px;}
+.show-content .content_box .box_title{ font-size:16px; font-family:"微软雅黑"; font-weight:bolder; height:22px; line-height:22px; border-bottom:@border_color solid 2px; padding:15px; margin:15px 0px; }
+
+.show-content .content_box .box_title .box_title_text{ float:left;}
+.show-content .content_box .box_title .box_title_more{ float:right; font-size:12px;}
+.show-content .content_box .box_title .box_title_more a{ color:@main_color;}
+.show-content .content_box .box_title .box_title_more a:hover{ color:@dark_color;}
+.show-content .content_box .nopadding{ padding:0px;}
+.show-content .content_box .nomargin{ margin:0px;}
+
+
+.download_title{ text-align:center; font-size:16px; font-family:"微软雅黑"; line-height:35px;  }
+.download_title i{ font-size:22px;  font-weight:bolder; color:@main_color; font-family:"verdana"; font-style:normal; }
+.youhui_win_btns{ text-align:center; padding-top:20px; }
+.youhui_ico{ font-size:12px; color:@font_color;}

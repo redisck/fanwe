@@ -1,0 +1,28 @@
+<div class="pop_cart">
+	<div class="tip_row">
+		<span class="icon"></span>
+		<span class="message">
+		<h2>商品已加入购物车！</h2>
+		<h3>购物车内共<i>{$cart_total}</i>种商品</h3>
+		</span>
+	</div>
+	<div class="btn_row">
+	<button class="ui-button" rel="blue" action="close">继续购买</button>
+	<button class="ui-button" rel="orange" action="checkout" action-url="{url x="index" r="cart"}">去结算</button>
+	</div>
+	<div class="blank"></div>
+	{if $relate_list}	
+	<div class="relate_row">
+		<div class="title">购买此商品的用户还购买了：</div>
+		<div class="content">
+		{foreach from=$relate_list item=deal}
+		<div class="relate_item">
+			<a href="{$deal.url}" class="item_img" title="{$deal.name}" target="_blank"><img src="{function name="get_spec_image" v=$deal.icon w=127 h=77 g=1}" /></a>
+			<a href="{$deal.url}" class="item_name" title="{$deal.name}" target="_blank">{function name="msubstr" v=$deal.sub_name b=0 e=8}</a>
+			<span class="item_price">&yen;{function name="round" v=$deal.current_price e=2}</span>
+		</div>
+		{/foreach}
+		</div>
+	</div>
+	{/if}
+</div>

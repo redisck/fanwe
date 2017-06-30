@@ -1,0 +1,65 @@
+.publish_cons .con_item{padding:20px;}
+.con_item{display:none;}
+.con_item.curr{display:block;}
+.confirm_form_btn{text-align:right;margin-right:58px;}
+.next_form_btn_box{display:inline-block;}
+
+.t_field_value input{padding:8px 2px;width:180px;}
+input.long_input{width:400px;}
+.t_field_value .t_textarea{resize: none;width: 400px;height: 100px;border: #ccc solid 1px;font-size: 14px;word-spacing: 8px;-spacing: 1px;}
+.content .head_box h2{display:block;}
+.content .head_box .publish_project_btn{width:80px;}
+.t_field_value .ui-checkbox{margin:5px;}
+.t_tip {color: #860;display:inline-block;*zoom:1;*display:inline;margin-left:2px;}
+
+/*weebox*/
+.deal_add_goods_type_page .goods_type_i{margin-left:20px;border-bottom:1px dashed #ccc;}
+.deal_add_goods_type_page .sub_con{padding: 10px 0 20px 20px;}
+.deal_add_goods_type_page .sub_con .attr_item_list p{display:block;padding:10px;}
+.deal_add_goods_type_page .sub_con .attr_item_list .i_text{padding: 7px;width: 250px}
+.deal_add_goods_type_page .sub_con .add_attr_btn{padding-left:10px;}
+
+/*城市选择*/
+.city_select_box{position: relative;z-index: 55;}
+.city_select_box .selected_city span{border: 1px solid #ccc;width: 80px;height: 25px;line-height: 25px;font-weight: bold;display: block;text-align: center;}
+.city_select_box .select_city_btn_box{margin: 2px;}
+.city_list_box{display:none;position: absolute;top: 26px;left: 0px;background-color: #fff;width: 500px;max-height:200px;_height:200px;overflow: auto;border: 1px solid #ccc;padding: 10px;z-index: 55;}
+.city_list_box dl dt{dispaly:block;color: #A59B9B;margin-bottom:5px;}
+.city_list_box dl dd{display: inline-block;*zoom:1;*display:inline;}
+.city_list_box dl dd a{display: block;padding: 2px;}
+.city_list_box .curr{color:#fff;background-color:@main_color}
+
+.required{color:red;}
+
+/*产品列表*/
+.table_box .date_p{text-align:center;}
+
+#filter_row{display:none;}
+
+/*添加关联商品*/
+.add_deal_btn .btn_box{	margin-right:10px;}
+
+.relate_deal{height:300px;overflow:auto;border-top:1px solid @border_color;border-bottom:1px solid @border_color;padding:0;margin:0 20px 10px 20px;}
+.relate_deal tr.relate_cur td{background:#f5f5f5;}
+.relate_deal table td{padding:5px 10px;}
+.relate_deal table td.add_relate{font-size:20px; cursor:pointer;}
+.search_relate{padding: 0 20px 0 20px;overflow:hidden;height:26px;}
+.search_relate input{padding:3px;float:left;}
+.search_relate .add_related_deal{float:left;margin:1px 0 0 5px;}
+
+.select_relate{padding:0 20px 0 20px;}
+.select_relate ul li{float:left;margin-right:12px;width:70px;height:68px;position:relative;}
+
+.select_relate ul li a{ display:block; width:70px; height:68px; position:absolute; left:1px; bottom:1px; background:url(../images/css_bg/relate_bg.png) no-repeat 0 top; z-index:10;
+filter:alpha(opacity=0); /*IE滤镜*/
+-moz-opacity:0; /*Firefox私有*/
+opacity:0;/*其他*/ 
+-moz-transition: all 0.2s ;  -webkit-transition: all 0.2s ;   transition: all 0.2s ;}
+.select_relate ul li a:hover{ display:block; width:70px; height:68px; position:absolute; left:1px; bottom:1px; background:url(../images/css_bg/relate_bg.png) no-repeat 0 top; z-index:10;
+filter:alpha(opacity=70); 
+-moz-opacity:0.7;
+opacity:0.7;
+-moz-transition: all 0.2s ;  -webkit-transition: all 0.2s ;   transition: all 0.2s ; }
+.relate_td .select_relate ul li a{display:none;}
+
+
